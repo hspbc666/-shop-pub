@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="cn.hsp.demo">
+    package="cn.hsp.shop">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:name="cn.hsp.demo.App"
+        android:name="cn.hsp.shop.App"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,20 +16,20 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
 
-        <activity android:name=".ui.activity.SplashActivity">
+        <activity android:name="cn.hsp.shop.ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name="cn.hsp.shop.ui.activity.LoginActivity" />
         <activity
-            android:name=".ui.activity.NoteListActivity"
+            android:name="cn.hsp.shop.ui.activity.NoteListActivity"
             android:theme="@style/NotepadTheme" />
-        <activity android:name=".ui.activity.EditNoteActivity" />
-        <activity android:name=".ui.activity.RegisterActivity" />
-        <activity android:name=".ui.activity.AddNoteActivity" />
+        <activity android:name="cn.hsp.shop.ui.activity.EditNoteActivity" />
+        <activity android:name="cn.hsp.shop.ui.activity.RegisterActivity" />
+        <activity android:name="cn.hsp.shop.ui.activity.AddNoteActivity" />
     </application>
 
 </manifest>
