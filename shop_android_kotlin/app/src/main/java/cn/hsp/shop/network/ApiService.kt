@@ -6,11 +6,9 @@
  */
 package cn.hsp.shop.network
 
-import cn.hsp.shop.network.request.AddNoteRequest
 import cn.hsp.shop.network.request.LoginRequest
-import cn.hsp.shop.network.request.ModifyNoteRequest
 import cn.hsp.shop.network.request.RegisterRequest
-import cn.hsp.shop.network.response.Note
+import cn.hsp.shop.network.response.Goods
 import cn.hsp.shop.network.response.LoginResp
 import cn.hsp.shop.network.response.RegisterResp
 import cn.hsp.shop.network.response.Result
@@ -26,21 +24,21 @@ interface ApiService {
     @Headers("ignoreToken:true")
     suspend fun register(@Body request: RegisterRequest): Result<RegisterResp?>?
 
-    @GET("note/api/list/{userId}")
+    @GET("shop/api/goods/list_all")
     @Headers("ignoreToken:true")
-    suspend fun getDataList(@Path("userId") userId: Long): Result<List<Note>?>?
-
-    @GET("note/api/query/{noteId}")
-    suspend fun queryData(@Path("noteId") noteId: Long): Result<Note?>?
-
-    @GET("note/api/del/{noteId}")
-    suspend fun deleteData(@Path("noteId") noteId: Long): Result<String?>?
-
-    @POST("note/api/add")
-    suspend fun addData(@Body request: AddNoteRequest): Result<String?>?
-
-    @POST("note/api/modify")
-    suspend fun modifyData(@Body request: ModifyNoteRequest): Result<String?>?
+    suspend fun queryGoods(): Result<List<Goods>?>?
+//
+//    @GET("goods/api/query/{goodsId}")
+//    suspend fun queryData(@Path("goodsId") goodsId: Long): Result<Goods?>?
+//
+//    @GET("goods/api/del/{goodsId}")
+//    suspend fun deleteData(@Path("goodsId") goodsId: Long): Result<String?>?
+//
+//    @POST("goods/api/add")
+//    suspend fun addData(@Body request: AddGoodsRequest): Result<String?>?
+//
+//    @POST("goods/api/modify")
+//    suspend fun modifyData(@Body request: ModifyGoodsRequest): Result<String?>?
 
 
 //    @GET("/article/list/{page}/json")

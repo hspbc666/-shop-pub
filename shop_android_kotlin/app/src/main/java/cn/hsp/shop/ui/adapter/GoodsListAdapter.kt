@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cn.hsp.shop.R
-import cn.hsp.shop.network.response.Note
+import cn.hsp.shop.network.response.Goods
 import kotlinx.android.synthetic.main.item_note.view.*
 
 /**
@@ -14,18 +14,18 @@ import kotlinx.android.synthetic.main.item_note.view.*
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：花生皮编程
  */
-class NoteListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private lateinit var onItemClick: (Note: Note) -> Unit
-    private var dataList = mutableListOf<Note>()
-    fun setData(noteList: List<Note>) {
+class GoodsListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private lateinit var onItemClick: (Goods: Goods) -> Unit
+    private var dataList = mutableListOf<Goods>()
+    fun setData(goodsList: List<Goods>) {
         dataList.clear()
-        dataList.addAll(noteList)
+        dataList.addAll(goodsList)
         notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val data = dataList[position]
-        holder.itemView.textView.text = data.content
+        holder.itemView.textView.text = data.name
         holder.itemView.setOnClickListener { onItemClick(data) }
     }
 
@@ -36,7 +36,7 @@ class NoteListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return ViewHolder(view)
     }
 
-    infix fun setOnItemClick(onClick: (Note: Note) -> Unit) {
+    infix fun setOnItemClick(onClick: (Goods: Goods) -> Unit) {
         this.onItemClick = onClick
     }
 

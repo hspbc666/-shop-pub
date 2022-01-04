@@ -6,9 +6,11 @@
  */
 package cn.hsp.shop.network.response
 
-data class Note(
-    var id: Long = 0,
-    var content: String = ""
+data class Goods(
+    var id: String = "",
+    var name: String = "",
+    var price: Long = 0,
+    var pics: String?
 )
 
 class LoginResp(

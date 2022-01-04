@@ -1,21 +1,19 @@
 package cn.hsp.shop.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
-import cn.hsp.shop.network.NoteRepo
-import cn.hsp.shop.network.response.Note
-import cn.hsp.shop.utils.Constants.SP_KEY_USER_ID
-import cn.hsp.shop.utils.SpUtil
+import cn.hsp.shop.network.GoodsRepo
+import cn.hsp.shop.network.response.Goods
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：花生皮编程
  */
-class NoteListViewModel : BaseViewModel() {
-    private val repo by lazy { NoteRepo() }
-    val dataList: MutableLiveData<List<Note>> = MutableLiveData()
+class GoodsListViewModel : BaseViewModel() {
+    private val repo by lazy { GoodsRepo() }
+    val dataList: MutableLiveData<List<Goods>> = MutableLiveData()
 
     fun queryDataList(
         onSuccess: (() -> Unit)? = null,
@@ -24,9 +22,7 @@ class NoteListViewModel : BaseViewModel() {
     ) {
         launch(
             {
-                val userId = SpUtil.get(SP_KEY_USER_ID, 0L)
-                Log.v("ddfd","query")
-                dataList.value = repo.queryDataList(userId)?.data
+                dataList.value = repo.queryGoods()?.data
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },

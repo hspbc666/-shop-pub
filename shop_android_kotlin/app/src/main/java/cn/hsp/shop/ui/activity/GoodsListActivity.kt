@@ -5,11 +5,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
-import cn.hsp.shop.network.response.Note
-import cn.hsp.shop.ui.adapter.NoteListAdapter
+import cn.hsp.shop.network.response.Goods
+import cn.hsp.shop.ui.adapter.GoodsListAdapter
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_NOTE_ID
-import cn.hsp.shop.viewmodel.NoteListViewModel
+import cn.hsp.shop.viewmodel.GoodsListViewModel
 import kotlinx.android.synthetic.main.activity_note_list.*
 
 /**
@@ -18,9 +18,9 @@ import kotlinx.android.synthetic.main.activity_note_list.*
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：花生皮编程
  */
-class NoteListActivity : BaseVmActivity<NoteListViewModel>() {
-    private val adapter = NoteListAdapter()
-    override fun viewModelClass() = NoteListViewModel::class.java
+class GoodsListActivity : BaseVmActivity<GoodsListViewModel>() {
+    private val adapter = GoodsListAdapter()
+    override fun viewModelClass() = GoodsListViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_note_list
 
     override fun initView() {
@@ -53,10 +53,9 @@ class NoteListActivity : BaseVmActivity<NoteListViewModel>() {
         mViewModel.dataList.observe(this, Observer { adapter.setData(it) })
     }
 
-    private fun onItemClick(note: Note) {
+    private fun onItemClick(goods: Goods) {
         val intent = Intent(this, EditNoteActivity::class.java)
-        intent.putExtra(EXTRA_KEY_NOTE_ID, note.id)
-        intent.putExtra(Constants.EXTRA_KEY_NOTE_CONTENT, note.content)
+        intent.putExtra(EXTRA_KEY_NOTE_ID, goods.id)
         startActivity(intent)
     }
 

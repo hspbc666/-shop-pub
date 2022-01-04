@@ -7,22 +7,20 @@
 package cn.hsp.shop.network
 
 import cn.hsp.shop.base.BaseRepository
-import cn.hsp.shop.network.request.AddNoteRequest
 import cn.hsp.shop.network.request.LoginRequest
-import cn.hsp.shop.network.request.ModifyNoteRequest
 import cn.hsp.shop.network.request.RegisterRequest
 
-class NoteRepo : BaseRepository() {
-    suspend fun queryDataList(userId: Long) = apiService.getDataList(userId)
-    suspend fun queryData(noteId: Long) = apiService.queryData(noteId)
-    suspend fun addData(content: String) =
-        apiService.addData(AddNoteRequest(content))
+class GoodsRepo : BaseRepository() {
+    suspend fun queryGoods() = apiService.queryGoods()
+//    suspend fun queryData(noteId: Long) = apiService.queryData(noteId)
+//    suspend fun addData(content: String) =
+//        apiService.addData(AddNoteRequest(content))
 
-    suspend fun modifyData(id: Long, content: String) = apiService.modifyData(
-        ModifyNoteRequest(id, content)
-    )
+//    suspend fun modifyData(id: Long, content: String) = apiService.modifyData(
+//        ModifyNoteRequest(id, content)
+//    )
 
-    suspend fun deleteData(noteId: Long) = apiService.deleteData(noteId)
+    //    suspend fun deleteData(noteId: Long) = apiService.deleteData(noteId)
     suspend fun login(userName: String, password: String) =
         apiService.login(LoginRequest(userName, password))
 

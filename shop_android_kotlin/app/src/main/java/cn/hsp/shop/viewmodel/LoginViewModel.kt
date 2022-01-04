@@ -1,7 +1,7 @@
 package cn.hsp.shop.viewmodel
 
 import cn.hsp.shop.base.BaseViewModel
-import cn.hsp.shop.network.NoteRepo
+import cn.hsp.shop.network.GoodsRepo
 import cn.hsp.shop.utils.Constants.SP_KEY_TOKEN
 import cn.hsp.shop.utils.Constants.SP_KEY_USER_ID
 import cn.hsp.shop.utils.SpUtil
@@ -12,7 +12,7 @@ import cn.hsp.shop.utils.SpUtil
  * 公众号：花生皮编程
  */
 class LoginViewModel : BaseViewModel() {
-    private val repo by lazy { NoteRepo() }
+    private val repo by lazy { GoodsRepo() }
 
     fun login(
         userName: String, password: String,

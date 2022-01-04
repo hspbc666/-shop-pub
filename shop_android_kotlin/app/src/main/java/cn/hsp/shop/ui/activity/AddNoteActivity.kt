@@ -2,7 +2,7 @@ package cn.hsp.shop.ui.activity
 
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
-import cn.hsp.shop.viewmodel.NoteViewModel
+import cn.hsp.shop.viewmodel.GoodsViewModel
 import kotlinx.android.synthetic.main.activity_edit_note.*
 
 /**
@@ -11,8 +11,8 @@ import kotlinx.android.synthetic.main.activity_edit_note.*
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：花生皮编程
  */
-class AddNoteActivity : BaseVmActivity<NoteViewModel>() {
-    override fun viewModelClass() = NoteViewModel::class.java
+class AddNoteActivity : BaseVmActivity<GoodsViewModel>() {
+    override fun viewModelClass() = GoodsViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_edit_note
 
     override fun initView() {

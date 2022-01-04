@@ -2,17 +2,17 @@ package cn.hsp.shop.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
-import cn.hsp.shop.network.NoteRepo
-import cn.hsp.shop.network.response.Note
+import cn.hsp.shop.network.GoodsRepo
+import cn.hsp.shop.network.response.Goods
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：花生皮编程
  */
-class NoteViewModel : BaseViewModel() {
-    private val repo by lazy { NoteRepo() }
-    val note: MutableLiveData<Note> = MutableLiveData()
+class GoodsViewModel : BaseViewModel() {
+    private val repo by lazy { GoodsRepo() }
+    val goods: MutableLiveData<Goods> = MutableLiveData()
 
     fun queryData(
         noteId: Long,
@@ -22,7 +22,7 @@ class NoteViewModel : BaseViewModel() {
     ) {
         launch(
             {
-                note.value = repo.queryData(noteId)?.data
+//                goods.value = repo.queryData(noteId)?.data
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },
@@ -38,7 +38,7 @@ class NoteViewModel : BaseViewModel() {
     ) {
         launch(
             {
-                repo.addData(content)
+//                repo.addData(content)
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },
@@ -54,7 +54,7 @@ class NoteViewModel : BaseViewModel() {
     ) {
         launch(
             {
-                repo.modifyData(id, content)
+//                repo.modifyData(id, content)
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },
@@ -69,7 +69,7 @@ class NoteViewModel : BaseViewModel() {
     ) {
         launch(
             {
-                repo.deleteData(noteId)
+//                repo.deleteData(noteId)
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },

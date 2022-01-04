@@ -25,7 +25,7 @@
         </activity>
         <activity android:name="cn.hsp.shop.ui.activity.LoginActivity" />
         <activity
-            android:name="cn.hsp.shop.ui.activity.NoteListActivity"
+            android:name="cn.hsp.shop.ui.activity.GoodsListActivity"
             android:theme="@style/NotepadTheme" />
         <activity android:name="cn.hsp.shop.ui.activity.EditNoteActivity" />
         <activity android:name="cn.hsp.shop.ui.activity.RegisterActivity" />
