@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    defaultConfig {
+        applicationId "cn.hsp.demo"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //androidx兼容包
+    implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
+    //kotlin编译基础库
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //kotlin核心库
+    implementation "androidx.core:core-ktx:$ktxVersion"
+    //约束布局库
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    //recyclerview库
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    //包含了viewModel等
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleExVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    //material库，里面包含了SwipeRefreshLayout等
+    implementation "com.google.android.material:material:$materialVersion"
+    //协程coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    //retrofit网络库
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+}
