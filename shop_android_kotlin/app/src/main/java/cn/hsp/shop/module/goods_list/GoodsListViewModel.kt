@@ -2,7 +2,7 @@ package cn.hsp.shop.module.goods_list
 
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
-import cn.hsp.shop.network.GoodsRepo
+import cn.hsp.shop.network.ShopRepo
 import cn.hsp.shop.network.response.Goods
 
 /**
@@ -12,7 +12,7 @@ import cn.hsp.shop.network.response.Goods
  * 公众号：花生皮编程
  */
 class GoodsListViewModel : BaseViewModel() {
-    private val repo by lazy { GoodsRepo() }
+    private val repo by lazy { ShopRepo() }
     val dataList: MutableLiveData<List<Goods>> = MutableLiveData()
 
     fun queryGoods(

@@ -33,6 +33,12 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
         mViewModel.queryGoods(goodsId)
     }
 
+    override fun initListeners() {
+        addToCartTv.setOnClickListener {
+            mViewModel.addToCart(goodsId)
+        }
+    }
+
     private fun loadImage(goodsIv: ImageView, url: String) {
         Glide.with(this)
             .load(url)

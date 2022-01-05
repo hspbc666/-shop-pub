@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import cn.hsp.shop.R
 import cn.hsp.shop.module.goods_list.GoodsListFragment
-import cn.hsp.shop.module.cart.ShoppingCartFragment
+import cn.hsp.shop.module.cart.CartFragment
 import cn.hsp.shop.module.mine.MineFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -23,7 +23,7 @@ class HomeActivity : AppCompatActivity() {
     private fun initData() {
         mFragments = ArrayList()
         mFragments.add(GoodsListFragment())
-        mFragments.add(ShoppingCartFragment())
+        mFragments.add(CartFragment())
         mFragments.add(MineFragment())
         setFragmentPosition(0)
     }

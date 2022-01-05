@@ -10,9 +10,10 @@ import cn.hsp.shop.base.BaseRepository
 import cn.hsp.shop.network.request.LoginRequest
 import cn.hsp.shop.network.request.RegisterRequest
 
-class GoodsRepo : BaseRepository() {
+class ShopRepo : BaseRepository() {
     suspend fun queryGoods() = apiService.queryGoods()
     suspend fun queryGoods(goodsId: Long) = apiService.queryGoods(goodsId)
+    suspend fun addToCart(goodsId: Long) = apiService.addToCart(goodsId)
 //    suspend fun queryData(noteId: Long) = apiService.queryData(noteId)
 //    suspend fun addData(content: String) =
 //        apiService.addData(AddNoteRequest(content))

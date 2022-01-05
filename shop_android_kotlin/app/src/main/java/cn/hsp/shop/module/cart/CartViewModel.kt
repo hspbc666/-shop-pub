@@ -1,4 +1,4 @@
-package cn.hsp.shop.module.goods_detail
+package cn.hsp.shop.module.cart
 
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
@@ -11,7 +11,7 @@ import cn.hsp.shop.network.response.Goods
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：花生皮编程
  */
-class GoodsViewModel : BaseViewModel() {
+class CartViewModel : BaseViewModel() {
     private val repo by lazy { ShopRepo() }
     val goods: MutableLiveData<Goods> = MutableLiveData()
 
@@ -29,21 +29,5 @@ class GoodsViewModel : BaseViewModel() {
             { onFailure?.invoke(it.message ?: "") },
             { onComplete?.invoke() })
     }
-
-    fun addToCart(
-        goodsId: Long,
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                repo.addToCart(goodsId)
-                onSuccess?.invoke()
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
-    }
-
 
 }
