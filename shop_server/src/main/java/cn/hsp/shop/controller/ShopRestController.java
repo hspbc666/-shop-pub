@@ -63,14 +63,19 @@ public class ShopRestController {
 
     @GetMapping("cart/add/{goodsId}")
     public Resp<Goods> addToCart(@PathVariable int goodsId, @RequestHeader("Authorization") String authorization) {
+        long userId = getUserIdFromHeader(authorization);
+        cartService.add(userId, goodsId);
+        return new Resp<>();
+    }
+
+    private long getUserIdFromHeader(String authorization) {
         final String authTokenPrefix = "Bearer ";
         long userId = 0;
         if (authorization != null && authorization.startsWith(authTokenPrefix)) {
             String token = authorization.substring(authTokenPrefix.length());
             userId = jwtUtils.getUserIdFromToken(token);
         }
-        cartService.add(userId, goodsId);
-        return new Resp<>();
+        return userId;
     }
 
 //    @GetMapping("api/goods/list/{goodsId}")
