@@ -1,8 +1,6 @@
-package cn.hsp.blog.bean;
+package cn.hsp.shop.bean;
 
 import lombok.Data;
-
-import java.sql.Timestamp;
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -11,9 +9,8 @@ import java.sql.Timestamp;
  * 公众号：花生皮编程
  */
 @Data
-public class Blog {
-    private Long id;
-    private String title;
-    private String content;
-    private Timestamp lastUpdateTime;
+public class Cart {
+    private String id;
+    private Long userId ;
+    private String goodsId;
 }
