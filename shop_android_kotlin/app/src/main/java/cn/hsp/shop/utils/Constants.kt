@@ -6,10 +6,10 @@ package cn.hsp.shop.utils
  * 公众号：花生皮编程
  */
 object Constants {
-    const val BASE_URL = "http://192.168.31.10:8080/"
+    const val BASE_URL = "http://10.206.50.51:8080/"
     const val LOGIN_URL = "user/login"
     const val SP_KEY_TOKEN = "token"
     const val SP_KEY_USER_ID = "user_id"
-    const val EXTRA_KEY_NOTE_ID = "note_id"
+    const val EXTRA_KEY_GOODS_ID = "note_id"
     const val EXTRA_KEY_NOTE_CONTENT = "note_content"
 }

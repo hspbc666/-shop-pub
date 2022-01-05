@@ -7,16 +7,25 @@
 package cn.hsp.shop.base
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import java.lang.RuntimeException
 
-abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
+abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
 
     protected open lateinit var mViewModel: VM
+    private lateinit var mRootView: View
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(layoutResId())
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(layoutResId(), container, false)
+        mRootView = view
         initViewModel()
         initView()
         observe()
@@ -27,6 +36,11 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
             initData()
         }
         initListeners()
+        return view
+    }
+
+    protected fun <T : View?> findViewById(resId: Int): T {
+        return mRootView.findViewById<T>(resId)
     }
 
     private fun initViewModel() {

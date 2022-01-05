@@ -3,6 +3,7 @@ package cn.hsp.shop.ui.activity
 import android.content.Intent
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseActivity
+import cn.hsp.shop.module.login.LoginActivity
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.SpUtil
 import kotlinx.coroutines.*
@@ -19,7 +20,7 @@ class SplashActivity : BaseActivity() {
         GlobalScope.launch(Dispatchers.IO) {
             delay(500)
             if (isLoggedIn()) {
-                startActivity(Intent(this@SplashActivity, GoodsListActivity::class.java))
+                startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
             } else {
                 startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
             }

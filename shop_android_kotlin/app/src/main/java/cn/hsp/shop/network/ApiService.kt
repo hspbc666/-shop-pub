@@ -24,12 +24,12 @@ interface ApiService {
     @Headers("ignoreToken:true")
     suspend fun register(@Body request: RegisterRequest): Result<RegisterResp?>?
 
-    @GET("shop/api/goods/list_all")
+    @GET("shop/goods/list")
     @Headers("ignoreToken:true")
     suspend fun queryGoods(): Result<List<Goods>?>?
 //
-//    @GET("goods/api/query/{goodsId}")
-//    suspend fun queryData(@Path("goodsId") goodsId: Long): Result<Goods?>?
+    @GET("shop/goods/query/{goodsId}")
+    suspend fun queryGoods(@Path("goodsId") goodsId: String): Result<Goods?>?
 //
 //    @GET("goods/api/del/{goodsId}")
 //    suspend fun deleteData(@Path("goodsId") goodsId: Long): Result<String?>?
