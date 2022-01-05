@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：花生皮编程
  */
-@MapperScan({"cn.hsp.login.mapper", "cn.hsp.shop.mapper"}) //扫描的mapper
+@MapperScan({"cn.hsp.login.mapper", "cn.hsp.note.mapper", "cn.hsp.shop.mapper", "cn.hsp.blog.mapper"}) //扫描的mapper
 @SpringBootApplication
 public class HspApplication {
 

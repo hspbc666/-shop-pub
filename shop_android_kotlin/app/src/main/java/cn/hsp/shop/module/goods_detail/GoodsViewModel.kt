@@ -16,7 +16,7 @@ class GoodsViewModel : BaseViewModel() {
     val goods: MutableLiveData<Goods> = MutableLiveData()
 
     fun queryGoods(
-        goodsId: String,
+        goodsId: Int,
         onSuccess: (() -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null

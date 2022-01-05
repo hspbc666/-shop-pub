@@ -19,13 +19,13 @@ public class ShopRestController {
     @Autowired
     private JwtUtils jwtUtils;
 
-//    @GetMapping(value = "del/{id}")
+//    @GetMapping(value = "api/del/{id}")
 //    public Resp<String> delBlog(@PathVariable long id) {
 //        blogService.del(id);
 //        return new Resp<>();
 //    }
 //
-//    @PostMapping(value = "add")
+//    @PostMapping(value = "api/add")
 //    public Resp<String> addBlog(@RequestBody Blog blog, @RequestHeader("Authorization") String authorization) {
 //        final String authTokenPrefix = "Bearer ";
 //        long userId = 0;
@@ -43,21 +43,21 @@ public class ShopRestController {
 //        return new Resp<>();
 //    }
 
-    @GetMapping("goods/list")
+    @GetMapping("api/goods/list_all")
     public Resp<List<Goods>> queryAllGoods() {
         Resp<List<Goods>> resp = new Resp<>();
         resp.setData(goodsService.queryAll());
         return resp;
     }
 
-    @GetMapping("goods/query/{goodsId}")
-    public Resp<Goods> queryGoods(@PathVariable String goodsId) {
-        Resp<Goods> resp = new Resp<>();
-        resp.setData(goodsService.queryById(goodsId));
-        return resp;
-    }
+//    @GetMapping("api/goods/list/{goodsId}")
+//    public Resp<Goods> queryGoods(@PathVariable String goodsId) {
+//        Resp<Goods> resp = new Resp<>();
+//        resp.setData(goodsService.queryById(goodsId));
+//        return resp;
+//    }
 
-//    @GetMapping("list/{userId}")
+//    @GetMapping("api/list/{userId}")
 //    public Resp<List<Blog>> list(@PathVariable long userId) {
 //        Resp<List<Blog>> resp = new Resp<>();
 //        resp.setData(blogService.queryByUserId(userId));
