@@ -20,8 +20,8 @@ public interface CartMapper {
 //    @Select(value = "select * from goods where id = #{goodsId}")
 //    Goods queryById(@Param("goodsId") String goodsId);
 
-    @Insert(value = "insert into blog(userId,title,content) values (#{userId}, #{title}, #{content})")
-    void add(@Param("userId") long userId, @Param("title") String title, @Param("content") String content);
+    @Insert(value = "insert into cart(user_id,goods_id) values (#{userId}, #{goodsId})")
+    void add(@Param("userId") long userId, @Param("goodsId") long goodsId);
 //
 //    @Update(value = "update blog set title=#{title},content=#{content},lastUpdateTime=now() where id = #{id}")
 //    void modify(@Param("id") long id, @Param("title") String title, @Param("content") String content);

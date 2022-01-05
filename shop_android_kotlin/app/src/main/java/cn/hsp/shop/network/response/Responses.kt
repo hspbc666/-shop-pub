@@ -7,7 +7,7 @@
 package cn.hsp.shop.network.response
 
 data class Goods(
-    var id: Int = 0,
+    var id: Long = 0,
     var name: String = "",
     var price: Long = 0,
     var pics: String?

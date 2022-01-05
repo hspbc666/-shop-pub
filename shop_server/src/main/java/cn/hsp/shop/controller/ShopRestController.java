@@ -1,9 +1,10 @@
 package cn.hsp.shop.controller;
 
-import cn.hsp.shop.bean.Goods;
-import cn.hsp.shop.service.GoodsService;
 import cn.hsp.login.bean.response.Resp;
 import cn.hsp.login.utils.JwtUtils;
+import cn.hsp.shop.bean.Goods;
+import cn.hsp.shop.service.CartService;
+import cn.hsp.shop.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,9 @@ public class ShopRestController {
 
     @Autowired
     private GoodsService goodsService;
+
+    @Autowired
+    private CartService cartService;
 
     @Autowired
     private JwtUtils jwtUtils;
@@ -58,10 +62,15 @@ public class ShopRestController {
     }
 
     @GetMapping("cart/add/{goodsId}")
-    public Resp<Goods> addToCart(@PathVariable int goodsId) {
-        Resp<Goods> resp = new Resp<>();
-        resp.setData(goodsService.queryById(goodsId));
-        return resp;
+    public Resp<Goods> addToCart(@PathVariable int goodsId, @RequestHeader("Authorization") String authorization) {
+        final String authTokenPrefix = "Bearer ";
+        long userId = 0;
+        if (authorization != null && authorization.startsWith(authTokenPrefix)) {
+            String token = authorization.substring(authTokenPrefix.length());
+            userId = jwtUtils.getUserIdFromToken(token);
+        }
+        cartService.add(userId, goodsId);
+        return new Resp<>();
     }
 
 //    @GetMapping("api/goods/list/{goodsId}")

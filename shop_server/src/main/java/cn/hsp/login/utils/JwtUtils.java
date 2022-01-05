@@ -24,11 +24,11 @@ public class JwtUtils {
     private static final Long tokenExpiration = 86400L;//token有效期一天
     private final SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS256;
 
-    public long getUserIdFromToken(String token) {
-        long userId;
+    public int getUserIdFromToken(String token) {
+        int userId;
         try {
             final Claims claims = getClaimsFromToken(token);
-            userId = Long.parseLong(String.valueOf(claims.get(CLAIM_KEY_USER_ID)));
+            userId = Integer.parseInt(String.valueOf(claims.get(CLAIM_KEY_USER_ID)));
         } catch (Exception e) {
             userId = 0;
         }

@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_goods.*
  * 公众号：花生皮编程
  */
 class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
-    private var goodsId = 0
+    private var goodsId = 0L
     override fun viewModelClass() = GoodsViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_goods
 
@@ -29,7 +29,7 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
     }
 
     override fun initData() {
-        goodsId = intent.getIntExtra(EXTRA_KEY_GOODS_ID, 0)
+        goodsId = intent.getLongExtra(EXTRA_KEY_GOODS_ID, 0L)
         mViewModel.queryGoods(goodsId)
     }
 

@@ -1,7 +1,7 @@
 package cn.hsp.shop.service;
 
 import cn.hsp.shop.bean.Goods;
-import cn.hsp.shop.mapper.GoodsMapper;
+import cn.hsp.shop.mapper.CartMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +16,15 @@ import java.util.List;
 @Service
 public class CartService {
     @Autowired
-    private GoodsMapper goodsMapper;
+    private CartMapper cartMapper;
 
 //    public Goods query(long blogId) {
 //        return goodsMapper.query(blogId);
 //    }
 //
-//    public void add(long userId,String title, String content) {
-//        goodsMapper.add(userId, title, content);
-//    }
+    public void add(long userId,int goodsId) {
+        cartMapper.add(userId, goodsId);
+    }
 //
 //    public void modify(long id, String title, String content) {
 //        goodsMapper.modify(id, title, content);
@@ -34,11 +34,11 @@ public class CartService {
 //        goodsMapper.del(id);
 //    }
 
-    public Goods queryById(int goodsId) {
-        return goodsMapper.queryById(goodsId);
-    }
-
-    public List<Goods> queryAll() {
-        return goodsMapper.queryAll();
-    }
+//    public Goods queryById(int goodsId) {
+//        return cartMapper.queryById(goodsId);
+//    }
+//
+//    public List<Goods> queryAll() {
+//        return cartMapper.queryAll();
+//    }
 }
