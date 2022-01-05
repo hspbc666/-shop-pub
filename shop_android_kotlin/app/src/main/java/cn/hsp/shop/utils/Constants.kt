@@ -10,6 +10,5 @@ object Constants {
     const val LOGIN_URL = "user/login"
     const val SP_KEY_TOKEN = "token"
     const val SP_KEY_USER_ID = "user_id"
-    const val EXTRA_KEY_GOODS_ID = "note_id"
-    const val EXTRA_KEY_NOTE_CONTENT = "note_content"
+    const val EXTRA_KEY_GOODS_ID = "goods_id"
 }

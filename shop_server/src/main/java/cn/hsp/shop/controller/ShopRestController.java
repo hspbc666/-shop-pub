@@ -43,10 +43,24 @@ public class ShopRestController {
 //        return new Resp<>();
 //    }
 
-    @GetMapping("api/goods/list_all")
+    @GetMapping("goods/list")
     public Resp<List<Goods>> queryAllGoods() {
         Resp<List<Goods>> resp = new Resp<>();
         resp.setData(goodsService.queryAll());
+        return resp;
+    }
+
+    @GetMapping("goods/query/{goodsId}")
+    public Resp<Goods> queryGoods(@PathVariable int goodsId) {
+        Resp<Goods> resp = new Resp<>();
+        resp.setData(goodsService.queryById(goodsId));
+        return resp;
+    }
+
+    @GetMapping("cart/add/{goodsId}")
+    public Resp<Goods> addToCart(@PathVariable int goodsId) {
+        Resp<Goods> resp = new Resp<>();
+        resp.setData(goodsService.queryById(goodsId));
         return resp;
     }
 
