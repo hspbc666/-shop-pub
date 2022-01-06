@@ -11,14 +11,14 @@ import cn.hsp.shop.network.response.Goods
 import cn.hsp.shop.utils.Constants
 
 class GoodsListFragment : BaseVmFragment<GoodsListViewModel>() {
-    private lateinit var adapter: FlowerAdapter
+    private lateinit var adapter: GoodsListAdapter
     private lateinit var goodsGridView: GridView
     private lateinit var goodsListSrl: SwipeRefreshLayout
     override fun viewModelClass() = GoodsListViewModel::class.java
     override fun layoutResId(): Int = R.layout.fragment_goods_list
 
     override fun initView() {
-        adapter = FlowerAdapter(context!!)
+        adapter = GoodsListAdapter(context!!)
         goodsGridView = findViewById(R.id.goodsGridView)
         goodsGridView.adapter = adapter
         goodsGridView.setOnItemClickListener { _, _, position, _ ->
