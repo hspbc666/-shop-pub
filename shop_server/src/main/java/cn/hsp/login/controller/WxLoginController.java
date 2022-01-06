@@ -68,7 +68,7 @@ public class WxLoginController {
             try {
                 resp = authService.login(openId, DEFAULT_PASSWORD);
             } catch (Exception e) {
-                long defaultRoleId = 1L;
+                int defaultRoleId = 1;
                 UserDetail userDetail = new UserDetail(openId, DEFAULT_PASSWORD, new Role(defaultRoleId));
                 authService.register(userDetail);
                 resp = authService.login(openId, DEFAULT_PASSWORD);

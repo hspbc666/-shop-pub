@@ -15,7 +15,7 @@ import java.util.List;
  * 公众号：花生皮编程
  */
 public class UserDetail implements UserDetails {
-    private long id;
+    private int id;
     private String name;
     private String password;
     private Role role;
@@ -24,7 +24,7 @@ public class UserDetail implements UserDetails {
     }
 
     public UserDetail(
-            long id,
+            int id,
             String name,
             Role role,
             String password) {
@@ -40,7 +40,7 @@ public class UserDetail implements UserDetails {
         this.role = role;
     }
 
-    public UserDetail(long id, String name, String password) {
+    public UserDetail(int id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -54,7 +54,7 @@ public class UserDetail implements UserDetails {
         return authorities;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -116,7 +116,7 @@ public class UserDetail implements UserDetails {
         this.role = role;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

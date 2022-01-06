@@ -10,7 +10,7 @@ import lombok.Data;
  */
 @Data
 public class Cart {
-    private long id;
-    private long userId ;
-    private long goodsId;
+    private String id;
+    private int userId ;
+    private String goodsId;
 }

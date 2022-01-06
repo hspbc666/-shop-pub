@@ -10,13 +10,13 @@ import lombok.Data;
  */
 @Data
 public class Role {
-    private long id;
+    private int id;
     private String name;
 
     public Role() {
     }
 
-    public Role(long id) {
+    public Role(int id) {
         this.id = id;
     }
 

@@ -19,8 +19,3 @@ class RegisterRequest(
 class AddNoteRequest(
     val content: String = ""
 )
-
-class ModifyNoteRequest(
-    val id: Long = 0,
-    val content: String = ""
-)

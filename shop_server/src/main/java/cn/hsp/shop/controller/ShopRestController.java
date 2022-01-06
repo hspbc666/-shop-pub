@@ -55,22 +55,30 @@ public class ShopRestController {
     }
 
     @GetMapping("goods/query/{goodsId}")
-    public Resp<Goods> queryGoods(@PathVariable int goodsId) {
+    public Resp<Goods> queryGoods(@PathVariable String goodsId) {
         Resp<Goods> resp = new Resp<>();
         resp.setData(goodsService.queryById(goodsId));
         return resp;
     }
 
+    @GetMapping("cart/list")
+    public Resp<List<Goods>> queryCart(@RequestHeader("Authorization") String authorization) {
+        int userId = getUserIdFromHeader(authorization);
+        Resp<List<Goods>> resp = new Resp<>();
+        resp.setData(cartService.query(userId));
+        return resp;
+    }
+
     @GetMapping("cart/add/{goodsId}")
-    public Resp<Goods> addToCart(@PathVariable int goodsId, @RequestHeader("Authorization") String authorization) {
-        long userId = getUserIdFromHeader(authorization);
+    public Resp<Goods> addToCart(@PathVariable String goodsId, @RequestHeader("Authorization") String authorization) {
+        int userId = getUserIdFromHeader(authorization);
         cartService.add(userId, goodsId);
         return new Resp<>();
     }
 
-    private long getUserIdFromHeader(String authorization) {
+    private int getUserIdFromHeader(String authorization) {
         final String authTokenPrefix = "Bearer ";
-        long userId = 0;
+        int userId = 0;
         if (authorization != null && authorization.startsWith(authTokenPrefix)) {
             String token = authorization.substring(authTokenPrefix.length());
             userId = jwtUtils.getUserIdFromToken(token);

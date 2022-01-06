@@ -12,8 +12,9 @@ import java.sql.Timestamp;
  */
 @Data
 public class Goods {
-    private long id;
+    private String id;
     private String name;
     private long price ;
-    private String pics;
+    private String longPic;
+    private String squarePic;
 }

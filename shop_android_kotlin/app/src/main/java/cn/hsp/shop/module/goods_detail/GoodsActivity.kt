@@ -1,12 +1,17 @@
 package cn.hsp.shop.module.goods_detail
 
+import android.util.Log
 import android.widget.ImageView
 import androidx.lifecycle.Observer
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_GOODS_ID
+import cn.hsp.shop.utils.getMoneyByYuan
+import cn.hsp.shop.utils.toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_goods.*
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -15,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_goods.*
  * 公众号：花生皮编程
  */
 class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
-    private var goodsId = 0L
+    private var goodsId = ""
     override fun viewModelClass() = GoodsViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_goods
 
@@ -23,19 +28,24 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
         initToolbar()
         mViewModel.goods.observe(this, Observer {
             goodsNameTv.text = it.name
-            priceTv.text = getString(R.string.price, it.price.toString())
-            it.pics?.let { loadImage(goodsIv, it) }
+            goodsPriceTv.text = getString(R.string.price, getMoneyByYuan(it.price))
+            it.squarePic?.let { loadImage(goodsIv, it) }
         })
     }
 
     override fun initData() {
-        goodsId = intent.getLongExtra(EXTRA_KEY_GOODS_ID, 0L)
+        goodsId = intent.getStringExtra(EXTRA_KEY_GOODS_ID) ?: ""
         mViewModel.queryGoods(goodsId)
     }
 
     override fun initListeners() {
+        Log.v("ddfd","111111")
         addToCartTv.setOnClickListener {
-            mViewModel.addToCart(goodsId)
+            Log.v("ddfd","2222")
+            mViewModel.addToCart(goodsId, onSuccess = {
+                Log.v("ddfd","33333")
+                toast("已加入购物车")
+            })
         }
     }
 

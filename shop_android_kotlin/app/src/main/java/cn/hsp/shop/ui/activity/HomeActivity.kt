@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import cn.hsp.shop.R
-import cn.hsp.shop.module.goods_list.GoodsListFragment
 import cn.hsp.shop.module.cart.CartFragment
+import cn.hsp.shop.module.goods_list.GoodsListFragment
 import cn.hsp.shop.module.mine.MineFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*

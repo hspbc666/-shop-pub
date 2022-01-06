@@ -12,6 +12,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class LoginResp {
-    private long id;
+    private int id;
     private String token;
 }

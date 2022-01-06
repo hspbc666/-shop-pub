@@ -1,7 +1,6 @@
 package cn.hsp.shop.module.goods_list
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,7 @@ import com.bumptech.glide.Glide
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：花生皮编程
  */
-class GoodsListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CartAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var onItemClick: (Goods: Goods) -> Unit
     private var dataList = mutableListOf<Goods>()
     private lateinit var mContext: Context
@@ -34,7 +33,8 @@ class GoodsListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val data = dataList[position]
         holder.itemView.goodsNameTv.text = data.name
         holder.itemView.goodsPriceTv.text = mContext.getString(R.string.price, getMoneyByYuan(data.price))
-        data.longPic?.let { loadImage(holder.itemView.goodsIv, it) }
+        data.squarePic?.let { loadImage(holder.itemView.goodsIv, it) }
+
         holder.itemView.setOnClickListener { onItemClick(data) }
     }
 
@@ -48,7 +48,7 @@ class GoodsListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         mContext = parent.context
-        val view = LayoutInflater.from(mContext).inflate(R.layout.item_goods, parent, false)
+        val view = LayoutInflater.from(mContext).inflate(R.layout.item_cart_goods, parent, false)
         return ViewHolder(view)
     }
 

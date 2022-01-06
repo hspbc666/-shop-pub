@@ -7,17 +7,18 @@
 package cn.hsp.shop.network.response
 
 data class Goods(
-    var id: Long = 0,
+    var id: String = "",
     var name: String = "",
     var price: Long = 0,
-    var pics: String?
+    var longPic: String?,
+    var squarePic: String?
 )
 
 class LoginResp(
-    val id: Long = 0,
+    val id: Int = 0,
     val token: String = ""
 )
 
 class RegisterResp(
-    val id: Long = 0
+    val id: Int = 0
 )

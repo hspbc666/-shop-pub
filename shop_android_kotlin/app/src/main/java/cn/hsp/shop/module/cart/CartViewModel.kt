@@ -13,21 +13,19 @@ import cn.hsp.shop.network.response.Goods
  */
 class CartViewModel : BaseViewModel() {
     private val repo by lazy { ShopRepo() }
-    val goods: MutableLiveData<Goods> = MutableLiveData()
+    val dataList: MutableLiveData<List<Goods>> = MutableLiveData()
 
     fun queryGoods(
-        goodsId: Long,
         onSuccess: (() -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
     ) {
         launch(
             {
-                goods.value = repo.queryGoods(goodsId)?.data
+                dataList.value = repo.queryCart()?.data
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },
             { onComplete?.invoke() })
     }
-
 }

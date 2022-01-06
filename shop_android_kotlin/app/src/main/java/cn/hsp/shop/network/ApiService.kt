@@ -25,15 +25,17 @@ interface ApiService {
     suspend fun register(@Body request: RegisterRequest): Result<RegisterResp?>?
 
     @GET("goods/list")
-    @Headers("ignoreToken:true")
     suspend fun queryGoods(): Result<List<Goods>?>?
 
     //
     @GET("goods/query/{goodsId}")
-    suspend fun queryGoods(@Path("goodsId") goodsId: Long): Result<Goods?>?
+    suspend fun queryGoods(@Path("goodsId") goodsId: String): Result<Goods?>?
 
     @GET("cart/add/{goodsId}")
-    suspend fun addToCart(@Path("goodsId") goodsId: Long): Result<String?>?
+    suspend fun addToCart(@Path("goodsId") goodsId: String): Result<String?>?
+
+    @GET("cart/list")
+    suspend fun queryCart(): Result<List<Goods>?>?
 
 //
 //    @GET("goods/api/del/{goodsId}")

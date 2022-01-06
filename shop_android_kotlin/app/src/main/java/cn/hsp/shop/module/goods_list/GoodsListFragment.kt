@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmFragment
+import cn.hsp.shop.module.cart.CartViewModel
 import cn.hsp.shop.module.goods_detail.GoodsActivity
 import cn.hsp.shop.network.response.Goods
 import cn.hsp.shop.utils.Constants
@@ -15,7 +16,7 @@ class GoodsListFragment : BaseVmFragment<GoodsListViewModel>() {
     private lateinit var goodsListRv: RecyclerView
     private lateinit var goodsListSrl: SwipeRefreshLayout
     override fun viewModelClass() = GoodsListViewModel::class.java
-    override fun layoutResId(): Int = R.layout.activity_goods_list
+    override fun layoutResId(): Int = R.layout.fragment_goods_list
 
     override fun initView() {
         goodsListRv = findViewById(R.id.goodsListRv)

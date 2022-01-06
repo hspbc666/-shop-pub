@@ -35,16 +35,16 @@
             android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:src="@mipmap/ic_launcher" />
+            tools:src="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/priceTv"
+            android:id="@+id/goodsPriceTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:lines="1"
-            android:textColor="#FF0035"
+            android:textColor="@color/price_color"
             android:textSize="16sp"
             tools:text="￥333333" />
 

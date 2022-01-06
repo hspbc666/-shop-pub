@@ -1,5 +1,6 @@
 package cn.hsp.shop.module.goods_detail
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo
@@ -16,7 +17,7 @@ class GoodsViewModel : BaseViewModel() {
     val goods: MutableLiveData<Goods> = MutableLiveData()
 
     fun queryGoods(
-        goodsId: Long,
+        goodsId: String,
         onSuccess: (() -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
@@ -31,7 +32,7 @@ class GoodsViewModel : BaseViewModel() {
     }
 
     fun addToCart(
-        goodsId: Long,
+        goodsId: String,
         onSuccess: (() -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
@@ -44,6 +45,5 @@ class GoodsViewModel : BaseViewModel() {
             { onFailure?.invoke(it.message ?: "") },
             { onComplete?.invoke() })
     }
-
 
 }

@@ -32,7 +32,7 @@ public class LoginController {
 
     @PostMapping(value = "/register")
     public Resp<String> register(@RequestBody UserDetail user) {
-        long defaultRoleId = 1L;
+        int defaultRoleId = 1;
         UserDetail userDetail = new UserDetail(user.getUsername(), user.getPassword(), new Role(defaultRoleId));
         return authService.register(userDetail);
     }

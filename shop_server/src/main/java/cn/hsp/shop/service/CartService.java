@@ -2,6 +2,7 @@ package cn.hsp.shop.service;
 
 import cn.hsp.shop.bean.Goods;
 import cn.hsp.shop.mapper.CartMapper;
+import cn.hsp.utils.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +19,13 @@ public class CartService {
     @Autowired
     private CartMapper cartMapper;
 
-//    public Goods query(long blogId) {
-//        return goodsMapper.query(blogId);
-//    }
-//
-    public void add(long userId,int goodsId) {
-        cartMapper.add(userId, goodsId);
+    public List<Goods> query(int userId) {
+        return cartMapper.query(userId);
+    }
+
+    public void add(int userId, String goodsId) {
+        String id = IdGenerator.generateId();
+        cartMapper.add(id, userId, goodsId);
     }
 //
 //    public void modify(long id, String title, String content) {

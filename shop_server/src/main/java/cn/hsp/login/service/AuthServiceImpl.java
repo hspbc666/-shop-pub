@@ -44,7 +44,7 @@ public class AuthServiceImpl implements AuthService {
         final String rawPassword = userDetail.getPassword();
         userDetail.setPassword(encoder.encode(rawPassword));
         authMapper.insert(userDetail);
-        long roleId = userDetail.getRole().getId();
+        int roleId = userDetail.getRole().getId();
         authMapper.insertRole(userDetail.getId(), roleId);
         return new Resp<>();
     }

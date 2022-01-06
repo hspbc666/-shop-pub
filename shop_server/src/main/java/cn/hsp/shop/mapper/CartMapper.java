@@ -1,5 +1,6 @@
 package cn.hsp.shop.mapper;
 
+import cn.hsp.shop.bean.Cart;
 import cn.hsp.shop.bean.Goods;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -14,14 +15,14 @@ import java.util.List;
  */
 @Repository
 public interface CartMapper {
-//    @Select(value = "select * from goods where id = #{userId}")
-//    List<Cart> query(@Param("userId") long userId);
+    @Select(value = "SELECT g.* FROM cart c,goods g WHERE c.goods_id=g.id AND c.user_id=#{userId}")
+    List<Goods> query(@Param("userId") int userId);
 
 //    @Select(value = "select * from goods where id = #{goodsId}")
 //    Goods queryById(@Param("goodsId") String goodsId);
 
-    @Insert(value = "insert into cart(user_id,goods_id) values (#{userId}, #{goodsId})")
-    void add(@Param("userId") long userId, @Param("goodsId") long goodsId);
+    @Insert(value = "insert into cart(id,user_id,goods_id) values (#{id},#{userId}, #{goodsId})")
+    void add(@Param("id") String id, @Param("userId") int userId, @Param("goodsId") String goodsId);
 //
 //    @Update(value = "update blog set title=#{title},content=#{content},lastUpdateTime=now() where id = #{id}")
 //    void modify(@Param("id") long id, @Param("title") String title, @Param("content") String content);

@@ -34,7 +34,7 @@ public class GoodsService {
 //        goodsMapper.del(id);
 //    }
 
-    public Goods queryById(int goodsId) {
+    public Goods queryById(String goodsId) {
         return goodsMapper.queryById(goodsId);
     }
 
