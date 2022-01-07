@@ -28,6 +28,7 @@
         <activity android:name="cn.hsp.shop.module.login.LoginActivity" />
         <activity android:name="cn.hsp.shop.module.goods_detail.GoodsActivity" />
         <activity android:name="cn.hsp.shop.module.login.RegisterActivity" />
+        <activity android:name=".module.settings.SettingsActivity" />
     </application>
 
 </manifest>

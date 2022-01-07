@@ -1,18 +1,16 @@
 package cn.hsp.shop.module.mine
 
-import android.os.Bundle
-import android.view.LayoutInflater
+import android.content.Intent
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import cn.hsp.shop.R
+import cn.hsp.shop.base.BaseFragment
+import cn.hsp.shop.module.settings.SettingsActivity
 
-class MineFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_mine, container, false)
+class MineFragment : BaseFragment() {
+    override fun layoutResId() = R.layout.fragment_mine
+    override fun initListeners() {
+        findViewById<View>(R.id.settingsIv).setOnClickListener {
+            startActivity(Intent(context, SettingsActivity::class.java))
+        }
     }
 }
