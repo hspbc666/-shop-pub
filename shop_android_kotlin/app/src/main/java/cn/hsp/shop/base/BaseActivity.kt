@@ -21,6 +21,7 @@ abstract class BaseActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             initData()
         }
+        initListeners()
     }
     protected abstract fun layoutResId(): Int
 
@@ -29,6 +30,9 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     open fun initData() {
+        // Override if need
+    }
+    open fun initListeners() {
         // Override if need
     }
 }

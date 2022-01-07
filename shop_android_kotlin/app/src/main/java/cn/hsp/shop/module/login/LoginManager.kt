@@ -5,5 +5,7 @@ import cn.hsp.shop.utils.SpUtil
 
 object LoginManager {
     fun isLoggedIn() = !SpUtil.get(Constants.SP_KEY_TOKEN, "").isNullOrEmpty()
-
+    fun quitLogin() {
+        SpUtil.remove(Constants.SP_KEY_TOKEN)
+    }
 }

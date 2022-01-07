@@ -2,6 +2,8 @@ package cn.hsp.shop.module.settings
 
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseActivity
+import cn.hsp.shop.module.login.LoginManager
+import kotlinx.android.synthetic.main.activity_settins.*
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -12,4 +14,10 @@ import cn.hsp.shop.base.BaseActivity
 class SettingsActivity : BaseActivity() {
     override fun layoutResId(): Int = R.layout.activity_settins
 
+    override fun initListeners() {
+        quitLoginTv.setOnClickListener {
+            LoginManager.quitLogin()
+            finish()
+        }
+    }
 }
