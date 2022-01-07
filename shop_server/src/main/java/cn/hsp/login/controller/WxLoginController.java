@@ -26,7 +26,7 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/user")
 public class WxLoginController {
 
     public static final String APPID = "wx7b05378f34424e99"; //申请小程序的AppId

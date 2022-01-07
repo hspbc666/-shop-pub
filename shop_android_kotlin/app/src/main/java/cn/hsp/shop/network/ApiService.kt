@@ -13,30 +13,30 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @POST("api/login")
+    @POST("user/login")
     @Headers("ignoreToken:true")
     suspend fun login(@Body request: LoginRequest): Result<LoginResp?>?
 
-    @POST("api/register")
+    @POST("user/register")
     @Headers("ignoreToken:true")
     suspend fun register(@Body request: RegisterRequest): Result<RegisterResp?>?
 
-    @GET("goods/list")
+    @GET("shop/goods/list")
     suspend fun queryGoods(): Result<List<Goods>?>?
 
-    @GET("goods/query/{goodsId}")
+    @GET("shop/goods/query/{goodsId}")
     suspend fun queryGoods(@Path("goodsId") goodsId: String): Result<Goods?>?
 
-    @GET("cart/add/{goodsId}")
+    @GET("shop/cart/add/{goodsId}")
     suspend fun addToCart(@Path("goodsId") goodsId: String): Result<String?>?
 
-    @GET("cart/modify/{goodsId}/{quantity}")
+    @GET("shop/cart/modify/{goodsId}/{quantity}")
     suspend fun modifyCart(
         @Path("goodsId") goodsId: String,
         @Path("quantity") quantity: Int
     ): Result<String?>?
 
-    @GET("cart/list")
+    @GET("shop/cart/list")
     suspend fun queryCart(): Result<List<CartItem>?>?
 
 //

@@ -1,17 +1,17 @@
 package cn.hsp.shop.module.goods_detail
 
-import android.util.Log
+import android.content.Intent
 import android.widget.ImageView
 import androidx.lifecycle.Observer
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
+import cn.hsp.shop.module.login.LoginActivity
+import cn.hsp.shop.module.login.LoginManager
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_GOODS_ID
 import cn.hsp.shop.utils.getMoneyByYuan
 import cn.hsp.shop.utils.toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_goods.*
-import java.math.RoundingMode
-import java.text.DecimalFormat
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -39,13 +39,14 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
     }
 
     override fun initListeners() {
-        Log.v("ddfd","111111")
         addToCartTv.setOnClickListener {
-            Log.v("ddfd","2222")
-            mViewModel.addToCart(goodsId, onSuccess = {
-                Log.v("ddfd","33333")
-                toast("已加入购物车")
-            })
+            if (LoginManager.isLoggedIn()) {
+                mViewModel.addToCart(goodsId, onSuccess = {
+                    toast("已加入购物车")
+                })
+            } else {
+                startActivity(Intent(this@GoodsActivity, LoginActivity::class.java))
+            }
         }
     }
 
