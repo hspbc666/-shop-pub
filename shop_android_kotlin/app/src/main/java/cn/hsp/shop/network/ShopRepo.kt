@@ -13,8 +13,9 @@ import cn.hsp.shop.network.request.RegisterRequest
 class ShopRepo : BaseRepository() {
     suspend fun queryGoods() = apiService.queryGoods()
     suspend fun queryGoods(goodsId: String) = apiService.queryGoods(goodsId)
-    suspend fun addToCart(goodsId: String) = apiService.addToCart(goodsId)
     suspend fun queryCart() = apiService.queryCart()
+    suspend fun addToCart(goodsId: String) = apiService.addToCart(goodsId)
+    suspend fun modifyCart(goodsId: String, quantity: Int) = apiService.modifyCart(goodsId, quantity)
 //    suspend fun queryData(noteId: Long) = apiService.queryData(noteId)
 //    suspend fun addData(content: String) =
 //        apiService.addData(AddNoteRequest(content))

@@ -81,7 +81,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="50dp"
-            android:background="@drawable/shape_buy_btn_bg"
+            android:background="@drawable/shape_btn_bg"
             android:gravity="center"
             android:padding="10dp"
             android:text="购买"

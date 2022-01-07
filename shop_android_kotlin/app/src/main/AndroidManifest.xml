@@ -16,7 +16,9 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
 
-        <activity android:name="cn.hsp.shop.ui.activity.HomeActivity">
+        <activity
+            android:name="cn.hsp.shop.ui.activity.HomeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

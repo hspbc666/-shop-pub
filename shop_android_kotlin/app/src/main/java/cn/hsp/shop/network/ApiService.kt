@@ -8,10 +8,7 @@ package cn.hsp.shop.network
 
 import cn.hsp.shop.network.request.LoginRequest
 import cn.hsp.shop.network.request.RegisterRequest
-import cn.hsp.shop.network.response.Goods
-import cn.hsp.shop.network.response.LoginResp
-import cn.hsp.shop.network.response.RegisterResp
-import cn.hsp.shop.network.response.Result
+import cn.hsp.shop.network.response.*
 import retrofit2.http.*
 
 interface ApiService {
@@ -27,15 +24,20 @@ interface ApiService {
     @GET("goods/list")
     suspend fun queryGoods(): Result<List<Goods>?>?
 
-    //
     @GET("goods/query/{goodsId}")
     suspend fun queryGoods(@Path("goodsId") goodsId: String): Result<Goods?>?
 
     @GET("cart/add/{goodsId}")
     suspend fun addToCart(@Path("goodsId") goodsId: String): Result<String?>?
 
+    @GET("cart/modify/{goodsId}/{quantity}")
+    suspend fun modifyCart(
+        @Path("goodsId") goodsId: String,
+        @Path("quantity") quantity: Int
+    ): Result<String?>?
+
     @GET("cart/list")
-    suspend fun queryCart(): Result<List<Goods>?>?
+    suspend fun queryCart(): Result<List<CartItem>?>?
 
 //
 //    @GET("goods/api/del/{goodsId}")

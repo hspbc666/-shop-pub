@@ -6,19 +6,23 @@
  */
 package cn.hsp.shop.network.response
 
-data class Goods(
-    var id: String = "",
-    var name: String = "",
-    var price: Long = 0,
-    var longPic: String?,
-    var squarePic: String?
-)
+class CartItem : Goods() {
+    var quantity: Int = 0
+}
 
-class LoginResp(
-    val id: Int = 0,
-    val token: String = ""
-)
+open class Goods {
+    var id: String = ""
+    var name: String = ""
+    var price: Long = 0
+    var longPic: String? = null
+    var squarePic: String? = null
+}
 
-class RegisterResp(
+class LoginResp {
     val id: Int = 0
-)
+    val token: String = ""
+}
+
+class RegisterResp {
+    val id: Int = 0
+}

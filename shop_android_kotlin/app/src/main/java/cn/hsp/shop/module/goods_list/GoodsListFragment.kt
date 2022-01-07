@@ -24,13 +24,7 @@ class GoodsListFragment : BaseVmFragment<GoodsListViewModel>() {
         goodsGridView.setOnItemClickListener { _, _, position, _ ->
             onItemClick(adapter.getData(position))
         }
-
-//        goodsListRv = findViewById(R.id.goodsListRv)
         goodsListSrl = findViewById(R.id.goodsListSrl)
-
-//        goodsListRv.adapter = adapter
-//        adapter.setOnItemClick(this::onItemClick)
-
         goodsListSrl.setOnRefreshListener {
             initData()
         }
@@ -44,10 +38,6 @@ class GoodsListFragment : BaseVmFragment<GoodsListViewModel>() {
             onComplete = {
                 goodsListSrl.isRefreshing = false
             })
-    }
-
-    override fun initListeners() {
-
     }
 
     override fun observe() {

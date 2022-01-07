@@ -9,8 +9,7 @@ import lombok.Data;
  * 公众号：花生皮编程
  */
 @Data
-public class Cart {
+public class CartSimpleItem extends Goods{
     private String id;
-    private int userId ;
-    private String goodsId;
+    private int quantity;
 }

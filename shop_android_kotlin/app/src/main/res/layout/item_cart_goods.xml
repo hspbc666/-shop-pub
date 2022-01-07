@@ -8,14 +8,21 @@
     android:background="@drawable/shape_goods_item_bg"
     android:padding="10dp">
 
+    <CheckBox
+        android:id="@+id/cartItemCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical" />
+
     <ImageView
         android:id="@+id/goodsIv"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginStart="10dp"
         android:src="@mipmap/ic_launcher" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:orientation="vertical">
@@ -29,14 +36,28 @@
             android:textSize="16sp"
             tools:text="商品名称" />
 
-        <TextView
-            android:id="@+id/goodsPriceTv"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:lines="1"
-            android:textColor="@color/price_color"
-            tools:text="￥333333" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/goodsPriceTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:lines="1"
+                android:textColor="@color/price_color"
+                tools:text="￥333333" />
+
+            <cn.hsp.quantityview.QuantityView
+                android:id="@+id/quantityView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

@@ -2,6 +2,7 @@ package cn.hsp.shop.controller;
 
 import cn.hsp.login.bean.response.Resp;
 import cn.hsp.login.utils.JwtUtils;
+import cn.hsp.shop.bean.CartItem;
 import cn.hsp.shop.bean.Goods;
 import cn.hsp.shop.service.CartService;
 import cn.hsp.shop.service.GoodsService;
@@ -62,17 +63,24 @@ public class ShopRestController {
     }
 
     @GetMapping("cart/list")
-    public Resp<List<Goods>> queryCart(@RequestHeader("Authorization") String authorization) {
+    public Resp<List<CartItem>> queryCart(@RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
-        Resp<List<Goods>> resp = new Resp<>();
-        resp.setData(cartService.query(userId));
+        Resp<List<CartItem>> resp = new Resp<>();
+        resp.setData(cartService.queryByUserId(userId));
         return resp;
     }
 
     @GetMapping("cart/add/{goodsId}")
     public Resp<Goods> addToCart(@PathVariable String goodsId, @RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
-        cartService.add(userId, goodsId);
+        cartService.modifyCart(userId, goodsId, 1);
+        return new Resp<>();
+    }
+
+    @GetMapping("cart/modify/{goodsId}/{quantity}")
+    public Resp<Goods> modifyCart(@PathVariable String goodsId, @PathVariable int quantity, @RequestHeader("Authorization") String authorization) {
+        int userId = getUserIdFromHeader(authorization);
+        cartService.modifyCart(userId, goodsId, quantity);
         return new Resp<>();
     }
 
