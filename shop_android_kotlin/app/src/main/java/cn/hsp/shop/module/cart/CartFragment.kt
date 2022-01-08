@@ -13,6 +13,7 @@ import cn.hsp.shop.base.BaseVmFragment
 import cn.hsp.shop.module.goods_detail.GoodsActivity
 import cn.hsp.shop.module.login.LoginActivity
 import cn.hsp.shop.module.login.LoginManager
+import cn.hsp.shop.module.order.ConfirmOrderActivity
 import cn.hsp.shop.network.response.CartItem
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.getMoneyByYuan
@@ -50,7 +51,10 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
             startActivity(Intent(context, LoginActivity::class.java))
         }
         createOrderTv.setOnClickListener {
-            mViewModel.createOrder()
+            val intent = Intent(context, ConfirmOrderActivity::class.java)
+//            intent.putExtra(Constants.EXTRA_KEY_GOODS_ID, cartItem.id)
+            startActivity(intent)
+//            mViewModel.createOrder(onSuccess = { queryData() })
         }
     }
 
