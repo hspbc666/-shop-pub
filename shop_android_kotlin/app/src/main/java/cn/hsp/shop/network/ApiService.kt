@@ -6,8 +6,9 @@
  */
 package cn.hsp.shop.network
 
-import cn.hsp.shop.network.request.LoginRequest
-import cn.hsp.shop.network.request.RegisterRequest
+import cn.hsp.shop.network.request.CreateOrderReq
+import cn.hsp.shop.network.request.LoginReq
+import cn.hsp.shop.network.request.RegisterReq
 import cn.hsp.shop.network.response.*
 import retrofit2.http.*
 
@@ -15,11 +16,11 @@ interface ApiService {
 
     @POST("user/login")
     @Headers("ignoreToken:true")
-    suspend fun login(@Body request: LoginRequest): Result<LoginResp?>?
+    suspend fun login(@Body req: LoginReq): Result<LoginResp?>?
 
     @POST("user/register")
     @Headers("ignoreToken:true")
-    suspend fun register(@Body request: RegisterRequest): Result<RegisterResp?>?
+    suspend fun register(@Body req: RegisterReq): Result<RegisterResp?>?
 
     @GET("shop/goods/list")
     suspend fun queryGoods(): Result<List<Goods>?>?
@@ -29,6 +30,9 @@ interface ApiService {
 
     @GET("shop/cart/add/{goodsId}")
     suspend fun addToCart(@Path("goodsId") goodsId: String): Result<String?>?
+
+    @POST("order/create")
+    suspend fun createOrder(@Body req: CreateOrderReq): Result<String?>?
 
     @GET("shop/cart/modify/{goodsId}/{quantity}")
     suspend fun modifyCart(

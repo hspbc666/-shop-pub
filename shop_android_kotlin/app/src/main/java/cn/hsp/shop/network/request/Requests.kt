@@ -6,15 +6,19 @@
  */
 package cn.hsp.shop.network.request
 
-class LoginRequest(
+class LoginReq(
     val name: String = "",
     val password: String = ""
 )
 
-class RegisterRequest(
+class RegisterReq(
     val name: String = "",
     val password: String = ""
 )
+
+class CreateOrderReq {
+    private val cartIdList: List<String>? = null
+}
 
 class AddNoteRequest(
     val content: String = ""
