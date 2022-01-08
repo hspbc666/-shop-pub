@@ -15,7 +15,7 @@ import cn.hsp.shop.network.response.CartItem
 class CartViewModel : BaseViewModel() {
     private val repo by lazy { ShopRepo() }
     val dataList: MutableLiveData<List<CartItem>> = MutableLiveData()
-    val selectionItemList = mutableListOf<SelectionItem>()
+    val selectionItemList = mutableListOf<CartItem>()
     val selectionChangeCount: MutableLiveData<Int> = MutableLiveData()
 
     fun queryCart(
@@ -64,7 +64,7 @@ class CartViewModel : BaseViewModel() {
                 selectionItem.quantity = cartItem.quantity
             }
         } else {
-            selectionItemList.add(SelectionItem(cartItem.id, cartItem.price, cartItem.quantity))
+            selectionItemList.add(cartItem)
         }
         notifySelectionChanged()
     }
@@ -93,6 +93,4 @@ class CartViewModel : BaseViewModel() {
             { onFailure?.invoke(it.message ?: "") },
             { onComplete?.invoke() })
     }
-
-    class SelectionItem(var goodsId: String, var price: Long, var quantity: Int)
 }
