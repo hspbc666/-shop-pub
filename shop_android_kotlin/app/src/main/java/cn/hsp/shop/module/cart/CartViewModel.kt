@@ -78,15 +78,14 @@ class CartViewModel : BaseViewModel() {
         selectionChangeCount.value = selectionChangeCount.value?.inc()
     }
 
-
     fun createOrder(
-        cartIdList: List<String>,
         onSuccess: (() -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
     ) {
         launch(
             {
+                val cartIdList = selectionItemList.map { it.id }
                 repo.createOrder(CreateOrderReq(cartIdList))
                 onSuccess?.invoke()
             },

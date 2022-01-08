@@ -50,7 +50,7 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
             startActivity(Intent(context, LoginActivity::class.java))
         }
         createOrderTv.setOnClickListener {
-//            mViewModel.createOrder()
+            mViewModel.createOrder()
         }
     }
 
