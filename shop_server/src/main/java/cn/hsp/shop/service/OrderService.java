@@ -3,6 +3,8 @@ package cn.hsp.shop.service;
 import cn.hsp.shop.bean.CartItem;
 import cn.hsp.shop.bean.CartSimpleItem;
 import cn.hsp.shop.mapper.CartMapper;
+import cn.hsp.shop.mapper.OrderMapper;
+import cn.hsp.shop.mapper.UserOrderMapper;
 import cn.hsp.utils.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,41 +18,25 @@ import java.util.List;
  * 公众号：花生皮编程
  */
 @Service
-public class CartService {
+public class OrderService {
     @Autowired
     private CartMapper cartMapper;
 
-    public List<CartItem> queryByUserId(int userId) {
-        return cartMapper.queryByUserId(userId);
-    }
+    @Autowired
+    private UserOrderMapper userOrderMapper;
 
-    public void modifyCart(int userId, String goodsId, int quantity) {
-        CartSimpleItem cartSimpleItem = cartMapper.query(userId, goodsId);
-        if (cartSimpleItem != null) {
-            if (quantity <= 0) {
-                cartMapper.delete(cartSimpleItem.getId());
-            } else {
-                cartMapper.updateQuantity(cartSimpleItem.getId(), quantity);
-            }
-        } else {
-            String id = IdGenerator.generateId();
-            cartMapper.add(id, userId, goodsId);
+    @Autowired
+    private OrderMapper orderMapper;
+
+    public void createOrder(int userId, List<String> cartIdList) {
+        String userOrderId = IdGenerator.generateId();
+        String orderId = IdGenerator.generateId();
+        userOrderMapper.add(userOrderId, userId, orderId);
+
+        for (int i = 0; i < cartIdList.size(); i++) {
+            CartSimpleItem cartItem = cartMapper.queryByCartId(cartIdList.get(i));
+            orderMapper.add(orderId, userId, cartItem.getGoodsId(), cartItem.getQuantity());
+            cartMapper.delete(cartItem.getId());
         }
     }
-//
-//    public void modify(long id, String title, String content) {
-//        goodsMapper.modify(id, title, content);
-//    }
-//
-//    public void del(long id) {
-//        goodsMapper.del(id);
-//    }
-
-//    public Goods queryById(int goodsId) {
-//        return cartMapper.queryById(goodsId);
-//    }
-//
-//    public List<Goods> queryAll() {
-//        return cartMapper.queryAll();
-//    }
 }

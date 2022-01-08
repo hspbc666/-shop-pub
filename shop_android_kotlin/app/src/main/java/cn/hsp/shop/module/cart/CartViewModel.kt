@@ -3,6 +3,7 @@ package cn.hsp.shop.module.cart
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo
+import cn.hsp.shop.network.request.CreateOrderReq
 import cn.hsp.shop.network.response.CartItem
 
 /**
@@ -75,6 +76,22 @@ class CartViewModel : BaseViewModel() {
 
     private fun notifySelectionChanged() {
         selectionChangeCount.value = selectionChangeCount.value?.inc()
+    }
+
+
+    fun createOrder(
+        cartIdList: List<String>,
+        onSuccess: (() -> Unit)? = null,
+        onFailure: ((msg: String) -> Unit)? = null,
+        onComplete: (() -> Unit)? = null
+    ) {
+        launch(
+            {
+                repo.createOrder(CreateOrderReq(cartIdList))
+                onSuccess?.invoke()
+            },
+            { onFailure?.invoke(it.message ?: "") },
+            { onComplete?.invoke() })
     }
 
     class SelectionItem(var goodsId: String, var price: Long, var quantity: Int)

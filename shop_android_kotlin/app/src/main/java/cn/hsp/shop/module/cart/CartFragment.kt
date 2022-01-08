@@ -13,7 +13,7 @@ import cn.hsp.shop.base.BaseVmFragment
 import cn.hsp.shop.module.goods_detail.GoodsActivity
 import cn.hsp.shop.module.login.LoginActivity
 import cn.hsp.shop.module.login.LoginManager
-import cn.hsp.shop.network.response.Goods
+import cn.hsp.shop.network.response.CartItem
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.getMoneyByYuan
 
@@ -26,6 +26,7 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
     private lateinit var cartLoginLayout: View
     private lateinit var cartLoginTv: View
     private lateinit var sumTv: TextView
+    private lateinit var createOrderTv: TextView
     override fun viewModelClass() = CartViewModel::class.java
     override fun layoutResId(): Int = R.layout.fragment_cart
 
@@ -38,6 +39,7 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
         cartLoginLayout = findViewById(R.id.cartLoginLayout)
         cartLoginTv = findViewById(R.id.cartLoginTv)
         sumTv = findViewById(R.id.sumTv)
+        createOrderTv = findViewById(R.id.createOrderTv)
         goodsListRv.adapter = adapter
     }
 
@@ -46,6 +48,9 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
         goodsListSrl.setOnRefreshListener { refreshPage() }
         cartLoginTv.setOnClickListener {
             startActivity(Intent(context, LoginActivity::class.java))
+        }
+        createOrderTv.setOnClickListener {
+//            mViewModel.createOrder()
         }
     }
 
@@ -81,9 +86,9 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
         })
     }
 
-    private fun onItemClick(goods: Goods) {
+    private fun onItemClick(cartItem: CartItem) {
         val intent = Intent(context, GoodsActivity::class.java)
-        intent.putExtra(Constants.EXTRA_KEY_GOODS_ID, goods.id)
+        intent.putExtra(Constants.EXTRA_KEY_GOODS_ID, cartItem.id)
         startActivity(intent)
     }
 

@@ -17,7 +17,10 @@ public interface CartMapper {
     @Select(value = "SELECT * FROM cart WHERE user_id=#{userId} AND goods_id= #{goodsId}")
     CartSimpleItem query(@Param("userId") int userId, @Param("goodsId") String goodsId);
 
-    @Select(value = "SELECT g.*,c.quantity FROM cart c,goods g WHERE c.goods_id=g.id AND c.user_id=#{userId}")
+    @Select(value = "SELECT * FROM cart WHERE id=#{cartId}")
+    CartSimpleItem queryByCartId( @Param("cartId") String cartId);
+
+    @Select(value = "SELECT g.id as goods_id,g.name,g.price,g.long_pic,g.square_pic,c.quantity,c.id FROM cart c,goods g WHERE c.goods_id=g.id AND c.user_id=#{userId}")
     List<CartItem> queryByUserId(@Param("userId") int userId);
 
     @Insert(value = "insert into cart(id,user_id,goods_id,quantity) values (#{id},#{userId}, #{goodsId}, 1)")

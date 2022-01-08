@@ -3,9 +3,11 @@ package cn.hsp.shop.controller;
 import cn.hsp.login.bean.response.Resp;
 import cn.hsp.login.utils.JwtUtils;
 import cn.hsp.shop.bean.CartItem;
+import cn.hsp.shop.bean.CreateOrderReq;
 import cn.hsp.shop.bean.Goods;
 import cn.hsp.shop.service.CartService;
 import cn.hsp.shop.service.GoodsService;
+import cn.hsp.shop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,9 @@ public class ShopRestController {
 
     @Autowired
     private CartService cartService;
+
+    @Autowired
+    private OrderService orderService;
 
     @Autowired
     private JwtUtils jwtUtils;
@@ -82,6 +87,14 @@ public class ShopRestController {
         int userId = getUserIdFromHeader(authorization);
         cartService.modifyCart(userId, goodsId, quantity);
         return new Resp<>();
+    }
+
+    @PostMapping("order/create")
+    public Resp<List<CartItem>> createOrder(@RequestBody CreateOrderReq req, @RequestHeader("Authorization") String authorization) {
+        int userId = getUserIdFromHeader(authorization);
+        Resp<List<CartItem>> resp = new Resp<>();
+        orderService.createOrder(userId,req.getCartIdList());
+        return resp;
     }
 
     private int getUserIdFromHeader(String authorization) {

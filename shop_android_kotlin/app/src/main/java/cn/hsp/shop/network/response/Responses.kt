@@ -6,10 +6,6 @@
  */
 package cn.hsp.shop.network.response
 
-class CartItem : Goods() {
-    var quantity: Int = 0
-}
-
 open class Goods {
     var id: String = ""
     var name: String = ""
@@ -18,11 +14,21 @@ open class Goods {
     var squarePic: String? = null
 }
 
+class CartItem {
+    var id: String = ""
+    var goodsId: String = ""
+    var name: String = ""
+    var price: Long = 0
+    var longPic: String? = null
+    var squarePic: String? = null
+    var quantity = 0
+}
+
 class LoginResp {
-    val id: Int = 0
-    val token: String = ""
+    var id: Int = 0
+    var token: String = ""
 }
 
 class RegisterResp {
-    val id: Int = 0
+    var id: Int = 0
 }

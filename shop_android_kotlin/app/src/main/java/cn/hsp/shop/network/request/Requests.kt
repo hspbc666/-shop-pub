@@ -16,9 +16,7 @@ class RegisterReq(
     val password: String = ""
 )
 
-class CreateOrderReq {
-    private val cartIdList: List<String>? = null
-}
+class CreateOrderReq(val cartIdList: List<String>?)
 
 class AddNoteRequest(
     val content: String = ""

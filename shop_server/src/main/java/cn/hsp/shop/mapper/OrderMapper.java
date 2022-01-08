@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
  * 编程学习资料及开源项目见：https://juejin.cn/post/7002792005688360968
  */
 @Repository
-public interface UserOrderMapper {
+public interface OrderMapper {
 
-    @Insert(value = "insert into user_order(id,user_id,order_id) values (#{id},#{userId}, #{orderId})")
-    void add(@Param("id") String id, @Param("userId") int userId, @Param("orderId") String orderId);
+    @Insert(value = "insert into order(id,user_id,goods_id,quantity) values (#{id},#{userId}, #{goodsId}, #{quantity})")
+    void add(@Param("id") String id, @Param("userId") int userId, @Param("orderId") String goodsId, @Param("quantity") int quantity);
 
 }

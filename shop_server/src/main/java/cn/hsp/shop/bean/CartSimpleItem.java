@@ -11,5 +11,6 @@ import lombok.Data;
 @Data
 public class CartSimpleItem extends Goods{
     private String id;
+    private String goodsId;
     private int quantity;
 }

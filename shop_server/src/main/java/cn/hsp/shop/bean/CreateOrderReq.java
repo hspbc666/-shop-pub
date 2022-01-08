@@ -2,7 +2,7 @@ package cn.hsp.shop.bean;
 
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -11,10 +11,6 @@ import java.sql.Timestamp;
  * 公众号：花生皮编程
  */
 @Data
-public class Goods {
-    private String id;
-    private String name;
-    private long price ;
-    private String longPic;
-    private String squarePic;
+public class CreateOrderReq {
+    private List<String> cartIdList;
 }
