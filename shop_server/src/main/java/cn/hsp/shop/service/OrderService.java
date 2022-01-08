@@ -1,6 +1,5 @@
 package cn.hsp.shop.service;
 
-import cn.hsp.shop.bean.CartItem;
 import cn.hsp.shop.bean.CartSimpleItem;
 import cn.hsp.shop.mapper.CartMapper;
 import cn.hsp.shop.mapper.OrderMapper;
@@ -35,7 +34,8 @@ public class OrderService {
 
         for (String cartId : cartIdList) {
             CartSimpleItem cartItem = cartMapper.queryByCartId(cartId);
-            orderMapper.add(orderId, userId, cartItem.getGoodsId(), cartItem.getQuantity());
+            String id = IdGenerator.generateId();
+            orderMapper.add(id, orderId, userId, cartItem.getGoodsId(), cartItem.getQuantity());
             cartMapper.delete(cartItem.getId());
         }
     }

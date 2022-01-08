@@ -26,10 +26,16 @@ class CartViewModel : BaseViewModel() {
         launch(
             {
                 dataList.value = repo.queryCart()?.data
+                clearSelectionItems()
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },
             { onComplete?.invoke() })
+    }
+
+    private fun clearSelectionItems() {
+        selectionItemList.clear()
+        notifySelectionChanged()
     }
 
     fun modifyCart(
