@@ -26,55 +26,5 @@
         <include layout="@layout/order_fee_layout" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/cartBottomLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#DFDFDF" />
-
-        <LinearLayout
-            android:id="@+id/cartPayLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="#FFFFFF"
-            android:paddingTop="5dp"
-            android:paddingBottom="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="实付款" />
-
-            <TextView
-                android:id="@+id/sumTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="￥0"
-                android:textColor="@color/color_common"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/createOrderTv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_weight="1"
-                android:background="@drawable/shape_btn_bg"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="提交订单"
-                android:textColor="#FFFFFF" />
-        </LinearLayout>
-    </LinearLayout>
+    <include layout="@layout/order_bottom_layout" />
 </RelativeLayout>
