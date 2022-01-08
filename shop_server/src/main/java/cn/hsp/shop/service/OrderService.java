@@ -33,8 +33,8 @@ public class OrderService {
         String orderId = IdGenerator.generateId();
         userOrderMapper.add(userOrderId, userId, orderId);
 
-        for (int i = 0; i < cartIdList.size(); i++) {
-            CartSimpleItem cartItem = cartMapper.queryByCartId(cartIdList.get(i));
+        for (String cartId : cartIdList) {
+            CartSimpleItem cartItem = cartMapper.queryByCartId(cartId);
             orderMapper.add(orderId, userId, cartItem.getGoodsId(), cartItem.getQuantity());
             cartMapper.delete(cartItem.getId());
         }

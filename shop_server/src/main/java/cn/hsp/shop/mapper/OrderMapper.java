@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderMapper {
 
-    @Insert(value = "insert into order(id,user_id,goods_id,quantity) values (#{id},#{userId}, #{goodsId}, #{quantity})")
-    void add(@Param("id") String id, @Param("userId") int userId, @Param("orderId") String goodsId, @Param("quantity") int quantity);
+    @Insert(value = "insert into order(id,user_id,goods_id,quantity) values (#{id}, #{userId}, #{goodsId}, #{quantity})")
+    void add(@Param("id") String id, @Param("userId") int userId, @Param("goodsId") String goodsId, @Param("quantity") int quantity);
 
 }
