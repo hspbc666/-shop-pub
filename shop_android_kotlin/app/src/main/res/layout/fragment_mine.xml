@@ -19,11 +19,13 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/userInfoLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp">
 
         <ImageView
+            android:id="@+id/userLogoIv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -36,6 +38,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/userNameTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="尊贵会员"
@@ -84,6 +87,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/allOrderTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_arrow_right"
@@ -97,42 +101,47 @@
             android:layout_marginTop="20dp">
 
             <TextView
+                android:id="@+id/toPayTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/daifukuan"
+                android:drawableTop="@drawable/to_pay"
                 android:gravity="center"
                 android:text="待付款" />
 
             <TextView
+                android:id="@+id/toDeliverTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/daifahuo"
+                android:drawableTop="@drawable/to_deliver"
                 android:gravity="center"
                 android:text="待发货" />
 
             <TextView
+                android:id="@+id/toReceiveTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/daishouhuo"
+                android:drawableTop="@drawable/to_receive"
                 android:gravity="center"
                 android:text="待收货" />
 
             <TextView
+                android:id="@+id/toCommentTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/daipingjia"
+                android:drawableTop="@drawable/to_comment"
                 android:gravity="center"
                 android:text="待评价" />
 
             <TextView
+                android:id="@+id/afterSalesTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/shouhou"
+                android:drawableTop="@drawable/after_sales"
                 android:gravity="center"
                 android:text="退换/售后" />
         </LinearLayout>

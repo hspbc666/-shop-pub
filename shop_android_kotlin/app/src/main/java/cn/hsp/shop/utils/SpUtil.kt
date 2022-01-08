@@ -22,5 +22,5 @@ object SpUtil {
     fun put(key: String, value: Long) = getSpFile().edit().putLong(key, value).apply()
     fun get(key: String, defaultValue: Long) = getSpFile().getLong(key, defaultValue)
 
-    fun remove(key: String) = getSpFile().edit().remove(key)
+    fun remove(key: String) = getSpFile().edit().remove(key).apply()
 }
