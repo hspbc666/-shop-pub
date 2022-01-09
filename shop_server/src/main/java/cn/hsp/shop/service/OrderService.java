@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static cn.hsp.utils.Constants.OrderStatus.TO_PAY;
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -27,10 +29,10 @@ public class OrderService {
     @Autowired
     private OrderMapper orderMapper;
 
-    public void createOrder(int userId, List<String> cartIdList) {
+    public String createOrder(int userId, List<String> cartIdList) {
         String userOrderId = IdGenerator.generateId();
         String orderId = IdGenerator.generateId();
-        userOrderMapper.add(userOrderId, userId, orderId);
+        userOrderMapper.add(userOrderId, userId, orderId, TO_PAY);
 
         for (String cartId : cartIdList) {
             CartSimpleItem cartItem = cartMapper.queryByCartId(cartId);
@@ -38,5 +40,10 @@ public class OrderService {
             orderMapper.add(id, orderId, userId, cartItem.getGoodsId(), cartItem.getQuantity());
             cartMapper.delete(cartItem.getId());
         }
+        return orderId;
+    }
+
+    public void changeOrderStatus(String orderId,int status) {
+        userOrderMapper.update(orderId,status);
     }
 }

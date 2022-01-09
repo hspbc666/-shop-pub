@@ -1,6 +1,5 @@
 package cn.hsp.shop.module.order
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo
@@ -20,18 +19,32 @@ class ConfirmOrderViewModel : BaseViewModel() {
 
     fun createOrder(
         cartItemList: List<CartItem>,
-        onSuccess: (() -> Unit)? = null,
+        onSuccess: ((orderId: String) -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
     ) {
         launch(
             {
                 val cartIdList = cartItemList.map { it.id }
-                repo.createOrder(CreateOrderReq(cartIdList))
-                onSuccess?.invoke()
+                val createOrderResp = repo.createOrder(CreateOrderReq(cartIdList))
+                onSuccess?.invoke(createOrderResp?.data?.orderId!!)
             },
             { onFailure?.invoke(it.message ?: "") },
             { onComplete?.invoke() })
     }
 
+    fun payForOrder(
+        orderId: String,
+        onSuccess: (() -> Unit)? = null,
+        onFailure: ((msg: String) -> Unit)? = null,
+        onComplete: (() -> Unit)? = null
+    ) {
+        launch(
+            {
+                repo.payForOrder(orderId)
+                onSuccess?.invoke()
+            },
+            { onFailure?.invoke(it.message ?: "") },
+            { onComplete?.invoke() })
+    }
 }

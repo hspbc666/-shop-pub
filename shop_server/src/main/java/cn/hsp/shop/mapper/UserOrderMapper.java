@@ -2,6 +2,7 @@ package cn.hsp.shop.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserOrderMapper {
 
-    @Insert(value = "insert into user_order(id,user_id,order_id) values (#{id},#{userId}, #{orderId})")
-    void add(@Param("id") String id, @Param("userId") int userId, @Param("orderId") String orderId);
+    @Insert(value = "insert into user_order(id,user_id,order_id,status) values (#{id},#{userId}, #{orderId}, #{status})")
+    void add(@Param("id") String id, @Param("userId") int userId, @Param("orderId") String orderId, @Param("status") int status);
 
+    @Update(value = "update user_order set status=#{status} where order_id = #{orderId}")
+    void update(@Param("orderId") String orderId, @Param("status") int status);
 }

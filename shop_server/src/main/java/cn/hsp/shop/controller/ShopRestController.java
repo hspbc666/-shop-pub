@@ -4,6 +4,7 @@ import cn.hsp.login.bean.response.Resp;
 import cn.hsp.login.utils.JwtUtils;
 import cn.hsp.shop.bean.CartItem;
 import cn.hsp.shop.bean.CreateOrderReq;
+import cn.hsp.shop.bean.CreateOrderResp;
 import cn.hsp.shop.bean.Goods;
 import cn.hsp.shop.service.CartService;
 import cn.hsp.shop.service.GoodsService;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static cn.hsp.utils.Constants.OrderStatus.TO_DELIVER;
 
 @RestController
 @RequestMapping("/shop")
@@ -90,11 +93,19 @@ public class ShopRestController {
     }
 
     @PostMapping("order/create")
-    public Resp<List<CartItem>> createOrder(@RequestBody CreateOrderReq req, @RequestHeader("Authorization") String authorization) {
+    public Resp<CreateOrderResp> createOrder(@RequestBody CreateOrderReq req, @RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
-        Resp<List<CartItem>> resp = new Resp<>();
-        orderService.createOrder(userId,req.getCartIdList());
+        String orderId = orderService.createOrder(userId, req.getCartIdList());
+        Resp<CreateOrderResp> resp = new Resp<>();
+        resp.setData(CreateOrderResp.builder().orderId(orderId).build());
         return resp;
+    }
+
+    @GetMapping("order/pay/{orderId}")
+    public Resp<CreateOrderResp> payForOrder(@PathVariable String orderId, @RequestHeader("Authorization") String authorization) {
+        int userId = getUserIdFromHeader(authorization);
+        orderService.changeOrderStatus(orderId, TO_DELIVER);
+        return new Resp<>();
     }
 
     private int getUserIdFromHeader(String authorization) {

@@ -6,9 +6,6 @@
  */
 package cn.hsp.shop.network.response
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
 open class Goods {
     var id: String = ""
     var name: String = ""
@@ -34,4 +31,8 @@ class LoginResp {
 
 class RegisterResp {
     var id: Int = 0
+}
+
+class CreateOrderResp {
+    var orderId: String = ""
 }

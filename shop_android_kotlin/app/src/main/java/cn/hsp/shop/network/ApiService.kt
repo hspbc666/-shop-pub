@@ -31,9 +31,6 @@ interface ApiService {
     @GET("shop/cart/add/{goodsId}")
     suspend fun addToCart(@Path("goodsId") goodsId: String): Result<String?>?
 
-    @POST("shop/order/create")
-    suspend fun createOrder(@Body req: CreateOrderReq): Result<String?>?
-
     @GET("shop/cart/modify/{goodsId}/{quantity}")
     suspend fun modifyCart(
         @Path("goodsId") goodsId: String,
@@ -42,6 +39,13 @@ interface ApiService {
 
     @GET("shop/cart/list")
     suspend fun queryCart(): Result<List<CartItem>?>?
+
+
+    @POST("shop/order/create")
+    suspend fun createOrder(@Body req: CreateOrderReq): Result<CreateOrderResp?>?
+
+    @GET("shop/order/pay/{orderId}")
+    suspend fun payForOrder(@Path("orderId") orderId: String): Result<String?>?
 
 //
 //    @GET("goods/api/del/{goodsId}")
