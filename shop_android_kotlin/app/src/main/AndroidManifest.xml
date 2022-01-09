@@ -30,6 +30,7 @@
         <activity android:name="cn.hsp.shop.module.login.RegisterActivity" />
         <activity android:name=".module.settings.SettingsActivity" />
         <activity android:name=".module.order.ConfirmOrderActivity" />
+        <activity android:name=".module.order.OrderListActivity" />
     </application>
 
 </manifest>

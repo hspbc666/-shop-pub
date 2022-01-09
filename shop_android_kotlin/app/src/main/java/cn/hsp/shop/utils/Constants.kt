@@ -13,4 +13,12 @@ object Constants {
     const val EXTRA_KEY_GOODS_ID = "goods_id"
     const val EXTRA_KEY_COST_SUM = "cost_sum"
     const val EXTRA_KEY_CART_ITEMS = "cart_items"
+
+    const val ORDER_TAB_ALL = 0
+    const val ORDER_TAB_TO_PAY = 1
+    const val ORDER_TAB_TO_DELIVER = 2
+    const val ORDER_TAB_TO_RECEIVE = 3
+    const val ORDER_TAB_TO_COMMENT = 4
+    const val ORDER_TAB_TO_RETURN = 5
+
 }

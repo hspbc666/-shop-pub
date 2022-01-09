@@ -8,7 +8,9 @@ import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseFragment
 import cn.hsp.shop.module.login.LoginActivity
 import cn.hsp.shop.module.login.LoginManager
+import cn.hsp.shop.module.order.OrderListActivity
 import cn.hsp.shop.module.settings.SettingsActivity
+import cn.hsp.shop.utils.Constants.ORDER_TAB_ALL
 
 class MineFragment : BaseFragment() {
     private lateinit var userLogoIv: ImageView
@@ -45,7 +47,7 @@ class MineFragment : BaseFragment() {
 
         if (LoginManager.isLoggedIn()) {
             userInfoLayout.setOnClickListener { }
-            allOrderTv.setOnClickListener { }
+            allOrderTv.setOnClickListener { jumpToOrder(ORDER_TAB_ALL) }
             toPayTv.setOnClickListener {}
             toDeliverTv.setOnClickListener { }
             toReceiveTv.setOnClickListener { }
@@ -60,6 +62,10 @@ class MineFragment : BaseFragment() {
             toCommentTv.setOnClickListener { gotoLoginPage() }
             afterSalesTv.setOnClickListener { gotoLoginPage() }
         }
+    }
+
+    private fun jumpToOrder(tabId: Int) {
+        startActivity(Intent(context, OrderListActivity::class.java))
     }
 
     override fun initListeners() {
