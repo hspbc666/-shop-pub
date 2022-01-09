@@ -11,4 +11,6 @@ object Constants {
     const val SP_KEY_TOKEN = "token"
     const val SP_KEY_USER_ID = "user_id"
     const val EXTRA_KEY_GOODS_ID = "goods_id"
+    const val EXTRA_KEY_COST_SUM = "cost_sum"
+    const val EXTRA_KEY_CART_ITEMS = "cart_items"
 }

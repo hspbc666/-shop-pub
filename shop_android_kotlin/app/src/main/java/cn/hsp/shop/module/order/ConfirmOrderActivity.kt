@@ -1,17 +1,16 @@
 package cn.hsp.shop.module.order
 
-import android.content.Intent
 import android.widget.ImageView
-import androidx.lifecycle.Observer
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
-import cn.hsp.shop.module.login.LoginActivity
-import cn.hsp.shop.module.login.LoginManager
-import cn.hsp.shop.utils.Constants.EXTRA_KEY_GOODS_ID
-import cn.hsp.shop.utils.getMoneyByYuan
-import cn.hsp.shop.utils.toast
+import cn.hsp.shop.network.response.CartItem
+import cn.hsp.shop.utils.Constants.EXTRA_KEY_CART_ITEMS
+import cn.hsp.shop.utils.Constants.EXTRA_KEY_COST_SUM
+import cn.hsp.shop.utils.JsonUtil
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_goods.*
+import kotlinx.android.synthetic.main.order_bottom_layout.*
+import kotlinx.android.synthetic.main.order_fee_layout.*
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -20,34 +19,27 @@ import kotlinx.android.synthetic.main.activity_goods.*
  * 公众号：花生皮编程
  */
 class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
-    private var goodsId = ""
+    private var cartItemList: List<CartItem>? = null
     override fun viewModelClass() = ConfirmOrderViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_confirm_order
 
     override fun initView() {
         initToolbar()
-//        mViewModel.goods.observe(this, Observer {
-//            goodsNameTv.text = it.name
-//            goodsPriceTv.text = getString(R.string.price, getMoneyByYuan(it.price))
-//            it.squarePic?.let { loadImage(goodsIv, it) }
-//        })
     }
 
     override fun initData() {
-        goodsId = intent.getStringExtra(EXTRA_KEY_GOODS_ID) ?: ""
-//        mViewModel.queryGoods(goodsId)
+        val cartItemsInJson = intent.getStringExtra(EXTRA_KEY_CART_ITEMS)
+        cartItemList = JsonUtil.fromJsonList(cartItemsInJson!!)
+
+        val sum = intent.getStringExtra(EXTRA_KEY_COST_SUM)
+        goodsSumTv.text = sum
+        sumTv.text = sum
     }
 
     override fun initListeners() {
-//        addToCartTv.setOnClickListener {
-//            if (LoginManager.isLoggedIn()) {
-//                mViewModel.addToCart(goodsId, onSuccess = {
-//                    toast("已加入购物车")
-//                })
-//            } else {
-//                startActivity(Intent(this@ConfirmOrderActivity, LoginActivity::class.java))
-//            }
-//        }
+        createOrderTv.setOnClickListener {
+            cartItemList?.let { mViewModel.createOrder(it) }
+        }
     }
 
     private fun loadImage(goodsIv: ImageView, url: String) {

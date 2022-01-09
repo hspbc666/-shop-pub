@@ -16,6 +16,7 @@ import cn.hsp.shop.module.login.LoginManager
 import cn.hsp.shop.module.order.ConfirmOrderActivity
 import cn.hsp.shop.network.response.CartItem
 import cn.hsp.shop.utils.Constants
+import cn.hsp.shop.utils.JsonUtil
 import cn.hsp.shop.utils.getMoneyByYuan
 
 class CartFragment : BaseVmFragment<CartViewModel>() {
@@ -52,9 +53,11 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
         }
         createOrderTv.setOnClickListener {
             val intent = Intent(context, ConfirmOrderActivity::class.java)
-//            intent.putExtra(Constants.EXTRA_KEY_GOODS_ID, cartItem.id)
+            val cartItems = mViewModel.selectionItemList
+            val cartItemsInJson = JsonUtil.toJson(cartItems)
+            intent.putExtra(Constants.EXTRA_KEY_CART_ITEMS, cartItemsInJson)
+            intent.putExtra(Constants.EXTRA_KEY_COST_SUM, sumTv.text)
             startActivity(intent)
-//            mViewModel.createOrder(onSuccess = { queryData() })
         }
     }
 

@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo
+import cn.hsp.shop.network.request.CreateOrderReq
+import cn.hsp.shop.network.response.CartItem
 import cn.hsp.shop.network.response.Goods
 
 /**
@@ -16,30 +18,16 @@ class ConfirmOrderViewModel : BaseViewModel() {
     private val repo by lazy { ShopRepo() }
     val goods: MutableLiveData<Goods> = MutableLiveData()
 
-    fun queryGoods(
-        goodsId: String,
+    fun createOrder(
+        cartItemList: List<CartItem>,
         onSuccess: (() -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
     ) {
         launch(
             {
-                goods.value = repo.queryGoods(goodsId)?.data
-                onSuccess?.invoke()
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
-    }
-
-    fun addToCart(
-        goodsId: String,
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                repo.addToCart(goodsId)
+                val cartIdList = cartItemList.map { it.id }
+                repo.createOrder(CreateOrderReq(cartIdList))
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },
