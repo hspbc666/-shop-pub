@@ -1,13 +1,12 @@
 package cn.hsp.shop.module.order
 
-import android.widget.ImageView
+import android.util.Log
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
 import cn.hsp.shop.network.response.CartItem
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_CART_ITEMS
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_COST_SUM
 import cn.hsp.shop.utils.JsonUtil
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_goods.*
 import kotlinx.android.synthetic.main.order_bottom_layout.*
 import kotlinx.android.synthetic.main.order_fee_layout.*
@@ -30,7 +29,6 @@ class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
     override fun initData() {
         val cartItemsInJson = intent.getStringExtra(EXTRA_KEY_CART_ITEMS)
         cartItemList = JsonUtil.fromJsonList(cartItemsInJson!!)
-
         val sum = intent.getStringExtra(EXTRA_KEY_COST_SUM)
         goodsSumTv.text = sum
         sumTv.text = sum
@@ -40,12 +38,6 @@ class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
         createOrderTv.setOnClickListener {
             cartItemList?.let { mViewModel.createOrder(it) }
         }
-    }
-
-    private fun loadImage(goodsIv: ImageView, url: String) {
-        Glide.with(this)
-            .load(url)
-            .into(goodsIv)
     }
 
     private fun initToolbar() {
