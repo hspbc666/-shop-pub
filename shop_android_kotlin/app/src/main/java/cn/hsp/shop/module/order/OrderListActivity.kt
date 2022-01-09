@@ -5,6 +5,11 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
+import cn.hsp.shop.utils.Constants.ORDER_TAB_ALL
+import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_COMMENT
+import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_DELIVER
+import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_PAY
+import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_RECEIVE
 import kotlinx.android.synthetic.main.activity_goods.toolbar
 import kotlinx.android.synthetic.main.activity_order_list.*
 
@@ -15,12 +20,24 @@ import kotlinx.android.synthetic.main.activity_order_list.*
  * 公众号：花生皮编程
  */
 class OrderListActivity : BaseVmActivity<OrderListModel>() {
+    private lateinit var tabList: List<OrderTab>
     override fun viewModelClass() = OrderListModel::class.java
     override fun layoutResId(): Int = R.layout.activity_order_list
 
     override fun initView() {
+        initTabs()
         initToolbar()
         viewPager.adapter = MainPagerAdapter(supportFragmentManager)
+    }
+
+    private fun initTabs() {
+        tabList = listOf(
+            OrderTab("全部", ORDER_TAB_ALL),
+            OrderTab("待付款", ORDER_TAB_TO_PAY),
+            OrderTab("待发货", ORDER_TAB_TO_DELIVER),
+            OrderTab("待收货", ORDER_TAB_TO_RECEIVE),
+            OrderTab("待评价", ORDER_TAB_TO_COMMENT),
+        )
     }
 
     override fun initData() {
@@ -35,20 +52,20 @@ class OrderListActivity : BaseVmActivity<OrderListModel>() {
         toolbar.setNavigationOnClickListener { finish() }
     }
 
-    //ViewPager适配器  10个Fragment
     private inner class MainPagerAdapter(fm: FragmentManager) :
         FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(position: Int): Fragment {
-            return BlankFragment.newInstance(position)
+            return OrderFragment.newInstance(position)
         }
 
-        //TabLayout会根据当前page的title自动绑定tab
         override fun getPageTitle(position: Int): CharSequence? {
-            return "Tab $position"
+            return tabList[position].name
         }
 
         override fun getCount(): Int {
-            return 10
+            return tabList.size
         }
     }
+
+    class OrderTab(var name: String, var tabId: Int)
 }

@@ -6,15 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import cn.hsp.shop.R
-import kotlinx.android.synthetic.main.fragment_blank.*
+import kotlinx.android.synthetic.main.fragment_order.*
 
-class BlankFragment : Fragment() {
+class OrderFragment : Fragment() {
     private var index = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.fragment_blank, container, false)
+    ): View = inflater.inflate(R.layout.fragment_order, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -23,7 +23,7 @@ class BlankFragment : Fragment() {
 
     companion object {
         fun newInstance(position: Int): Fragment {
-            val fragment = BlankFragment()
+            val fragment = OrderFragment()
             fragment.index = position
             return fragment
         }
