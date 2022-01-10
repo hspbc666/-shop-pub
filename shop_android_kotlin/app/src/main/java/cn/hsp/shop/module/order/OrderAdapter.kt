@@ -1,6 +1,7 @@
 package cn.hsp.shop.module.order
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,7 +47,7 @@ class OrderAdapter(var mViewModel: OrderListModel) :
 
     private fun createOrderDetailItem(orderInfo: FullOrderInfo, ordersContainer: LinearLayout) {
         val view =
-            LayoutInflater.from(mContext).inflate(R.layout.item_order_detail, ordersContainer)
+            LayoutInflater.from(mContext).inflate(R.layout.item_order_detail, ordersContainer,false)
         val imageUrl = orderInfo.squarePic
         Glide.with(mContext).load(imageUrl).into(view.findViewById(R.id.orderDetailGoodsIv))
         view.findViewById<TextView>(R.id.orderDetailGoodsNameTv).text = orderInfo.name
@@ -54,6 +55,7 @@ class OrderAdapter(var mViewModel: OrderListModel) :
             mContext.getString(R.string.price, getMoneyByYuan(orderInfo.price))
         view.findViewById<TextView>(R.id.orderDetailQuantity).text =
             mContext.getString(R.string.amount_with_prefix, orderInfo.quantity)
+        ordersContainer.addView(view)
     }
 
     override fun getItemCount(): Int = dataList.size

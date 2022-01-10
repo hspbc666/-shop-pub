@@ -1,12 +1,11 @@
 package cn.hsp.shop.module.order
 
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmFragment
-import cn.hsp.shop.module.cart.CartAdapter
 import cn.hsp.shop.network.response.QueryOrderResp
 import cn.hsp.shop.utils.Constants.ORDER_TAB_ALL
 import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_COMMENT
@@ -54,23 +53,17 @@ class OrderFragment(var tabId: Int) : BaseVmFragment<OrderListModel>() {
 
     override fun observe() {
         when (tabId) {
-            ORDER_TAB_ALL -> mViewModel.allOrders.observe(this, Observer { adapter.setData(it) })
-            ORDER_TAB_TO_PAY -> mViewModel.toPayOrders.observe(
-                this,
-                Observer { adapter.setData(it) })
-            ORDER_TAB_TO_DELIVER -> mViewModel.toDeliverOrders.observe(
-                this,
-                Observer { adapter.setData(it) })
-            ORDER_TAB_TO_RECEIVE -> mViewModel.toReceiveOrders.observe(
-                this,
-                Observer { adapter.setData(it) })
-            ORDER_TAB_TO_COMMENT -> mViewModel.toCommentOrders.observe(
-                this,
-                Observer { adapter.setData(it) })
-            ORDER_TAB_TO_RETURN -> mViewModel.toReturnOrders.observe(
-                this,
-                Observer { adapter.setData(it) })
+            ORDER_TAB_ALL -> observeData(mViewModel.allOrders)
+            ORDER_TAB_TO_PAY -> observeData(mViewModel.toPayOrders)
+            ORDER_TAB_TO_DELIVER -> observeData(mViewModel.toDeliverOrders)
+            ORDER_TAB_TO_RECEIVE -> observeData(mViewModel.toReceiveOrders)
+            ORDER_TAB_TO_COMMENT -> observeData(mViewModel.toCommentOrders)
+            ORDER_TAB_TO_RETURN -> observeData(mViewModel.toReturnOrders)
         }
+    }
+
+    private fun observeData(data: MutableLiveData<List<QueryOrderResp>>) {
+        data.observe(this, { adapter.setData(it) })
     }
 
     private fun onItemClick(resp: QueryOrderResp) {
