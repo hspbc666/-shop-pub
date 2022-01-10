@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/orderDetailGoodsIv"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/orderDetailGoodsNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XXX商品" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_round_rect_order_tag_bg"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:text="7天无理由退货"
+                android:textColor="#677DA5"
+                android:textSize="11sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/shape_round_rect_order_tag_grey_bg"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:text="不支持换货"
+                android:textColor="#97999E"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/orderDetailPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥9.99" />
+
+        <TextView
+            android:id="@+id/orderDetailQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="×6" />
+    </LinearLayout>
+</LinearLayout>

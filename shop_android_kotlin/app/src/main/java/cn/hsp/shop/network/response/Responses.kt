@@ -36,3 +36,18 @@ class RegisterResp {
 class CreateOrderResp {
     var orderId: String = ""
 }
+
+class QueryOrderResp {
+    val orderId: String? = null
+    val list: List<FullOrderInfo>? = null
+}
+
+class FullOrderInfo {
+    val orderId: String? = null
+    val goodsId: String? = null
+    val name: String? = null
+    val price: Long = 0
+    val longPic: String? = null
+    val squarePic: String? = null
+    val quantity = 0
+}

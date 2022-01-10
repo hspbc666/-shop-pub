@@ -40,14 +40,6 @@ class OrderListActivity : BaseVmActivity<OrderListModel>() {
         )
     }
 
-    override fun initData() {
-
-    }
-
-    override fun initListeners() {
-
-    }
-
     private fun initToolbar() {
         toolbar.setNavigationOnClickListener { finish() }
     }
@@ -55,7 +47,7 @@ class OrderListActivity : BaseVmActivity<OrderListModel>() {
     private inner class MainPagerAdapter(fm: FragmentManager) :
         FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(position: Int): Fragment {
-            return OrderFragment.newInstance(position)
+            return OrderFragment.newInstance(tabList[position].tabId)
         }
 
         override fun getPageTitle(position: Int): CharSequence? {

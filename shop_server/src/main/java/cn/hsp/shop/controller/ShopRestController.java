@@ -6,6 +6,8 @@ import cn.hsp.shop.bean.CartItem;
 import cn.hsp.shop.bean.CreateOrderReq;
 import cn.hsp.shop.bean.CreateOrderResp;
 import cn.hsp.shop.bean.Goods;
+import cn.hsp.shop.bean.queryorder.QueryOrderResp;
+import cn.hsp.shop.bean.queryorder.QueryOrderReq;
 import cn.hsp.shop.service.CartService;
 import cn.hsp.shop.service.GoodsService;
 import cn.hsp.shop.service.OrderService;
@@ -106,6 +108,14 @@ public class ShopRestController {
         int userId = getUserIdFromHeader(authorization);
         orderService.changeOrderStatus(orderId, TO_DELIVER);
         return new Resp<>();
+    }
+
+    @PostMapping("order/query")
+    public Resp<List<QueryOrderResp>> queryOrder(@RequestBody QueryOrderReq req, @RequestHeader("Authorization") String authorization) {
+        int userId = getUserIdFromHeader(authorization);
+        Resp<List<QueryOrderResp>> resp = new Resp<>();
+        resp.setData(orderService.queryOrder(userId, req.getOrderStatus()));
+        return resp;
     }
 
     private int getUserIdFromHeader(String authorization) {

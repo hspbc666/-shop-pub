@@ -3,9 +3,14 @@ package cn.hsp.shop.module.order
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo
-import cn.hsp.shop.network.request.CreateOrderReq
-import cn.hsp.shop.network.response.CartItem
-import cn.hsp.shop.network.response.Goods
+import cn.hsp.shop.network.request.QueryOrderReq
+import cn.hsp.shop.network.response.QueryOrderResp
+import cn.hsp.shop.utils.Constants.ORDER_TAB_ALL
+import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_COMMENT
+import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_DELIVER
+import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_PAY
+import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_RECEIVE
+import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_RETURN
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -15,33 +20,92 @@ import cn.hsp.shop.network.response.Goods
  */
 class OrderListModel : BaseViewModel() {
     private val repo by lazy { ShopRepo() }
-    val goods: MutableLiveData<Goods> = MutableLiveData()
+    val allOrders: MutableLiveData<List<QueryOrderResp>> = MutableLiveData()
+    val toPayOrders: MutableLiveData<List<QueryOrderResp>> = MutableLiveData()
+    val toDeliverOrders: MutableLiveData<List<QueryOrderResp>> = MutableLiveData()
+    val toReceiveOrders: MutableLiveData<List<QueryOrderResp>> = MutableLiveData()
+    val toCommentOrders: MutableLiveData<List<QueryOrderResp>> = MutableLiveData()
+    val toReturnOrders: MutableLiveData<List<QueryOrderResp>> = MutableLiveData()
+//    val allOrder: MutableLiveData<List<QueryOrderResp>> = MutableLiveData()
 
-    fun createOrder(
-        cartItemList: List<CartItem>,
-        onSuccess: ((orderId: String) -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                val cartIdList = cartItemList.map { it.id }
-                val createOrderResp = repo.createOrder(CreateOrderReq(cartIdList))
-                onSuccess?.invoke(createOrderResp?.data?.orderId!!)
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
-    }
-
-    fun payForOrder(
-        orderId: String,
+    fun queryAllOrder(
         onSuccess: (() -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
     ) {
         launch(
             {
-                repo.payForOrder(orderId)
+                allOrders.value = repo.queryOrder(QueryOrderReq(ORDER_TAB_ALL))?.data
+                onSuccess?.invoke()
+            },
+            { onFailure?.invoke(it.message ?: "") },
+            { onComplete?.invoke() })
+    }
+
+    fun queryToPayOrder(
+        onSuccess: (() -> Unit)? = null,
+        onFailure: ((msg: String) -> Unit)? = null,
+        onComplete: (() -> Unit)? = null
+    ) {
+        launch(
+            {
+                toPayOrders.value = repo.queryOrder(QueryOrderReq(ORDER_TAB_TO_PAY))?.data
+                onSuccess?.invoke()
+            },
+            { onFailure?.invoke(it.message ?: "") },
+            { onComplete?.invoke() })
+    }
+
+    fun queryToDeliverOrder(
+        onSuccess: (() -> Unit)? = null,
+        onFailure: ((msg: String) -> Unit)? = null,
+        onComplete: (() -> Unit)? = null
+    ) {
+        launch(
+            {
+                toDeliverOrders.value = repo.queryOrder(QueryOrderReq(ORDER_TAB_TO_DELIVER))?.data
+                onSuccess?.invoke()
+            },
+            { onFailure?.invoke(it.message ?: "") },
+            { onComplete?.invoke() })
+    }
+
+    fun queryToReceiveOrder(
+        onSuccess: (() -> Unit)? = null,
+        onFailure: ((msg: String) -> Unit)? = null,
+        onComplete: (() -> Unit)? = null
+    ) {
+        launch(
+            {
+                toReceiveOrders.value = repo.queryOrder(QueryOrderReq(ORDER_TAB_TO_RECEIVE))?.data
+                onSuccess?.invoke()
+            },
+            { onFailure?.invoke(it.message ?: "") },
+            { onComplete?.invoke() })
+    }
+
+    fun queryToCommentOrder(
+        onSuccess: (() -> Unit)? = null,
+        onFailure: ((msg: String) -> Unit)? = null,
+        onComplete: (() -> Unit)? = null
+    ) {
+        launch(
+            {
+                toCommentOrders.value = repo.queryOrder(QueryOrderReq(ORDER_TAB_TO_COMMENT))?.data
+                onSuccess?.invoke()
+            },
+            { onFailure?.invoke(it.message ?: "") },
+            { onComplete?.invoke() })
+    }
+
+    fun queryToReturnOrder(
+        onSuccess: (() -> Unit)? = null,
+        onFailure: ((msg: String) -> Unit)? = null,
+        onComplete: (() -> Unit)? = null
+    ) {
+        launch(
+            {
+                toReturnOrders.value = repo.queryOrder(QueryOrderReq(ORDER_TAB_TO_RETURN))?.data
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },

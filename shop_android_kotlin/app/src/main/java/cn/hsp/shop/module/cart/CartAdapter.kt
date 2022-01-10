@@ -53,9 +53,7 @@ class CartAdapter(var mViewModel: CartViewModel) : RecyclerView.Adapter<Recycler
     }
 
     private fun loadImage(goodsIv: ImageView, url: String) {
-        Glide.with(mContext)
-            .load(url)
-            .into(goodsIv)
+        Glide.with(mContext).load(url).into(goodsIv)
     }
 
     override fun getItemCount(): Int = dataList.size

@@ -8,6 +8,7 @@ package cn.hsp.shop.network
 
 import cn.hsp.shop.network.request.CreateOrderReq
 import cn.hsp.shop.network.request.LoginReq
+import cn.hsp.shop.network.request.QueryOrderReq
 import cn.hsp.shop.network.request.RegisterReq
 import cn.hsp.shop.network.response.*
 import retrofit2.http.*
@@ -40,12 +41,14 @@ interface ApiService {
     @GET("shop/cart/list")
     suspend fun queryCart(): Result<List<CartItem>?>?
 
-
     @POST("shop/order/create")
     suspend fun createOrder(@Body req: CreateOrderReq): Result<CreateOrderResp?>?
 
     @GET("shop/order/pay/{orderId}")
     suspend fun payForOrder(@Path("orderId") orderId: String): Result<String?>?
+
+    @POST("shop/order/query")
+    suspend fun queryOrder(@Body req: QueryOrderReq): Result<List<QueryOrderResp>?>?
 
 //
 //    @GET("goods/api/del/{goodsId}")

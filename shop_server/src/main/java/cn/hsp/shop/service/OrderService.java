@@ -1,15 +1,21 @@
 package cn.hsp.shop.service;
 
 import cn.hsp.shop.bean.CartSimpleItem;
+import cn.hsp.shop.bean.UserOrder;
+import cn.hsp.shop.bean.queryorder.FullOrderInfo;
+import cn.hsp.shop.bean.queryorder.QueryOrderResp;
 import cn.hsp.shop.mapper.CartMapper;
 import cn.hsp.shop.mapper.OrderMapper;
 import cn.hsp.shop.mapper.UserOrderMapper;
 import cn.hsp.utils.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static cn.hsp.utils.Constants.OrderStatus.ORDER_ALL;
 import static cn.hsp.utils.Constants.OrderStatus.TO_PAY;
 
 /**
@@ -29,21 +35,39 @@ public class OrderService {
     @Autowired
     private OrderMapper orderMapper;
 
+    @Transactional
     public String createOrder(int userId, List<String> cartIdList) {
-        String userOrderId = IdGenerator.generateId();
         String orderId = IdGenerator.generateId();
-        userOrderMapper.add(userOrderId, userId, orderId, TO_PAY);
+        userOrderMapper.add(orderId, userId, TO_PAY);
 
         for (String cartId : cartIdList) {
             CartSimpleItem cartItem = cartMapper.queryByCartId(cartId);
             String id = IdGenerator.generateId();
-            orderMapper.add(id, orderId, userId, cartItem.getGoodsId(), cartItem.getQuantity());
+            orderMapper.add(id, orderId, cartItem.getGoodsId(), cartItem.getQuantity());
             cartMapper.delete(cartItem.getId());
         }
         return orderId;
     }
 
-    public void changeOrderStatus(String orderId,int status) {
-        userOrderMapper.update(orderId,status);
+    public void changeOrderStatus(String orderId, int status) {
+        userOrderMapper.update(orderId, status);
+    }
+
+
+    public List<QueryOrderResp> queryOrder(int userId, int orderStatus) {
+        List<UserOrder> list;
+        if (orderStatus == ORDER_ALL) {
+            list = userOrderMapper.queryByUserId(userId);
+        } else {
+            list = userOrderMapper.queryByUserIdAndStatus(userId, orderStatus);
+        }
+        List<QueryOrderResp> queryOrderRespList = new ArrayList<>();
+        for (UserOrder userOrder : list) {
+            String orderId = userOrder.getId();
+            List<FullOrderInfo> fullOrderInfoList = orderMapper.queryByOrderId(orderId);
+            QueryOrderResp queryOrderResp = QueryOrderResp.builder().orderId(orderId).list(fullOrderInfoList).build();
+            queryOrderRespList.add(queryOrderResp);
+        }
+        return queryOrderRespList;
     }
 }

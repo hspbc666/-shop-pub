@@ -18,6 +18,4 @@ class RegisterReq(
 
 class CreateOrderReq(val cartIdList: List<String>?)
 
-class AddNoteRequest(
-    val content: String = ""
-)
+class QueryOrderReq(val orderStatus: Int)
