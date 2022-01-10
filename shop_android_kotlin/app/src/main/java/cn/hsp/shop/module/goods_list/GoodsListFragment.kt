@@ -32,9 +32,6 @@ class GoodsListFragment : BaseVmFragment<GoodsListViewModel>() {
 
     override fun initData() {
         mViewModel.queryGoods(
-            onSuccess = {
-                goodsListSrl.isRefreshing = true
-            },
             onComplete = {
                 goodsListSrl.isRefreshing = false
             })

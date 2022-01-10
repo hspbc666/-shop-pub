@@ -26,23 +26,32 @@ class OrderFragment(var tabId: Int) : BaseVmFragment<OrderListModel>() {
         adapter = OrderAdapter(mViewModel)
         orderListRv = findViewById(R.id.orderListRv)
         orderListRv.adapter = adapter
-
         orderListSrl = findViewById(R.id.orderListSrl)
     }
 
     override fun initListeners() {
         adapter.setOnItemClick(this::onItemClick)
+        orderListSrl.setOnRefreshListener { refreshPage() }
     }
 
-    override fun initData() {
+    override fun onResume() {
+        super.onResume()
+        refreshPage()
+    }
+
+    private fun refreshPage() {
         when (tabId) {
-            ORDER_TAB_ALL -> mViewModel.queryAllOrder { }
-            ORDER_TAB_TO_PAY -> mViewModel.queryToPayOrder { }
-            ORDER_TAB_TO_DELIVER -> mViewModel.queryToDeliverOrder { }
-            ORDER_TAB_TO_RECEIVE -> mViewModel.queryToReceiveOrder { }
-            ORDER_TAB_TO_COMMENT -> mViewModel.queryToCommentOrder { }
-            ORDER_TAB_TO_RETURN -> mViewModel.queryToReturnOrder { }
+            ORDER_TAB_ALL -> mViewModel.queryAllOrder(onComplete = onQueryComplete())
+            ORDER_TAB_TO_PAY -> mViewModel.queryToPayOrder(onComplete = onQueryComplete())
+            ORDER_TAB_TO_DELIVER -> mViewModel.queryToDeliverOrder(onComplete = onQueryComplete())
+            ORDER_TAB_TO_RECEIVE -> mViewModel.queryToReceiveOrder(onComplete = onQueryComplete())
+            ORDER_TAB_TO_COMMENT -> mViewModel.queryToCommentOrder(onComplete = onQueryComplete())
+            ORDER_TAB_TO_RETURN -> mViewModel.queryToReturnOrder(onComplete = onQueryComplete())
         }
+    }
+
+    private fun onQueryComplete() = {
+        orderListSrl.isRefreshing = false
     }
 
     companion object {
