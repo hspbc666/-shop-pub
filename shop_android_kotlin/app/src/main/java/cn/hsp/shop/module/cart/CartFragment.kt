@@ -74,9 +74,6 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
 
     private fun queryData() {
         mViewModel.queryCart(
-            onSuccess = {
-                goodsListSrl.isRefreshing = true
-            },
             onComplete = {
                 goodsListSrl.isRefreshing = false
             })
