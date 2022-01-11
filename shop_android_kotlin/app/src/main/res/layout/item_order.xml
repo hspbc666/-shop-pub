@@ -30,8 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            tools:text="已完成"
-            android:textColor="#97999e" />
+            android:textColor="#97999e"
+            tools:text="已完成" />
     </LinearLayout>
 
     <LinearLayout
@@ -39,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:orientation="vertical" />
 
