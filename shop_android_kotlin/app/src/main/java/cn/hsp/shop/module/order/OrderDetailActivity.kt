@@ -19,6 +19,7 @@ import cn.hsp.shop.utils.toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_goods.toolbar
 import kotlinx.android.synthetic.main.activity_order_detail.*
+import kotlinx.android.synthetic.main.order_detail_fee_layout.*
 import kotlinx.android.synthetic.main.order_detail_order_info_layout.*
 
 /**
@@ -41,6 +42,9 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
         queryOrderResp = JsonUtil.fromJson(orderInfoInJson!!)
         queryOrderResp?.let {
             orderIdTv.text = it.orderId
+            val sum = calcSum(it.list)
+            orderDetailSumTv.text = getString(R.string.price, sum)
+            realPaidTv.text = getString(R.string.real_paid, sum)
             orderCreateTimeTv.text = formatTime(it.createTime)
             createOrderDetailItems(it.list, ordersDetailContainer)
         }
@@ -53,14 +57,20 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
         }
     }
 
-    private fun createOrderDetailItem(context: Context, orderInfo: FullOrderInfo, ordersContainer: LinearLayout) {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_order_detail, ordersContainer, false)
+    private fun createOrderDetailItem(
+        context: Context,
+        orderInfo: FullOrderInfo,
+        ordersContainer: LinearLayout
+    ) {
+        val view =
+            LayoutInflater.from(context).inflate(R.layout.item_order_detail, ordersContainer, false)
         val imageUrl = orderInfo.squarePic
         Glide.with(context).load(imageUrl).into(view.findViewById(R.id.orderDetailGoodsIv))
         view.findViewById<TextView>(R.id.orderDetailGoodsNameTv).text = orderInfo.name
         view.findViewById<TextView>(R.id.orderDetailPrice).text =
             context.getString(R.string.price, getMoneyByYuan(orderInfo.price))
-        view.findViewById<TextView>(R.id.orderDetailQuantity).text = context.getString(R.string.amount_with_prefix, orderInfo.quantity)
+        view.findViewById<TextView>(R.id.orderDetailQuantity).text =
+            context.getString(R.string.amount_with_prefix, orderInfo.quantity)
         ordersContainer.addView(view)
     }
 
@@ -103,6 +113,6 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
 
     private fun calcSum(data: List<FullOrderInfo>?): CharSequence {
         val sum = data?.sumOf { it.price * it.quantity } ?: 0L
-        return getString(R.string.price, getMoneyByYuan(sum))
+        return getMoneyByYuan(sum)
     }
 }
