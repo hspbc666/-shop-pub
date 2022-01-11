@@ -151,10 +151,13 @@
                     android:text="APP版本"
                     android:textColor="#232323" />
 
-                <ImageView
+                <TextView
+                    android:id="@+id/appVersionTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_right" />
+                    android:layout_gravity="center_vertical"
+                    android:drawableEnd="@drawable/ic_arrow_right" />
+
             </LinearLayout>
 
             <View

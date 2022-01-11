@@ -3,8 +3,8 @@ package cn.hsp.shop.module.settings
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseActivity
 import cn.hsp.shop.module.login.LoginManager
+import cn.hsp.shop.utils.getVersionName
 import kotlinx.android.synthetic.main.activity_settins.*
-import kotlinx.android.synthetic.main.activity_settins.toolbar
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -18,6 +18,7 @@ class SettingsActivity : BaseActivity() {
 
     override fun initView() {
         initToolbar()
+        appVersionTv.text = getVersionName(this)
     }
 
     override fun initListeners() {
