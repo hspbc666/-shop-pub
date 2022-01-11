@@ -1,6 +1,5 @@
 package cn.hsp.shop.bean;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
  * 公众号：花生皮编程
  */
 @Data
-@Builder
-public class CreateOrderResp {
-    private String orderId;
+public class SimpleOrderInfo {
+    private String goodsId;
+    private int quantity;
 }

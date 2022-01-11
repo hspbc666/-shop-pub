@@ -5,12 +5,12 @@ import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo
 import cn.hsp.shop.network.request.QueryOrderReq
 import cn.hsp.shop.network.response.QueryOrderResp
-import cn.hsp.shop.utils.Constants.ORDER_TAB_ALL
-import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_COMMENT
-import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_DELIVER
-import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_PAY
-import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_RECEIVE
-import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_RETURN
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_ALL
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_COMMENT
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_DELIVER
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_PAY
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RECEIVE
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RETURN
 
 /**
  * 厦门大学计算机专业 | 前华为工程师

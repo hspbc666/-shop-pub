@@ -9,5 +9,7 @@ import java.util.List;
 @Builder
 public class QueryOrderResp {
     private String orderId;
+    private int status;
+    private long createTime;
     private List<FullOrderInfo> list;
 }

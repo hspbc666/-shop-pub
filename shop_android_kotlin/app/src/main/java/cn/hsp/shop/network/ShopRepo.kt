@@ -7,20 +7,18 @@
 package cn.hsp.shop.network
 
 import cn.hsp.shop.base.BaseRepository
-import cn.hsp.shop.network.request.CreateOrderReq
-import cn.hsp.shop.network.request.LoginReq
-import cn.hsp.shop.network.request.QueryOrderReq
-import cn.hsp.shop.network.request.RegisterReq
+import cn.hsp.shop.network.request.*
 
 class ShopRepo : BaseRepository() {
     suspend fun queryGoods() = apiService.queryGoods()
     suspend fun queryGoods(goodsId: String) = apiService.queryGoods(goodsId)
     suspend fun queryCart() = apiService.queryCart()
     suspend fun addToCart(goodsId: String) = apiService.addToCart(goodsId)
-    suspend fun modifyCart(goodsId: String, quantity: Int) =
-        apiService.modifyCart(goodsId, quantity)
+    suspend fun modifyCart(cartId: String, quantity: Int) =
+        apiService.modifyCart(cartId, quantity)
 
     suspend fun createOrder(req: CreateOrderReq) = apiService.createOrder(req)
+    suspend fun createOrderFromCart(req: CreateOrderFromCartReq) = apiService.createOrderFromCart(req)
     suspend fun payForOrder(orderId: String) = apiService.payForOrder(orderId)
     suspend fun queryOrder(req: QueryOrderReq) = apiService.queryOrder(req)
     suspend fun login(userName: String, password: String) =

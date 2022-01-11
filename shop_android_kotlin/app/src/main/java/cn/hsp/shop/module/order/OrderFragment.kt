@@ -1,5 +1,6 @@
 package cn.hsp.shop.module.order
 
+import android.content.Intent
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -7,12 +8,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmFragment
 import cn.hsp.shop.network.response.QueryOrderResp
-import cn.hsp.shop.utils.Constants.ORDER_TAB_ALL
-import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_COMMENT
-import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_DELIVER
-import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_PAY
-import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_RECEIVE
-import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_RETURN
+import cn.hsp.shop.utils.Constants
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_ALL
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_COMMENT
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_DELIVER
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_PAY
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RECEIVE
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RETURN
+import cn.hsp.shop.utils.JsonUtil
 
 class OrderFragment(var tabId: Int) : BaseVmFragment<OrderListModel>() {
     private lateinit var adapter: OrderAdapter
@@ -50,9 +53,7 @@ class OrderFragment(var tabId: Int) : BaseVmFragment<OrderListModel>() {
         }
     }
 
-    private fun onQueryComplete() = {
-        orderListSrl.isRefreshing = false
-    }
+    private fun onQueryComplete(): () -> Unit = { orderListSrl.isRefreshing = false }
 
     companion object {
         fun newInstance(tabId: Int): Fragment {
@@ -76,9 +77,10 @@ class OrderFragment(var tabId: Int) : BaseVmFragment<OrderListModel>() {
     }
 
     private fun onItemClick(resp: QueryOrderResp) {
-//        val intent = Intent(context, GoodsActivity::class.java)
-//        intent.putExtra(Constants.EXTRA_KEY_GOODS_ID, cartItem.id)
-//        startActivity(intent)
+        val intent = Intent(context, OrderDetailActivity::class.java)
+        val orderInfoInJson = JsonUtil.toJson(resp)
+        intent.putExtra(Constants.EXTRA_KEY_ORDER_INFO, orderInfoInJson)
+        startActivity(intent)
     }
 
 }

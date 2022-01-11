@@ -1,7 +1,6 @@
 package cn.hsp.shop.module.order
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import cn.hsp.shop.R
 import cn.hsp.shop.network.response.FullOrderInfo
 import cn.hsp.shop.network.response.QueryOrderResp
+import cn.hsp.shop.utils.Constants.OrderStatus.Companion.TO_DELIVER
+import cn.hsp.shop.utils.Constants.OrderStatus.Companion.TO_PAY
+import cn.hsp.shop.utils.Constants.OrderStatus.Companion.TO_RECEIVE
+import cn.hsp.shop.utils.Constants.OrderStatus.Companion.TO_RETURN
 import cn.hsp.shop.utils.getMoneyByYuan
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_order.view.*
@@ -35,26 +38,44 @@ class OrderAdapter(var mViewModel: OrderListModel) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val data = dataList[position]
-        createOrderDetailItems(data.list, holder.itemView.ordersContainer)
+        holder.itemView.orderStatusTv.text = getOrderStatus(data.status ?: 0)
+        holder.itemView.goodsCountTv.text =
+            mContext.getString(R.string.goods_count, data.list?.size)
+        holder.itemView.sumTv.text = calcSum(data.list)
+        createOrderDetailItems(data.list, holder.itemView.ordersDetailContainer)
+        holder.itemView.setOnClickListener { onItemClick(data) }
+    }
+
+    private fun calcSum(data: List<FullOrderInfo>?): CharSequence {
+        val sum = data?.sumOf { it.price * it.quantity } ?: 0L
+        return mContext.getString(R.string.price, getMoneyByYuan(sum))
     }
 
     private fun createOrderDetailItems(list: List<FullOrderInfo>?, ordersContainer: LinearLayout) {
         ordersContainer.removeAllViews()
         list?.forEach {
-            createOrderDetailItem(it, ordersContainer)
+            createOrderDetailItem(mContext, it, ordersContainer)
         }
     }
 
-    private fun createOrderDetailItem(orderInfo: FullOrderInfo, ordersContainer: LinearLayout) {
-        val view =
-            LayoutInflater.from(mContext).inflate(R.layout.item_order_detail, ordersContainer,false)
+    private fun getOrderStatus(orderStatus: Int): String {
+        return when (orderStatus) {
+            TO_PAY -> "待付款"
+            TO_DELIVER -> "待发货"
+            TO_RECEIVE -> "待收货"
+            TO_RETURN -> "退货中"
+            else -> "已完成"
+        }
+    }
+
+    private fun createOrderDetailItem(context: Context, orderInfo: FullOrderInfo, ordersContainer: LinearLayout) {
+        val view = LayoutInflater.from(context).inflate(R.layout.item_order_detail, ordersContainer, false)
         val imageUrl = orderInfo.squarePic
-        Glide.with(mContext).load(imageUrl).into(view.findViewById(R.id.orderDetailGoodsIv))
+        Glide.with(context).load(imageUrl).into(view.findViewById(R.id.orderDetailGoodsIv))
         view.findViewById<TextView>(R.id.orderDetailGoodsNameTv).text = orderInfo.name
         view.findViewById<TextView>(R.id.orderDetailPrice).text =
-            mContext.getString(R.string.price, getMoneyByYuan(orderInfo.price))
-        view.findViewById<TextView>(R.id.orderDetailQuantity).text =
-            mContext.getString(R.string.amount_with_prefix, orderInfo.quantity)
+            context.getString(R.string.price, getMoneyByYuan(orderInfo.price))
+        view.findViewById<TextView>(R.id.orderDetailQuantity).text = context.getString(R.string.amount_with_prefix, orderInfo.quantity)
         ordersContainer.addView(view)
     }
 

@@ -7,7 +7,11 @@ import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
 import cn.hsp.shop.module.login.LoginActivity
 import cn.hsp.shop.module.login.LoginManager
+import cn.hsp.shop.module.order.ConfirmOrderActivity
+import cn.hsp.shop.network.request.SimpleOrderInfo
+import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_GOODS_ID
+import cn.hsp.shop.utils.JsonUtil
 import cn.hsp.shop.utils.getMoneyByYuan
 import cn.hsp.shop.utils.toast
 import com.bumptech.glide.Glide
@@ -21,14 +25,16 @@ import kotlinx.android.synthetic.main.activity_goods.*
  */
 class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
     private var goodsId = ""
+    private var price = 0L
     override fun viewModelClass() = GoodsViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_goods
 
     override fun initView() {
         initToolbar()
         mViewModel.goods.observe(this, Observer {
+            price = it.price
             goodsNameTv.text = it.name
-            goodsPriceTv.text = getString(R.string.price, getMoneyByYuan(it.price))
+            goodsPriceTv.text = getString(R.string.price, getMoneyByYuan(price))
             it.squarePic?.let { loadImage(goodsIv, it) }
         })
     }
@@ -44,6 +50,18 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
                 mViewModel.addToCart(goodsId, onSuccess = {
                     toast("已加入购物车")
                 })
+            } else {
+                startActivity(Intent(this@GoodsActivity, LoginActivity::class.java))
+            }
+        }
+        buyTv.setOnClickListener {
+            if (LoginManager.isLoggedIn()) {
+                val intent = Intent(this, ConfirmOrderActivity::class.java)
+                val simpleOrderInfo = SimpleOrderInfo(goodsId, 1)
+                val orderInJson = JsonUtil.toJson(simpleOrderInfo)
+                intent.putExtra(Constants.EXTRA_KEY_SIMPLE_ORDER, orderInJson)
+                intent.putExtra(Constants.EXTRA_KEY_COST_SUM, price)
+                startActivity(intent)
             } else {
                 startActivity(Intent(this@GoodsActivity, LoginActivity::class.java))
             }

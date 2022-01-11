@@ -6,10 +6,7 @@
  */
 package cn.hsp.shop.network
 
-import cn.hsp.shop.network.request.CreateOrderReq
-import cn.hsp.shop.network.request.LoginReq
-import cn.hsp.shop.network.request.QueryOrderReq
-import cn.hsp.shop.network.request.RegisterReq
+import cn.hsp.shop.network.request.*
 import cn.hsp.shop.network.response.*
 import retrofit2.http.*
 
@@ -32,14 +29,17 @@ interface ApiService {
     @GET("shop/cart/add/{goodsId}")
     suspend fun addToCart(@Path("goodsId") goodsId: String): Result<String?>?
 
-    @GET("shop/cart/modify/{goodsId}/{quantity}")
+    @GET("shop/cart/modify/{cartId}/{quantity}")
     suspend fun modifyCart(
-        @Path("goodsId") goodsId: String,
+        @Path("cartId") cartId: String,
         @Path("quantity") quantity: Int
     ): Result<String?>?
 
     @GET("shop/cart/list")
     suspend fun queryCart(): Result<List<CartItem>?>?
+
+    @POST("shop/order/createFromCart")
+    suspend fun createOrderFromCart(@Body req: CreateOrderFromCartReq): Result<CreateOrderResp?>?
 
     @POST("shop/order/create")
     suspend fun createOrder(@Body req: CreateOrderReq): Result<CreateOrderResp?>?
@@ -49,18 +49,5 @@ interface ApiService {
 
     @POST("shop/order/query")
     suspend fun queryOrder(@Body req: QueryOrderReq): Result<List<QueryOrderResp>?>?
-
-//
-//    @GET("goods/api/del/{goodsId}")
-//    suspend fun deleteData(@Path("goodsId") goodsId: Long): Result<String?>?
-//
-
-//    @POST("goods/api/modify")
-//    suspend fun modifyData(@Body request: ModifyGoodsRequest): Result<String?>?
-
-
-//    @GET("/article/list/{page}/json")
-//    suspend fun getArticleList(@Path("page") page: Int): ApiResult<Pagination<Article>>
-
 
 }

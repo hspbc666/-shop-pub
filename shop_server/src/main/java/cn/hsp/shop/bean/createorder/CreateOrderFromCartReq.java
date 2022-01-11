@@ -1,4 +1,4 @@
-package cn.hsp.shop.bean;
+package cn.hsp.shop.bean.createorder;
 
 import lombok.Data;
 
@@ -11,6 +11,6 @@ import java.util.List;
  * 公众号：花生皮编程
  */
 @Data
-public class CreateOrderReq {
+public class CreateOrderFromCartReq {
     private List<String> cartIdList;
 }

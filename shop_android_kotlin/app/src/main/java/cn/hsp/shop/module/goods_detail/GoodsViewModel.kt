@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo
+import cn.hsp.shop.network.request.CreateOrderReq
+import cn.hsp.shop.network.request.SimpleOrderInfo
 import cn.hsp.shop.network.response.Goods
 
 /**

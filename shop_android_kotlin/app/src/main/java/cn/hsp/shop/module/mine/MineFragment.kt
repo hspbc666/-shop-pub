@@ -10,7 +10,13 @@ import cn.hsp.shop.module.login.LoginActivity
 import cn.hsp.shop.module.login.LoginManager
 import cn.hsp.shop.module.order.OrderListActivity
 import cn.hsp.shop.module.settings.SettingsActivity
-import cn.hsp.shop.utils.Constants.ORDER_TAB_ALL
+import cn.hsp.shop.utils.Constants
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_ALL
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_COMMENT
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_DELIVER
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_PAY
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RECEIVE
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RETURN
 
 class MineFragment : BaseFragment() {
     private lateinit var userLogoIv: ImageView
@@ -21,7 +27,7 @@ class MineFragment : BaseFragment() {
     private lateinit var toDeliverTv: View
     private lateinit var toReceiveTv: View
     private lateinit var toCommentTv: View
-    private lateinit var afterSalesTv: View
+    private lateinit var toReturnTv: View
     override fun layoutResId() = R.layout.fragment_mine
 
     override fun initView() {
@@ -33,7 +39,7 @@ class MineFragment : BaseFragment() {
         toDeliverTv = findViewById(R.id.toDeliverTv)
         toReceiveTv = findViewById(R.id.toReceiveTv)
         toCommentTv = findViewById(R.id.toCommentTv)
-        afterSalesTv = findViewById(R.id.afterSalesTv)
+        toReturnTv = findViewById(R.id.afterSalesTv)
     }
 
     private fun refreshPage() {
@@ -48,11 +54,11 @@ class MineFragment : BaseFragment() {
         if (LoginManager.isLoggedIn()) {
             userInfoLayout.setOnClickListener { }
             allOrderTv.setOnClickListener { jumpToOrder(ORDER_TAB_ALL) }
-            toPayTv.setOnClickListener {}
-            toDeliverTv.setOnClickListener { }
-            toReceiveTv.setOnClickListener { }
-            toCommentTv.setOnClickListener { }
-            afterSalesTv.setOnClickListener { }
+            toPayTv.setOnClickListener { jumpToOrder(ORDER_TAB_TO_PAY) }
+            toDeliverTv.setOnClickListener { jumpToOrder(ORDER_TAB_TO_DELIVER)}
+            toReceiveTv.setOnClickListener { jumpToOrder(ORDER_TAB_TO_RECEIVE)}
+            toCommentTv.setOnClickListener { jumpToOrder(ORDER_TAB_TO_COMMENT)}
+            toReturnTv.setOnClickListener { jumpToOrder(ORDER_TAB_TO_RETURN)}
         } else {
             userInfoLayout.setOnClickListener { gotoLoginPage() }
             allOrderTv.setOnClickListener { gotoLoginPage() }
@@ -60,12 +66,14 @@ class MineFragment : BaseFragment() {
             toDeliverTv.setOnClickListener { gotoLoginPage() }
             toReceiveTv.setOnClickListener { gotoLoginPage() }
             toCommentTv.setOnClickListener { gotoLoginPage() }
-            afterSalesTv.setOnClickListener { gotoLoginPage() }
+            toReturnTv.setOnClickListener { gotoLoginPage() }
         }
     }
 
-    private fun jumpToOrder(tabId: Int) {
-        startActivity(Intent(context, OrderListActivity::class.java))
+    private fun jumpToOrder(tabIndex: Int) {
+        val intent = Intent(context, OrderListActivity::class.java)
+        intent.putExtra(Constants.EXTRA_KEY_TAB_INDEX, tabIndex)
+        startActivity(intent)
     }
 
     override fun initListeners() {

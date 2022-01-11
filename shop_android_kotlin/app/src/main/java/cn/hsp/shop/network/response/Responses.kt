@@ -39,6 +39,8 @@ class CreateOrderResp {
 
 class QueryOrderResp {
     val orderId: String? = null
+    val status: Int? = null
+    val createTime: Long = 0
     val list: List<FullOrderInfo>? = null
 }
 

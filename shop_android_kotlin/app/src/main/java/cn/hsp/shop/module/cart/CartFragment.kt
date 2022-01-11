@@ -13,7 +13,7 @@ import cn.hsp.shop.base.BaseVmFragment
 import cn.hsp.shop.module.goods_detail.GoodsActivity
 import cn.hsp.shop.module.login.LoginActivity
 import cn.hsp.shop.module.login.LoginManager
-import cn.hsp.shop.module.order.ConfirmOrderActivity
+import cn.hsp.shop.module.order.ConfirmOrderFromCartActivity
 import cn.hsp.shop.network.response.CartItem
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.JsonUtil
@@ -52,7 +52,7 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
             startActivity(Intent(context, LoginActivity::class.java))
         }
         createOrderTv.setOnClickListener {
-            val intent = Intent(context, ConfirmOrderActivity::class.java)
+            val intent = Intent(context, ConfirmOrderFromCartActivity::class.java)
             val cartItems = mViewModel.selectionItemList
             val cartItemsInJson = JsonUtil.toJson(cartItems)
             intent.putExtra(Constants.EXTRA_KEY_CART_ITEMS, cartItemsInJson)
@@ -92,7 +92,7 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
 
     private fun onItemClick(cartItem: CartItem) {
         val intent = Intent(context, GoodsActivity::class.java)
-        intent.putExtra(Constants.EXTRA_KEY_GOODS_ID, cartItem.id)
+        intent.putExtra(Constants.EXTRA_KEY_GOODS_ID, cartItem.goodsId)
         startActivity(intent)
     }
 

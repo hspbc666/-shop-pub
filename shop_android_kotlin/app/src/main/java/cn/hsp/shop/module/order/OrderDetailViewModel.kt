@@ -13,7 +13,7 @@ import cn.hsp.shop.network.response.CartItem
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：花生皮编程
  */
-class ConfirmOrderViewModel : BaseViewModel() {
+class OrderDetailViewModel : BaseViewModel() {
     private val repo by lazy { ShopRepo() }
 
     fun createOrderFromCart(

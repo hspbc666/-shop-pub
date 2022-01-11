@@ -1,6 +1,9 @@
-package cn.hsp.shop.bean.queryorder;
+package cn.hsp.shop.bean.createorder;
 
+import lombok.Builder;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -9,12 +12,7 @@ import lombok.Data;
  * 公众号：花生皮编程
  */
 @Data
-public class FullOrderInfo {
+@Builder
+public class CreateOrderResp {
     private String orderId;
-    private int status;
-    private String goodsId;
-    private String name;
-    private long price;
-    private String squarePic;
-    private int quantity;
 }

@@ -3,8 +3,9 @@ package cn.hsp.shop.controller;
 import cn.hsp.login.bean.response.Resp;
 import cn.hsp.login.utils.JwtUtils;
 import cn.hsp.shop.bean.CartItem;
-import cn.hsp.shop.bean.CreateOrderReq;
-import cn.hsp.shop.bean.CreateOrderResp;
+import cn.hsp.shop.bean.createorder.CreateOrderFromCartReq;
+import cn.hsp.shop.bean.createorder.CreateOrderReq;
+import cn.hsp.shop.bean.createorder.CreateOrderResp;
 import cn.hsp.shop.bean.Goods;
 import cn.hsp.shop.bean.queryorder.QueryOrderResp;
 import cn.hsp.shop.bean.queryorder.QueryOrderReq;
@@ -83,25 +84,34 @@ public class ShopRestController {
     @GetMapping("cart/add/{goodsId}")
     public Resp<Goods> addToCart(@PathVariable String goodsId, @RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
-        cartService.modifyCart(userId, goodsId, 1);
+        cartService.addToCart(userId, goodsId, 1);
         return new Resp<>();
     }
 
-    @GetMapping("cart/modify/{goodsId}/{quantity}")
-    public Resp<Goods> modifyCart(@PathVariable String goodsId, @PathVariable int quantity, @RequestHeader("Authorization") String authorization) {
-        int userId = getUserIdFromHeader(authorization);
-        cartService.modifyCart(userId, goodsId, quantity);
+    @GetMapping("cart/modify/{cartId}/{quantity}")
+    public Resp<Goods> modifyCart(@PathVariable String cartId, @PathVariable int quantity, @RequestHeader("Authorization") String authorization) {
+        cartService.modifyCart(cartId, quantity);
         return new Resp<>();
+    }
+
+    @PostMapping("order/createFromCart")
+    public Resp<CreateOrderResp> createFromCart(@RequestBody CreateOrderFromCartReq req, @RequestHeader("Authorization") String authorization) {
+        int userId = getUserIdFromHeader(authorization);
+        String orderId = orderService.createOrderFromCart(userId, req.getCartIdList());
+        Resp<CreateOrderResp> resp = new Resp<>();
+        resp.setData(CreateOrderResp.builder().orderId(orderId).build());
+        return resp;
     }
 
     @PostMapping("order/create")
     public Resp<CreateOrderResp> createOrder(@RequestBody CreateOrderReq req, @RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
-        String orderId = orderService.createOrder(userId, req.getCartIdList());
+        String orderId = orderService.createOrder(userId, req.getSimpleOrderInfoList());
         Resp<CreateOrderResp> resp = new Resp<>();
         resp.setData(CreateOrderResp.builder().orderId(orderId).build());
         return resp;
     }
+
 
     @GetMapping("order/pay/{orderId}")
     public Resp<CreateOrderResp> payForOrder(@PathVariable String orderId, @RequestHeader("Authorization") String authorization) {

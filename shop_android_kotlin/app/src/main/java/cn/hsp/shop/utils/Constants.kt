@@ -12,14 +12,31 @@ object Constants {
     const val SP_KEY_TOKEN = "token"
     const val SP_KEY_USER_ID = "user_id"
     const val EXTRA_KEY_GOODS_ID = "goods_id"
+    const val EXTRA_KEY_ORDER_INFO = "order_info"
     const val EXTRA_KEY_COST_SUM = "cost_sum"
     const val EXTRA_KEY_CART_ITEMS = "cart_items"
+    const val EXTRA_KEY_TAB_INDEX = "tab_index"
+    const val EXTRA_KEY_SIMPLE_ORDER = "simple_order"
 
-    const val ORDER_TAB_ALL = 0
-    const val ORDER_TAB_TO_PAY = 1
-    const val ORDER_TAB_TO_DELIVER = 2
-    const val ORDER_TAB_TO_RECEIVE = 3
-    const val ORDER_TAB_TO_COMMENT = 4
-    const val ORDER_TAB_TO_RETURN = 5
+    interface OrderTab {
+        companion object {
+            const val ORDER_TAB_ALL = 0//全部
+            const val ORDER_TAB_TO_PAY = 1 //待付款
+            const val ORDER_TAB_TO_DELIVER = 2 //待发货
+            const val ORDER_TAB_TO_RECEIVE = 3 //待收货
+            const val ORDER_TAB_TO_COMMENT = 4 //待评价
+            const val ORDER_TAB_TO_RETURN = 5 //退货中
+        }
+    }
 
+    interface OrderStatus {
+        companion object {
+            const val TO_PAY = 1 //待付款
+            const val TO_DELIVER = 2 //待发货
+            const val TO_RECEIVE = 3 //待收货
+            const val TO_COMMENT = 4 //待评价
+            const val TO_RETURN = 5 //退货中
+            const val CLOSED = 6 //关闭
+        }
+    }
 }

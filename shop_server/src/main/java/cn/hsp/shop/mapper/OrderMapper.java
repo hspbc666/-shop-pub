@@ -20,7 +20,7 @@ public interface OrderMapper {
     @Insert(value = "insert into orders(id,order_id,goods_id,quantity) values (#{id}, #{orderId}, #{goodsId}, #{quantity})")
     void add(@Param("id") String id, @Param("orderId") String orderId, @Param("goodsId") String goodsId, @Param("quantity") int quantity);
 
-    @Select(value = "SELECT g.id as goods_id,g.name,g.price,g.square_pic,o.quantity FROM orders o,goods g WHERE o.goods_id=g.id AND o.order_id=#{orderId}")
+    @Select(value = "SELECT g.id as goods_id,g.name,g.price,g.square_pic,o.quantity,uo.status FROM user_order uo,orders o,goods g WHERE uo.id=o.order_id AND o.goods_id=g.id AND o.order_id=#{orderId}")
     List<FullOrderInfo> queryByOrderId(@Param("orderId") String orderId);
 
 }

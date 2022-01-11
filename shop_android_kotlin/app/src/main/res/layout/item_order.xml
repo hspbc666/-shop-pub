@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="10dp"
@@ -24,16 +25,17 @@
             android:textColor="#222222" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/orderStatusTv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="已完成"
+            tools:text="已完成"
             android:textColor="#97999e" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/ordersContainer"
+        android:id="@+id/ordersDetailContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -47,16 +49,18 @@
         android:gravity="end">
 
         <TextView
+            android:id="@+id/goodsCountTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="共2件商品" />
+            tools:text="共2件商品" />
 
         <TextView
+            android:id="@+id/sumTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="实付￥999"
-            android:textColor="#222222" />
+            android:textColor="#222222"
+            tools:text="实付￥999" />
     </LinearLayout>
 
     <View

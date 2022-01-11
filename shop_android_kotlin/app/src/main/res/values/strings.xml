@@ -5,4 +5,6 @@
     <string name="pay">支付</string>
     <string name="cancel">取消</string>
     <string name="amount_with_prefix">×%1$d</string>
+    <string name="goods_count">共%1$d件商品</string>
+    <string name="real_paid">实付 ￥%1$d</string>
 </resources>

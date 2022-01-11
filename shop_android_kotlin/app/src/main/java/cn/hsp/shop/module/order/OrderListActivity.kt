@@ -5,11 +5,13 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
-import cn.hsp.shop.utils.Constants.ORDER_TAB_ALL
-import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_COMMENT
-import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_DELIVER
-import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_PAY
-import cn.hsp.shop.utils.Constants.ORDER_TAB_TO_RECEIVE
+import cn.hsp.shop.utils.Constants
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_ALL
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_COMMENT
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_DELIVER
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_PAY
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RECEIVE
+import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RETURN
 import kotlinx.android.synthetic.main.activity_goods.toolbar
 import kotlinx.android.synthetic.main.activity_order_list.*
 
@@ -25,9 +27,11 @@ class OrderListActivity : BaseVmActivity<OrderListModel>() {
     override fun layoutResId(): Int = R.layout.activity_order_list
 
     override fun initView() {
+        val tabIndex = intent.getIntExtra(Constants.EXTRA_KEY_TAB_INDEX, ORDER_TAB_ALL)
         initTabs()
         initToolbar()
         viewPager.adapter = MainPagerAdapter(supportFragmentManager)
+        viewPager.currentItem = tabIndex
     }
 
     private fun initTabs() {
@@ -37,6 +41,7 @@ class OrderListActivity : BaseVmActivity<OrderListModel>() {
             OrderTab("待发货", ORDER_TAB_TO_DELIVER),
             OrderTab("待收货", ORDER_TAB_TO_RECEIVE),
             OrderTab("待评价", ORDER_TAB_TO_COMMENT),
+            OrderTab("退换/售后", ORDER_TAB_TO_RETURN),
         )
     }
 

@@ -13,4 +13,5 @@ public class UserOrder {
     private String id;
     private int userId;
     private int status;
+    private long createTime;
 }

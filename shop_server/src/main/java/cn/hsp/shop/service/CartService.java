@@ -24,17 +24,24 @@ public class CartService {
         return cartMapper.queryByUserId(userId);
     }
 
-    public void modifyCart(int userId, String goodsId, int quantity) {
+    public void addToCart(int userId, String goodsId, int quantity) {
         CartSimpleItem cartSimpleItem = cartMapper.query(userId, goodsId);
         if (cartSimpleItem != null) {
-            if (quantity <= 0) {
-                cartMapper.delete(cartSimpleItem.getId());
-            } else {
-                cartMapper.updateQuantity(cartSimpleItem.getId(), quantity);
-            }
+            cartMapper.updateQuantity(cartSimpleItem.getId(), quantity + cartSimpleItem.getQuantity());
         } else {
             String id = IdGenerator.generateId();
             cartMapper.add(id, userId, goodsId);
+        }
+    }
+
+    public void modifyCart(String cartId, int quantity) {
+        CartSimpleItem cartSimpleItem = cartMapper.queryByCartId(cartId);
+        if (cartSimpleItem != null) {
+            if (quantity <= 0) {
+                cartMapper.delete(cartId);
+            } else {
+                cartMapper.updateQuantity(cartId, quantity);
+            }
         }
     }
 //

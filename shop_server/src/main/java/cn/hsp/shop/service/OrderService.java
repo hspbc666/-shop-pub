@@ -1,6 +1,7 @@
 package cn.hsp.shop.service;
 
 import cn.hsp.shop.bean.CartSimpleItem;
+import cn.hsp.shop.bean.SimpleOrderInfo;
 import cn.hsp.shop.bean.UserOrder;
 import cn.hsp.shop.bean.queryorder.FullOrderInfo;
 import cn.hsp.shop.bean.queryorder.QueryOrderResp;
@@ -36,9 +37,9 @@ public class OrderService {
     private OrderMapper orderMapper;
 
     @Transactional
-    public String createOrder(int userId, List<String> cartIdList) {
+    public String createOrderFromCart(int userId, List<String> cartIdList) {
         String orderId = IdGenerator.generateId();
-        userOrderMapper.add(orderId, userId, TO_PAY);
+        addUserOder(userId, orderId);
 
         for (String cartId : cartIdList) {
             CartSimpleItem cartItem = cartMapper.queryByCartId(cartId);
@@ -47,6 +48,22 @@ public class OrderService {
             cartMapper.delete(cartItem.getId());
         }
         return orderId;
+    }
+
+    @Transactional
+    public String createOrder(int userId, List<SimpleOrderInfo> simpleOrderInfoList) {
+        String orderId = IdGenerator.generateId();
+        addUserOder(userId, orderId);
+
+        for (SimpleOrderInfo simpleOrderInfo : simpleOrderInfoList) {
+            String id = IdGenerator.generateId();
+            orderMapper.add(id, orderId, simpleOrderInfo.getGoodsId(), simpleOrderInfo.getQuantity());
+        }
+        return orderId;
+    }
+
+    private void addUserOder(int userId, String orderId) {
+        userOrderMapper.add(orderId, userId, TO_PAY, System.currentTimeMillis());
     }
 
     public void changeOrderStatus(String orderId, int status) {
@@ -64,8 +81,12 @@ public class OrderService {
         List<QueryOrderResp> queryOrderRespList = new ArrayList<>();
         for (UserOrder userOrder : list) {
             String orderId = userOrder.getId();
+            int status = userOrder.getStatus();
+            long createTime = userOrder.getCreateTime();
             List<FullOrderInfo> fullOrderInfoList = orderMapper.queryByOrderId(orderId);
-            QueryOrderResp queryOrderResp = QueryOrderResp.builder().orderId(orderId).list(fullOrderInfoList).build();
+            QueryOrderResp queryOrderResp = QueryOrderResp.builder()
+                    .orderId(orderId).status(status).createTime(createTime)
+                    .list(fullOrderInfoList).build();
             queryOrderRespList.add(queryOrderResp);
         }
         return queryOrderRespList;

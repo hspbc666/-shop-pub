@@ -29,8 +29,10 @@
         <activity android:name="cn.hsp.shop.module.goods_detail.GoodsActivity" />
         <activity android:name="cn.hsp.shop.module.login.RegisterActivity" />
         <activity android:name=".module.settings.SettingsActivity" />
-        <activity android:name=".module.order.ConfirmOrderActivity" />
+        <activity android:name=".module.order.ConfirmOrderFromCartActivity" />
         <activity android:name=".module.order.OrderListActivity" />
+        <activity android:name=".module.order.ConfirmOrderActivity" />
+        <activity android:name=".module.order.OrderDetailActivity" />
     </application>
 
 </manifest>

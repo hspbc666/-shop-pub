@@ -17,14 +17,14 @@ import java.util.List;
 @Repository
 public interface UserOrderMapper {
 
-    @Select(value = "select * from user_order where user_id = #{userId}")
+    @Select(value = "select * from user_order where user_id = #{userId} order by create_time desc")
     List<UserOrder> queryByUserId(@Param("userId") int userId);
 
-    @Select(value = "select * from user_order where user_id = #{userId} AND status = #{status}")
+    @Select(value = "select * from user_order where user_id = #{userId} AND status = #{status} order by create_time desc")
     List<UserOrder> queryByUserIdAndStatus(@Param("userId") int userId,@Param("status") int status);
 
-    @Insert(value = "insert into user_order(id,user_id,status) values (#{orderId}, #{userId}, #{status})")
-    void add(@Param("orderId") String orderId, @Param("userId") int userId, @Param("status") int status);
+    @Insert(value = "insert into user_order(id,user_id,status,create_time) values (#{orderId}, #{userId}, #{status}, #{create_time})")
+    void add(@Param("orderId") String orderId, @Param("userId") int userId, @Param("status") int status, @Param("create_time") long createTime);
 
     @Update(value = "update user_order set status=#{status} where id = #{orderId}")
     void update(@Param("orderId") String orderId, @Param("status") int status);
