@@ -19,6 +19,7 @@ import cn.hsp.shop.utils.toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_goods.toolbar
 import kotlinx.android.synthetic.main.activity_order_detail.*
+import kotlinx.android.synthetic.main.order_detail_bottom_layout.*
 import kotlinx.android.synthetic.main.order_detail_fee_layout.*
 import kotlinx.android.synthetic.main.order_detail_order_info_layout.*
 
@@ -76,34 +77,23 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
 
 
     override fun initListeners() {
-//        createOrderTv.setOnClickListener {
-//            orderInfo?.let { createOrder(it) }
-//        }
+        deleteOrderTv.setOnClickListener {
+            queryOrderResp?.orderId?.let { showDeleteDialog(it) }
+        }
     }
 
-    private fun createOrder(orderInfo: SimpleOrderInfo) {
-//        mViewModel.createOrder(orderInfo, onSuccess = {
-//            showPayDialog(it)
-//        })
-    }
-
-    private fun showPayDialog(orderId: String) {
-        val message = "现在支付么？"
+    private fun showDeleteDialog(orderId: String) {
+        val message = "确认删除当前订单么？"
         val alertDialog = AlertDialog.Builder(this).setMessage(message).setCancelable(false)
-            .setPositiveButton(R.string.pay)
-            { _, _ ->
-                pay(orderId)
-            }
-            .setNegativeButton(R.string.cancel) { _, _ ->
-                Toast.makeText(this, "用户点击了取消", Toast.LENGTH_SHORT).show()
-            }
+            .setPositiveButton(R.string.delete) { _, _ -> deleteOrder(orderId) }
+            .setNegativeButton(R.string.cancel) { _, _ -> }
             .create()
         alertDialog.show()
     }
 
-    private fun pay(orderId: String) {
-        mViewModel.payForOrder(orderId, onSuccess = {
-            toast("付款成功")
+    private fun deleteOrder(orderId: String) {
+        mViewModel.deleteOrder(orderId, onSuccess = {
+            finish()
         })
     }
 

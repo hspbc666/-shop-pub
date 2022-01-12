@@ -112,10 +112,8 @@ public class ShopRestController {
         return resp;
     }
 
-
     @GetMapping("order/pay/{orderId}")
-    public Resp<CreateOrderResp> payForOrder(@PathVariable String orderId, @RequestHeader("Authorization") String authorization) {
-        int userId = getUserIdFromHeader(authorization);
+    public Resp<CreateOrderResp> payForOrder(@PathVariable String orderId) {
         orderService.changeOrderStatus(orderId, TO_DELIVER);
         return new Resp<>();
     }
@@ -126,6 +124,19 @@ public class ShopRestController {
         Resp<List<QueryOrderResp>> resp = new Resp<>();
         resp.setData(orderService.queryOrder(userId, req.getOrderStatus()));
         return resp;
+    }
+
+    @GetMapping("order/query/{orderId}")
+    public Resp<QueryOrderResp> queryOrder(@PathVariable String orderId) {
+        Resp<QueryOrderResp> resp = new Resp<>();
+        resp.setData(orderService.queryOrder(orderId));
+        return resp;
+    }
+
+    @GetMapping(value = "order/del/{orderId}")
+    public Resp<String> deleteOrder(@PathVariable String orderId) {
+        orderService.deleteOrder(orderId);
+        return new Resp<>();
     }
 
     private int getUserIdFromHeader(String authorization) {

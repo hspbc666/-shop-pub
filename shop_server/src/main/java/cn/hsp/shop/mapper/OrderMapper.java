@@ -3,6 +3,7 @@ package cn.hsp.shop.mapper;
 import cn.hsp.shop.bean.CartItem;
 import cn.hsp.shop.bean.UserOrder;
 import cn.hsp.shop.bean.queryorder.FullOrderInfo;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -23,4 +24,6 @@ public interface OrderMapper {
     @Select(value = "SELECT g.id as goods_id,g.name,g.price,g.square_pic,o.quantity,uo.status FROM user_order uo,orders o,goods g WHERE uo.id=o.order_id AND o.goods_id=g.id AND o.order_id=#{orderId}")
     List<FullOrderInfo> queryByOrderId(@Param("orderId") String orderId);
 
+    @Delete("delete from orders where order_id = #{orderId}")
+    void delete(@Param("orderId") String orderId);
 }

@@ -21,6 +21,8 @@ class ShopRepo : BaseRepository() {
     suspend fun createOrderFromCart(req: CreateOrderFromCartReq) = apiService.createOrderFromCart(req)
     suspend fun payForOrder(orderId: String) = apiService.payForOrder(orderId)
     suspend fun queryOrder(req: QueryOrderReq) = apiService.queryOrder(req)
+    suspend fun queryOrder(orderId: String) = apiService.queryOrder(orderId)
+    suspend fun deleteOrder(orderId: String) = apiService.deleteOrder(orderId)
     suspend fun login(userName: String, password: String) =
         apiService.login(LoginReq(userName, password))
 

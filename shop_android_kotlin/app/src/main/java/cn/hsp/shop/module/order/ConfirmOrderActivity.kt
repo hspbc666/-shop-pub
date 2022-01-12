@@ -1,14 +1,14 @@
 package cn.hsp.shop.module.order
 
-import android.widget.Toast
+import android.content.Intent
 import androidx.appcompat.app.AlertDialog
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
 import cn.hsp.shop.network.request.SimpleOrderInfo
+import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_COST_SUM
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_SIMPLE_ORDER
 import cn.hsp.shop.utils.JsonUtil
-import cn.hsp.shop.utils.toast
 import kotlinx.android.synthetic.main.activity_goods.*
 import kotlinx.android.synthetic.main.order_bottom_layout.*
 import kotlinx.android.synthetic.main.order_fee_layout.*
@@ -56,15 +56,25 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
                 pay(orderId)
             }
             .setNegativeButton(R.string.cancel) { _, _ ->
-                Toast.makeText(this, "用户点击了取消", Toast.LENGTH_SHORT).show()
+                closeAndGotoOrderDetailPage(orderId)
             }
             .create()
         alertDialog.show()
     }
 
+    private fun closeAndGotoOrderDetailPage(orderId: String) {
+        mViewModel.queryOrder(orderId, onSuccess = {
+            val intent = Intent(this, OrderDetailActivity::class.java)
+            val orderInfoInJson = JsonUtil.toJson(it)
+            intent.putExtra(Constants.EXTRA_KEY_ORDER_INFO, orderInfoInJson)
+            startActivity(intent)
+        })
+        finish()
+    }
+
     private fun pay(orderId: String) {
         mViewModel.payForOrder(orderId, onSuccess = {
-            toast("付款成功")
+            closeAndGotoOrderDetailPage(orderId)
         })
     }
 

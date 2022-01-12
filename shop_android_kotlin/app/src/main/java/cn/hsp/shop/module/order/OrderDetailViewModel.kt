@@ -6,6 +6,7 @@ import cn.hsp.shop.network.request.CreateOrderFromCartReq
 import cn.hsp.shop.network.request.CreateOrderReq
 import cn.hsp.shop.network.request.SimpleOrderInfo
 import cn.hsp.shop.network.response.CartItem
+import cn.hsp.shop.network.response.QueryOrderResp
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -16,38 +17,6 @@ import cn.hsp.shop.network.response.CartItem
 class OrderDetailViewModel : BaseViewModel() {
     private val repo by lazy { ShopRepo() }
 
-    fun createOrderFromCart(
-        cartItemList: List<CartItem>,
-        onSuccess: ((orderId: String) -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                val cartIdList = cartItemList.map { it.id }
-                val createOrderResp = repo.createOrderFromCart(CreateOrderFromCartReq(cartIdList))
-                onSuccess?.invoke(createOrderResp?.data?.orderId!!)
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
-    }
-
-
-    fun createOrder(
-        simpleOrderInfo: SimpleOrderInfo,
-        onSuccess: ((orderId: String) -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                val createOrderResp = repo.createOrder(CreateOrderReq(listOf(simpleOrderInfo)))
-                onSuccess?.invoke(createOrderResp?.data?.orderId!!)
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
-    }
-
     fun payForOrder(
         orderId: String,
         onSuccess: (() -> Unit)? = null,
@@ -57,6 +26,21 @@ class OrderDetailViewModel : BaseViewModel() {
         launch(
             {
                 repo.payForOrder(orderId)
+                onSuccess?.invoke()
+            },
+            { onFailure?.invoke(it.message ?: "") },
+            { onComplete?.invoke() })
+    }
+
+    fun deleteOrder(
+        orderId: String,
+        onSuccess: (() -> Unit)? = null,
+        onFailure: ((msg: String) -> Unit)? = null,
+        onComplete: (() -> Unit)? = null
+    ) {
+        launch(
+            {
+                repo.deleteOrder(orderId)
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },

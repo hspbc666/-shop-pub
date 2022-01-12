@@ -50,4 +50,9 @@ interface ApiService {
     @POST("shop/order/query")
     suspend fun queryOrder(@Body req: QueryOrderReq): Result<List<QueryOrderResp>?>?
 
+    @GET("shop/order/query/{orderId}")
+    suspend fun queryOrder(@Path("orderId") orderId: String): Result<QueryOrderResp?>?
+
+    @GET("shop/order/del/{orderId}")
+    suspend fun deleteOrder(@Path("orderId") orderId: String): Result<String?>?
 }

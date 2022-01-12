@@ -80,15 +80,29 @@ public class OrderService {
         }
         List<QueryOrderResp> queryOrderRespList = new ArrayList<>();
         for (UserOrder userOrder : list) {
-            String orderId = userOrder.getId();
-            int status = userOrder.getStatus();
-            long createTime = userOrder.getCreateTime();
-            List<FullOrderInfo> fullOrderInfoList = orderMapper.queryByOrderId(orderId);
-            QueryOrderResp queryOrderResp = QueryOrderResp.builder()
-                    .orderId(orderId).status(status).createTime(createTime)
-                    .list(fullOrderInfoList).build();
-            queryOrderRespList.add(queryOrderResp);
+            queryOrderRespList.add(queryForUserOrder(userOrder));
         }
         return queryOrderRespList;
+    }
+
+    private QueryOrderResp queryForUserOrder(UserOrder userOrder) {
+        String orderId = userOrder.getId();
+        int status = userOrder.getStatus();
+        long createTime = userOrder.getCreateTime();
+        List<FullOrderInfo> fullOrderInfoList = orderMapper.queryByOrderId(orderId);
+        return QueryOrderResp.builder()
+                .orderId(orderId).status(status).createTime(createTime)
+                .list(fullOrderInfoList).build();
+    }
+
+    public QueryOrderResp queryOrder(String orderId) {
+        UserOrder userOrder = userOrderMapper.query(orderId);
+        return queryForUserOrder(userOrder);
+    }
+
+    @Transactional
+    public void deleteOrder(String orderId) {
+        orderMapper.delete(orderId);
+        userOrderMapper.delete(orderId);
     }
 }
