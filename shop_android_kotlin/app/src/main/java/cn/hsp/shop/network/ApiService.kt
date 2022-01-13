@@ -29,8 +29,8 @@ interface ApiService {
     @GET("shop/cart/add/{goodsId}")
     suspend fun addToCart(@Path("goodsId") goodsId: String): Result<String?>?
 
-    @GET("shop/cart/modify/{cartId}/{quantity}")
-    suspend fun modifyCart(
+    @GET("shop/cart/update/{cartId}/{quantity}")
+    suspend fun updateCart(
         @Path("cartId") cartId: String,
         @Path("quantity") quantity: Int
     ): Result<String?>?

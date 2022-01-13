@@ -3,7 +3,6 @@ package cn.hsp.shop.module.cart
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo
-import cn.hsp.shop.network.request.CreateOrderReq
 import cn.hsp.shop.network.response.CartItem
 
 /**
@@ -38,7 +37,7 @@ class CartViewModel : BaseViewModel() {
         notifySelectionChanged()
     }
 
-    fun modifyCart(
+    fun updateCart(
         cartItem: CartItem,
         isChecked: Boolean,
         onSuccess: (() -> Unit)? = null,
@@ -50,7 +49,7 @@ class CartViewModel : BaseViewModel() {
         }
         launch(
             {
-                repo.modifyCart(cartItem.id, cartItem.quantity)
+                repo.updateCart(cartItem.id, cartItem.quantity)
                 if (cartItem.quantity <= 0) {
                     queryCart(onSuccess, onFailure, onComplete)
                 } else {

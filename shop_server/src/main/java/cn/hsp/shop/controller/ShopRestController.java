@@ -3,6 +3,7 @@ package cn.hsp.shop.controller;
 import cn.hsp.login.bean.response.Resp;
 import cn.hsp.login.utils.JwtUtils;
 import cn.hsp.shop.bean.CartItem;
+import cn.hsp.shop.bean.UserAddr;
 import cn.hsp.shop.bean.createorder.CreateOrderFromCartReq;
 import cn.hsp.shop.bean.createorder.CreateOrderReq;
 import cn.hsp.shop.bean.createorder.CreateOrderResp;
@@ -12,6 +13,7 @@ import cn.hsp.shop.bean.queryorder.QueryOrderReq;
 import cn.hsp.shop.service.CartService;
 import cn.hsp.shop.service.GoodsService;
 import cn.hsp.shop.service.OrderService;
+import cn.hsp.shop.service.UserAddrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +33,9 @@ public class ShopRestController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private UserAddrService userAddrService;
 
     @Autowired
     private JwtUtils jwtUtils;
@@ -88,9 +93,9 @@ public class ShopRestController {
         return new Resp<>();
     }
 
-    @GetMapping("cart/modify/{cartId}/{quantity}")
-    public Resp<Goods> modifyCart(@PathVariable String cartId, @PathVariable int quantity, @RequestHeader("Authorization") String authorization) {
-        cartService.modifyCart(cartId, quantity);
+    @GetMapping("cart/update/{cartId}/{quantity}")
+    public Resp<Goods> updateCart(@PathVariable String cartId, @PathVariable int quantity, @RequestHeader("Authorization") String authorization) {
+        cartService.updateCart(cartId, quantity);
         return new Resp<>();
     }
 
@@ -137,6 +142,14 @@ public class ShopRestController {
     public Resp<String> deleteOrder(@PathVariable String orderId) {
         orderService.deleteOrder(orderId);
         return new Resp<>();
+    }
+
+    @GetMapping("addr/query")
+    public Resp<List<UserAddr>> queryAddr(@RequestHeader("Authorization") String authorization) {
+        int userId = getUserIdFromHeader(authorization);
+        Resp<List<UserAddr>> resp = new Resp<>();
+        resp.setData(userAddrService.query(userId));
+        return resp;
     }
 
     private int getUserIdFromHeader(String authorization) {

@@ -34,7 +34,7 @@ public class CartService {
         }
     }
 
-    public void modifyCart(String cartId, int quantity) {
+    public void updateCart(String cartId, int quantity) {
         CartSimpleItem cartSimpleItem = cartMapper.queryByCartId(cartId);
         if (cartSimpleItem != null) {
             if (quantity <= 0) {
@@ -44,20 +44,4 @@ public class CartService {
             }
         }
     }
-//
-//    public void modify(long id, String title, String content) {
-//        goodsMapper.modify(id, title, content);
-//    }
-//
-//    public void del(long id) {
-//        goodsMapper.del(id);
-//    }
-
-//    public Goods queryById(int goodsId) {
-//        return cartMapper.queryById(goodsId);
-//    }
-//
-//    public List<Goods> queryAll() {
-//        return cartMapper.queryAll();
-//    }
 }
