@@ -17,17 +17,19 @@ class SearchHisView(
 ) : LinearLayout(context, attrs) {
     private var mQuantity = 1
     private var mCallback: ((quantity: Int) -> Unit)? = null
-    private val SP_KEY = "search_his"
+    private val SP_KEY_SEARCH_HIS = "search_his"
     private var searchHisBean = SearchHisBean()
+    private var isEditing = false
 
     init {
         initView(context)
         initListeners()
         loadData()
+        updateView()
     }
 
     private fun loadData() {
-        val searchHisBeanStr = SpUtil.get(SP_KEY, null)
+        val searchHisBeanStr = SpUtil.get(SP_KEY_SEARCH_HIS, null)
         searchHisBeanStr?.let {
             searchHisBean = JsonUtil.fromJson(searchHisBeanStr ?: "")
         }
@@ -38,17 +40,25 @@ class SearchHisView(
         searchHisBean.keyWordList.forEach {
             searchHisContainer.addView(getItemView(it))
         }
+        if (isEditing) {
+            searchHisDelIv.visibility = GONE
+            searchHisDelAllLayout.visibility = VISIBLE
+        } else {
+            searchHisDelIv.visibility = VISIBLE
+            searchHisDelAllLayout.visibility = GONE
+        }
     }
 
     private fun getItemView(keyword: String): View? {
         val view = LayoutInflater.from(context).inflate(R.layout.item_search_his, null)
         view.findViewById<TextView>(R.id.keyWordTv).text = keyword
+        val delHisIv = view.findViewById<View>(R.id.delHisIv)
+        if (isEditing) {
+            delHisIv.visibility = VISIBLE
+        } else {
+            delHisIv.visibility = GONE
+        }
         return view
-    }
-
-    private fun initListeners() {
-//        decreaseQuantityIv.setOnClickListener { changeQuantity(-1) }
-//        increaseQuantityIv.setOnClickListener { changeQuantity(1) }
     }
 
     fun setCallback(callback: (quantity: Int) -> Unit) {
@@ -59,9 +69,24 @@ class SearchHisView(
         LayoutInflater.from(context).inflate(R.layout.view_search_his, this, true)
     }
 
+    private fun initListeners() {
+        searchHisDelIv.setOnClickListener {
+            isEditing = true
+            updateView()
+        }
+        delAllSearchHisTv.setOnClickListener {
+            isEditing = false
+            updateView()
+        }
+        searchHisDoneTv.setOnClickListener {
+            isEditing = false
+            updateView()
+        }
+    }
+
     fun addKeyword(keyword: String) {
         searchHisBean.keyWordList.add(0, keyword)
-        SpUtil.put(SP_KEY, JsonUtil.toJson(searchHisBean) ?: "")
+        SpUtil.put(SP_KEY_SEARCH_HIS, JsonUtil.toJson(searchHisBean) ?: "")
         updateView()
     }
 }
