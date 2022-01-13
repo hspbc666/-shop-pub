@@ -18,25 +18,14 @@ public class GoodsService {
     @Autowired
     private GoodsMapper goodsMapper;
 
-//    public Goods query(long blogId) {
-//        return goodsMapper.query(blogId);
-//    }
-//
-//    public void add(long userId,String title, String content) {
-//        goodsMapper.add(userId, title, content);
-//    }
-//
-//    public void modify(long id, String title, String content) {
-//        goodsMapper.modify(id, title, content);
-//    }
-//
-//    public void del(long id) {
-//        goodsMapper.del(id);
-//    }
-
     public Goods queryById(String goodsId) {
         return goodsMapper.queryById(goodsId);
     }
+
+    public List<Goods> queryByName(String goodsName) {
+        return goodsMapper.queryByName(goodsName);
+    }
+
 
     public List<Goods> queryAll() {
         return goodsMapper.queryAll();

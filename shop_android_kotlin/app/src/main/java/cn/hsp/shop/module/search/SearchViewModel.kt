@@ -1,11 +1,8 @@
 package cn.hsp.shop.module.search
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo
-import cn.hsp.shop.network.request.CreateOrderReq
-import cn.hsp.shop.network.request.SimpleOrderInfo
 import cn.hsp.shop.network.response.Goods
 
 /**
@@ -16,17 +13,17 @@ import cn.hsp.shop.network.response.Goods
  */
 class SearchViewModel : BaseViewModel() {
     private val repo by lazy { ShopRepo() }
-    val goods: MutableLiveData<Goods> = MutableLiveData()
+    val goodsList: MutableLiveData<List<Goods>> = MutableLiveData()
 
     fun queryGoods(
-        goodsId: String,
+        keyword: String,
         onSuccess: (() -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
     ) {
         launch(
             {
-                goods.value = repo.queryGoods(goodsId)?.data
+                goodsList.value = repo.searchGoods(keyword)?.data
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },

@@ -18,6 +18,9 @@ public interface GoodsMapper {
     @Select(value = "select * from goods where id = #{goodsId}")
     Goods queryById(@Param("goodsId") String goodsId);
 
+    @Select(value = "select * from goods where name like \"%\"#{goodsName}\"%\"")
+    List<Goods> queryByName(@Param("goodsName") String goodsName);
+
 //    @Insert(value = "insert into blog(userId,title,content) values (#{userId}, #{title}, #{content})")
 //    void add(@Param("userId") long userId, @Param("title") String title, @Param("content") String content);
 //

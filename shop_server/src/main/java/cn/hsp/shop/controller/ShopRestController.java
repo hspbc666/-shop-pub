@@ -3,13 +3,13 @@ package cn.hsp.shop.controller;
 import cn.hsp.login.bean.response.Resp;
 import cn.hsp.login.utils.JwtUtils;
 import cn.hsp.shop.bean.CartItem;
+import cn.hsp.shop.bean.Goods;
 import cn.hsp.shop.bean.UserAddr;
 import cn.hsp.shop.bean.createorder.CreateOrderFromCartReq;
 import cn.hsp.shop.bean.createorder.CreateOrderReq;
 import cn.hsp.shop.bean.createorder.CreateOrderResp;
-import cn.hsp.shop.bean.Goods;
-import cn.hsp.shop.bean.queryorder.QueryOrderResp;
 import cn.hsp.shop.bean.queryorder.QueryOrderReq;
+import cn.hsp.shop.bean.queryorder.QueryOrderResp;
 import cn.hsp.shop.service.CartService;
 import cn.hsp.shop.service.GoodsService;
 import cn.hsp.shop.service.OrderService;
@@ -75,6 +75,13 @@ public class ShopRestController {
     public Resp<Goods> queryGoods(@PathVariable String goodsId) {
         Resp<Goods> resp = new Resp<>();
         resp.setData(goodsService.queryById(goodsId));
+        return resp;
+    }
+
+    @GetMapping("goods/search/{keyword}")
+    public Resp<List<Goods>> searchGoods(@PathVariable String keyword) {
+        Resp<List<Goods>> resp = new Resp<>();
+        resp.setData(goodsService.queryByName(keyword));
         return resp;
     }
 

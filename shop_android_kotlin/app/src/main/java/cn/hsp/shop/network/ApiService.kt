@@ -26,6 +26,9 @@ interface ApiService {
     @GET("shop/goods/query/{goodsId}")
     suspend fun queryGoods(@Path("goodsId") goodsId: String): Result<Goods?>?
 
+    @GET("shop/goods/search/{keyword}")
+    suspend fun searchGoods(@Path("keyword") keyword: String): Result<List<Goods>?>?
+
     @GET("shop/cart/add/{goodsId}")
     suspend fun addToCart(@Path("goodsId") goodsId: String): Result<String?>?
 
