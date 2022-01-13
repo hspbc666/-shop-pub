@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
+import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.part_search_top.*
 
 /**
@@ -34,13 +35,13 @@ class SearchActivity : BaseVmActivity<SearchViewModel>() {
     private fun search() {
         val keyword = searchEt.text.toString()
         mViewModel.queryGoods(keyword)
+        searchHisView.addKeyword(keyword)
     }
 
     override fun observe() {
         mViewModel.goodsList.observe(this, Observer {
 //            adapter.setData(it)
             val list = it
-            val xx = 1
         })
     }
 }
