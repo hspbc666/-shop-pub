@@ -14,7 +14,7 @@ object SpUtil {
         App.context.getSharedPreferences("default_sp_file", Context.MODE_PRIVATE)
 
     fun put(key: String, value: String) = getSpFile().edit().putString(key, value).apply()
-    fun get(key: String, defaultValue: String) = getSpFile().getString(key, defaultValue)
+    fun get(key: String, defaultValue: String?) = getSpFile().getString(key, defaultValue)
 
     fun put(key: String, value: Int) = getSpFile().edit().putInt(key, value).apply()
     fun get(key: String, defaultValue: Int) = getSpFile().getInt(key, defaultValue)
