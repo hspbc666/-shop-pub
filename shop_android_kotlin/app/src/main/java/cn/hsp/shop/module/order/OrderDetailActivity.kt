@@ -8,14 +8,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
-import cn.hsp.shop.network.request.SimpleOrderInfo
 import cn.hsp.shop.network.response.FullOrderInfo
 import cn.hsp.shop.network.response.QueryOrderResp
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_ORDER_INFO
 import cn.hsp.shop.utils.JsonUtil
 import cn.hsp.shop.utils.formatTime
 import cn.hsp.shop.utils.getMoneyByYuan
-import cn.hsp.shop.utils.toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_goods.toolbar
 import kotlinx.android.synthetic.main.activity_order_detail.*

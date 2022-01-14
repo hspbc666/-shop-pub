@@ -11,8 +11,9 @@ import lombok.Data;
 @Data
 public class UserAddr {
     private String id;
+    private int userId;
     private String name;
     private String phone;
     private String address;
-    private int index ;
+    private boolean defaultAddress;
 }

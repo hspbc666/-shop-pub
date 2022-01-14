@@ -1,11 +1,7 @@
 package cn.hsp.shop.service;
 
-import cn.hsp.shop.bean.CartItem;
-import cn.hsp.shop.bean.CartSimpleItem;
 import cn.hsp.shop.bean.UserAddr;
-import cn.hsp.shop.mapper.CartMapper;
 import cn.hsp.shop.mapper.UserAddrMapper;
-import cn.hsp.utils.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +22,21 @@ public class UserAddrService {
         return userAddrMapper.query(userId);
     }
 
-    public void add(UserAddr userAddr) {
-        userAddrMapper.add(userAddr.getId(), userAddr.getName(), userAddr.getPhone(), userAddr.getAddress(), userAddr.getIndex());
+    public void add(int userId, UserAddr userAddr) {
+        if (userAddr.isDefaultAddress()) {
+            userAddrMapper.modifyAsUnDefault(userId);
+        }
+        userAddrMapper.add(userAddr.getId(), userId, userAddr.getName(), userAddr.getPhone(), userAddr.getAddress(), userAddr.isDefaultAddress());
     }
 
-    public void update(UserAddr userAddr) {
-        userAddrMapper.update(userAddr.getId(), userAddr.getName(), userAddr.getPhone(), userAddr.getAddress(), userAddr.getIndex());
+    public void modify(int userId, UserAddr userAddr) {
+        if (userAddr.isDefaultAddress()) {
+            userAddrMapper.modifyAsUnDefault(userId);
+        }
+        userAddrMapper.modify(userAddr.getId(), userAddr.getName(), userAddr.getPhone(), userAddr.getAddress(), userAddr.isDefaultAddress());
+    }
+
+    public void delete(String id) {
+        userAddrMapper.delete(id);
     }
 }

@@ -27,7 +27,7 @@ public interface UserOrderMapper {
     void add(@Param("orderId") String orderId, @Param("userId") int userId, @Param("status") int status, @Param("create_time") long createTime);
 
     @Update(value = "update user_order set status=#{status} where id = #{orderId}")
-    void update(@Param("orderId") String orderId, @Param("status") int status);
+    void modify(@Param("orderId") String orderId, @Param("status") int status);
 
     @Delete("delete from user_order where id = #{orderId}")
     void delete(@Param("orderId") String orderId);

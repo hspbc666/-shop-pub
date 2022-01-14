@@ -12,16 +12,25 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
         app:navigationIcon="@drawable/ic_back_grey"
-        app:title="收货地址" />
+        app:title="新增地址" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/addrListRv"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/modifyAddrTv"
-        android:layout_below="@id/toolbar"
-        android:paddingTop="10dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/part_addr_name_phone" />
+
+            <include layout="@layout/part_addr_detail" />
+
+            <include layout="@layout/part_addr_type_info" />
+        </LinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/modifyAddrTv"
@@ -35,6 +44,6 @@
         android:gravity="center"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="添加收货地址"
+        android:text="确定"
         android:textColor="#FFFFFF" />
 </RelativeLayout>

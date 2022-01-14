@@ -6,23 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import cn.hsp.shop.R
 import cn.hsp.shop.utils.JsonUtil
 import cn.hsp.shop.utils.SpUtil
 import kotlinx.android.synthetic.main.view_search_his.view.*
 
 class SearchHisView(
-    context: Context,
+    mContext: Context,
     attrs: AttributeSet?
-) : LinearLayout(context, attrs) {
-    private var mQuantity = 1
-    private var mCallback: ((quantity: Int) -> Unit)? = null
+) : LinearLayout(mContext, attrs) {
+    private var mCallback: ((keyword: String) -> Unit)? = null
     private val SP_KEY_SEARCH_HIS = "search_his"
     private var searchHisBean = SearchHisBean()
     private var isEditing = false
 
     init {
-        initView(context)
+        initView(mContext)
         initListeners()
         loadData()
         updateView()
@@ -37,15 +37,20 @@ class SearchHisView(
 
     private fun updateView() {
         searchHisContainer.removeAllViews()
-        searchHisBean.keyWordList.forEach {
-            searchHisContainer.addView(getItemView(it))
-        }
-        if (isEditing) {
-            searchHisDelIv.visibility = GONE
-            searchHisDelAllLayout.visibility = VISIBLE
+        if (searchHisBean.keyWordList.isEmpty()) {
+            homeSearchLayout.visibility = GONE
         } else {
-            searchHisDelIv.visibility = VISIBLE
-            searchHisDelAllLayout.visibility = GONE
+            homeSearchLayout.visibility = VISIBLE
+            searchHisBean.keyWordList.forEach {
+                searchHisContainer.addView(getItemView(it))
+            }
+            if (isEditing) {
+                searchHisDelIv.visibility = GONE
+                searchHisDelAllLayout.visibility = VISIBLE
+            } else {
+                searchHisDelIv.visibility = VISIBLE
+                searchHisDelAllLayout.visibility = GONE
+            }
         }
     }
 
@@ -58,10 +63,19 @@ class SearchHisView(
         } else {
             delHisIv.visibility = GONE
         }
+        view.setOnClickListener { onClick(keyword) }
         return view
     }
 
-    fun setCallback(callback: (quantity: Int) -> Unit) {
+    private fun onClick(keyword: String) {
+        if (isEditing) {
+            deleteKeyword(keyword)
+        } else {
+            mCallback?.invoke(keyword)
+        }
+    }
+
+    fun setCallback(callback: (keyword: String) -> Unit) {
         mCallback = callback
     }
 
@@ -75,8 +89,7 @@ class SearchHisView(
             updateView()
         }
         delAllSearchHisTv.setOnClickListener {
-            isEditing = false
-            updateView()
+            showClearHisDialog()
         }
         searchHisDoneTv.setOnClickListener {
             isEditing = false
@@ -85,8 +98,39 @@ class SearchHisView(
     }
 
     fun addKeyword(keyword: String) {
+        if (keyword.isBlank() || searchHisBean.keyWordList.contains(keyword)) {
+            return
+        }
         searchHisBean.keyWordList.add(0, keyword)
-        SpUtil.put(SP_KEY_SEARCH_HIS, JsonUtil.toJson(searchHisBean) ?: "")
+        saveToSP()
         updateView()
+    }
+
+    private fun deleteKeyword(keyword: String) {
+        searchHisBean.keyWordList.remove(keyword)
+        saveToSP()
+        updateView()
+    }
+
+    private fun clearKeyword() {
+        searchHisBean.keyWordList.clear()
+        saveToSP()
+        updateView()
+    }
+
+    private fun showClearHisDialog() {
+        val message = "确认要删除全部搜索历史么？"
+        val alertDialog = AlertDialog.Builder(context).setMessage(message).setCancelable(false)
+            .setPositiveButton(R.string.delete) { _, _ ->
+                isEditing = false
+                clearKeyword()
+            }
+            .setNegativeButton(R.string.cancel) { _, _ -> }
+            .create()
+        alertDialog.show()
+    }
+
+    private fun saveToSP() {
+        SpUtil.put(SP_KEY_SEARCH_HIS, JsonUtil.toJson(searchHisBean) ?: "")
     }
 }

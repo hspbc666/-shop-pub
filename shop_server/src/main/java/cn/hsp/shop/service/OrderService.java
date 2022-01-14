@@ -67,7 +67,7 @@ public class OrderService {
     }
 
     public void changeOrderStatus(String orderId, int status) {
-        userOrderMapper.update(orderId, status);
+        userOrderMapper.modify(orderId, status);
     }
 
 
@@ -101,7 +101,7 @@ public class OrderService {
     }
 
     @Transactional
-    public void deleteOrder(String orderId) {
+    public void delete(String orderId) {
         orderMapper.delete(orderId);
         userOrderMapper.delete(orderId);
     }

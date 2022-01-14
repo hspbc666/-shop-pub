@@ -40,7 +40,7 @@ class CartAdapter(var mViewModel: CartViewModel) : RecyclerView.Adapter<Recycler
 
         holder.itemView.quantityView.setCallback {
             data.quantity = it
-            mViewModel.updateCart(data, isChecked = holder.itemView.cartItemCheckBox.isChecked)
+            mViewModel.modifyCart(data, isChecked = holder.itemView.cartItemCheckBox.isChecked)
         }
         holder.itemView.setOnClickListener { onItemClick(data) }
         holder.itemView.cartItemCheckBox.setOnCheckedChangeListener { _, isChecked ->

@@ -13,6 +13,7 @@ object Constants {
     const val SP_KEY_USER_ID = "user_id"
     const val EXTRA_KEY_GOODS_ID = "goods_id"
     const val EXTRA_KEY_ORDER_INFO = "order_info"
+    const val EXTRA_KEY_ADDR_INFO = "addr_info"
     const val EXTRA_KEY_COST_SUM = "cost_sum"
     const val EXTRA_KEY_CART_ITEMS = "cart_items"
     const val EXTRA_KEY_TAB_INDEX = "tab_index"

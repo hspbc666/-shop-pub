@@ -27,7 +27,7 @@ public interface CartMapper {
     void add(@Param("id") String id, @Param("userId") int userId, @Param("goodsId") String goodsId);
 
     @Update(value = "update cart set quantity=#{quantity} where id = #{id}")
-    void updateQuantity(@Param("id") String id, @Param("quantity") int quantity);
+    void modifyQuantity(@Param("id") String id, @Param("quantity") int quantity);
 
     @Delete("delete from cart where id = #{id}")
     void delete(@Param("id") String id);

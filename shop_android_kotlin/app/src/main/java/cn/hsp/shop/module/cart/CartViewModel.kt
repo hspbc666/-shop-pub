@@ -37,7 +37,7 @@ class CartViewModel : BaseViewModel() {
         notifySelectionChanged()
     }
 
-    fun updateCart(
+    fun modifyCart(
         cartItem: CartItem,
         isChecked: Boolean,
         onSuccess: (() -> Unit)? = null,
@@ -49,7 +49,7 @@ class CartViewModel : BaseViewModel() {
         }
         launch(
             {
-                repo.updateCart(cartItem.id, cartItem.quantity)
+                repo.modifyCart(cartItem.id, cartItem.quantity)
                 if (cartItem.quantity <= 0) {
                     queryCart(onSuccess, onFailure, onComplete)
                 } else {

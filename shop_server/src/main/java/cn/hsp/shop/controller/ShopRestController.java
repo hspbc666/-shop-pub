@@ -14,6 +14,7 @@ import cn.hsp.shop.service.CartService;
 import cn.hsp.shop.service.GoodsService;
 import cn.hsp.shop.service.OrderService;
 import cn.hsp.shop.service.UserAddrService;
+import cn.hsp.utils.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,30 +40,6 @@ public class ShopRestController {
 
     @Autowired
     private JwtUtils jwtUtils;
-
-//    @GetMapping(value = "api/del/{id}")
-//    public Resp<String> delBlog(@PathVariable long id) {
-//        blogService.del(id);
-//        return new Resp<>();
-//    }
-//
-//    @PostMapping(value = "api/add")
-//    public Resp<String> addBlog(@RequestBody Blog blog, @RequestHeader("Authorization") String authorization) {
-//        final String authTokenPrefix = "Bearer ";
-//        long userId = 0;
-//        if (authorization != null && authorization.startsWith(authTokenPrefix)) {
-//            String token = authorization.substring(authTokenPrefix.length());
-//            userId = jwtUtils.getUserIdFromToken(token);
-//        }
-//        blogService.add(userId, blog.getTitle(), blog.getContent());
-//        return new Resp<>();
-//    }
-//
-//    @PostMapping(value = "api/modify")
-//    public Resp<String> modifyBlog(@RequestBody Blog blog) {
-//        blogService.modify(blog.getId(), blog.getTitle(), blog.getContent());
-//        return new Resp<>();
-//    }
 
     @GetMapping("goods/list")
     public Resp<List<Goods>> queryAllGoods() {
@@ -100,9 +77,9 @@ public class ShopRestController {
         return new Resp<>();
     }
 
-    @GetMapping("cart/update/{cartId}/{quantity}")
-    public Resp<Goods> updateCart(@PathVariable String cartId, @PathVariable int quantity, @RequestHeader("Authorization") String authorization) {
-        cartService.updateCart(cartId, quantity);
+    @GetMapping("cart/modify/{cartId}/{quantity}")
+    public Resp<Goods> modifyCart(@PathVariable String cartId, @PathVariable int quantity, @RequestHeader("Authorization") String authorization) {
+        cartService.modifyCart(cartId, quantity);
         return new Resp<>();
     }
 
@@ -145,9 +122,9 @@ public class ShopRestController {
         return resp;
     }
 
-    @GetMapping(value = "order/del/{orderId}")
+    @GetMapping("order/del/{orderId}")
     public Resp<String> deleteOrder(@PathVariable String orderId) {
-        orderService.deleteOrder(orderId);
+        orderService.delete(orderId);
         return new Resp<>();
     }
 
@@ -157,6 +134,28 @@ public class ShopRestController {
         Resp<List<UserAddr>> resp = new Resp<>();
         resp.setData(userAddrService.query(userId));
         return resp;
+    }
+
+    @PostMapping("addr/add")
+    public Resp<List<UserAddr>> addAddr(@RequestBody UserAddr userAddr, @RequestHeader("Authorization") String authorization) {
+        int userId = getUserIdFromHeader(authorization);
+        userAddr.setId(IdGenerator.generateId());
+        userAddr.setUserId(userId);
+        userAddrService.add(userId, userAddr);
+        return new Resp<>();
+    }
+
+    @PostMapping("addr/modify")
+    public Resp<List<UserAddr>> modifyAddr(@RequestBody UserAddr userAddr, @RequestHeader("Authorization") String authorization) {
+        int userId = getUserIdFromHeader(authorization);
+        userAddrService.modify(userId, userAddr);
+        return new Resp<>();
+    }
+
+    @GetMapping("addr/del/{userAddrId}")
+    public Resp<String> deleteAddr(@PathVariable String userAddrId) {
+        userAddrService.delete(userAddrId);
+        return new Resp<>();
     }
 
     private int getUserIdFromHeader(String authorization) {

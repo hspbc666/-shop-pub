@@ -35,6 +35,8 @@
         <activity android:name=".module.order.OrderDetailActivity" />
         <activity android:name=".module.addr.AddressActivity" />
         <activity android:name=".module.search.SearchActivity" />
+        <activity android:name=".module.addr.AddAddressActivity" />
+        <activity android:name=".module.addr.ModifyAddressActivity" />
     </application>
 
 </manifest>

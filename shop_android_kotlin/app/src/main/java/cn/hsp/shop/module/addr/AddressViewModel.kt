@@ -1,12 +1,9 @@
 package cn.hsp.shop.module.addr
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo
-import cn.hsp.shop.network.request.CreateOrderReq
-import cn.hsp.shop.network.request.SimpleOrderInfo
-import cn.hsp.shop.network.response.Goods
+import cn.hsp.shop.network.response.UserAddr
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -16,32 +13,61 @@ import cn.hsp.shop.network.response.Goods
  */
 class AddressViewModel : BaseViewModel() {
     private val repo by lazy { ShopRepo() }
-    val goods: MutableLiveData<Goods> = MutableLiveData()
+    val userAddrList: MutableLiveData<List<UserAddr>> = MutableLiveData()
 
-    fun queryGoods(
-        goodsId: String,
+    fun query(
         onSuccess: (() -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
     ) {
         launch(
             {
-                goods.value = repo.queryGoods(goodsId)?.data
+                userAddrList.value = repo.queryAddress()?.data
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },
             { onComplete?.invoke() })
     }
 
-    fun addToCart(
-        goodsId: String,
+    fun addAddress(
+        userAddr: UserAddr,
         onSuccess: (() -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
     ) {
         launch(
             {
-                repo.addToCart(goodsId)
+                repo.addAddress(userAddr)
+                onSuccess?.invoke()
+            },
+            { onFailure?.invoke(it.message ?: "") },
+            { onComplete?.invoke() })
+    }
+
+    fun modifyAddress(
+        userAddr: UserAddr,
+        onSuccess: (() -> Unit)? = null,
+        onFailure: ((msg: String) -> Unit)? = null,
+        onComplete: (() -> Unit)? = null
+    ) {
+        launch(
+            {
+                repo.modifyAddress(userAddr)
+                onSuccess?.invoke()
+            },
+            { onFailure?.invoke(it.message ?: "") },
+            { onComplete?.invoke() })
+    }
+
+    fun deleteAddress(
+        userAddrId:String,
+        onSuccess: (() -> Unit)? = null,
+        onFailure: ((msg: String) -> Unit)? = null,
+        onComplete: (() -> Unit)? = null
+    ) {
+        launch(
+            {
+                repo.deleteAddress(userAddrId)
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },

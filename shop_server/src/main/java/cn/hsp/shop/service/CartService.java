@@ -27,20 +27,20 @@ public class CartService {
     public void addToCart(int userId, String goodsId, int quantity) {
         CartSimpleItem cartSimpleItem = cartMapper.query(userId, goodsId);
         if (cartSimpleItem != null) {
-            cartMapper.updateQuantity(cartSimpleItem.getId(), quantity + cartSimpleItem.getQuantity());
+            cartMapper.modifyQuantity(cartSimpleItem.getId(), quantity + cartSimpleItem.getQuantity());
         } else {
             String id = IdGenerator.generateId();
             cartMapper.add(id, userId, goodsId);
         }
     }
 
-    public void updateCart(String cartId, int quantity) {
+    public void modifyCart(String cartId, int quantity) {
         CartSimpleItem cartSimpleItem = cartMapper.queryByCartId(cartId);
         if (cartSimpleItem != null) {
             if (quantity <= 0) {
                 cartMapper.delete(cartId);
             } else {
-                cartMapper.updateQuantity(cartId, quantity);
+                cartMapper.modifyQuantity(cartId, quantity);
             }
         }
     }

@@ -1,7 +1,10 @@
 package cn.hsp.shop.module.settings
 
+import android.content.Intent
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseActivity
+import cn.hsp.shop.module.addr.AddressActivity
+import cn.hsp.shop.module.login.LoginActivity
 import cn.hsp.shop.module.login.LoginManager
 import cn.hsp.shop.utils.getVersionName
 import kotlinx.android.synthetic.main.activity_settins.*
@@ -22,6 +25,7 @@ class SettingsActivity : BaseActivity() {
     }
 
     override fun initListeners() {
+        addressLayout.setOnClickListener { startActivity(Intent(this, AddressActivity::class.java)) }
         quitLoginTv.setOnClickListener {
             LoginManager.quitLogin()
             finish()

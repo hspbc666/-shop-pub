@@ -8,6 +8,7 @@ package cn.hsp.shop.network
 
 import cn.hsp.shop.base.BaseRepository
 import cn.hsp.shop.network.request.*
+import cn.hsp.shop.network.response.UserAddr
 
 class ShopRepo : BaseRepository() {
     suspend fun queryGoods() = apiService.queryGoods()
@@ -15,8 +16,8 @@ class ShopRepo : BaseRepository() {
     suspend fun searchGoods(keyword: String) = apiService.searchGoods(keyword)
     suspend fun queryCart() = apiService.queryCart()
     suspend fun addToCart(goodsId: String) = apiService.addToCart(goodsId)
-    suspend fun updateCart(cartId: String, quantity: Int) =
-        apiService.updateCart(cartId, quantity)
+    suspend fun modifyCart(cartId: String, quantity: Int) =
+        apiService.modifyCart(cartId, quantity)
 
     suspend fun createOrder(req: CreateOrderReq) = apiService.createOrder(req)
     suspend fun createOrderFromCart(req: CreateOrderFromCartReq) = apiService.createOrderFromCart(req)
@@ -24,6 +25,10 @@ class ShopRepo : BaseRepository() {
     suspend fun queryOrder(req: QueryOrderReq) = apiService.queryOrder(req)
     suspend fun queryOrder(orderId: String) = apiService.queryOrder(orderId)
     suspend fun deleteOrder(orderId: String) = apiService.deleteOrder(orderId)
+    suspend fun queryAddress() = apiService.queryAddress()
+    suspend fun addAddress(userAddr: UserAddr) = apiService.addAddress(userAddr)
+    suspend fun modifyAddress(userAddr: UserAddr) = apiService.modifyAddress(userAddr)
+    suspend fun deleteAddress(userAddrId: String) = apiService.deleteAddress(userAddrId)
     suspend fun login(userName: String, password: String) =
         apiService.login(LoginReq(userName, password))
 
