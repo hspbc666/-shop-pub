@@ -22,6 +22,21 @@ public class UserAddrService {
         return userAddrMapper.query(userId);
     }
 
+    public UserAddr queryDefaultAddress(int userId) {
+        List<UserAddr> addrList = query(userId);
+        UserAddr result = null;
+        for (UserAddr userAddr : addrList) {
+            if (userAddr.isDefaultAddress()) {
+                result = userAddr;
+                break;
+            }
+        }
+        if (!addrList.isEmpty()) {
+            result = addrList.get(0);
+        }
+        return result;
+    }
+
     public void add(int userId, UserAddr userAddr) {
         if (userAddr.isDefaultAddress()) {
             userAddrMapper.modifyAsUnDefault(userId);

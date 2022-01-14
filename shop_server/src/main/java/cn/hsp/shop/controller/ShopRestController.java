@@ -136,6 +136,14 @@ public class ShopRestController {
         return resp;
     }
 
+    @GetMapping("addr/query_default")
+    public Resp<UserAddr> queryDefaultAddress(@RequestHeader("Authorization") String authorization) {
+        int userId = getUserIdFromHeader(authorization);
+        Resp<UserAddr> resp = new Resp<>();
+        resp.setData(userAddrService.queryDefaultAddress(userId));
+        return resp;
+    }
+
     @PostMapping("addr/add")
     public Resp<List<UserAddr>> addAddr(@RequestBody UserAddr userAddr, @RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);

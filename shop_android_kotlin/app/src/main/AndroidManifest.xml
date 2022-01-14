@@ -33,10 +33,11 @@
         <activity android:name=".module.order.OrderListActivity" />
         <activity android:name=".module.order.ConfirmOrderActivity" />
         <activity android:name=".module.order.OrderDetailActivity" />
-        <activity android:name=".module.addr.AddressActivity" />
+        <activity android:name=".module.addr.AddressListActivity" />
         <activity android:name=".module.search.SearchActivity" />
         <activity android:name=".module.addr.AddAddressActivity" />
         <activity android:name=".module.addr.ModifyAddressActivity" />
+        <activity android:name=".module.addr.select.SelectAddressActivity" />
     </application>
 
 </manifest>

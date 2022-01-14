@@ -1,16 +1,15 @@
 package cn.hsp.shop.module.order
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo
 import cn.hsp.shop.network.request.CreateOrderFromCartReq
 import cn.hsp.shop.network.request.CreateOrderReq
-import cn.hsp.shop.network.request.QueryOrderReq
 import cn.hsp.shop.network.request.SimpleOrderInfo
 import cn.hsp.shop.network.response.CartItem
-import cn.hsp.shop.network.response.Goods
 import cn.hsp.shop.network.response.QueryOrderResp
-import cn.hsp.shop.utils.Constants
+import cn.hsp.shop.network.response.UserAddr
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -20,7 +19,7 @@ import cn.hsp.shop.utils.Constants
  */
 class ConfirmOrderViewModel : BaseViewModel() {
     private val repo by lazy { ShopRepo() }
-    val queryOrderResp: MutableLiveData<QueryOrderResp> = MutableLiveData()
+    val defaultAddress: MutableLiveData<UserAddr> = MutableLiveData()
 
     fun createOrderFromCart(
         cartItemList: List<CartItem>,
@@ -37,7 +36,6 @@ class ConfirmOrderViewModel : BaseViewModel() {
             { onFailure?.invoke(it.message ?: "") },
             { onComplete?.invoke() })
     }
-
 
     fun createOrder(
         simpleOrderInfo: SimpleOrderInfo,
@@ -78,6 +76,20 @@ class ConfirmOrderViewModel : BaseViewModel() {
         launch(
             {
                 repo.queryOrder(orderId)?.data?.let { onSuccess?.invoke(it) }
+            },
+            { onFailure?.invoke(it.message ?: "") },
+            { onComplete?.invoke() })
+    }
+
+    fun queryDefaultAddress(
+        onSuccess: (() -> Unit)? = null,
+        onFailure: ((msg: String) -> Unit)? = null,
+        onComplete: (() -> Unit)? = null
+    ) {
+        launch(
+            {
+                repo.queryDefaultAddress()?.data?.let { defaultAddress.value =it }
+                onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },
             { onComplete?.invoke() })

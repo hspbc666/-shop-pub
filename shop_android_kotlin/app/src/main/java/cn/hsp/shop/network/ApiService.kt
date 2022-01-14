@@ -62,6 +62,9 @@ interface ApiService {
     @GET("shop/addr/query")
     suspend fun queryAddress(): Result<List<UserAddr>?>?
 
+    @GET("shop/addr/query_default")
+    suspend fun queryDefaultAddress(): Result<UserAddr?>?
+
     @POST("shop/addr/add")
     suspend fun addAddress(@Body req: UserAddr): Result<String?>?
 

@@ -1,9 +1,10 @@
-package cn.hsp.shop.module.addr
+package cn.hsp.shop.module.addr.select
 
 import android.content.Intent
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
-import kotlinx.android.synthetic.main.activity_address.*
+import cn.hsp.shop.module.addr.AddAddressActivity
+import kotlinx.android.synthetic.main.activity_address_list.*
 import kotlinx.android.synthetic.main.activity_goods.toolbar
 
 /**
@@ -12,14 +13,14 @@ import kotlinx.android.synthetic.main.activity_goods.toolbar
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：花生皮编程
  */
-class AddressActivity : BaseVmActivity<AddressViewModel>() {
-    private lateinit var adapter: AddressAdapter
-    override fun viewModelClass() = AddressViewModel::class.java
-    override fun layoutResId(): Int = R.layout.activity_address
+class SelectAddressActivity : BaseVmActivity<SelectAddressViewModel>() {
+    private lateinit var adapterSelect: SelectAddressAdapter
+    override fun viewModelClass() = SelectAddressViewModel::class.java
+    override fun layoutResId(): Int = R.layout.activity_address_list
     override fun initView() {
         initToolbar()
-        adapter = AddressAdapter(mViewModel)
-        addrListRv.adapter = adapter
+        adapterSelect = SelectAddressAdapter(mViewModel)
+        addrListRv.adapter = adapterSelect
     }
 
     override fun initData() {
@@ -36,7 +37,7 @@ class AddressActivity : BaseVmActivity<AddressViewModel>() {
 
     override fun observe() {
         mViewModel.userAddrList.observe(this, {
-            adapter.setData(it)
+            adapterSelect.setData(it)
         })
     }
 

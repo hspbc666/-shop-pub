@@ -1,15 +1,20 @@
 package cn.hsp.shop.module.order
 
 import android.content.Intent
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.appcompat.app.AlertDialog
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
+import cn.hsp.shop.module.addr.AddAddressActivity
+import cn.hsp.shop.module.addr.select.SelectAddressActivity
 import cn.hsp.shop.network.request.SimpleOrderInfo
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_COST_SUM
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_SIMPLE_ORDER
 import cn.hsp.shop.utils.JsonUtil
 import kotlinx.android.synthetic.main.activity_goods.*
+import kotlinx.android.synthetic.main.order_addr_layout.*
 import kotlinx.android.synthetic.main.order_bottom_layout.*
 import kotlinx.android.synthetic.main.order_fee_layout.*
 
@@ -34,11 +39,18 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
         val sum = intent.getStringExtra(EXTRA_KEY_COST_SUM)
         goodsSumTv.text = sum
         sumTv.text = sum
+        mViewModel.queryDefaultAddress()
     }
 
     override fun initListeners() {
         createOrderTv.setOnClickListener {
             orderInfo?.let { createOrder(it) }
+        }
+        addAddrLayout.setOnClickListener {
+            startActivity(Intent(this, AddAddressActivity::class.java))
+        }
+        addrLayout.setOnClickListener {
+            startActivity(Intent(this, SelectAddressActivity::class.java))
         }
     }
 
@@ -80,5 +92,15 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
 
     private fun initToolbar() {
         toolbar.setNavigationOnClickListener { finish() }
+    }
+
+    override fun observe() {
+        mViewModel.defaultAddress.observe(this, {
+            addrLayout.visibility = VISIBLE
+            addAddrLayout.visibility = GONE
+            receiverNameTv.text = it.name
+            addressTv.text = it.address
+
+        })
     }
 }

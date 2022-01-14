@@ -26,6 +26,7 @@ class ShopRepo : BaseRepository() {
     suspend fun queryOrder(orderId: String) = apiService.queryOrder(orderId)
     suspend fun deleteOrder(orderId: String) = apiService.deleteOrder(orderId)
     suspend fun queryAddress() = apiService.queryAddress()
+    suspend fun queryDefaultAddress() = apiService.queryDefaultAddress()
     suspend fun addAddress(userAddr: UserAddr) = apiService.addAddress(userAddr)
     suspend fun modifyAddress(userAddr: UserAddr) = apiService.modifyAddress(userAddr)
     suspend fun deleteAddress(userAddrId: String) = apiService.deleteAddress(userAddrId)
