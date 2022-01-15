@@ -49,7 +49,8 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
             orderInfo?.let { createOrder(it) }
         }
         addAddrLayout.setOnClickListener {
-            startActivity(Intent(this, AddAddressActivity::class.java))
+            val intent = Intent(this, AddAddressActivity::class.java)
+            startActivityForResult(intent, requestCodeForAddAddr)
         }
         addrLayout.setOnClickListener {
             userAddr?.let {
@@ -62,7 +63,7 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == requestCodeForSelectAddr) {
+        if (requestCode == requestCodeForSelectAddr || requestCode == requestCodeForAddAddr) {
             data?.let {
                 val userAddrJson = it.getStringExtra(Constants.EXTRA_KEY_USER_ADDR)
                 userAddr = JsonUtil.fromJson(userAddrJson ?: "")
@@ -126,7 +127,9 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
             addressTv.text = it.address
         }
     }
-    companion object{
+
+    companion object {
         var requestCodeForSelectAddr = 1
+        var requestCodeForAddAddr = 2
     }
 }

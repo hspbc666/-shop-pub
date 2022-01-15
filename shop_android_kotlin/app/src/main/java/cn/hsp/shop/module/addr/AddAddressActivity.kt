@@ -1,8 +1,12 @@
 package cn.hsp.shop.module.addr
 
+import android.content.Intent
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
+import cn.hsp.shop.module.order.ConfirmOrderActivity
 import cn.hsp.shop.network.response.UserAddr
+import cn.hsp.shop.utils.Constants
+import cn.hsp.shop.utils.JsonUtil
 import kotlinx.android.synthetic.main.activity_add_address.*
 import kotlinx.android.synthetic.main.activity_goods.toolbar
 import kotlinx.android.synthetic.main.part_addr_detail.*
@@ -31,9 +35,19 @@ class AddAddressActivity : BaseVmActivity<AddressViewModel>() {
             userAddr.address = detailedAddrEt.text.toString()
             userAddr.defaultAddress = defaultAddrSwitch.isChecked
             mViewModel.addAddress(userAddr, onSuccess = {
+                sendResultForConfirmOrder(it)
                 finish()
             })
         }
+    }
+
+    /**
+     * 确定订单页面需要返回数据
+     */
+    private fun sendResultForConfirmOrder(it: UserAddr) {
+        val intent = Intent()
+        intent.putExtra(Constants.EXTRA_KEY_USER_ADDR, JsonUtil.toJson(it))
+        setResult(ConfirmOrderActivity.requestCodeForSelectAddr, intent)
     }
 
     private fun initToolbar() {

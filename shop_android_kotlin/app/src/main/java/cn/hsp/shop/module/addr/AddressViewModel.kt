@@ -31,14 +31,15 @@ class AddressViewModel : BaseViewModel() {
 
     fun addAddress(
         userAddr: UserAddr,
-        onSuccess: (() -> Unit)? = null,
+        onSuccess: ((userAddr: UserAddr) -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
     ) {
         launch(
             {
-                repo.addAddress(userAddr)
-                onSuccess?.invoke()
+                val userAddrId = repo.addAddress(userAddr)?.data
+                userAddr.id = userAddrId ?: ""
+                onSuccess?.invoke(userAddr)
             },
             { onFailure?.invoke(it.message ?: "") },
             { onComplete?.invoke() })
@@ -60,7 +61,7 @@ class AddressViewModel : BaseViewModel() {
     }
 
     fun deleteAddress(
-        userAddrId:String,
+        userAddrId: String,
         onSuccess: (() -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null

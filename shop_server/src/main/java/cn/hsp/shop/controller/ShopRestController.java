@@ -145,11 +145,14 @@ public class ShopRestController {
     }
 
     @PostMapping("addr/add")
-    public Resp<List<UserAddr>> addAddr(@RequestBody UserAddr userAddr, @RequestHeader("Authorization") String authorization) {
+    public Resp<String> addAddr(@RequestBody UserAddr userAddr, @RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
-        userAddr.setId(IdGenerator.generateId());
+        String userAddrId = IdGenerator.generateId();
+        userAddr.setId(userAddrId);
         userAddr.setUserId(userId);
         userAddrService.add(userId, userAddr);
+        Resp<String> resp = new Resp<>();
+        resp.setData(userAddrId);
         return new Resp<>();
     }
 
