@@ -10,7 +10,8 @@
     android:paddingEnd="20dp"
     android:paddingBottom="20dp">
 
-    <CheckBox
+    <RadioButton
+        android:id="@+id/selectAddrRadioBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp" />

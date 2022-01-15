@@ -9,6 +9,7 @@ import cn.hsp.shop.base.BaseVmActivity
 import cn.hsp.shop.module.addr.AddAddressActivity
 import cn.hsp.shop.module.addr.select.SelectAddressActivity
 import cn.hsp.shop.network.request.SimpleOrderInfo
+import cn.hsp.shop.network.response.UserAddr
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_COST_SUM
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_SIMPLE_ORDER
@@ -26,6 +27,7 @@ import kotlinx.android.synthetic.main.order_fee_layout.*
  */
 open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
     private var orderInfo: SimpleOrderInfo? = null
+    private var userAddr: UserAddr? = null
     override fun viewModelClass() = ConfirmOrderViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_confirm_order
 
@@ -50,7 +52,22 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
             startActivity(Intent(this, AddAddressActivity::class.java))
         }
         addrLayout.setOnClickListener {
-            startActivity(Intent(this, SelectAddressActivity::class.java))
+            userAddr?.let {
+                val intent = Intent(this, SelectAddressActivity::class.java)
+                intent.putExtra(Constants.EXTRA_KEY_USER_ADDR_ID, it.id)
+                startActivityForResult(intent, requestCodeForSelectAddr)
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == requestCodeForSelectAddr) {
+            data?.let {
+                val userAddrJson = it.getStringExtra(Constants.EXTRA_KEY_USER_ADDR)
+                userAddr = JsonUtil.fromJson(userAddrJson ?: "")
+                updateUserAddr()
+            }
         }
     }
 
@@ -96,11 +113,20 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
 
     override fun observe() {
         mViewModel.defaultAddress.observe(this, {
+            userAddr = it
+            updateUserAddr()
+        })
+    }
+
+    private fun updateUserAddr() {
+        userAddr?.let {
             addrLayout.visibility = VISIBLE
             addAddrLayout.visibility = GONE
             receiverNameTv.text = it.name
             addressTv.text = it.address
-
-        })
+        }
+    }
+    companion object{
+        var requestCodeForSelectAddr = 1
     }
 }

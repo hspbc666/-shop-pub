@@ -7,16 +7,24 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import cn.hsp.shop.R
 import cn.hsp.shop.module.addr.ModifyAddressActivity
 import cn.hsp.shop.network.response.UserAddr
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.JsonUtil
-import kotlinx.android.synthetic.main.item_addr.view.*
+import kotlinx.android.synthetic.main.item_addr.view.addrEditTv
+import kotlinx.android.synthetic.main.item_addr.view.addressTv
+import kotlinx.android.synthetic.main.item_addr.view.defaultAddrTv
+import kotlinx.android.synthetic.main.item_addr.view.phoneTv
+import kotlinx.android.synthetic.main.item_addr.view.userNameTv
+import kotlinx.android.synthetic.main.item_select_addr.view.*
 
-class SelectAddressAdapter(var mViewModelSelect: SelectAddressViewModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SelectAddressAdapter(
+    var mViewModelSelect: SelectAddressViewModel,
+    var selectedUserAddrId: String?
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private lateinit var onItemClick: (data: UserAddr) -> Unit
     private var dataList = mutableListOf<UserAddr>()
     private lateinit var mContext: Context
     fun setData(UserAddrList: List<UserAddr>) {
@@ -35,7 +43,15 @@ class SelectAddressAdapter(var mViewModelSelect: SelectAddressViewModel) : Recyc
         } else {
             holder.itemView.defaultAddrTv.visibility = GONE
         }
+
+        holder.itemView.selectAddrRadioBtn.isChecked = false
+        selectedUserAddrId?.let {
+            if (it == data.id) {
+                holder.itemView.selectAddrRadioBtn.isChecked = true
+            }
+        }
         holder.itemView.addrEditTv.setOnClickListener { gotoEditAddrPage(data) }
+        holder.itemView.setOnClickListener { onItemClick(data) }
     }
 
     private fun gotoEditAddrPage(data: UserAddr) {
@@ -50,6 +66,10 @@ class SelectAddressAdapter(var mViewModelSelect: SelectAddressViewModel) : Recyc
         mContext = parent.context
         val view = LayoutInflater.from(mContext).inflate(R.layout.item_select_addr, parent, false)
         return ViewHolder(view)
+    }
+
+    infix fun setOnItemClick(onClick: (data: UserAddr) -> Unit) {
+        this.onItemClick = onClick
     }
 
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!)
