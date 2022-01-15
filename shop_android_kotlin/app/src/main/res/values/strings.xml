@@ -8,4 +8,5 @@
     <string name="amount_with_prefix">×%1$d</string>
     <string name="goods_count">共%1$d件商品</string>
     <string name="real_paid">实付 ￥%1$s</string>
+    <string name="package_count">共%1$d件</string>
 </resources>
