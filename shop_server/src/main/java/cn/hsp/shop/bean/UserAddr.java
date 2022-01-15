@@ -14,6 +14,7 @@ public class UserAddr {
     private int userId;
     private String name;
     private String phone;
+    private String region;//地区
     private String address;
     private boolean defaultAddress;
 }

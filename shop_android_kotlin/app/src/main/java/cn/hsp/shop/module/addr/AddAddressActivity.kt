@@ -32,6 +32,7 @@ class AddAddressActivity : BaseVmActivity<AddressViewModel>() {
             val userAddr = UserAddr()
             userAddr.name = receiverNameEt.text.toString()
             userAddr.phone = receiverPhoneEt.text.toString()
+            userAddr.region = regionEt.text.toString()
             userAddr.address = detailedAddrEt.text.toString()
             userAddr.defaultAddress = defaultAddrSwitch.isChecked
             mViewModel.addAddress(userAddr, onSuccess = {

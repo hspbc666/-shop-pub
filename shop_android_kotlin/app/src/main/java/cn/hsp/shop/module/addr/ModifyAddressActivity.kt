@@ -28,6 +28,7 @@ class ModifyAddressActivity : BaseVmActivity<AddressViewModel>() {
         userAddr?.let {
             receiverNameEt.setText(it.name)
             receiverPhoneEt.setText(it.phone)
+            regionEt.setText(it.region)
             detailedAddrEt.setText(it.address)
             defaultAddrSwitch.isChecked = it.defaultAddress
         }
@@ -38,6 +39,7 @@ class ModifyAddressActivity : BaseVmActivity<AddressViewModel>() {
             userAddr?.let {
                 it.name = receiverNameEt.text.toString()
                 it.phone = receiverPhoneEt.text.toString()
+                it.region = regionEt.text.toString()
                 it.address = detailedAddrEt.text.toString()
                 it.defaultAddress = defaultAddrSwitch.isChecked
                 mViewModel.modifyAddress(it, onSuccess = {

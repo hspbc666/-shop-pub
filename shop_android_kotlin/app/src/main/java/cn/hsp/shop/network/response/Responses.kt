@@ -58,6 +58,7 @@ class UserAddr {
     var id = ""
     var name: String? = null
     var phone: String? = null
+    var region: String? = null
     var address: String? = null
     var defaultAddress = false
 }
