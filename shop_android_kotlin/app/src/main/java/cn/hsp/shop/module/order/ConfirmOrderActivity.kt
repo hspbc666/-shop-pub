@@ -14,10 +14,12 @@ import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_COST_SUM
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_SIMPLE_ORDER
 import cn.hsp.shop.utils.JsonUtil
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_goods.*
 import kotlinx.android.synthetic.main.order_addr_layout.*
 import kotlinx.android.synthetic.main.order_bottom_layout.*
 import kotlinx.android.synthetic.main.order_fee_layout.*
+import kotlinx.android.synthetic.main.order_goods_info_layout.*
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -42,6 +44,10 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
         goodsSumTv.text = sum
         sumTv.text = sum
         mViewModel.queryDefaultAddress()
+        orderInfo?.let {
+            val picUrl = it.squarePic
+            Glide.with(this).load(picUrl).into(orderGoodsIv)
+        }
     }
 
     override fun initListeners() {

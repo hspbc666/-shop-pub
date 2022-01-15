@@ -22,7 +22,8 @@ class CreateOrderReq(val simpleOrderInfoList: List<SimpleOrderInfo>?)
 
 class SimpleOrderInfo(
     val goodsId: String?,
-    val quantity: Int
+    val quantity: Int,
+    var squarePic: String? = null
 )
 
 class QueryOrderReq(val orderStatus: Int)
