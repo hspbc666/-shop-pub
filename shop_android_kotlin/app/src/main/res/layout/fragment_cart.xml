@@ -53,6 +53,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:background="#FFFFFF"
+            android:gravity="center_vertical"
             android:paddingTop="5dp"
             android:paddingBottom="10dp">
 
@@ -72,18 +73,18 @@
                 android:id="@+id/sumTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="￥0"
                 android:textColor="@color/color_common"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/createOrderTv"
-                android:layout_width="0dp"
+                android:id="@+id/gotoCreateOrderTv"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_weight="1"
-                android:background="@drawable/shape_btn_bg"
+                android:background="@drawable/shape_btn_grey_bg"
                 android:gravity="center"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"

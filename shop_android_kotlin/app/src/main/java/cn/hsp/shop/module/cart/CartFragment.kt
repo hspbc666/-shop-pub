@@ -5,7 +5,6 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.TextView
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.hsp.shop.R
@@ -28,7 +27,7 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
     private lateinit var cartLoginLayout: View
     private lateinit var cartLoginTv: View
     private lateinit var sumTv: TextView
-    private lateinit var createOrderTv: TextView
+    private lateinit var gotoCreateOrderTv: TextView
     override fun viewModelClass() = CartViewModel::class.java
     override fun layoutResId(): Int = R.layout.fragment_cart
 
@@ -41,7 +40,7 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
         cartLoginLayout = findViewById(R.id.cartLoginLayout)
         cartLoginTv = findViewById(R.id.cartLoginTv)
         sumTv = findViewById(R.id.sumTv)
-        createOrderTv = findViewById(R.id.createOrderTv)
+        gotoCreateOrderTv = findViewById(R.id.gotoCreateOrderTv)
         goodsListRv.adapter = adapter
     }
 
@@ -51,7 +50,7 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
         cartLoginTv.setOnClickListener {
             startActivity(Intent(context, LoginActivity::class.java))
         }
-        createOrderTv.setOnClickListener {
+        gotoCreateOrderTv.setOnClickListener {
             val intent = Intent(context, ConfirmOrderFromCartActivity::class.java)
             val cartItems = mViewModel.selectionItemList
             val cartItemsInJson = JsonUtil.toJson(cartItems)
@@ -87,6 +86,13 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
             selectedCountTv.text =
                 context?.getString(R.string.selected_count, mViewModel.selectionItemList.size)
             sumTv.text = context?.getString(R.string.price, getMoneyByYuan(sum))
+            if (mViewModel.selectionItemList.isEmpty()) {
+                gotoCreateOrderTv.isEnabled = false
+                gotoCreateOrderTv.setBackgroundResource(R.drawable.shape_btn_grey_bg)
+            } else {
+                gotoCreateOrderTv.isEnabled = true
+                gotoCreateOrderTv.setBackgroundResource(R.drawable.shape_btn_bg)
+            }
         })
     }
 

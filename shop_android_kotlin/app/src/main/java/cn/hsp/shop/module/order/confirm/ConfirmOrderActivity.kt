@@ -8,7 +8,6 @@ import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
 import cn.hsp.shop.module.addr.AddAddressActivity
 import cn.hsp.shop.module.addr.select.SelectAddressActivity
-import cn.hsp.shop.module.order.confirm.dialog.CartGoodsListDialog
 import cn.hsp.shop.module.order.detail.OrderDetailActivity
 import cn.hsp.shop.network.request.SimpleOrderInfo
 import cn.hsp.shop.network.response.UserAddr

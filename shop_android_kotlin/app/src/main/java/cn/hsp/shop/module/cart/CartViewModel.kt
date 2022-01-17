@@ -1,5 +1,6 @@
 package cn.hsp.shop.module.cart
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo
@@ -75,7 +76,7 @@ class CartViewModel : BaseViewModel() {
     }
 
     fun disSelectItem(goodsId: String) {
-        selectionItemList.removeIf { it.goodsId == goodsId }
+        selectionItemList.removeIf { it.id == goodsId }
         notifySelectionChanged()
     }
 

@@ -16,6 +16,7 @@ class CartGoodsListDialog(context: Context, cartItemList: List<CartItem>) : Dial
         val adapter = CartGoodsListAdapter()
         adapter.setData(cartItemList)
         orderGoodsListRv.adapter = adapter
+        goodsAmountTv.text = context.getString(R.string.package_count,cartItemList.size)
         closeDialogIv.setOnClickListener { dismiss() }
         showWithMoveAnim()
     }
