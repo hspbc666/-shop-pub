@@ -1,16 +1,23 @@
-package cn.hsp.shop.module.order
+package cn.hsp.shop.module.order.confirm
 
 import android.content.Intent
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
+import cn.hsp.shop.module.addr.AddAddressActivity
+import cn.hsp.shop.module.addr.select.SelectAddressActivity
+import cn.hsp.shop.module.order.confirm.dialog.CartGoodsListDialog
+import cn.hsp.shop.module.order.detail.OrderDetailActivity
 import cn.hsp.shop.network.response.CartItem
+import cn.hsp.shop.network.response.UserAddr
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_CART_ITEMS
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_COST_SUM
 import cn.hsp.shop.utils.JsonUtil
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_goods.*
+import kotlinx.android.synthetic.main.order_addr_layout.*
 import kotlinx.android.synthetic.main.order_bottom_layout.*
 import kotlinx.android.synthetic.main.order_fee_layout.*
 import kotlinx.android.synthetic.main.order_goods_info_layout.*
@@ -23,6 +30,7 @@ import kotlinx.android.synthetic.main.order_goods_info_layout.*
  */
 open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>() {
     private var cartItemList: List<CartItem>? = null
+    private var userAddr: UserAddr? = null
     override fun viewModelClass() = ConfirmOrderViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_confirm_order
 
@@ -36,6 +44,7 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
         val sum = intent.getStringExtra(EXTRA_KEY_COST_SUM)
         goodsSumTv.text = sum
         sumTv.text = sum
+        mViewModel.queryDefaultAddress()
         cartItemList?.let {
             if (it.isNotEmpty()) {
                 val picUrl = it.first().squarePic
@@ -48,6 +57,32 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
     override fun initListeners() {
         createOrderTv.setOnClickListener {
             cartItemList?.let { createOrder(it) }
+        }
+
+        addAddrLayout.setOnClickListener {
+            val intent = Intent(this, AddAddressActivity::class.java)
+            startActivityForResult(intent, ConfirmOrderActivity.requestCodeForAddAddr)
+        }
+        addrLayout.setOnClickListener {
+            userAddr?.let {
+                val intent = Intent(this, SelectAddressActivity::class.java)
+                intent.putExtra(Constants.EXTRA_KEY_USER_ADDR_ID, it.id)
+                startActivityForResult(intent, ConfirmOrderActivity.requestCodeForSelectAddr)
+            }
+        }
+        orderGoodsLayout.setOnClickListener {
+            cartItemList?.let { CartGoodsListDialog(this, it).show() }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == ConfirmOrderActivity.requestCodeForSelectAddr || requestCode == ConfirmOrderActivity.requestCodeForAddAddr) {
+            data?.let {
+                val userAddrJson = it.getStringExtra(Constants.EXTRA_KEY_USER_ADDR)
+                userAddr = JsonUtil.fromJson(userAddrJson ?: "")
+                updateUserAddr()
+            }
         }
     }
 
@@ -89,5 +124,26 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
 
     private fun initToolbar() {
         toolbar.setNavigationOnClickListener { finish() }
+    }
+
+    override fun observe() {
+        mViewModel.defaultAddress.observe(this, {
+            userAddr = it
+            updateUserAddr()
+        })
+    }
+
+    private fun updateUserAddr() {
+        userAddr?.let {
+            addrLayout.visibility = View.VISIBLE
+            addAddrLayout.visibility = View.GONE
+            receiverNameTv.text = it.name
+            addressTv.text = it.address
+        }
+    }
+
+    companion object {
+        var requestCodeForSelectAddr = 1
+        var requestCodeForAddAddr = 2
     }
 }

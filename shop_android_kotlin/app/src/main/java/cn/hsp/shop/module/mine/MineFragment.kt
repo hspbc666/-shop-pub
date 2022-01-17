@@ -8,7 +8,7 @@ import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseFragment
 import cn.hsp.shop.module.login.LoginActivity
 import cn.hsp.shop.module.login.LoginManager
-import cn.hsp.shop.module.order.OrderListActivity
+import cn.hsp.shop.module.order.list.OrderListActivity
 import cn.hsp.shop.module.settings.SettingsActivity
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_ALL

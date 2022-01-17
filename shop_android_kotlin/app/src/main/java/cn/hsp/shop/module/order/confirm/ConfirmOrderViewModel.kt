@@ -1,6 +1,5 @@
-package cn.hsp.shop.module.order
+package cn.hsp.shop.module.order.confirm
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo

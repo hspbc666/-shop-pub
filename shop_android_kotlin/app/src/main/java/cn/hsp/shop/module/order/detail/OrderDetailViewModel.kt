@@ -1,4 +1,4 @@
-package cn.hsp.shop.module.order
+package cn.hsp.shop.module.order.detail
 
 import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo
@@ -16,21 +16,6 @@ import cn.hsp.shop.network.response.QueryOrderResp
  */
 class OrderDetailViewModel : BaseViewModel() {
     private val repo by lazy { ShopRepo() }
-
-    fun payForOrder(
-        orderId: String,
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                repo.payForOrder(orderId)
-                onSuccess?.invoke()
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
-    }
 
     fun deleteOrder(
         orderId: String,

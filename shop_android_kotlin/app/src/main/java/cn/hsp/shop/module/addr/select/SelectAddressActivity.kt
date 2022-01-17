@@ -4,7 +4,7 @@ import android.content.Intent
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
 import cn.hsp.shop.module.addr.AddAddressActivity
-import cn.hsp.shop.module.order.ConfirmOrderActivity.Companion.requestCodeForSelectAddr
+import cn.hsp.shop.module.order.confirm.ConfirmOrderActivity.Companion.requestCodeForSelectAddr
 import cn.hsp.shop.network.response.UserAddr
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.Constants.EXTRA_KEY_USER_ADDR_ID

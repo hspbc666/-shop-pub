@@ -13,7 +13,7 @@ import cn.hsp.shop.base.BaseVmFragment
 import cn.hsp.shop.module.goods_detail.GoodsActivity
 import cn.hsp.shop.module.login.LoginActivity
 import cn.hsp.shop.module.login.LoginManager
-import cn.hsp.shop.module.order.ConfirmOrderFromCartActivity
+import cn.hsp.shop.module.order.confirm.ConfirmOrderFromCartActivity
 import cn.hsp.shop.network.response.CartItem
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.JsonUtil
@@ -80,8 +80,8 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
     }
 
     override fun observe() {
-        mViewModel.dataList.observe(this, Observer { adapter.setData(it) })
-        mViewModel.selectionChangeCount.observe(this, Observer {
+        mViewModel.dataList.observe(this, { adapter.setData(it) })
+        mViewModel.selectionChangeCount.observe(this, {
             var sum = 0L
             mViewModel.selectionItemList.forEach { sum += it.price * it.quantity }
             selectedCountTv.text =

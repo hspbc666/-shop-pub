@@ -1,4 +1,4 @@
-package cn.hsp.shop.module.order
+package cn.hsp.shop.module.order.confirm
 
 import android.content.Intent
 import android.view.View.GONE
@@ -8,6 +8,8 @@ import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
 import cn.hsp.shop.module.addr.AddAddressActivity
 import cn.hsp.shop.module.addr.select.SelectAddressActivity
+import cn.hsp.shop.module.order.confirm.dialog.CartGoodsListDialog
+import cn.hsp.shop.module.order.detail.OrderDetailActivity
 import cn.hsp.shop.network.request.SimpleOrderInfo
 import cn.hsp.shop.network.response.UserAddr
 import cn.hsp.shop.utils.Constants
@@ -35,6 +37,7 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
 
     override fun initView() {
         initToolbar()
+        orderDetailsIv.visibility = GONE
     }
 
     override fun initData() {

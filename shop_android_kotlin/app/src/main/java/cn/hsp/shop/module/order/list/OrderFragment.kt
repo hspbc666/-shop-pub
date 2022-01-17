@@ -1,4 +1,4 @@
-package cn.hsp.shop.module.order
+package cn.hsp.shop.module.order.list
 
 import android.content.Intent
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmFragment
+import cn.hsp.shop.module.order.detail.OrderDetailActivity
 import cn.hsp.shop.network.response.QueryOrderResp
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_ALL
@@ -17,16 +18,16 @@ import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RECEIVE
 import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RETURN
 import cn.hsp.shop.utils.JsonUtil
 
-class OrderFragment(var tabId: Int) : BaseVmFragment<OrderListModel>() {
+class OrderFragment(var tabId: Int) : BaseVmFragment<OrderListViewModel>() {
     private lateinit var adapter: OrderAdapter
     private lateinit var orderListRv: RecyclerView
     private lateinit var orderListSrl: SwipeRefreshLayout
 
-    override fun viewModelClass() = OrderListModel::class.java
+    override fun viewModelClass() = OrderListViewModel::class.java
     override fun layoutResId() = R.layout.fragment_order
 
     override fun initView() {
-        adapter = OrderAdapter(mViewModel)
+        adapter = OrderAdapter()
         orderListRv = findViewById(R.id.orderListRv)
         orderListRv.adapter = adapter
         orderListSrl = findViewById(R.id.orderListSrl)

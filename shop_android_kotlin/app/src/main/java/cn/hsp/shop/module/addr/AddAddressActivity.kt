@@ -3,7 +3,7 @@ package cn.hsp.shop.module.addr
 import android.content.Intent
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
-import cn.hsp.shop.module.order.ConfirmOrderActivity
+import cn.hsp.shop.module.order.confirm.ConfirmOrderActivity
 import cn.hsp.shop.network.response.UserAddr
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.JsonUtil

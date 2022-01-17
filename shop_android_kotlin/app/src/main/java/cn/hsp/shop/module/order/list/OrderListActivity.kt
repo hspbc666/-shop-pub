@@ -1,4 +1,4 @@
-package cn.hsp.shop.module.order
+package cn.hsp.shop.module.order.list
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -21,9 +21,9 @@ import kotlinx.android.synthetic.main.activity_order_list.*
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：花生皮编程
  */
-class OrderListActivity : BaseVmActivity<OrderListModel>() {
+class OrderListActivity : BaseVmActivity<OrderListViewModel>() {
     private lateinit var tabList: List<OrderTab>
-    override fun viewModelClass() = OrderListModel::class.java
+    override fun viewModelClass() = OrderListViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_order_list
 
     override fun initView() {

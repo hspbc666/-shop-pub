@@ -7,7 +7,7 @@ import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
 import cn.hsp.shop.module.login.LoginActivity
 import cn.hsp.shop.module.login.LoginManager
-import cn.hsp.shop.module.order.ConfirmOrderActivity
+import cn.hsp.shop.module.order.confirm.ConfirmOrderActivity
 import cn.hsp.shop.network.request.SimpleOrderInfo
 import cn.hsp.shop.network.response.Goods
 import cn.hsp.shop.utils.Constants
@@ -26,18 +26,18 @@ import kotlinx.android.synthetic.main.activity_goods.*
  */
 class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
     private var goodsId = ""
-    private var price = 0L
+    private var price = ""
     private var goods: Goods? = null
     override fun viewModelClass() = GoodsViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_goods
 
     override fun initView() {
         initToolbar()
-        mViewModel.goods.observe(this, Observer {
+        mViewModel.goods.observe(this, {
             goods = it
-            price = it.price
+            price = getString(R.string.price, getMoneyByYuan(it.price))
             goodsNameTv.text = it.name
-            goodsPriceTv.text = getString(R.string.price, getMoneyByYuan(price))
+            goodsPriceTv.text = price
             it.squarePic?.let { loadImage(goodsIv, it) }
         })
     }
@@ -60,7 +60,7 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
         buyTv.setOnClickListener {
             if (LoginManager.isLoggedIn()) {
                 val intent = Intent(this, ConfirmOrderActivity::class.java)
-                val simpleOrderInfo = SimpleOrderInfo(goodsId, 1,goods?.squarePic)
+                val simpleOrderInfo = SimpleOrderInfo(goodsId, 1, goods?.squarePic)
                 val orderInJson = JsonUtil.toJson(simpleOrderInfo)
                 intent.putExtra(Constants.EXTRA_KEY_SIMPLE_ORDER, orderInJson)
                 intent.putExtra(Constants.EXTRA_KEY_COST_SUM, price)

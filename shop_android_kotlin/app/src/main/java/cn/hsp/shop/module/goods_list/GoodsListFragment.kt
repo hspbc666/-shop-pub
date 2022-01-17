@@ -42,7 +42,7 @@ class GoodsListFragment : BaseVmFragment<GoodsListViewModel>() {
     }
 
     override fun observe() {
-        mViewModel.dataList.observe(this, Observer { adapter.setData(it) })
+        mViewModel.dataList.observe(this, { adapter.setData(it) })
     }
 
     private fun onItemClick(goods: Goods) {

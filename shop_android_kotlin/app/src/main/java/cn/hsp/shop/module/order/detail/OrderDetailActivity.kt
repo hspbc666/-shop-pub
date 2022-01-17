@@ -1,10 +1,9 @@
-package cn.hsp.shop.module.order
+package cn.hsp.shop.module.order.detail
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity

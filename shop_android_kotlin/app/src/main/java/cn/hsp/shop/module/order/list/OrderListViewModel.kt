@@ -1,4 +1,4 @@
-package cn.hsp.shop.module.order
+package cn.hsp.shop.module.order.list
 
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
@@ -18,7 +18,7 @@ import cn.hsp.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RETURN
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：花生皮编程
  */
-class OrderListModel : BaseViewModel() {
+class OrderListViewModel : BaseViewModel() {
     private val repo by lazy { ShopRepo() }
     val allOrders: MutableLiveData<List<QueryOrderResp>> = MutableLiveData()
     val toPayOrders: MutableLiveData<List<QueryOrderResp>> = MutableLiveData()
@@ -26,7 +26,6 @@ class OrderListModel : BaseViewModel() {
     val toReceiveOrders: MutableLiveData<List<QueryOrderResp>> = MutableLiveData()
     val toCommentOrders: MutableLiveData<List<QueryOrderResp>> = MutableLiveData()
     val toReturnOrders: MutableLiveData<List<QueryOrderResp>> = MutableLiveData()
-//    val allOrder: MutableLiveData<List<QueryOrderResp>> = MutableLiveData()
 
     fun queryAllOrder(
         onSuccess: (() -> Unit)? = null,

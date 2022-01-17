@@ -1,4 +1,4 @@
-package cn.hsp.shop.module.order
+package cn.hsp.shop.module.order.list
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.item_order.view.*
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：花生皮编程
  */
-class OrderAdapter(var mViewModel: OrderListModel) :
+class OrderAdapter() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var onItemClick: (queryOrderResp: QueryOrderResp) -> Unit
     private var dataList = mutableListOf<QueryOrderResp>()
