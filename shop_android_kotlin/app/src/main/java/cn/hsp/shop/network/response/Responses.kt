@@ -61,4 +61,5 @@ class UserAddr {
     var region: String? = null
     var address: String? = null
     var defaultAddress = false
+    var addrType = 0
 }

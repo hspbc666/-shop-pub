@@ -5,8 +5,6 @@
     android:background="@color/common_bg"
     android:orientation="vertical">
 
-    <include layout="@layout/part_home_search" />
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/goodsListSrl"
         android:layout_width="match_parent"

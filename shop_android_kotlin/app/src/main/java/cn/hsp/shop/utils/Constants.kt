@@ -43,4 +43,11 @@ object Constants {
             const val CLOSED = 6 //关闭
         }
     }
+    interface AddrType {
+        companion object {
+            const val ADDR_TYPE_HOME = 1 //家庭
+            const val ADDR_TYPE_COMPANY = 2 //公司
+            const val ADDR_TYPE_OTHER = 3 //其他
+        }
+    }
 }

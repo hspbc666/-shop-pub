@@ -41,14 +41,14 @@ public class UserAddrService {
         if (userAddr.isDefaultAddress()) {
             userAddrMapper.modifyAsUnDefault(userId);
         }
-        userAddrMapper.add(userAddr.getId(), userId, userAddr.getName(), userAddr.getPhone(),userAddr.getRegion(), userAddr.getAddress(), userAddr.isDefaultAddress());
+        userAddrMapper.add(userAddr.getId(), userId, userAddr.getName(), userAddr.getPhone(),userAddr.getRegion(), userAddr.getAddress(), userAddr.isDefaultAddress(),userAddr.getAddrType());
     }
 
     public void modify(int userId, UserAddr userAddr) {
         if (userAddr.isDefaultAddress()) {
             userAddrMapper.modifyAsUnDefault(userId);
         }
-        userAddrMapper.modify(userAddr.getId(), userAddr.getName(), userAddr.getPhone(),userAddr.getRegion(), userAddr.getAddress(), userAddr.isDefaultAddress());
+        userAddrMapper.modify(userAddr.getId(), userAddr.getName(), userAddr.getPhone(),userAddr.getRegion(), userAddr.getAddress(), userAddr.isDefaultAddress(),userAddr.getAddrType());
     }
 
     public void delete(String id) {

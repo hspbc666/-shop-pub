@@ -6,6 +6,7 @@ import cn.hsp.shop.network.response.UserAddr
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.JsonUtil
 import kotlinx.android.synthetic.main.activity_modify_address.*
+import kotlinx.android.synthetic.main.item_select_addr.*
 import kotlinx.android.synthetic.main.part_addr_detail.*
 import kotlinx.android.synthetic.main.part_addr_name_phone.*
 import kotlinx.android.synthetic.main.part_addr_type_info.*
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.part_addr_type_info.*
  * 公众号：花生皮编程
  */
 class ModifyAddressActivity : BaseVmActivity<AddressViewModel>() {
+    private var addType = 0
     private var userAddr: UserAddr? = null
     override fun layoutResId(): Int = R.layout.activity_modify_address
     override fun viewModelClass() = AddressViewModel::class.java
@@ -31,10 +33,26 @@ class ModifyAddressActivity : BaseVmActivity<AddressViewModel>() {
             regionEt.setText(it.region)
             detailedAddrEt.setText(it.address)
             defaultAddrSwitch.isChecked = it.defaultAddress
+            selectAddrRadioButton(it.addrType)
+        }
+    }
+
+    private fun selectAddrRadioButton(addrType: Int) {
+        when (addrType) {
+            Constants.AddrType.ADDR_TYPE_HOME -> addrTypeHomeRb.isChecked = true
+            Constants.AddrType.ADDR_TYPE_COMPANY -> addrTypeCompanyRb.isChecked = true
+            Constants.AddrType.ADDR_TYPE_OTHER -> addrTypeOtherRb.isChecked = true
         }
     }
 
     override fun initListeners() {
+        addrTypeRadioGroup.setOnCheckedChangeListener { _, checkedButton ->
+            when (checkedButton) {
+                R.id.addrTypeHomeRb -> addType = Constants.AddrType.ADDR_TYPE_HOME
+                R.id.addrTypeCompanyRb -> addType = Constants.AddrType.ADDR_TYPE_COMPANY
+                R.id.addrTypeOtherRb -> addType = Constants.AddrType.ADDR_TYPE_OTHER
+            }
+        }
         modifyAddrTv.setOnClickListener {
             userAddr?.let {
                 it.name = receiverNameEt.text.toString()
@@ -42,6 +60,7 @@ class ModifyAddressActivity : BaseVmActivity<AddressViewModel>() {
                 it.region = regionEt.text.toString()
                 it.address = detailedAddrEt.text.toString()
                 it.defaultAddress = defaultAddrSwitch.isChecked
+                it.addrType = addType
                 mViewModel.modifyAddress(it, onSuccess = {
                     finish()
                 })

@@ -9,7 +9,7 @@ import android.widget.EditText
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
 import cn.hsp.shop.module.goods_detail.GoodsActivity
-import cn.hsp.shop.module.goods_list.GoodsListAdapter
+import cn.hsp.shop.module.category.CategoryAdapter
 import cn.hsp.shop.network.response.Goods
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.hideSoftKeyboard
@@ -23,13 +23,13 @@ import kotlinx.android.synthetic.main.part_search_top.*
  * 公众号：花生皮编程
  */
 class SearchActivity : BaseVmActivity<SearchViewModel>() {
-    private lateinit var adapter: GoodsListAdapter
+    private lateinit var adapter: CategoryAdapter
 
 
     override fun viewModelClass() = SearchViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_search
     override fun initView() {
-        adapter = GoodsListAdapter(this)
+        adapter = CategoryAdapter(this)
         goodsGridView.adapter = adapter
         goodsGridView.setOnItemClickListener { _, _, position, _ -> onItemClick(adapter.getData(position)) }
         showSoftInputFromWindow(searchEt)

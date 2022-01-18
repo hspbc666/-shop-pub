@@ -12,6 +12,7 @@ import cn.hsp.shop.network.response.UserAddr
 
 class ShopRepo : BaseRepository() {
     suspend fun queryGoods() = apiService.queryGoods()
+    suspend fun queryGoodsByCategory(categoryId: String) = apiService.queryGoodsByCategory(categoryId)
     suspend fun queryGoods(goodsId: String) = apiService.queryGoods(goodsId)
     suspend fun searchGoods(keyword: String) = apiService.searchGoods(keyword)
     suspend fun queryCart() = apiService.queryCart()

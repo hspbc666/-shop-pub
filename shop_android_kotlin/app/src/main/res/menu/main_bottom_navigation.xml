@@ -8,6 +8,12 @@
         android:title="首页"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/menu_category"
+        android:enabled="true"
+        android:icon="@drawable/ic_category"
+        android:title="分类"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/menu_cart"
         android:enabled="true"
         android:icon="@drawable/ic_shopping_cart"

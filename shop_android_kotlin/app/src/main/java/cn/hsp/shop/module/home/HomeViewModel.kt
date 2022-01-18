@@ -1,4 +1,4 @@
-package cn.hsp.shop.module.goods_list
+package cn.hsp.shop.module.home
 
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
@@ -11,18 +11,19 @@ import cn.hsp.shop.network.response.Goods
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：花生皮编程
  */
-class GoodsListViewModel : BaseViewModel() {
+class HomeViewModel : BaseViewModel() {
     private val repo by lazy { ShopRepo() }
     val dataList: MutableLiveData<List<Goods>> = MutableLiveData()
 
-    fun queryGoods(
+    fun queryGoodsByCategory(
+        categoryId: String,
         onSuccess: (() -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
     ) {
         launch(
             {
-                dataList.value = repo.queryGoods()?.data
+                dataList.value = repo.queryGoodsByCategory(categoryId)?.data
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },

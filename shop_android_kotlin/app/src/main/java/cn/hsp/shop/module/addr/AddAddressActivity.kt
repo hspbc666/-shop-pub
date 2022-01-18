@@ -6,6 +6,9 @@ import cn.hsp.shop.base.BaseVmActivity
 import cn.hsp.shop.module.order.confirm.ConfirmOrderActivity
 import cn.hsp.shop.network.response.UserAddr
 import cn.hsp.shop.utils.Constants
+import cn.hsp.shop.utils.Constants.AddrType.Companion.ADDR_TYPE_COMPANY
+import cn.hsp.shop.utils.Constants.AddrType.Companion.ADDR_TYPE_HOME
+import cn.hsp.shop.utils.Constants.AddrType.Companion.ADDR_TYPE_OTHER
 import cn.hsp.shop.utils.JsonUtil
 import kotlinx.android.synthetic.main.activity_add_address.*
 import kotlinx.android.synthetic.main.activity_goods.toolbar
@@ -21,6 +24,7 @@ import kotlinx.android.synthetic.main.part_addr_type_info.*
  * 公众号：花生皮编程
  */
 class AddAddressActivity : BaseVmActivity<AddressViewModel>() {
+    private var addType = 0
     override fun layoutResId(): Int = R.layout.activity_add_address
     override fun viewModelClass() = AddressViewModel::class.java
     override fun initView() {
@@ -28,13 +32,21 @@ class AddAddressActivity : BaseVmActivity<AddressViewModel>() {
     }
 
     override fun initListeners() {
-        modifyAddrTv.setOnClickListener {
+        addrTypeRadioGroup.setOnCheckedChangeListener { _, checkedButton ->
+            when (checkedButton) {
+                R.id.addrTypeHomeRb -> addType = ADDR_TYPE_HOME
+                R.id.addrTypeCompanyRb -> addType = ADDR_TYPE_COMPANY
+                R.id.addrTypeOtherRb -> addType = ADDR_TYPE_OTHER
+            }
+        }
+        addAddrTv.setOnClickListener {
             val userAddr = UserAddr()
             userAddr.name = receiverNameEt.text.toString()
             userAddr.phone = receiverPhoneEt.text.toString()
             userAddr.region = regionEt.text.toString()
             userAddr.address = detailedAddrEt.text.toString()
             userAddr.defaultAddress = defaultAddrSwitch.isChecked
+            userAddr.addrType = addType
             mViewModel.addAddress(userAddr, onSuccess = {
                 sendResultForConfirmOrder(it)
                 finish()

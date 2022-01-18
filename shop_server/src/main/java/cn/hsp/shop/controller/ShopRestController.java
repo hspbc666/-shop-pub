@@ -48,6 +48,13 @@ public class ShopRestController {
         return resp;
     }
 
+    @GetMapping("goods/category/{categoryId}")
+    public Resp<List<Goods>> queryGoodsByCategory(@PathVariable String categoryId) {
+        Resp<List<Goods>> resp = new Resp<>();
+        resp.setData(goodsService.queryByCategory(categoryId));
+        return resp;
+    }
+
     @GetMapping("goods/query/{goodsId}")
     public Resp<Goods> queryGoods(@PathVariable String goodsId) {
         Resp<Goods> resp = new Resp<>();
@@ -179,25 +186,6 @@ public class ShopRestController {
         return userId;
     }
 
-//    @GetMapping("api/goods/list/{goodsId}")
-//    public Resp<Goods> queryGoods(@PathVariable String goodsId) {
-//        Resp<Goods> resp = new Resp<>();
-//        resp.setData(goodsService.queryById(goodsId));
-//        return resp;
-//    }
 
-//    @GetMapping("api/list/{userId}")
-//    public Resp<List<Blog>> list(@PathVariable long userId) {
-//        Resp<List<Blog>> resp = new Resp<>();
-//        resp.setData(blogService.queryByUserId(userId));
-//        return resp;
-//    }
-//
-//    @GetMapping("api/query/{blogId}")
-//    public Resp<Blog> query(@PathVariable long blogId) {
-//        Resp<Blog> resp = new Resp<>();
-//        resp.setData(blogService.query(blogId));
-//        return resp;
-//    }
 
 }

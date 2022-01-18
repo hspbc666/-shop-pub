@@ -16,11 +16,11 @@ public interface UserAddrMapper {
     @Select(value = "SELECT * FROM user_addr where user_id = #{userId} order by default_address desc")
     List<UserAddr> query(int userId);
 
-    @Insert(value = "insert into user_addr(id,user_id,name,phone,region,address,default_address) values (#{id},#{userId},#{name}, #{phone}, #{region}, #{address}, #{isDefault})")
-    void add(@Param("id") String id, @Param("userId") int userId, @Param("name") String name, @Param("phone") String phone, @Param("region") String region, @Param("address") String address, @Param("isDefault") boolean isDefault);
+    @Insert(value = "insert into user_addr(id,user_id,name,phone,region,address,default_address,addr_type) values (#{id},#{userId},#{name}, #{phone}, #{region}, #{address}, #{isDefault}, #{addrType})")
+    void add(@Param("id") String id, @Param("userId") int userId, @Param("name") String name, @Param("phone") String phone, @Param("region") String region, @Param("address") String address, @Param("isDefault") boolean isDefault, @Param("addrType") int addrType);
 
-    @Update(value = "update user_addr set name=#{name},phone=#{phone},address=#{address},region=#{region},default_address=#{isDefault} where id = #{id}")
-    void modify(@Param("id") String id, @Param("name") String name, @Param("phone") String phone, @Param("region") String region,@Param("address") String address, @Param("isDefault") boolean isDefault);
+    @Update(value = "update user_addr set name=#{name},phone=#{phone},address=#{address},region=#{region},default_address=#{isDefault},addr_type=#{addrType} where id = #{id}")
+    void modify(@Param("id") String id, @Param("name") String name, @Param("phone") String phone, @Param("region") String region, @Param("address") String address, @Param("isDefault") boolean isDefault, @Param("addrType") int addrType);
 
     @Update(value = "update user_addr set default_address=0 where user_id = #{userId} ")
     void modifyAsUnDefault(@Param("userId") int userId);

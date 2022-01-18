@@ -30,4 +30,8 @@ public class GoodsService {
     public List<Goods> queryAll() {
         return goodsMapper.queryAll();
     }
+
+    public List<Goods> queryByCategory(String categoryId) {
+        return goodsMapper.queryByCategory(categoryId);
+    }
 }

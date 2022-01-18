@@ -15,18 +15,13 @@ public interface GoodsMapper {
     @Select(value = "select * from goods")
     List<Goods> queryAll();
 
+    @Select(value = "SELECT g.* FROM goods_category gc,goods g WHERE gc.goods_id=g.id AND gc.category_id=#{categoryId}")
+    List<Goods> queryByCategory(@Param("categoryId") String categoryId);
+
     @Select(value = "select * from goods where id = #{goodsId}")
     Goods queryById(@Param("goodsId") String goodsId);
 
     @Select(value = "select * from goods where name like \"%\"#{goodsName}\"%\"")
     List<Goods> queryByName(@Param("goodsName") String goodsName);
 
-//    @Insert(value = "insert into blog(userId,title,content) values (#{userId}, #{title}, #{content})")
-//    void add(@Param("userId") long userId, @Param("title") String title, @Param("content") String content);
-//
-//    @Update(value = "update blog set title=#{title},content=#{content},lastUpdateTime=now() where id = #{id}")
-//    void modify(@Param("id") long id, @Param("title") String title, @Param("content") String content);
-//
-//    @Delete("delete from blog where id = #{id}")
-//    void del(@Param("id") long id);
 }

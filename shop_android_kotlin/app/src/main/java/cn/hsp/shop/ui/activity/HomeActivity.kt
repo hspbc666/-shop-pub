@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import cn.hsp.shop.R
 import cn.hsp.shop.module.cart.CartFragment
-import cn.hsp.shop.module.goods_list.GoodsListFragment
+import cn.hsp.shop.module.home.HomeFragment
+import cn.hsp.shop.module.category.CategoryFragment
 import cn.hsp.shop.module.mine.MineFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -22,7 +23,8 @@ class HomeActivity : AppCompatActivity() {
 
     private fun initData() {
         mFragments = ArrayList()
-        mFragments.add(GoodsListFragment())
+        mFragments.add(HomeFragment())
+        mFragments.add(CategoryFragment())
         mFragments.add(CartFragment())
         mFragments.add(MineFragment())
         setFragmentPosition(0)
@@ -32,8 +34,9 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_home -> setFragmentPosition(0)
-                R.id.menu_cart -> setFragmentPosition(1)
-                R.id.menu_mine -> setFragmentPosition(2)
+                R.id.menu_category -> setFragmentPosition(1)
+                R.id.menu_cart -> setFragmentPosition(2)
+                R.id.menu_mine -> setFragmentPosition(3)
             }
             true
         }
