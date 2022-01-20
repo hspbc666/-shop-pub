@@ -1,0 +1,40 @@
+
+.page-wrapper {
+    margin: 0;
+    font-size: 28rpx;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+    min-height:2000rpx;
+}
+.note-content{
+  background-color: #fff;
+  margin: 10rpx 10rpx 0rpx 10rpx;
+  font-size: 40rpx;
+}
+.note-bottom-wrapper{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.note-bottom{
+  overflow: hidden;
+  display: block;
+  width: 100;
+  height: 88rpx;
+  text-align: center;
+  font-size: 40rpx;
+  line-height: 88rpx;
+  color: #fff;
+  margin: 50rpx 50rpx;
+  background-color: #337aff;
+  box-shadow: 0 14rpx 28rpx rgba(51,122,255,0.3);
+}
+.split{
+  background-color: #E0E3EA;
+  height: 2rpx;
+  margin: 20rpx 20rpx;
+}
