@@ -3,6 +3,7 @@ package cn.hsp.shop.controller;
 import cn.hsp.login.bean.response.Resp;
 import cn.hsp.login.utils.JwtUtils;
 import cn.hsp.shop.bean.CartItem;
+import cn.hsp.shop.bean.CategoryInfo;
 import cn.hsp.shop.bean.Goods;
 import cn.hsp.shop.bean.UserAddr;
 import cn.hsp.shop.bean.createorder.CreateOrderFromCartReq;
@@ -10,10 +11,7 @@ import cn.hsp.shop.bean.createorder.CreateOrderReq;
 import cn.hsp.shop.bean.createorder.CreateOrderResp;
 import cn.hsp.shop.bean.queryorder.QueryOrderReq;
 import cn.hsp.shop.bean.queryorder.QueryOrderResp;
-import cn.hsp.shop.service.CartService;
-import cn.hsp.shop.service.GoodsService;
-import cn.hsp.shop.service.OrderService;
-import cn.hsp.shop.service.UserAddrService;
+import cn.hsp.shop.service.*;
 import cn.hsp.utils.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,12 +37,22 @@ public class ShopRestController {
     private UserAddrService userAddrService;
 
     @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
     private JwtUtils jwtUtils;
 
     @GetMapping("goods/list")
     public Resp<List<Goods>> queryAllGoods() {
         Resp<List<Goods>> resp = new Resp<>();
         resp.setData(goodsService.queryAll());
+        return resp;
+    }
+
+    @GetMapping("category")
+    public Resp<List<CategoryInfo>> queryCategory() {
+        Resp<List<CategoryInfo>> resp = new Resp<>();
+        resp.setData(categoryService.query());
         return resp;
     }
 
@@ -185,7 +193,6 @@ public class ShopRestController {
         }
         return userId;
     }
-
 
 
 }
