@@ -17,6 +17,8 @@ import cn.hsp.shop.utils.getMoneyByYuan
 import cn.hsp.shop.utils.toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_goods.*
+import kotlinx.android.synthetic.main.part_goods_bottom.*
+import kotlinx.android.synthetic.main.part_goods_detail_info.*
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
