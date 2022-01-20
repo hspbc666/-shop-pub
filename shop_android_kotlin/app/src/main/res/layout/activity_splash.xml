@@ -10,5 +10,5 @@
         android:layout_height="wrap_content"
         android:ems="1"
         android:textSize="30sp"
-        android:text="花生皮编程" />
+        android:text="蓝不蓝编程" />
 </LinearLayout>
