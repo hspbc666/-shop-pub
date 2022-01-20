@@ -10,7 +10,7 @@ import cn.hsp.shop.module.goods_detail.GoodsActivity
 import cn.hsp.shop.network.response.Goods
 import cn.hsp.shop.utils.Constants
 
-class CategoryGoodsFragment(categoryId: String) : BaseVmFragment<CategoryGoodsViewModel>() {
+class CategoryGoodsFragment(var categoryId: String) : BaseVmFragment<CategoryGoodsViewModel>() {
     private lateinit var goodsAdapter: CategoryGoodsAdapter
     private lateinit var goodsGridView: GridView
     private lateinit var goodsListSrl: SwipeRefreshLayout
@@ -36,7 +36,7 @@ class CategoryGoodsFragment(categoryId: String) : BaseVmFragment<CategoryGoodsVi
     }
 
     override fun initData() {
-        mViewModel.queryGoods(
+        mViewModel.queryGoods(categoryId,
             onComplete = {
                 goodsListSrl.isRefreshing = false
             })

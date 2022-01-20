@@ -43,7 +43,7 @@ class CategoryFragment : BaseVmFragment<CategoryViewModel>() {
             return CategoryGoodsFragment.newInstance(tabList[position].id)
         }
 
-        override fun getPageTitle(position: Int): CharSequence? {
+        override fun getPageTitle(position: Int): CharSequence {
             return tabList[position].name
         }
 

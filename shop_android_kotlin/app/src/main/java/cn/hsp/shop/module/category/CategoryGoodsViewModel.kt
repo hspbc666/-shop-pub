@@ -3,7 +3,6 @@ package cn.hsp.shop.module.category
 import androidx.lifecycle.MutableLiveData
 import cn.hsp.shop.base.BaseViewModel
 import cn.hsp.shop.network.ShopRepo
-import cn.hsp.shop.network.response.CategoryInfo
 import cn.hsp.shop.network.response.Goods
 
 /**
@@ -17,13 +16,14 @@ class CategoryGoodsViewModel : BaseViewModel() {
     val goodsList: MutableLiveData<List<Goods>> = MutableLiveData()
 
     fun queryGoods(
+        categoryId: String,
         onSuccess: (() -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
     ) {
         launch(
             {
-                goodsList.value = repo.queryGoods()?.data
+                goodsList.value = repo.queryGoodsByCategory(categoryId)?.data
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },
