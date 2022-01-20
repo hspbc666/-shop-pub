@@ -1,54 +1,45 @@
 package cn.hsp.shop.module.category
 
-import android.content.Intent
-import android.view.View
-import android.widget.GridView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmFragment
-import cn.hsp.shop.module.goods_detail.GoodsActivity
-import cn.hsp.shop.module.search.SearchActivity
-import cn.hsp.shop.network.response.Goods
-import cn.hsp.shop.utils.Constants
+import cn.hsp.shop.network.response.CategoryInfo
 
-class CategoryFragment : BaseVmFragment<CategoryViewModel>() {
-    private lateinit var adapter: CategoryAdapter
-    private lateinit var goodsGridView: GridView
-    private lateinit var goodsListSrl: SwipeRefreshLayout
+class CategoryFragment() : BaseVmFragment<CategoryViewModel>() {
+    private lateinit var viewPager: ViewPager
+
     override fun viewModelClass() = CategoryViewModel::class.java
-    override fun layoutResId(): Int = R.layout.fragment_category
+    override fun layoutResId() = R.layout.fragment_category
 
     override fun initView() {
-        adapter = CategoryAdapter(context!!)
-        goodsGridView = findViewById(R.id.goodsGridView)
-        goodsGridView.adapter = adapter
-        goodsListSrl = findViewById(R.id.goodsListSrl)
-    }
-
-    override fun initListeners() {
-        goodsGridView.setOnItemClickListener { _, _, position, _ -> onItemClick(adapter.getData(position)) }
-        goodsListSrl.setOnRefreshListener { initData() }
+        viewPager = findViewById(R.id.viewPager)
     }
 
     override fun initData() {
-        mViewModel.queryGoods(
-            onComplete = {
-                goodsListSrl.isRefreshing = false
-            })
+        mViewModel.queryCategory()
     }
 
     override fun observe() {
-        mViewModel.dataList.observe(this, { adapter.setData(it) })
+        mViewModel.categoryInfoList.observe(this, {
+            viewPager.adapter = CategoryPagerAdapter(activity!!.supportFragmentManager, it)
+        })
     }
 
-    private fun onItemClick(goods: Goods) {
-        val intent = Intent(context, GoodsActivity::class.java)
-        intent.putExtra(Constants.EXTRA_KEY_GOODS_ID, goods.id)
-        startActivity(intent)
-    }
+    private inner class CategoryPagerAdapter(fm: FragmentManager, var tabList: List<CategoryInfo>) :
+        FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+        override fun getItem(position: Int): Fragment {
+            return CategoryGoodsFragment.newInstance(tabList[position].id)
+        }
 
-    override fun onResume() {
-        super.onResume()
-        initData()
+        override fun getPageTitle(position: Int): CharSequence? {
+            return tabList[position].name
+        }
+
+        override fun getCount(): Int {
+            return tabList.size
+        }
     }
 }

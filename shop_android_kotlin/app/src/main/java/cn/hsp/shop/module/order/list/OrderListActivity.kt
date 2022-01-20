@@ -30,7 +30,7 @@ class OrderListActivity : BaseVmActivity<OrderListViewModel>() {
         val tabIndex = intent.getIntExtra(Constants.EXTRA_KEY_TAB_INDEX, ORDER_TAB_ALL)
         initTabs()
         initToolbar()
-        viewPager.adapter = MainPagerAdapter(supportFragmentManager)
+        viewPager.adapter = OrderPagerAdapter(supportFragmentManager)
         viewPager.currentItem = tabIndex
     }
 
@@ -49,7 +49,7 @@ class OrderListActivity : BaseVmActivity<OrderListViewModel>() {
         toolbar.setNavigationOnClickListener { finish() }
     }
 
-    private inner class MainPagerAdapter(fm: FragmentManager) :
+    private inner class OrderPagerAdapter(fm: FragmentManager) :
         FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(position: Int): Fragment {
             return OrderFragment.newInstance(tabList[position].tabId)

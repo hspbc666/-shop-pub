@@ -9,7 +9,7 @@ import android.widget.EditText
 import cn.hsp.shop.R
 import cn.hsp.shop.base.BaseVmActivity
 import cn.hsp.shop.module.goods_detail.GoodsActivity
-import cn.hsp.shop.module.category.CategoryAdapter
+import cn.hsp.shop.module.category.CategoryGoodsAdapter
 import cn.hsp.shop.network.response.Goods
 import cn.hsp.shop.utils.Constants
 import cn.hsp.shop.utils.hideSoftKeyboard
@@ -23,15 +23,15 @@ import kotlinx.android.synthetic.main.part_search_top.*
  * 公众号：蓝不蓝编程
  */
 class SearchActivity : BaseVmActivity<SearchViewModel>() {
-    private lateinit var adapter: CategoryAdapter
+    private lateinit var goodsAdapter: CategoryGoodsAdapter
 
 
     override fun viewModelClass() = SearchViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_search
     override fun initView() {
-        adapter = CategoryAdapter(this)
-        goodsGridView.adapter = adapter
-        goodsGridView.setOnItemClickListener { _, _, position, _ -> onItemClick(adapter.getData(position)) }
+        goodsAdapter = CategoryGoodsAdapter(this)
+        goodsGridView.adapter = goodsAdapter
+        goodsGridView.setOnItemClickListener { _, _, position, _ -> onItemClick(goodsAdapter.getData(position)) }
         showSoftInputFromWindow(searchEt)
     }
 
@@ -79,7 +79,7 @@ class SearchActivity : BaseVmActivity<SearchViewModel>() {
                 noDataLayout.visibility = GONE
                 goodsGridView.visibility = VISIBLE
                 searchHisView.visibility = GONE
-                adapter.setData(it)
+                goodsAdapter.setData(it)
             }
         })
     }

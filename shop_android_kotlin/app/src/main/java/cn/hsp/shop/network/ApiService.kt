@@ -20,6 +20,9 @@ interface ApiService {
     @Headers("ignoreToken:true")
     suspend fun register(@Body req: RegisterReq): Result<RegisterResp?>?
 
+    @GET("shop/category")
+    suspend fun queryCategory(): Result<List<CategoryInfo>?>?
+
     @GET("shop/goods/list")
     suspend fun queryGoods(): Result<List<Goods>?>?
 

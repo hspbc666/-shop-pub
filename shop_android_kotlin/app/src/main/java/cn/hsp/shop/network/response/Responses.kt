@@ -6,7 +6,7 @@
  */
 package cn.hsp.shop.network.response
 
-open class Goods {
+class Goods {
     var id: String = ""
     var name: String = ""
     var price: Long = 0
@@ -63,3 +63,9 @@ class UserAddr {
     var defaultAddress = false
     var addrType = 0
 }
+
+class CategoryInfo {
+    val id: String = ""
+    val name: String = ""
+}
+

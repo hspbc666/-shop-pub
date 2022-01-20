@@ -13,7 +13,7 @@ import cn.hsp.shop.utils.getMoneyByYuan
 import com.bumptech.glide.Glide
 import java.util.*
 
-class CategoryAdapter(private val mContext: Context) : BaseAdapter() {
+class CategoryGoodsAdapter(private val mContext: Context) : BaseAdapter() {
     private var mDataList = ArrayList<Goods>()
     private val mInflater =
         mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
