@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <cn.hsp.shop.module.banner.BannerView
+            <cn.lblbc.shop.module.banner.BannerView
                 android:id="@+id/bannerView"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
@@ -27,13 +27,13 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp">
 
-                <cn.hsp.shop.module.home.GoodsSquareView
+                <cn.lblbc.shop.module.home.GoodsSquareView
                     android:id="@+id/goodsSquareView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <cn.hsp.shop.module.home.GoodsSquareView
+                <cn.lblbc.shop.module.home.GoodsSquareView
                     android:id="@+id/goodsSquareView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,13 +48,13 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp">
 
-                <cn.hsp.shop.module.home.GoodsSquareView
+                <cn.lblbc.shop.module.home.GoodsSquareView
                     android:id="@+id/goodsSquareView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <cn.hsp.shop.module.home.GoodsSquareView
+                <cn.lblbc.shop.module.home.GoodsSquareView
                     android:id="@+id/goodsSquareView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -62,13 +62,13 @@
                     android:layout_weight="1" />
             </LinearLayout>
 
-            <cn.hsp.shop.module.home.GoodsLongView
+            <cn.lblbc.shop.module.home.GoodsLongView
                 android:id="@+id/goodsSquareView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp" />
 
-            <cn.hsp.shop.module.home.GoodsLongView
+            <cn.lblbc.shop.module.home.GoodsLongView
                 android:id="@+id/goodsSquareView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

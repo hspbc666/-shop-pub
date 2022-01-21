@@ -52,7 +52,7 @@
                 android:textColor="@color/price_color"
                 tools:text="￥333333" />
 
-            <cn.hsp.quantityview.QuantityView
+            <cn.lblbc.quantityview.QuantityView
                 android:id="@+id/quantityView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
