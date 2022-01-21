@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/mine/mine",
-    "pages/note-edit/note-edit"
+    "pages/settings/settings"
   ],
   "window": {
     "backgroundTextStyle": "light",

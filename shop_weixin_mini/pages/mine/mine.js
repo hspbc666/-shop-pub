@@ -4,29 +4,13 @@ var http = require('../../utils/httputils.js');
 
 Page({
   data: {
-    noteContent: ""
   },
   methods: {
   },
-  onShow: function () {
-    this.setData({
-      noteContent: ""
+  gotoSettings(e) {
+    wx.navigateTo({
+      url: '/pages/settings/settings'
     })
-  },
-  addNote(e) {
-    var params = {
-      content: e.detail.value.content,
-    }
-    http.post('note/api/add', params,
-      function (resp) {
-        wx.navigateBack({
-          delta: 0,
-          success: (res) => {},
-          fail: (res) => {},
-          complete: (res) => {},
-        })
-      },
-      function (err) { })
   }
 
 })
