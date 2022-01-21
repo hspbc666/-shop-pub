@@ -32,7 +32,7 @@ App({
       success(res) {
         console.log(res)
         wx.request({
-          url: _this.serverUrl + 'api/loginByWx',
+          url: _this.serverUrl + 'user/loginByWx',
           method: "POST",
           header: {
             'content-type': 'application/x-www-form-urlencoded'
