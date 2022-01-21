@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.activity_settins.*
 class SettingsActivity : BaseActivity() {
     override fun layoutResId(): Int = R.layout.activity_settins
 
-
     override fun initView() {
         initToolbar()
         appVersionTv.text = getVersionName(this)
