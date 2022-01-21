@@ -10,17 +10,6 @@
   min-height: 2000rpx;
 }
 
-.settings-row {
-  text-align: right;
-  padding-top: 20rpx;
-  padding-right: 40rpx;
-}
-
-.settings-img {
-  height: 50rpx;
-  width: 50rpx;
-}
-
 .user-img {
   height: 100rpx;
   width: 100rpx;
@@ -34,6 +23,7 @@
 
 .user-info {
   padding-left: 50rpx;
+  flex: 1;
 }
 
 .user-name {
@@ -43,10 +33,7 @@
 .user-level {
   margin-top: 10rpx;
   font-size: 30rpx;
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-  background-color: #D3D3F7;
-  border-radius: 10rem;
+  color: #9E9EA2;
 }
 
 .my-orders {
@@ -79,23 +66,7 @@
   width: 40rpx;
 }
 
-.all-order-with-arrow {
+.view_details {
   display: flex;
   flex-direction: row;
-}
-
-.order-img {
-  height: 80rpx;
-  width: 80rpx;
-}
-.order-cells{
-  margin-top: 40rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-.order-cell{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }

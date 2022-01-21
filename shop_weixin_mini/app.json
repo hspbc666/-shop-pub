@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/mine/mine",
-    "pages/settings/settings"
+    "pages/settings/settings",
+    "pages/mine/mine"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -15,7 +16,7 @@
     "selectedColor": "#EF3965",
     "list": [
       {
-        "pagePath": "pages/mine/mine",
+        "pagePath": "pages/settings/settings",
         "text": "首页",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home_selected.png"
