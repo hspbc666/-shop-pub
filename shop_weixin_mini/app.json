@@ -1,14 +1,31 @@
 {
   "pages": [
-    "pages/list/list",
-    "pages/note-add/note-add",
+    "pages/mine/mine",
     "pages/note-edit/note-edit"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "记事本-花生皮编程",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#EF3965",
+    "navigationBarTitleText": "X商城",
+    "navigationBarTextStyle": "white"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#737373",
+    "selectedColor": "#EF3965",
+    "list": [
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_selected.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/mine_selected.png"
+      }
+    ]
+  }
 }
