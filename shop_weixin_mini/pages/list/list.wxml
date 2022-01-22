@@ -3,7 +3,4 @@
     <view class="note-content" bindtap="viewNote" bindlongpress="longPressed" data-noteid="{{item.id}}">{{item.content}}</view>
     <view class="split"></view>
   </view>
-  <view bindtap="addNote">
-    <image class="float-img" src="/images/icon-add.png"></image>
-  </view>
 </view>

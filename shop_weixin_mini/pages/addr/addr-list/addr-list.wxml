@@ -1,0 +1,16 @@
+<view class="page-wrapper ">
+  <view class="info-container" wx:for="{{dataList}}" wx:key="k" wx:for-index="bindex">
+    <view class="user-info-row">
+      <view class="name">{{item.name}}</view>
+      <view class="phone">1350000000</view>
+      <view class="is-default" wx:if="{{item.defaultAddress}}">默认</view>
+    </view>
+    <view class="note-content" bindtap="viewNote" bindlongpress="longPressed" data-noteid="{{item.id}}">{{item.address}}</view>
+    <view class="split"></view>
+    <view class="btn-row">
+      <view class="btn">删除</view>
+      <view class="btn">编辑</view>
+    </view>
+  </view>
+
+</view>

@@ -1,7 +1,9 @@
 {
   "pages": [
+    "pages/addr/addr-list/addr-list",
     "pages/settings/settings",
     "pages/mine/mine"
+   
     
   ],
   "window": {
@@ -16,7 +18,7 @@
     "selectedColor": "#EF3965",
     "list": [
       {
-        "pagePath": "pages/settings/settings",
+        "pagePath": "pages/addr/addr-list/addr-list",
         "text": "首页",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home_selected.png"

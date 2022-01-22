@@ -2,7 +2,7 @@
 //编程学习资料及开源项目见：https://juejin.cn/post/7002792005688360968
 App({
 
-  serverUrl: "http://localhost:8080/",
+  serverUrl: "http://192.168.31.10:8080/",
   userInfo: "",
 
   setGlobalUserInfo: function (user) {

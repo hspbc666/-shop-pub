@@ -1,6 +1,6 @@
 <view class="page-wrapper ">
-  <view class="order-container">
-    <view class="order-row">
+  <view class="user-info-container">
+    <view class="user-info-row">
       <image class="user-img" src="/images/user.png"></image>
       <view class="user-info">
         <view class="user-name">尊贵会员</view>
@@ -11,5 +11,33 @@
         <image class="right_arrow" src="/images/right_arrow.png"></image>
       </view>
     </view>
+    <view class="split"></view>
+    <view class="addr-row">
+      <view class="addr">收货地址</view>
+      <image class="right_arrow" src="/images/right_arrow.png"></image>
+    </view>
   </view>
+
+  <view class="user-info-container">
+    <view class="common-info-row">
+      <view class="common-info">隐私设置</view>
+      <image class="right_arrow" src="/images/right_arrow.png"></image>
+    </view>
+    <view class="split"></view>
+    <view class="common-info-row">
+      <view class="common-info">APP版本</view>
+      <image class="right_arrow" src="/images/right_arrow.png"></image>
+    </view>
+    <view class="split"></view>
+    <view class="common-info-row">
+      <view class="common-info">隐私政策</view>
+      <image class="right_arrow" src="/images/right_arrow.png"></image>
+    </view>
+    <view class="split"></view>
+    <view class="common-info-row">
+      <view class="common-info">关于</view>
+      <image class="right_arrow" src="/images/right_arrow.png"></image>
+    </view>
+  </view>
+
 </view>
