@@ -8,8 +8,8 @@
     <view class="note-content" bindtap="viewNote" bindlongpress="longPressed" data-noteid="{{item.id}}">{{item.address}}</view>
     <view class="split"></view>
     <view class="btn-row">
-      <view class="btn">删除</view>
-      <view class="btn">编辑</view>
+      <view class="btn" bindtap="deleteAddr" data-id="{{item.id}}">删除</view>
+      <view class="btn" bindtap="gotoEditAddr" data-id="{{item.id}}">编辑</view>
     </view>
   </view>
 

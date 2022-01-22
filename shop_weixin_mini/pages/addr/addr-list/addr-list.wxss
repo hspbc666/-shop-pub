@@ -1,9 +1,12 @@
+page{
+  background-color: #F4F4F4;
+}
+
 .page-wrapper {
   margin: 0;
   font-size: 28rpx;
   line-height: 1.5;
   color: #333;
-  background-color: #F4F4F4;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   -webkit-tap-highlight-color: transparent;
@@ -62,4 +65,5 @@
   margin-left: 20rpx;
   padding-left: 10rpx;
   padding-right: 10rpx;
+  font-size: 35rpx;
 }

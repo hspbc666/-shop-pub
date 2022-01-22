@@ -7,14 +7,14 @@ Page({
     dataList: [],
   },
   onLoad: function () {
-    this.getNoteList()
+    this.queryData()
   },
   onShow: function () {
-    this.getNoteList()
+    this.queryData()
   },
   methods: {
   },
-  getNoteList() {
+  queryData() {
     let _this = this
     http.get('shop/addr/query/', '',
       function (resp) {
@@ -24,33 +24,23 @@ Page({
       },
       function (err) { })
   },
-  addNote() {
+  addAddr() {
     wx.navigateTo({
-      url: '/pages/note-add/note-add'
+      url: '/pages/addr/addr-add'
     })
   },
-  viewNote(e) {
-    let noteId = e.currentTarget.dataset['noteid'];
+  gotoEditAddr(e) {
+    let userAddrId = e.currentTarget.dataset['id'];
     wx.navigateTo({
-      url: '/pages/note-edit/note-edit?id=' + noteId
+      url: '/pages/addr/addr-edit/addr-edit?id=' + userAddrId
     })
   },
-  longPressed(e) {
+  deleteAddr(e) {
+    let userAddrId = e.currentTarget.dataset['id'];
     let _this = this
-    let noteId = e.currentTarget.dataset['noteid'];
-    wx.showActionSheet({
-      itemList: ['删除'],
-      success: function (res) {
-        _this.deleteNote(noteId)
-      },
-      fail: function (res) { }
-    })
-  },
-  deleteNote(noteId) {
-    let _this = this
-    http.get('note/api/del/' + noteId, '',
+    http.get('shop/addr/del/' + userAddrId, '',
       function (resp) {
-        _this.getNoteList()
+        _this.queryData()
       },
       function (err) { })
   },

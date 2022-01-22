@@ -3,8 +3,6 @@
     "pages/addr/addr-list/addr-list",
     "pages/settings/settings",
     "pages/mine/mine"
-   
-    
   ],
   "window": {
     "backgroundTextStyle": "light",
