@@ -22,6 +22,10 @@ public class UserAddrService {
         return userAddrMapper.query(userId);
     }
 
+    public UserAddr queryById(String userAddrId) {
+        return userAddrMapper.queryById(userAddrId);
+    }
+
     public UserAddr queryDefaultAddress(int userId) {
         List<UserAddr> addrList = query(userId);
         UserAddr result = null;

@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/addr/addr-list/addr-list",
+    "pages/addr/addr-edit/addr-edit",
     "pages/settings/settings",
     "pages/mine/mine"
   ],

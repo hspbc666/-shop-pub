@@ -16,6 +16,9 @@ public interface UserAddrMapper {
     @Select(value = "SELECT * FROM user_addr where user_id = #{userId} order by default_address desc")
     List<UserAddr> query(int userId);
 
+    @Select(value = "SELECT * FROM user_addr where id = #{userAddrId}")
+    UserAddr queryById(@Param("userAddrId") String userAddrId);
+
     @Insert(value = "insert into user_addr(id,user_id,name,phone,region,address,default_address,addr_type) values (#{id},#{userId},#{name}, #{phone}, #{region}, #{address}, #{isDefault}, #{addrType})")
     void add(@Param("id") String id, @Param("userId") int userId, @Param("name") String name, @Param("phone") String phone, @Param("region") String region, @Param("address") String address, @Param("isDefault") boolean isDefault, @Param("addrType") int addrType);
 

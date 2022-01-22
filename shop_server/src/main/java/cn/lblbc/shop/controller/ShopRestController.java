@@ -151,6 +151,13 @@ public class ShopRestController {
         return resp;
     }
 
+    @GetMapping("addr/query/{userAddrId}")
+    public Resp<UserAddr> queryAddrById(@PathVariable String userAddrId) {
+        Resp<UserAddr> resp = new Resp<>();
+        resp.setData(userAddrService.queryById(userAddrId));
+        return resp;
+    }
+
     @GetMapping("addr/query_default")
     public Resp<UserAddr> queryDefaultAddress(@RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
