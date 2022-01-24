@@ -63,9 +63,11 @@ page {
   border-bottom: 4rpx solid;
   color: #EF3965;
 }
-.split-view{
+
+.split-view {
   height: 30rpx;
 }
+
 .goods-row {
   display: flex;
   flex-direction: row;
@@ -73,7 +75,7 @@ page {
 }
 
 .goods-img {
-  margin-left: 20rpx;
+  margin-left: 40rpx;
   width: 200rpx;
   height: 200rpx;
 }
@@ -81,13 +83,21 @@ page {
 .goods-desc {
   display: flex;
   flex-direction: column;
-  margin-left: 30rpx;
+  margin-left: 40rpx;
 }
 
 .goods-name {
   font-size: 40rpx;
+  width: 400rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .goods-price {
+  margin-top: 20rpx;
   color: #EF3965;
 }

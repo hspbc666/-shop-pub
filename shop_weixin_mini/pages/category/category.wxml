@@ -13,7 +13,7 @@
   </scroll-view>
 
 <view class="split-view"></view>
-  <view class="goods-row" wx:key="k" wx:for="{{goodsList}}" bindtap="tabSelect" data-id="{{index}}">
+  <view class="goods-row" wx:key="k" wx:for="{{goodsList}}" bindtap="gotoGoodsDetail" data-id="{{item.id}}">
     <image class="goods-img" src="{{item.squarePic}}"></image>
     <view class="goods-desc">
       <view class="goods-name"> {{item.name}}</view>

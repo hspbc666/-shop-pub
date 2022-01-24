@@ -51,8 +51,9 @@ Page({
     })
   },
   gotoGoodsDetail(e) {
+    let goodsId = e.currentTarget.dataset['id'];
     wx.navigateTo({
-      url: '/pages/addr/addr-add/addr-add'
+      url: '/pages/goods/goods?id=' + goodsId
     })
   },
 
