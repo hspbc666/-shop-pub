@@ -16,7 +16,7 @@ Page({
   },
   queryData() {
     let _this = this
-    http.get('shop/addr/query/', '',
+    http.get('shop/cart/list/', '',
       function (resp) {
         _this.setData({
           dataList: resp.data
@@ -24,25 +24,17 @@ Page({
       },
       function (err) { })
   },
-  gotoAddAddr() {
-    wx.navigateTo({
-      url: '/pages/addr/addr-add/addr-add'
-    })
-  },
-  gotoEditAddr(e) {
-    let userAddrId = e.currentTarget.dataset['id'];
-    wx.navigateTo({
-      url: '/pages/addr/addr-edit/addr-edit?id=' + userAddrId
-    })
-  },
-  deleteAddr(e) {
-    let userAddrId = e.currentTarget.dataset['id'];
+  increaseQuantity(e) {
+    let cartId = e.currentTarget.dataset['id'];
+    let quantity = e.currentTarget.dataset['quantity'] + 1;
     let _this = this
-    http.get('shop/addr/del/' + userAddrId, '',
+    http.get('shop/cart/modify/' + cartId + '/' + quantity, '',
       function (resp) {
-        _this.queryData()
+        _this.updateQuantityInDataList(cartId, quantity)
       },
       function (err) { })
   },
+  updateQuantityInDataList(cartId, newQuantity) {
 
+  }
 })

@@ -1,15 +1,19 @@
 <view class="page-wrapper ">
   <view class="info-container" wx:for="{{dataList}}" wx:key="k" wx:for-index="bindex">
-    <view class="user-info-row">
-      <view class="name">{{item.name}}</view>
-      <view class="phone">{{item.phone}}</view>
-      <view class="is-default" wx:if="{{item.defaultAddress}}">默认</view>
-    </view>
-    <view class="note-content" bindtap="viewNote" bindlongpress="longPressed" data-noteid="{{item.id}}">{{item.address}}</view>
-    <view class="split"></view>
-    <view class="btn-row">
-      <view class="btn" bindtap="deleteAddr" data-id="{{item.id}}">删除</view>
-      <view class="btn" bindtap="gotoEditAddr" data-id="{{item.id}}">编辑</view>
+    <checkbox></checkbox>
+    <image src="{{item.squarePic}}" class="pic"></image>
+    <view class="info-cols">
+      <view class="goods-name">{{item.name}}</view>
+      <view class="price-quantity-row">
+        <view class="price">￥{{item.price/100}}</view>
+        <view class="quantity-row">
+        <view class="decrease" bindtap="decreaseQuantity" data-id="{{item.id}}">-</view>
+        <view class="split"></view>
+        <view class="quantity">{{item.quantity}}</view>
+        <view class="split"></view>
+        <view class="increase" bindtap="increaseQuantity" data-id="{{item.id}}" data-quantity="{{item.quantity}}">+</view>
+        </view>
+      </view>
     </view>
   </view>
   <view class="bottom-wrapper">
