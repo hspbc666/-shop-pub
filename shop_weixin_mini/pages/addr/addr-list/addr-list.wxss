@@ -67,3 +67,19 @@ page{
   padding-right: 10rpx;
   font-size: 35rpx;
 }
+
+.bottom-wrapper{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.bottom-btn{
+  font-size: 40rpx;
+  color: #fff;
+  margin: 50rpx 50rpx;
+  background-color: #EF3965;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  display: flex;
+  justify-content: center;
+}

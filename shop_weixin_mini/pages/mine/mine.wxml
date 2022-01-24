@@ -12,7 +12,7 @@
   <view class="order-container">
     <view class="order-row">
       <view class="my-orders">我的订单</view>
-      <view class="all-order-with-arrow">
+      <view class="all-order-with-arrow" bindtap="gotoOrderList">
         <view>全部订单</view>
         <image class="right_arrow" src="/images/right_arrow.png"></image>
       </view>

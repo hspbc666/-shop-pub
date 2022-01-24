@@ -4,7 +4,6 @@ var http = require('../../../utils/httputils.js');
 
 Page({
   data: {
-    userAddrId: 0,
     name: "",
     phone: "",
     region: "",
@@ -13,29 +12,11 @@ Page({
     addrType: 0
   },
   onLoad: function (option) {
-    this.queryData(option.id)
   },
   methods: {
   },
-  queryData(userAddrId) {
-    let _this = this
-    http.get('shop/addr/query/' + userAddrId, '',
-      function (resp) {
-        _this.setData({
-          userAddrId: userAddrId,
-          name: resp.data.name,
-          phone: resp.data.phone,
-          region: resp.data.region,
-          address: resp.data.address,
-          addrType: resp.data.addrType,
-          defaultAddress: resp.data.defaultAddress,
-        })
-      },
-      function (err) { })
-  },
   onSubmit(e) {
     var params = {
-      id: this.data.userAddrId,
       name: e.detail.value.name,
       phone: e.detail.value.phone,
       region: e.detail.value.region,
@@ -43,7 +24,7 @@ Page({
       addrType: this.data.addrType,
       defaultAddress: this.data.defaultAddress,
     }
-    http.post('shop/addr/modify', params,
+    http.post('shop/addr/add', params,
       function (resp) {
         wx.navigateBack({
           delta: 0,
@@ -54,17 +35,14 @@ Page({
       },
       function (err) { })
   },
-  radioChange(e)
-  {
+  radioChange(e) {
     this.setData({
       addrType: e.detail.value
     })
   },
-  switchChange(e)
-  {
+  switchChange(e) {
     this.setData({
       defaultAddress: e.detail.value
     })
   }
-
 })

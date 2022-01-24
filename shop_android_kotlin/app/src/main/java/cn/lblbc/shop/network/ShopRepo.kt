@@ -11,7 +11,6 @@ import cn.lblbc.shop.network.request.*
 import cn.lblbc.shop.network.response.UserAddr
 
 class ShopRepo : BaseRepository() {
-    suspend fun queryGoods() = apiService.queryGoods()
     suspend fun queryCategory() = apiService.queryCategory()
     suspend fun queryGoodsByCategory(categoryId: String) = apiService.queryGoodsByCategory(categoryId)
     suspend fun queryGoods(goodsId: String) = apiService.queryGoods(goodsId)

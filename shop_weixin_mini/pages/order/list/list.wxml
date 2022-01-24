@@ -1,0 +1,9 @@
+<view class="page-wrapper ">
+  <scroll-view class="tab-row" scroll-x="true">
+    <view class="tab  {{index==current?'tab-selected':''}}" wx:key="k" wx:for="{{tabs}}" bindtap="tabSelect" data-id="{{index}}">
+      {{item}}
+    </view>
+  </scroll-view>
+  <view>
+  </view>
+</view>

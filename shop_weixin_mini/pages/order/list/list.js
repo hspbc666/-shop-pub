@@ -4,7 +4,9 @@ var http = require('../../../utils/httputils.js');
 
 Page({
   data: {
-    dataList: [],
+    categoryList: [],
+    tabs: ['全部', '待付款', '待发货', '待收货', '待评价', '退还/售后'],
+    current: 0,
   },
   onLoad: function () {
     this.queryData()
@@ -12,37 +14,31 @@ Page({
   onShow: function () {
     this.queryData()
   },
-  methods: {
+  tabSelect: function (e) {
+    var current = e.currentTarget.dataset.id
+    this.setData({
+      current: current
+    })
   },
   queryData() {
     let _this = this
     http.get('shop/addr/query/', '',
       function (resp) {
         _this.setData({
-          dataList: resp.data
+          categoryList: resp.data
         })
       },
       function (err) { })
   },
-  gotoAddAddr() {
+  gotoSearch() {
     wx.navigateTo({
       url: '/pages/addr/addr-add/addr-add'
     })
   },
-  gotoEditAddr(e) {
-    let userAddrId = e.currentTarget.dataset['id'];
+  gotoGoodsDetail(e) {
     wx.navigateTo({
-      url: '/pages/addr/addr-edit/addr-edit?id=' + userAddrId
+      url: '/pages/addr/addr-add/addr-add'
     })
-  },
-  deleteAddr(e) {
-    let userAddrId = e.currentTarget.dataset['id'];
-    let _this = this
-    http.get('shop/addr/del/' + userAddrId, '',
-      function (resp) {
-        _this.queryData()
-      },
-      function (err) { })
   },
 
 })

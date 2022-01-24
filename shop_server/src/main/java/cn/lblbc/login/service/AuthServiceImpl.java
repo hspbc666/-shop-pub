@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+import static cn.lblbc.login.bean.response.Resp.ERROR;
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -37,7 +39,7 @@ public class AuthServiceImpl implements AuthService {
     public Resp<String> register(UserDetail userDetail) {
         final String username = userDetail.getUsername();
         if (authMapper.findUserByName(username) != null) {
-            return new Resp<>(Resp.ERROR, "用户已存在");
+            return new Resp<>(ERROR, "用户已存在");
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         final String rawPassword = userDetail.getPassword();
@@ -53,12 +55,16 @@ public class AuthServiceImpl implements AuthService {
         //用户验证
         final Authentication authentication = authenticate(username, password);
 
-        //生成token
-        final UserDetail userDetail = (UserDetail) authentication.getPrincipal();
-        final String token = jwtUtils.generateAccessToken(userDetail);
-
-        Resp<LoginResp> resp = new Resp<>();
-        resp.setData(new LoginResp(userDetail.getId(), token));
+        Resp<LoginResp> resp;
+        if (authentication != null) {
+            //生成token
+            final UserDetail userDetail = (UserDetail) authentication.getPrincipal();
+            final String token = jwtUtils.generateAccessToken(userDetail);
+            resp = new Resp<>();
+            resp.setData(new LoginResp(userDetail.getId(), token));
+        } else {
+            resp = new Resp<>(ERROR,"用户名或密码错误");
+        }
         return resp;
     }
 

@@ -23,9 +23,6 @@ interface ApiService {
     @GET("shop/category")
     suspend fun queryCategory(): Result<List<CategoryInfo>?>?
 
-    @GET("shop/goods/list")
-    suspend fun queryGoods(): Result<List<Goods>?>?
-
     @GET("shop/goods/category/{categoryId}")
     suspend fun queryGoodsByCategory(@Path("categoryId") categoryId: String): Result<List<Goods>?>?
 

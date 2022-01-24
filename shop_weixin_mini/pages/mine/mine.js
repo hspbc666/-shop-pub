@@ -11,6 +11,11 @@ Page({
     wx.navigateTo({
       url: '/pages/settings/settings'
     })
+  },
+  gotoOrderList(e) {
+    wx.navigateTo({
+      url: '/pages/order/list/list'
+    })
   }
 
 })

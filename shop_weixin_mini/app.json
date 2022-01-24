@@ -1,9 +1,14 @@
 {
   "pages": [
+    "pages/category/category",
+    "pages/order/list/list",
+    
+    "pages/mine/mine",
     "pages/addr/addr-list/addr-list",
     "pages/addr/addr-edit/addr-edit",
-    "pages/settings/settings",
-    "pages/mine/mine"
+    "pages/addr/addr-add/addr-add",
+    "pages/settings/settings"
+
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,10 +22,22 @@
     "selectedColor": "#EF3965",
     "list": [
       {
-        "pagePath": "pages/addr/addr-list/addr-list",
+        "pagePath": "pages/order/list/list",
         "text": "首页",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home_selected.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "images/category.png",
+        "selectedIconPath": "images/category_selected.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "购物车",
+        "iconPath": "images/cart.png",
+        "selectedIconPath": "images/cart_selected.png"
       },
       {
         "pagePath": "pages/mine/mine",
