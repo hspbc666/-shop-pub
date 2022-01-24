@@ -33,6 +33,7 @@ page{
   height: 100rpx;
 }
 .goods-name{
+  margin-left: 20rpx;
   width: 400rpx;
 }
 .price-quantity-row{
