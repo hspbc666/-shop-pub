@@ -87,7 +87,7 @@ page {
 }
 
 .goods-name {
-  font-size: 40rpx;
+  font-size: 35rpx;
   width: 400rpx;
   display: -webkit-box;
   overflow: hidden;

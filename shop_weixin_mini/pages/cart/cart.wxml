@@ -1,22 +1,31 @@
 <view class="page-wrapper ">
   <view class="info-container" wx:for="{{dataList}}" wx:key="k" wx:for-index="bindex">
-    <checkbox></checkbox>
+    <switch type="checkbox" bindchange="changeSelection" data-index="{{bindex}}"></switch>
     <image src="{{item.squarePic}}" class="pic"></image>
     <view class="info-cols">
       <view class="goods-name">{{item.name}}</view>
       <view class="price-quantity-row">
         <view class="price">￥{{item.price/100}}</view>
         <view class="quantity-row">
-        <view class="decrease" bindtap="decreaseQuantity" data-id="{{item.id}}">-</view>
-        <view class="split"></view>
-        <view class="quantity">{{item.quantity}}</view>
-        <view class="split"></view>
-        <view class="increase" bindtap="increaseQuantity" data-id="{{item.id}}" data-quantity="{{item.quantity}}">+</view>
+          <view class="decrease" bindtap="decreaseQuantity" data-index="{{bindex}}">-</view>
+          <view class="split"></view>
+          <view class="quantity">{{item.quantity}}</view>
+          <view class="split"></view>
+          <view class="increase" bindtap="increaseQuantity" data-index="{{bindex}}">+</view>
         </view>
       </view>
     </view>
   </view>
+
   <view class="bottom-wrapper">
-    <view class="bottom-btn" bindtap="gotoAddAddr">添加收货地址</view>
+    <view class="split"></view>
+    <view class="bottom-btns">
+      <view class="selected-row" data-id="{{id}}">
+        <view class="selected-text">已选 ({{selectedCartIndexes.length}})</view>
+        <view class="sum-text">总计</view>
+        <view class="price">{{selectedSum}}</view>
+      </view>
+      <view class="buy-btn" bindtap="gotoConfirmOrder">结算</view>
+    </view>
   </view>
 </view>

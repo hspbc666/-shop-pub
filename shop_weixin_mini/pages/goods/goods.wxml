@@ -1,0 +1,27 @@
+<view class="page-wrapper ">
+  <view class="img-container">
+    <image class="goods-img" src="{{picUrl}}"></image>
+  </view>
+  <view class="goods-info">
+    <view class="goods-price">{{price}}</view>
+    <view class="coupon-row">
+      <view class="coupon-sub-row">
+        <view class="coupon-text">券 ￥5</view>
+      </view>
+      <view class="coupon-btn">领券 ></view>
+    </view>
+    <view class="goods-seller">X商自营</view>
+    <view class="goods-name">{{name}}</view>
+  </view>
+  <view class="bottom-wrapper">
+  <view class="split"></view>
+  <view class="bottom-btns">
+    <view class="add-to-cart" bindtap="addToCart" data-id="{{id}}">
+      <view class="cart-text">购物车</view>
+      <image class="cart-img" src="/images/cart.png"></image>
+    </view>
+    <view class="buy-btn" bindtap="gotoConfirmOrder">购买</view>
+  </view>
+  
+  </view>
+</view>
