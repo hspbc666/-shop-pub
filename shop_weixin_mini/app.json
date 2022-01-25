@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/order/list/list",
+    "pages/order/order-detail/order-detail",
     "pages/cart/cart",
     "pages/category/category",
     "pages/mine/mine",

@@ -31,9 +31,9 @@ Page({
       },
       function (err) { })
   },
-  gotoGoodsDetail(e) {
+  gotoOrderDetail(e) {
     wx.navigateTo({
-      url: '/pages/addr/addr-add/addr-add'
+      url: '/pages/order/order-detail/order-detail'
     })
   },
 

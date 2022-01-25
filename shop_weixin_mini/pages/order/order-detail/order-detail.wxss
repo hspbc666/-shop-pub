@@ -1,0 +1,155 @@
+.page-wrapper {
+  margin: 0;
+  font-size: 28rpx;
+  line-height: 1.5;
+  color: #333;
+  background-color: #F4F4F4;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 2000rpx;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+}
+
+.goods-img {
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.goods-info {
+  border-radius: 10rpx;
+  background-color: white;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+}
+
+.goods-price {
+  padding-top: 20rpx;
+  padding-left: 20rpx;
+  color: #EF3965;
+}
+
+.coupon-row {
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+  align-items: center;
+  /*子控件垂直居中*/
+}
+
+.coupon-sub-row {
+  flex: 1;
+}
+
+.coupon-text {
+  width: fit-content;
+  border: 1rpx solid #EF3965;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  color: #EF3965;
+}
+
+.coupon-btn {
+  background-color: #EF3965;
+  color: white;
+  padding: 5rpx 20rpx;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.goods-seller {
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  background-color: #EF3965;
+  color: white;
+  padding: 5rpx 20rpx;
+  width: fit-content;
+  border-radius: 10rpx;
+}
+
+.goods-name {
+  font-size: 35rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.bottom-wrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10rpx;
+  background-color: white;
+}
+
+.bottom-split {
+  background-color: #DFDFDF;
+  height: 2rpx;
+  margin-bottom: 20rpx;
+}
+
+.bottom-btns {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20rpx;
+  align-items: center;
+}
+
+.add-to-cart {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  margin-left: 100rpx;
+}
+
+.cart-text {
+  font-size: 35rpx;
+  color: #737373;
+}
+
+.cart-img {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.buy-btn {
+  flex: 1;
+  font-size: 35rpx;
+  color: #fff;
+  background-color: #EF3965;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  display: flex;
+  justify-content: center;
+  margin-right: 100rpx;
+}
+.tags-row{
+  display: flex;
+  flex-direction: row;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  background-color: #fafafa;
+  align-items: center;
+}
+.tag-img{
+  margin-left: 10rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.tag-text1{
+  color:#222222;
+  font-size: 30rpm;
+}
+.tag-text2{
+  color:#595d63;
+  font-size: 30rpm;
+}
