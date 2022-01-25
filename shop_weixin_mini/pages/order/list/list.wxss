@@ -37,7 +37,6 @@ page {
   color: #EF3965;
 }
 
-
 .split-view {
   height: 30rpx;
 }
@@ -80,13 +79,13 @@ page {
 .goods-row {
   display: flex;
   flex-direction: row;
-  margin-top: 10rpx;
+  margin-top: 30rpx;
 }
 
 .goods-img {
   margin-left: 40rpx;
-  width: 200rpx;
-  height: 200rpx;
+  width: 100rpx;
+  height: 100rpx;
 }
 
 .goods-desc {
@@ -108,5 +107,54 @@ page {
 
 .goods-price {
   margin-top: 20rpx;
-  color: #EF3965;
+  color: #222222;
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10rpx;
+}
+
+.seven-days {
+  color: #677DA5;
+  background-color: #EAF3FF;
+  border-radius: 10rpxx;
+  padding: 5rpx 10rpx;
+}
+
+.no-change {
+  margin-left: 10rpx;
+  color: #97999E;
+  background-color: #F2F5F5;
+  border-radius: 10rpxx;
+  padding: 5rpx 10rpx;
+}
+
+.goods-info-split {
+  margin-top: 20rpx;
+  width: 100%;
+  height: 1rpx;
+  background-color: #DFDFDF;
+}
+
+.btn-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+  justify-content: flex-end;
+}
+
+.invoice {
+  border-radius: 10rem;
+  padding: 5rpx 20rpx;
+  color: #575e64;
+  border: 1rpx solid #ebebeb;
+}
+
+.after-sales {
+  border-radius: 10rem;
+  padding: 5rpx 20rpx;
+  color: #575e64;
+  border: 1rpx solid #ebebeb;
 }
