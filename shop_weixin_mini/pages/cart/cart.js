@@ -43,14 +43,13 @@ Page({
     this.updateSelectionSum()
   },
   callServerToModifyQuantity(cartItem, index, cartId, quantity) {
+    cartItem.quantity = quantity
     this.updateDataList()
     let _this = this
     http.get('shop/cart/modify/' + cartId + '/' + quantity, '',
       function (resp) {
         if (quantity <= 0) {
           _this.queryData()
-        } else {
-          cartItem.quantity = quantity
         }
       },
       function (err) { })
@@ -91,5 +90,11 @@ Page({
   },
   gotoConfirmOrder(e) {
 
-  }
+  },
+  gotoGoodsDetail(e) {
+    let goodsId = e.currentTarget.dataset['id'];
+    wx.navigateTo({
+      url: '/pages/goods/goods?id=' + goodsId
+    })
+  },
 })

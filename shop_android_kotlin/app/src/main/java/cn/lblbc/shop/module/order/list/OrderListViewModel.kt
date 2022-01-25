@@ -3,7 +3,6 @@ package cn.lblbc.shop.module.order.list
 import androidx.lifecycle.MutableLiveData
 import cn.lblbc.shop.base.BaseViewModel
 import cn.lblbc.shop.network.ShopRepo
-import cn.lblbc.shop.network.request.QueryOrderReq
 import cn.lblbc.shop.network.response.QueryOrderResp
 
 /**
@@ -24,7 +23,7 @@ class OrderListViewModel : BaseViewModel() {
     ) {
         launch(
             {
-                orders.value = repo.queryOrder(QueryOrderReq(orderStatus))?.data
+                orders.value = repo.queryOrderByStatus(orderStatus)?.data
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },

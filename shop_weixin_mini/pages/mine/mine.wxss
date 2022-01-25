@@ -50,7 +50,7 @@
 }
 
 .my-orders {
-  font-size: 40rpx;
+  font-size: 35rpx;
   width: 200rpx;
   flex: 1;
 }

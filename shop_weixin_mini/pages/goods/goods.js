@@ -13,7 +13,6 @@ Page({
     this.queryData(option.id)
   },
   queryData(goodsId) {
-    // goodsId = '7b7dfe134d2b4473aa025fb2c0daa575'
     let _this = this
     http.get('shop/goods/query/' + goodsId, '',
       function (resp) {

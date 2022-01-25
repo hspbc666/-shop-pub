@@ -25,5 +25,3 @@ class SimpleOrderInfo(
     val quantity: Int,
     var squarePic: String? = null
 )
-
-class QueryOrderReq(val orderStatus: Int)

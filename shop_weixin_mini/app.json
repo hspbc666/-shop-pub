@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/order/list/list",
     "pages/cart/cart",
     "pages/category/category",
-    "pages/order/list/list",
     "pages/mine/mine",
     "pages/addr/addr-list/addr-list",
     "pages/addr/addr-edit/addr-edit",
@@ -22,7 +22,7 @@
     "selectedColor": "#EF3965",
     "list": [
       {
-        "pagePath": "pages/cart/cart",
+        "pagePath": "pages/order/list/list",
         "text": "首页",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home_selected.png"

@@ -9,7 +9,6 @@ import cn.lblbc.shop.bean.UserAddr;
 import cn.lblbc.shop.bean.createorder.CreateOrderFromCartReq;
 import cn.lblbc.shop.bean.createorder.CreateOrderReq;
 import cn.lblbc.shop.bean.createorder.CreateOrderResp;
-import cn.lblbc.shop.bean.queryorder.QueryOrderReq;
 import cn.lblbc.shop.bean.queryorder.QueryOrderResp;
 import cn.lblbc.shop.service.*;
 import cn.lblbc.utils.IdGenerator;
@@ -122,11 +121,11 @@ public class ShopRestController {
         return new Resp<>();
     }
 
-    @PostMapping("order/query")
-    public Resp<List<QueryOrderResp>> queryOrder(@RequestBody QueryOrderReq req, @RequestHeader("Authorization") String authorization) {
+    @GetMapping("order/queryByStatus/{orderStatus}")
+    public Resp<List<QueryOrderResp>> queryByStatus(@PathVariable int orderStatus, @RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
         Resp<List<QueryOrderResp>> resp = new Resp<>();
-        resp.setData(orderService.queryOrder(userId, req.getOrderStatus()));
+        resp.setData(orderService.queryOrder(userId, orderStatus));
         return resp;
     }
 

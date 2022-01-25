@@ -4,6 +4,23 @@
       {{item}}
     </view>
   </scroll-view>
-  <view>
+  <view class="split-view"></view>
+
+  <view class="order-info" wx:key="id" wx:for="{{orderList}}" wx:for-item="orderItem" bindtap="gotoGoodsDetail" data-id="{{orderItem.orderId}}">
+    <view class="saler-row">
+      <view class="saler-info">
+        <view class="saler-name">X商自营</view>
+        <image class="right-arrow" src="/images/right_arrow.png"></image>
+      </view>
+      <view class="status">状态</view>
+    </view>
+    <view class="goods-row" wx:key="k" wx:for="{{orderItem.list}}">
+      <image class="goods-img" src="{{item.squarePic}}"></image>
+      <view class="goods-desc">
+        <view class="goods-name"> {{item.name}}</view>
+        <view class="goods-price"> ￥{{item.price/100}}</view>
+      </view>
+    </view>
+
   </view>
 </view>

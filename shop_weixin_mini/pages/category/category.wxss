@@ -42,7 +42,7 @@ page {
 
 .tab-row {
   padding-top: 30rpx;
-  width: 720rpx;
+  width: 100%;
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -71,7 +71,12 @@ page {
 .goods-row {
   display: flex;
   flex-direction: row;
+  background-color: #fff;
+  border-radius: 10rpx;
   margin-top: 20rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  padding: 20rpx;
 }
 
 .goods-img {
