@@ -1,0 +1,24 @@
+<view class="page-wrapper ">
+  <view class="search_wrapper" bindtap="gotoSearch">
+    <view class="search_row" bindtap="gotoSearch">
+      <image class="search-img" src="/images/search.png"></image>
+      <view class="search-text">点击搜索</view>
+    </view>
+  </view>
+
+  <scroll-view class="tab-row" scroll-x="true">
+    <view class="tab  {{index==current?'tab-selected':''}}" wx:key="k" wx:for="{{categoryList}}" bindtap="tabSelect" data-id="{{index}}">
+      {{item.name}}
+    </view>
+  </scroll-view>
+
+  <view class="split-view"></view>
+  
+  <view class="goods-row" wx:key="k" wx:for="{{goodsList}}" bindtap="gotoGoodsDetail" data-id="{{item.id}}">
+    <image class="goods-img" src="{{item.squarePic}}"></image>
+    <view class="goods-desc">
+      <view class="goods-name"> {{item.name}}</view>
+      <view class="goods-price"> ￥{{item.price/100}}</view>
+    </view>
+  </view>
+</view>

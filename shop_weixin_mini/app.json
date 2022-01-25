@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/cart/cart",
+    "pages/home/home",
     "pages/category/category",
+    "pages/cart/cart",
     "pages/mine/mine",
     "pages/order/list/list",
     "pages/order/order-detail/order-detail",
@@ -23,7 +24,7 @@
     "selectedColor": "#EF3965",
     "list": [
       {
-        "pagePath": "pages/category/category",
+        "pagePath": "pages/home/home",
         "text": "首页",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home_selected.png"
