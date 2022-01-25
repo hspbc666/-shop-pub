@@ -4,33 +4,27 @@ var http = require('../../../utils/httputils.js');
 
 Page({
   data: {
-    id: "",
-    name: "",
-    picUrl: "",
-    price: 0,
+    orderItem: "",
   },
   onLoad: function (option) {
     this.queryData(option.id)
   },
-  queryData(goodsId) {
+  queryData(orderId) {
     let _this = this
-    http.get('shop/goods/query/' + goodsId, '',
+    http.get('shop/order/query/' + orderId, '',
       function (resp) {
         _this.setData({
-          id: resp.data.id,
-          name: resp.data.name,
-          picUrl: resp.data.squarePic,
-          price: '￥' + resp.data.price / 100
+          orderItem: resp.data,
         })
       },
       function (err) { })
   },
-  addToCart(e) {
+  delOrder(e) {
     let goodsId = e.currentTarget.dataset['id'];
-    http.get('shop/cart/add/' + goodsId, '',
+    http.get('shop/order/del/' + goodsId, '',
       function (resp) {
        wx.showToast({
-         title: '已加入购物车',
+         title: '已删除',
        })
       },
       function (err) { })

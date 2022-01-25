@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/order/list/list",
-    "pages/order/order-detail/order-detail",
     "pages/cart/cart",
     "pages/category/category",
     "pages/mine/mine",
+    "pages/order/list/list",
+    "pages/order/order-detail/order-detail",
     "pages/addr/addr-list/addr-list",
     "pages/addr/addr-edit/addr-edit",
     "pages/addr/addr-add/addr-add",
@@ -23,7 +23,7 @@
     "selectedColor": "#EF3965",
     "list": [
       {
-        "pagePath": "pages/order/list/list",
+        "pagePath": "pages/order/order-detail/order-detail",
         "text": "首页",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home_selected.png"

@@ -6,7 +6,7 @@
   </scroll-view>
   <view class="split-view"></view>
 
-  <view class="order-info" wx:key="id" wx:for="{{orderList}}" wx:for-item="orderItem" bindtap="gotoOrderDetail" data-id="{{orderItem.orderId}}">
+  <view class="order-info" wx:key="id" wx:for="{{orderList}}" wx:for-item="orderItem">
     <view class="saler-row">
       <view class="saler-info">
         <view class="saler-name">X商自营</view>
@@ -14,7 +14,7 @@
       </view>
       <view class="status">状态</view>
     </view>
-    <view class="goods-row" wx:key="k" wx:for="{{orderItem.list}}">
+    <view class="goods-row" wx:key="k" wx:for="{{orderItem.list}}" bindtap="gotoOrderDetail" data-id="{{orderItem.orderId}}">
       <image class="goods-img" src="{{item.squarePic}}"></image>
       <view class="goods-desc">
         <view class="goods-name"> {{item.name}}</view>
