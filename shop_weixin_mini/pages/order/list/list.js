@@ -33,7 +33,6 @@ Page({
   },
   gotoOrderDetail(e) {
     let orderId = e.currentTarget.dataset['id'];
-    debugger
     wx.navigateTo({
       url: '/pages/order/order-detail/order-detail?id=' + orderId
     })

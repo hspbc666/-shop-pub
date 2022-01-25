@@ -23,7 +23,7 @@
     "selectedColor": "#EF3965",
     "list": [
       {
-        "pagePath": "pages/order/order-detail/order-detail",
+        "pagePath": "pages/category/category",
         "text": "首页",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home_selected.png"

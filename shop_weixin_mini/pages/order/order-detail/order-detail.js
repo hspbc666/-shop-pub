@@ -7,7 +7,6 @@ Page({
     orderItem: "",
   },
   onLoad: function (option) {
-    this.queryData(option.id)
   },
   queryData(orderId) {
     let _this = this
