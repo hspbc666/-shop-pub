@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_flutter/constants.dart';
 
 import 'home.dart';
 
@@ -13,7 +14,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'X商城-蓝不蓝编程',
-      theme: ThemeData.light(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData().copyWith(
+        brightness: Brightness.light, //控件颜色模式Light
+        primaryColor: LblColors.mainColor, //设置主题色为黑色即可
+      ),
       home: HomeWidget(),
     );
   }

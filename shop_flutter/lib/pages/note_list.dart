@@ -48,11 +48,7 @@ class _NoteListState extends State<NoteListWidget> {
     return Scaffold(
       appBar: AppBar(
         title: Text("X商城"),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: gotoAddNotePage,
-        tooltip: 'addNote',
-        child: Icon(Icons.add),
+        backgroundColor: LblColors.mainColor,
       ),
       body: Center(
         child: getBody(),
