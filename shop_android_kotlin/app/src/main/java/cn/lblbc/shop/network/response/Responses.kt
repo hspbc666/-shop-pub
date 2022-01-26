@@ -1,4 +1,5 @@
 package cn.lblbc.shop.network.response
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -41,6 +42,7 @@ class QueryOrderResp {
     val status: Int? = null
     val createTime: Long = 0
     val list: List<FullOrderInfo>? = null
+    val userAddr: UserAddr? = null
 }
 
 class FullOrderInfo {

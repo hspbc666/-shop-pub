@@ -1,11 +1,13 @@
 package cn.lblbc.shop.service;
 
 import cn.lblbc.shop.bean.CartSimpleItem;
+import cn.lblbc.shop.bean.UserAddr;
 import cn.lblbc.shop.bean.UserOrder;
 import cn.lblbc.shop.bean.queryorder.FullOrderInfo;
 import cn.lblbc.shop.bean.queryorder.QueryOrderResp;
 import cn.lblbc.shop.mapper.CartMapper;
 import cn.lblbc.shop.mapper.OrderMapper;
+import cn.lblbc.shop.mapper.UserAddrMapper;
 import cn.lblbc.shop.mapper.UserOrderMapper;
 import cn.lblbc.utils.LblIdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,9 @@ public class OrderService {
 
     @Autowired
     private OrderMapper orderMapper;
+
+    @Autowired
+    private UserAddrMapper userAddrMapper;
 
     @Transactional
     public String createOrderFromCart(int userId, List<String> cartIdList, String userAddrId) {
@@ -66,7 +71,6 @@ public class OrderService {
         userOrderMapper.modify(orderId, status);
     }
 
-
     public List<QueryOrderResp> queryOrder(int userId, int orderStatus) {
         List<UserOrder> list;
         if (orderStatus == ORDER_ALL) {
@@ -86,8 +90,10 @@ public class OrderService {
         int status = userOrder.getStatus();
         long createTime = userOrder.getCreateTime();
         List<FullOrderInfo> fullOrderInfoList = orderMapper.queryByOrderId(orderId);
+        UserAddr userAddr = userAddrMapper.queryByOrderId(orderId);
         return QueryOrderResp.builder()
                 .orderId(orderId).status(status).createTime(createTime)
+                .userAddr(userAddr)
                 .list(fullOrderInfoList).build();
     }
 
