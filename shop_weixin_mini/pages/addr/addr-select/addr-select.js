@@ -3,14 +3,16 @@ var http = require('../../../utils/httputils.js');
 Page({
   data: {
     dataList: [],
+    selectedAddrId: ""
   },
-  onLoad: function () {
+  onLoad: function (option) {
+    this.setData({
+      selectedAddrId: option.id
+    })
     this.queryData()
   },
   onShow: function () {
     this.queryData()
-  },
-  methods: {
   },
   queryData() {
     let _this = this
@@ -42,5 +44,15 @@ Page({
       },
       function (err) { })
   },
+  selectAddr(e) {
+    let userAddr = e.currentTarget.dataset['addr'];
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2];  //上一个页面
 
+    //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+    prevPage.setData({
+      addr: userAddr
+    })
+    wx.navigateBack();
+  }
 })

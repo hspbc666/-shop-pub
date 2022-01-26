@@ -1,7 +1,6 @@
 package cn.lblbc.shop.service;
 
 import cn.lblbc.shop.bean.CartSimpleItem;
-import cn.lblbc.shop.bean.SimpleOrderInfo;
 import cn.lblbc.shop.bean.UserOrder;
 import cn.lblbc.shop.bean.queryorder.FullOrderInfo;
 import cn.lblbc.shop.bean.queryorder.QueryOrderResp;
@@ -51,14 +50,11 @@ public class OrderService {
     }
 
     @Transactional
-    public String createOrder(int userId, List<SimpleOrderInfo> simpleOrderInfoList) {
+    public String createOrder(int userId, String goodsId) {
         String orderId = IdGenerator.generateId();
         addUserOder(userId, orderId);
-
-        for (SimpleOrderInfo simpleOrderInfo : simpleOrderInfoList) {
-            String id = IdGenerator.generateId();
-            orderMapper.add(id, orderId, simpleOrderInfo.getGoodsId(), simpleOrderInfo.getQuantity());
-        }
+        String id = IdGenerator.generateId();
+        orderMapper.add(id, orderId, goodsId, 1);
         return orderId;
     }
 

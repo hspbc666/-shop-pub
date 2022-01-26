@@ -6,19 +6,47 @@
     </view>
   </view>
 
-  <scroll-view class="tab-row" scroll-x="true">
-    <view class="tab  {{index==current?'tab-selected':''}}" wx:key="k" wx:for="{{categoryList}}" bindtap="tabSelect" data-id="{{index}}">
-      {{item.name}}
+  <swiper indicator-dots="true" autoplay="true" circular="true" vertical="{{vertical}}" interval="2000" duration="500">
+    <block wx:for='{{goodsList}}' wx:key='index' wx:if="{{index<3}}">
+      <swiper-item>
+        <image src='{{item.longPic}}' mode='aspectFill' class='swiper-item-images' bindtap="gotoGoodsDetail" data-id="{{item.id}}" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="goods-row1">
+    <view class="goods-info1" bindtap="gotoGoodsDetail" data-id="{{goodsList[3].id}}">
+      <image class="goods-img1" src="{{goodsList[3].squarePic}}"></image>
+      <view class="goods-name1">{{goodsList[3].name}}</view>
+      <view class="goods-price">{{goodsList[3].price}}</view>
     </view>
-  </scroll-view>
+    <view class="goods-info1" bindtap="gotoGoodsDetail" data-id="{{goodsList[4].id}}">
+      <image class="goods-img1" src="{{goodsList[4].squarePic}}"></image>
+      <view class="goods-name1">{{goodsList[4].name}}</view>
+      <view class="goods-price">￥{{goodsList[4].price/100}}</view>
+    </view>
+  </view>
+  <view class="goods-row1">
+    <view class="goods-info1" bindtap="gotoGoodsDetail" data-id="{{goodsList[5].id}}">
+      <image class="goods-img1" src="{{goodsList[5].squarePic}}"></image>
+      <view class="goods-name1">{{goodsList[5].name}}</view>
+      <view class="goods-price">{{goodsList[5].price}}</view>
+    </view>
+    <view class="goods-info1" bindtap="gotoGoodsDetail" data-id="{{goodsList[6].id}}">
+      <image class="goods-img1" src="{{goodsList[6].squarePic}}"></image>
+      <view class="goods-name1">{{goodsList[6].name}}</view>
+      <view class="goods-price">￥{{goodsList[6].price/100}}</view>
+    </view>
+  </view>
 
-  <view class="split-view"></view>
-  
-  <view class="goods-row" wx:key="k" wx:for="{{goodsList}}" bindtap="gotoGoodsDetail" data-id="{{item.id}}">
-    <image class="goods-img" src="{{item.squarePic}}"></image>
-    <view class="goods-desc">
-      <view class="goods-name"> {{item.name}}</view>
-      <view class="goods-price"> ￥{{item.price/100}}</view>
-    </view>
+  <view class="goods-info2" bindtap="gotoGoodsDetail" data-id="{{goodsList[7].id}}">
+    <image class="goods-img2" src="{{goodsList[7].longPic}}"></image>
+    <view class="goods-name2">{{goodsList[7].name}}</view>
+    <view class="goods-price">￥{{goodsList[7].price/100}}</view>
+  </view>
+
+  <view class="goods-info2" bindtap="gotoGoodsDetail" data-id="{{goodsList[8].id}}">
+    <image class="goods-img2" src="{{goodsList[8].longPic}}"></image>
+    <view class="goods-name2">{{goodsList[8].name}}</view>
+    <view class="goods-price">￥{{goodsList[8].price/100}}</view>
   </view>
 </view>

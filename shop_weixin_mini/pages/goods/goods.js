@@ -1,5 +1,3 @@
-//index.js
-//获取应用实例
 var http = require('../../utils/httputils.js');
 
 Page({
@@ -29,11 +27,17 @@ Page({
     let goodsId = e.currentTarget.dataset['id'];
     http.get('shop/cart/add/' + goodsId, '',
       function (resp) {
-       wx.showToast({
-         title: '已加入购物车',
-       })
+        wx.showToast({
+          title: '已加入购物车',
+        })
       },
       function (err) { })
+  },
+  gotoConfirmOrder(e) {
+    let goodsId = e.currentTarget.dataset['id'];
+    wx.navigateTo({
+      url: '/pages/order/order-confirm/order-confirm?id=' + goodsId
+    })
   }
 
 })

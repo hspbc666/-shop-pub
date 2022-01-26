@@ -18,8 +18,6 @@ class RegisterReq(
 
 class CreateOrderFromCartReq(val cartIdList: List<String>?)
 
-class CreateOrderReq(val simpleOrderInfoList: List<SimpleOrderInfo>?)
-
 class SimpleOrderInfo(
     val goodsId: String?,
     val quantity: Int,

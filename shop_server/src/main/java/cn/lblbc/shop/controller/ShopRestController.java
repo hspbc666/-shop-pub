@@ -7,7 +7,6 @@ import cn.lblbc.shop.bean.CategoryInfo;
 import cn.lblbc.shop.bean.Goods;
 import cn.lblbc.shop.bean.UserAddr;
 import cn.lblbc.shop.bean.createorder.CreateOrderFromCartReq;
-import cn.lblbc.shop.bean.createorder.CreateOrderReq;
 import cn.lblbc.shop.bean.createorder.CreateOrderResp;
 import cn.lblbc.shop.bean.queryorder.QueryOrderResp;
 import cn.lblbc.shop.service.*;
@@ -84,6 +83,13 @@ public class ShopRestController {
         return resp;
     }
 
+    @GetMapping("cart/queryByIds/{cartIds}")
+    public Resp<List<CartItem>> queryCartByIds(@PathVariable String cartIds) {
+        Resp<List<CartItem>> resp = new Resp<>();
+        resp.setData(cartService.queryByCartIds(cartIds));
+        return resp;
+    }
+
     @GetMapping("cart/add/{goodsId}")
     public Resp<Goods> addToCart(@PathVariable String goodsId, @RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
@@ -106,10 +112,10 @@ public class ShopRestController {
         return resp;
     }
 
-    @PostMapping("order/create")
-    public Resp<CreateOrderResp> createOrder(@RequestBody CreateOrderReq req, @RequestHeader("Authorization") String authorization) {
+    @GetMapping("order/create/{goodsId}")
+    public Resp<CreateOrderResp> createOrder(@PathVariable String goodsId, @RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
-        String orderId = orderService.createOrder(userId, req.getSimpleOrderInfoList());
+        String orderId = orderService.createOrder(userId, goodsId);
         Resp<CreateOrderResp> resp = new Resp<>();
         resp.setData(CreateOrderResp.builder().orderId(orderId).build());
         return resp;

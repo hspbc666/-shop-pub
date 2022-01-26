@@ -26,7 +26,7 @@
   <view class="bottom-wrapper">
     <view class="bottom-split"></view>
     <view class="btn-row">
-      <view class="del-order" bindtap="delOrder">删除订单</view>
+      <view class="del-order" bindtap="delOrder" data-id="{{orderItem.orderId}}">删除订单</view>
       <view class="after-sales">申请售后</view>
     </view>
   </view>

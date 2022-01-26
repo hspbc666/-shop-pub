@@ -30,7 +30,7 @@
         <view class="cart-text">购物车</view>
         <image class="cart-img" src="/images/cart.png"></image>
       </view>
-      <view class="buy-btn" bindtap="gotoConfirmOrder">购买</view>
+      <view class="buy-btn" bindtap="gotoConfirmOrder" data-id="{{id}}">购买</view>
     </view>
 
   </view>

@@ -4,8 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import cn.lblbc.shop.base.BaseViewModel
 import cn.lblbc.shop.network.ShopRepo
 import cn.lblbc.shop.network.request.CreateOrderFromCartReq
-import cn.lblbc.shop.network.request.CreateOrderReq
-import cn.lblbc.shop.network.request.SimpleOrderInfo
 import cn.lblbc.shop.network.response.CartItem
 import cn.lblbc.shop.network.response.QueryOrderResp
 import cn.lblbc.shop.network.response.UserAddr
@@ -37,14 +35,14 @@ class ConfirmOrderViewModel : BaseViewModel() {
     }
 
     fun createOrder(
-        simpleOrderInfo: SimpleOrderInfo,
+        goodsId: String,
         onSuccess: ((orderId: String) -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
     ) {
         launch(
             {
-                val createOrderResp = repo.createOrder(CreateOrderReq(listOf(simpleOrderInfo)))
+                val createOrderResp = repo.createOrder(goodsId)
                 onSuccess?.invoke(createOrderResp?.data?.orderId!!)
             },
             { onFailure?.invoke(it.message ?: "") },

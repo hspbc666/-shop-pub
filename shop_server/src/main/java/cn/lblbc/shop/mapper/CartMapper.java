@@ -2,6 +2,7 @@ package cn.lblbc.shop.mapper;
 
 import cn.lblbc.shop.bean.CartItem;
 import cn.lblbc.shop.bean.CartSimpleItem;
+import cn.lblbc.shop.bean.Goods;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +20,17 @@ public interface CartMapper {
 
     @Select(value = "SELECT * FROM cart WHERE id=#{cartId}")
     CartSimpleItem queryByCartId( @Param("cartId") String cartId);
+
+    @Select({"<script> " +
+            " SELECT g.id as goods_id,g.name,g.price,g.long_pic,g.square_pic,c.quantity,c.id FROM cart c,goods g WHERE c.goods_id=g.id " +
+            " <if test = \" cartIds != null \"> " +
+            " AND c.id in " +
+            " <foreach item = 'item' index = 'index' collection = 'cartIds' open = '(' separator = ',' close = ')' > " +
+            " #{item} " +
+            " </foreach> " +
+            " </if> " +
+            "</script>"})
+    List<CartItem> queryByCartIds(@Param("cartIds") String[] cartIds);
 
     @Select(value = "SELECT g.id as goods_id,g.name,g.price,g.long_pic,g.square_pic,c.quantity,c.id FROM cart c,goods g WHERE c.goods_id=g.id AND c.user_id=#{userId}")
     List<CartItem> queryByUserId(@Param("userId") int userId);

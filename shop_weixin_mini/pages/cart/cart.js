@@ -1,5 +1,3 @@
-//index.js
-//获取应用实例
 var http = require('../../utils/httputils.js');
 
 Page({
@@ -21,7 +19,9 @@ Page({
     http.get('shop/cart/list/', '',
       function (resp) {
         _this.setData({
-          dataList: resp.data
+          dataList: resp.data,
+          selectedCartIndexes:[],
+          selectedSum: '￥0'
         })
       },
       function (err) { })
@@ -78,7 +78,7 @@ Page({
   updateSelectionSum() {
     var sum = 0
     let selectedCartIndexes = this.data.selectedCartIndexes
-    if (selectedCartIndexes != null && typeof(selectedCartIndexes) != 'undefined') {
+    if (selectedCartIndexes != null && typeof (selectedCartIndexes) != 'undefined') {
       selectedCartIndexes.forEach((elem, index) => {
         sum += this.data.dataList[elem].quantity * this.data.dataList[elem].price / 100
       });
@@ -88,13 +88,26 @@ Page({
       selectedSum: "￥" + sum
     })
   },
-  gotoConfirmOrder(e) {
-
-  },
   gotoGoodsDetail(e) {
     let goodsId = e.currentTarget.dataset['id'];
     wx.navigateTo({
       url: '/pages/goods/goods?id=' + goodsId
     })
+  },
+  gotoConfirmOrder(e) {
+    var goodsIds = ""
+
+    let selectedCartIndexes = this.data.selectedCartIndexes
+    if (selectedCartIndexes != null && typeof (selectedCartIndexes) != 'undefined') {
+      selectedCartIndexes.forEach((elem, index) => {
+        goodsIds += this.data.dataList[elem].id + ","
+      });
+    }
+
+    if (goodsIds != "") {
+      wx.navigateTo({
+        url: '/pages/order/order-confirm-from-cart/order-confirm-from-cart?ids=' + goodsIds
+      })
+    }
   },
 })

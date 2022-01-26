@@ -39,61 +39,73 @@ page {
   margin-left: 20rpx;
 }
 
-
-.tab-row {
-  padding-top: 30rpx;
+.swiper-item-images{
   width: 100%;
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-  white-space: nowrap;
-  background-color: white;
-}
+  height: 300rpx;
+  }
 
-.tab {
-  width: 120rpx;
-  margin-left: 10rpx;
-  margin-right: 10rpx;
-  display: inline-block;
-  padding-bottom: 10rpx;
-  text-align: center;
-}
 
-.tab-selected {
-  border-bottom: 4rpx solid;
-  color: #EF3965;
-}
 
-.split-view {
-  height: 30rpx;
-}
 
-.goods-row {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.goods-row1 {
   display: flex;
   flex-direction: row;
+}
+
+.goods-info1 {
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
   border-radius: 10rpx;
   margin-top: 20rpx;
   margin-left: 20rpx;
   margin-right: 20rpx;
   padding: 20rpx;
+  flex:1;
+  align-items: center;
 }
 
-.goods-img {
-  margin-left: 40rpx;
+.goods-img1 {
   width: 200rpx;
   height: 200rpx;
 }
 
-.goods-desc {
-  display: flex;
-  flex-direction: column;
-  margin-left: 40rpx;
-}
-
-.goods-name {
+.goods-name1 {
   font-size: 35rpx;
-  width: 400rpx;
+  width: 300rpx;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -103,6 +115,34 @@ page {
 }
 
 .goods-price {
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   color: #EF3965;
+}
+
+.goods-info2 {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  padding: 20rpx;
+  flex:1;
+}
+
+.goods-img2 {
+  width: 100%;
+  height: 200rpx;
+}
+
+.goods-name2 {
+  font-size: 35rpx;
+  width: 100%;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }

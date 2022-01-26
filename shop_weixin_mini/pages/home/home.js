@@ -1,54 +1,26 @@
-//index.js
-//获取应用实例
 var http = require('../../utils/httputils.js');
 
 Page({
   data: {
-    categoryList: [],
-    goodsList: [],
-    current: 0,
+    goodsList:[],
+    vertical: false,// banner滑动方向是否为纵向
   },
   onLoad: function () {
-    this.queryCategory()
-  },
-  onShow: function () {
-    this.queryCategory()
-  },
-  tabSelect: function (e) {
-    var current = e.currentTarget.dataset.id
-    this.setData({
-      current: current
-    })
     this.queryGoods()
   },
-  queryCategory() {
-    let _this = this
-    http.get('shop/category', '',
-      function (resp) {
-        _this.setData({
-          categoryList: resp.data
-        })
-        _this.queryGoods()
-      },
-      function (err) { })
+  onShow: function () {
+    this.queryGoods()
   },
   queryGoods() {
+    let homeCategoryId = 0
     let _this = this
-    http.get('shop/goods/category/' + this.getCurrentCategoryId(), '',
+    http.get('shop/goods/category/' + homeCategoryId, '',
       function (resp) {
         _this.setData({
           goodsList: resp.data
         })
       },
       function (err) { })
-  },
-  getCurrentCategoryId() {
-    return this.data.categoryList[this.data.current].id
-  },
-  gotoSearch() {
-    wx.navigateTo({
-      url: '/pages/addr/addr-add/addr-add'
-    })
   },
   gotoGoodsDetail(e) {
     let goodsId = e.currentTarget.dataset['id'];

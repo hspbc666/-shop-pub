@@ -20,7 +20,7 @@ class ShopRepo : BaseRepository() {
     suspend fun modifyCart(cartId: String, quantity: Int) =
         apiService.modifyCart(cartId, quantity)
 
-    suspend fun createOrder(req: CreateOrderReq) = apiService.createOrder(req)
+    suspend fun createOrder(goodsId: String) = apiService.createOrder(goodsId)
     suspend fun createOrderFromCart(req: CreateOrderFromCartReq) = apiService.createOrderFromCart(req)
     suspend fun payForOrder(orderId: String) = apiService.payForOrder(orderId)
     suspend fun queryOrderByStatus(orderStatus: Int) = apiService.queryOrderByStatus(orderStatus)

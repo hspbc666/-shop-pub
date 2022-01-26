@@ -47,8 +47,8 @@ interface ApiService {
     @POST("shop/order/createFromCart")
     suspend fun createOrderFromCart(@Body req: CreateOrderFromCartReq): Result<CreateOrderResp?>?
 
-    @POST("shop/order/create")
-    suspend fun createOrder(@Body req: CreateOrderReq): Result<CreateOrderResp?>?
+    @GET("shop/order/create/{goodsId}")
+    suspend fun createOrder(@Path("goodsId") goodsId: String): Result<CreateOrderResp?>?
 
     @GET("shop/order/pay/{orderId}")
     suspend fun payForOrder(@Path("orderId") orderId: String): Result<String?>?

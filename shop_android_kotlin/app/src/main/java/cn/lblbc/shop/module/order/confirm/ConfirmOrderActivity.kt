@@ -54,7 +54,7 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
 
     override fun initListeners() {
         createOrderTv.setOnClickListener {
-            orderInfo?.let { createOrder(it) }
+            orderInfo?.goodsId?.let { createOrder(it) }
         }
         addAddrLayout.setOnClickListener {
             val intent = Intent(this, AddAddressActivity::class.java)
@@ -80,8 +80,8 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
         }
     }
 
-    private fun createOrder(orderInfo: SimpleOrderInfo) {
-        mViewModel.createOrder(orderInfo, onSuccess = {
+    private fun createOrder(goodsId: String) {
+        mViewModel.createOrder(goodsId, onSuccess = {
             showPayDialog(it)
         })
     }

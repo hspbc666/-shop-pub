@@ -2,6 +2,7 @@ package cn.lblbc.shop.service;
 
 import cn.lblbc.shop.bean.CartItem;
 import cn.lblbc.shop.bean.CartSimpleItem;
+import cn.lblbc.shop.bean.Goods;
 import cn.lblbc.shop.mapper.CartMapper;
 import cn.lblbc.utils.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ public class CartService {
 
     public List<CartItem> queryByUserId(int userId) {
         return cartMapper.queryByUserId(userId);
+    }
+
+    public List<CartItem> queryByCartIds(String cartIds) {
+        return cartMapper.queryByCartIds(cartIds.split(","));
     }
 
     public void addToCart(int userId, String goodsId, int quantity) {

@@ -1,5 +1,3 @@
-//index.js
-//获取应用实例
 var http = require('../../../utils/httputils.js');
 
 Page({
@@ -7,6 +5,7 @@ Page({
     orderItem: "",
   },
   onLoad: function (option) {
+    this.queryData(option.id)
   },
   queryData(orderId) {
     let _this = this
@@ -19,12 +18,16 @@ Page({
       function (err) { })
   },
   delOrder(e) {
-    let goodsId = e.currentTarget.dataset['id'];
-    http.get('shop/order/del/' + goodsId, '',
+    let orderId = e.currentTarget.dataset['id'];
+    http.get('shop/order/del/' + orderId, '',
       function (resp) {
        wx.showToast({
          title: '已删除',
        })
+
+       wx.navigateBack({
+        delta: 0,
+      })
       },
       function (err) { })
   }

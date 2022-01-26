@@ -61,13 +61,13 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
 
         addAddrLayout.setOnClickListener {
             val intent = Intent(this, AddAddressActivity::class.java)
-            startActivityForResult(intent, ConfirmOrderActivity.requestCodeForAddAddr)
+            startActivityForResult(intent, requestCodeForAddAddr)
         }
         addrLayout.setOnClickListener {
             userAddr?.let {
                 val intent = Intent(this, SelectAddressActivity::class.java)
                 intent.putExtra(Constants.EXTRA_KEY_USER_ADDR_ID, it.id)
-                startActivityForResult(intent, ConfirmOrderActivity.requestCodeForSelectAddr)
+                startActivityForResult(intent, requestCodeForSelectAddr)
             }
         }
         orderGoodsLayout.setOnClickListener {
@@ -77,7 +77,7 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == ConfirmOrderActivity.requestCodeForSelectAddr || requestCode == ConfirmOrderActivity.requestCodeForAddAddr) {
+        if (requestCode == requestCodeForSelectAddr || requestCode == requestCodeForAddAddr) {
             data?.let {
                 val userAddrJson = it.getStringExtra(Constants.EXTRA_KEY_USER_ADDR)
                 userAddr = JsonUtil.fromJson(userAddrJson ?: "")

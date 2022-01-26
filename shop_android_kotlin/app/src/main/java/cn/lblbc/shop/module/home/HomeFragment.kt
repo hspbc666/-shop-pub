@@ -55,8 +55,8 @@ class HomeFragment : BaseVmFragment<HomeViewModel>() {
     }
 
     private fun queryData() {
-        val categoryId = "1"
-        mViewModel.queryGoodsByCategory(categoryId)
+        val homeCategoryId = "0"
+        mViewModel.queryGoodsByCategory(homeCategoryId)
     }
 
     override fun observe() {

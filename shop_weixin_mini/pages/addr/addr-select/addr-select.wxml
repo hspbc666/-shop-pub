@@ -1,0 +1,17 @@
+<view class="page-wrapper ">
+  <view class="info-container" wx:for="{{dataList}}" wx:key="k" wx:for-index="bindex" bindtap="selectAddr" data-addr="{{item}}">
+    <radio checked="{{selectedAddrId===item.id}}"></radio>
+    <view class="user-info">
+      <view class="user-info-row">
+        <view class="name">{{item.name}}</view>
+        <view class="phone">{{item.phone}}</view>
+        <view class="is-default" wx:if="{{item.defaultAddress}}">默认</view>
+      </view>
+      <view class="note-content" data-noteid="{{item.id}}">{{item.address}}</view>
+    </view>
+    <view class="btn" bindtap="gotoEditAddr" data-id="{{item.id}}">编辑</view>
+  </view>
+  <view class="bottom-wrapper">
+    <view class="bottom-btn" bindtap="gotoAddAddr">添加收货地址</view>
+  </view>
+</view>

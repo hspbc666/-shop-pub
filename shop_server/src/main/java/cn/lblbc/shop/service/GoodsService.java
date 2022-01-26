@@ -26,7 +26,6 @@ public class GoodsService {
         return goodsMapper.queryByName(goodsName);
     }
 
-
     public List<Goods> queryAll() {
         return goodsMapper.queryAll();
     }

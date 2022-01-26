@@ -1,5 +1,3 @@
-//index.js
-//获取应用实例
 var http = require('../../../utils/httputils.js');
 
 Page({
