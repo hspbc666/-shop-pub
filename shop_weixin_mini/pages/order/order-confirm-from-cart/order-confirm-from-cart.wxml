@@ -1,12 +1,15 @@
 <view class="page-wrapper ">
 
-  <view class="addr-info">
+  <view class="addr-info" bindtap="gotoSelectAddr" wx:if="{{addr!=null}}">
     <image class="location-img" src="/images/location.png"></image>
     <view class="receiver-info">
       <view class="receiver-name">{{addr.name}}</view>
       <view class="receiver-addr">{{addr.address}}</view>
     </view>
     <image class="right-arrow" src="/images/right_arrow.png"></image>
+  </view>
+  <view class="addr-info addr-text" bindtap="gotoSelectAddr" wx:else>
+    <view>+ 添加收货地址</view>
   </view>
 
   <view class="goods-info" wx:if="{{cartList.length>0}}">

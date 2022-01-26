@@ -1,15 +1,14 @@
+package cn.lblbc.shop.network
+
+import cn.lblbc.shop.base.BaseRepository
+import cn.lblbc.shop.network.request.*
+import cn.lblbc.shop.network.response.UserAddr
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：蓝不蓝编程
  */
-package cn.lblbc.shop.network
-
-import cn.lblbc.shop.base.BaseRepository
-import cn.lblbc.shop.network.request.*
-import cn.lblbc.shop.network.response.UserAddr
-
 class ShopRepo : BaseRepository() {
     suspend fun queryCategory() = apiService.queryCategory()
     suspend fun queryGoodsByCategory(categoryId: String) = apiService.queryGoodsByCategory(categoryId)
@@ -20,7 +19,7 @@ class ShopRepo : BaseRepository() {
     suspend fun modifyCart(cartId: String, quantity: Int) =
         apiService.modifyCart(cartId, quantity)
 
-    suspend fun createOrder(goodsId: String) = apiService.createOrder(goodsId)
+    suspend fun createOrder(req: CreateOrderReq) = apiService.createOrder(req)
     suspend fun createOrderFromCart(req: CreateOrderFromCartReq) = apiService.createOrderFromCart(req)
     suspend fun payForOrder(orderId: String) = apiService.payForOrder(orderId)
     suspend fun queryOrderByStatus(orderStatus: Int) = apiService.queryOrderByStatus(orderStatus)

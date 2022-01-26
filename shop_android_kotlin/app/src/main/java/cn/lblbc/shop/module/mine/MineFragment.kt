@@ -17,7 +17,12 @@ import cn.lblbc.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_DELIVER
 import cn.lblbc.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_PAY
 import cn.lblbc.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RECEIVE
 import cn.lblbc.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RETURN
-
+/**
+ * 厦门大学计算机专业 | 前华为工程师
+ * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
+ * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
+ * 公众号：蓝不蓝编程
+ */
 class MineFragment : BaseFragment() {
     private lateinit var userLogoIv: ImageView
     private lateinit var userNameTv: TextView

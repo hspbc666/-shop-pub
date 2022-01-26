@@ -10,7 +10,6 @@
   min-height: 2000rpx;
 }
 
-
 .addr-info {
   background-color: #fff;
   border-radius: 10rpx;
@@ -24,6 +23,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.addr-text{
+  font-size: 35rpx;
+  margin-left: 20rpx;
 }
 
 .location-img {

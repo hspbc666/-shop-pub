@@ -10,7 +10,6 @@ import kotlinx.android.synthetic.main.part_addr_detail.*
 import kotlinx.android.synthetic.main.part_addr_name_phone.*
 import kotlinx.android.synthetic.main.part_addr_type_info.*
 
-
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634

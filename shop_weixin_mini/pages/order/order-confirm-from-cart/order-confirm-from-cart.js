@@ -1,14 +1,14 @@
-//蓝不蓝编程(CSDN 、 简书 、 掘金 、 今日头条 、 微信公众号 、 抖音 、 快手 、 B站 、 西瓜视频)
-//编程学习资料及开源项目见：https://juejin.cn/post/7002792005688360968
+//厦门大学计算机专业 | 前华为工程师
+//专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
+//包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
+//公众号：蓝不蓝编程
 var http = require('../../../utils/httputils.js');
 
 Page({
   data: {
     cartList: [],
-    addr: "",
+    addr: null,
     costSum: 0
-  },
-  methods: {
   },
   onLoad: function (option) {
     this.queryCart(option.ids)
@@ -56,16 +56,26 @@ Page({
       });
 
       var params = {
-        cartIdList: cartIds
+        cartIdList: cartIds,
+        userAddrId: this.data.addr.id
       }
       http.post('shop/order/createFromCart', params,
         function (resp) {
-          wx.navigateBack({
-            delta: 0,
-          })
+          wx.navigateBack()
           _this.gotoOrderDetail(resp.data.orderId)
         },
         function (err) { })
+    }
+  },
+  gotoSelectAddr() {
+    if (this.data.addr != null) {
+      wx.navigateTo({
+        url: '/pages/addr/addr-select/addr-select?id=' + this.data.addr.id
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/addr/addr-select/addr-select'
+      })
     }
   },
   gotoOrderDetail(orderId) {

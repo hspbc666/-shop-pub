@@ -1,15 +1,14 @@
+package cn.lblbc.shop.network
+
+import cn.lblbc.shop.network.request.*
+import cn.lblbc.shop.network.response.*
+import retrofit2.http.*
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：蓝不蓝编程
  */
-package cn.lblbc.shop.network
-
-import cn.lblbc.shop.network.request.*
-import cn.lblbc.shop.network.response.*
-import retrofit2.http.*
-
 interface ApiService {
 
     @POST("user/login")
@@ -47,8 +46,8 @@ interface ApiService {
     @POST("shop/order/createFromCart")
     suspend fun createOrderFromCart(@Body req: CreateOrderFromCartReq): Result<CreateOrderResp?>?
 
-    @GET("shop/order/create/{goodsId}")
-    suspend fun createOrder(@Path("goodsId") goodsId: String): Result<CreateOrderResp?>?
+    @POST("shop/order/create")
+    suspend fun createOrder(@Body req: CreateOrderReq): Result<CreateOrderResp?>?
 
     @GET("shop/order/pay/{orderId}")
     suspend fun payForOrder(@Path("orderId") orderId: String): Result<String?>?

@@ -12,7 +12,7 @@ page{
     -webkit-tap-highlight-color: transparent;
     min-height:2000rpx;
 }
-.note-content{
+.address{
   background-color: #fff;
   margin: 10rpx 10rpx 0rpx 10rpx;
   font-size: 40rpx;

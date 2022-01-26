@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import cn.lblbc.shop.base.BaseViewModel
 import cn.lblbc.shop.network.ShopRepo
 import cn.lblbc.shop.network.request.CreateOrderFromCartReq
+import cn.lblbc.shop.network.request.CreateOrderReq
 import cn.lblbc.shop.network.response.CartItem
 import cn.lblbc.shop.network.response.QueryOrderResp
 import cn.lblbc.shop.network.response.UserAddr
@@ -20,6 +21,7 @@ class ConfirmOrderViewModel : BaseViewModel() {
 
     fun createOrderFromCart(
         cartItemList: List<CartItem>,
+        userAddrId:String,
         onSuccess: ((orderId: String) -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
@@ -27,7 +29,7 @@ class ConfirmOrderViewModel : BaseViewModel() {
         launch(
             {
                 val cartIdList = cartItemList.map { it.id }
-                val createOrderResp = repo.createOrderFromCart(CreateOrderFromCartReq(cartIdList))
+                val createOrderResp = repo.createOrderFromCart(CreateOrderFromCartReq(cartIdList,userAddrId))
                 onSuccess?.invoke(createOrderResp?.data?.orderId!!)
             },
             { onFailure?.invoke(it.message ?: "") },
@@ -36,13 +38,14 @@ class ConfirmOrderViewModel : BaseViewModel() {
 
     fun createOrder(
         goodsId: String,
+        userAddrId: String,
         onSuccess: ((orderId: String) -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
     ) {
         launch(
             {
-                val createOrderResp = repo.createOrder(goodsId)
+                val createOrderResp = repo.createOrder(CreateOrderReq(goodsId, userAddrId))
                 onSuccess?.invoke(createOrderResp?.data?.orderId!!)
             },
             { onFailure?.invoke(it.message ?: "") },

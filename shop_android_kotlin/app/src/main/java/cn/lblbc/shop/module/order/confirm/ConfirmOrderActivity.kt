@@ -81,9 +81,8 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
     }
 
     private fun createOrder(goodsId: String) {
-        mViewModel.createOrder(goodsId, onSuccess = {
-            showPayDialog(it)
-        })
+        mViewModel.createOrder(goodsId, userAddr?.id ?: "",
+            onSuccess = { showPayDialog(it) })
     }
 
     private fun showPayDialog(orderId: String) {

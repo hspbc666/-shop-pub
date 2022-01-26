@@ -12,7 +12,6 @@ import cn.lblbc.shop.utils.getMoneyByYuan
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_order_dialog_goods.view.*
 
-
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634

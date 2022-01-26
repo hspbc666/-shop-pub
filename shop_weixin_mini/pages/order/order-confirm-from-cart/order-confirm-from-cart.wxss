@@ -26,6 +26,11 @@
   align-items: center;
 }
 
+.addr-text{
+  font-size: 35rpx;
+  margin-left: 20rpx;
+}
+
 .location-img {
   width: 30rpx;
   height: 30rpx;

@@ -7,7 +7,7 @@ import cn.lblbc.shop.bean.queryorder.QueryOrderResp;
 import cn.lblbc.shop.mapper.CartMapper;
 import cn.lblbc.shop.mapper.OrderMapper;
 import cn.lblbc.shop.mapper.UserOrderMapper;
-import cn.lblbc.utils.IdGenerator;
+import cn.lblbc.utils.LblIdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +22,7 @@ import static cn.lblbc.utils.Constants.OrderStatus.TO_PAY;
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
- * 公众号：花生皮编程
+ * 公众号：蓝不蓝编程
  */
 @Service
 public class OrderService {
@@ -36,13 +36,13 @@ public class OrderService {
     private OrderMapper orderMapper;
 
     @Transactional
-    public String createOrderFromCart(int userId, List<String> cartIdList) {
-        String orderId = IdGenerator.generateId();
-        addUserOder(userId, orderId);
+    public String createOrderFromCart(int userId, List<String> cartIdList, String userAddrId) {
+        String orderId = LblIdGenerator.generateId();
+        addUserOder(userId, orderId, userAddrId);
 
         for (String cartId : cartIdList) {
             CartSimpleItem cartItem = cartMapper.queryByCartId(cartId);
-            String id = IdGenerator.generateId();
+            String id = LblIdGenerator.generateId();
             orderMapper.add(id, orderId, cartItem.getGoodsId(), cartItem.getQuantity());
             cartMapper.delete(cartItem.getId());
         }
@@ -50,16 +50,16 @@ public class OrderService {
     }
 
     @Transactional
-    public String createOrder(int userId, String goodsId) {
-        String orderId = IdGenerator.generateId();
-        addUserOder(userId, orderId);
-        String id = IdGenerator.generateId();
+    public String createOrder(int userId, String goodsId, String userAddrId) {
+        String orderId = LblIdGenerator.generateId();
+        addUserOder(userId, orderId,userAddrId);
+        String id = LblIdGenerator.generateId();
         orderMapper.add(id, orderId, goodsId, 1);
         return orderId;
     }
 
-    private void addUserOder(int userId, String orderId) {
-        userOrderMapper.add(orderId, userId, TO_PAY, System.currentTimeMillis());
+    private void addUserOder(int userId, String orderId, String userAddrId) {
+        userOrderMapper.add(orderId, userId, TO_PAY, System.currentTimeMillis(),userAddrId);
     }
 
     public void changeOrderStatus(String orderId, int status) {

@@ -7,9 +7,8 @@
         <view class="phone">{{item.phone}}</view>
         <view class="is-default" wx:if="{{item.defaultAddress}}">默认</view>
       </view>
-      <view class="note-content" data-noteid="{{item.id}}">{{item.address}}</view>
+      <view>{{item.address}}</view>
     </view>
-    <view class="btn" bindtap="gotoEditAddr" data-id="{{item.id}}">编辑</view>
   </view>
   <view class="bottom-wrapper">
     <view class="bottom-btn" bindtap="gotoAddAddr">添加收货地址</view>
