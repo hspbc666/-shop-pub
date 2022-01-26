@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:note_flutter/network/http_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../app_strings.dart';
+import '../constants.dart';
 import 'add_note.dart';
 import 'view_note.dart';
 
@@ -66,7 +66,7 @@ class _NoteListState extends State<NoteListWidget> {
 
   loadData() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    int? userId = sharedPreferences.getInt(AppStrings.SP_KEY_USER_ID);
+    int? userId = sharedPreferences.getInt(Constants.SP_KEY_USER_ID);
     if (userId != null) {
       String url = "note/api/list/" + userId.toString();
       HttpManager.getInstance().get(url).then((resp) {

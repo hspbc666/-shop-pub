@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../app_strings.dart';
+import '../../constants.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -12,9 +12,9 @@ class TokenInterceptor extends Interceptor {
   @override
   Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String? token = sharedPreferences.getString(AppStrings.SP_KEY_TOKEN);
+    String? token = sharedPreferences.getString(Constants.SP_KEY_TOKEN);
     if (token != null) {
-      options.headers[AppStrings.HTTP_HEADER_AUTH] = AppStrings.HTTP_HEADER_TOKEN_PREFIX + token;
+      options.headers[Constants.HTTP_HEADER_AUTH] = Constants.HTTP_HEADER_TOKEN_PREFIX + token;
     }
     handler.next(options);
   }

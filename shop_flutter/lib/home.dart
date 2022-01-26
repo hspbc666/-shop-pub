@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'app_strings.dart';
+import 'constants.dart';
 import 'pages/login.dart';
 import 'pages/mine.dart';
 import 'pages/note_list.dart';
@@ -16,7 +16,6 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  final bottomNavigationColor = Color(0xFFEF3965);
   int _currentIndex = 0;
   List<Widget> list = [];
 
@@ -31,7 +30,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   Future<void> checkLogin() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String? token = sharedPreferences.getString(AppStrings.SP_KEY_TOKEN);
+    String? token = sharedPreferences.getString(Constants.SP_KEY_TOKEN);
     if (token == null) {
       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
     }
@@ -46,38 +45,38 @@ class _HomeWidgetState extends State<HomeWidget> {
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
-                color: bottomNavigationColor,
+                color: LblColors.mainColor,
               ),
               title: Text(
                 '首页',
-                style: TextStyle(color: bottomNavigationColor),
+                style: TextStyle(color: LblColors.mainColor),
               )),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.list,
-                color: bottomNavigationColor,
+                color: LblColors.mainColor,
               ),
               title: Text(
                 '分类',
-                style: TextStyle(color: bottomNavigationColor),
+                style: TextStyle(color: LblColors.mainColor),
               )),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.shopping_cart,
-                color: bottomNavigationColor,
+                color: LblColors.mainColor,
               ),
               title: Text(
                 '购物车',
-                style: TextStyle(color: bottomNavigationColor),
+                style: TextStyle(color: LblColors.mainColor),
               )),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,
-                color: bottomNavigationColor,
+                color: LblColors.mainColor,
               ),
               title: Text(
                 '我的',
-                style: TextStyle(color: bottomNavigationColor),
+                style: TextStyle(color: LblColors.mainColor),
               )),
         ],
         unselectedItemColor: Color(0xFF222222),
