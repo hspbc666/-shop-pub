@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '记事本-蓝不蓝编程',
+      title: 'X商城-蓝不蓝编程',
       theme: ThemeData.light(),
       home: HomeWidget(),
     );

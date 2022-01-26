@@ -19,7 +19,7 @@ class NoteListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '记事本-蓝不蓝编程',
+      title: 'X商城-蓝不蓝编程',
       home: NoteListWidget(this.parentContext),
     );
   }
@@ -47,7 +47,7 @@ class _NoteListState extends State<NoteListWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("记事本"),
+        title: Text("X商城"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: gotoAddNotePage,
