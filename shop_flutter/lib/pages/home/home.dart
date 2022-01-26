@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:note_flutter/pages/addr/addr_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'constants.dart';
-import 'pages/login.dart';
-import 'pages/mine.dart';
-import 'pages/note_list.dart';
+import '../../constants.dart';
+import '../category/note_list.dart';
+import '../login.dart';
+import '../mine/mine.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -24,6 +25,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     super.initState();
     list
       ..add(NoteListPage(context))
+      ..add(AddrListPage(context))
       ..add(MinePage());
     checkLogin();
   }
