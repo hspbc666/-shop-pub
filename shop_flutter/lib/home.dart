@@ -16,7 +16,7 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  final bottomNavigationColor = Colors.blue;
+  final bottomNavigationColor = Color(0xFFEF3965);
   int _currentIndex = 0;
   List<Widget> list = [];
 
@@ -54,6 +54,24 @@ class _HomeWidgetState extends State<HomeWidget> {
               )),
           BottomNavigationBarItem(
               icon: Icon(
+                Icons.list,
+                color: bottomNavigationColor,
+              ),
+              title: Text(
+                '分类',
+                style: TextStyle(color: bottomNavigationColor),
+              )),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.shopping_cart,
+                color: bottomNavigationColor,
+              ),
+              title: Text(
+                '购物车',
+                style: TextStyle(color: bottomNavigationColor),
+              )),
+          BottomNavigationBarItem(
+              icon: Icon(
                 Icons.person,
                 color: bottomNavigationColor,
               ),
@@ -62,6 +80,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 style: TextStyle(color: bottomNavigationColor),
               )),
         ],
+        unselectedItemColor: Color(0xFF222222),
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         onTap: (int index) {
