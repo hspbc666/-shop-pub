@@ -5,5 +5,6 @@
 class RequestApi {
   RequestApi._();
 
-  static const String HOST = 'http://192.168.31.10:8080/';
+  // static const String HOST = 'http://192.168.31.10:8080/';
+  static const String HOST = 'http://10.206.50.51:8080/';
 }

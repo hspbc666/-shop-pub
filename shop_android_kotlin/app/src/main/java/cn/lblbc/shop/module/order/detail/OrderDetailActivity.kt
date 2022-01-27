@@ -40,6 +40,7 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
         queryOrderResp = JsonUtil.fromJson(orderInfoInJson!!)
         queryOrderResp?.let {
             orderIdTv.text = it.orderId
+            receiverInfoTv.text = it.userAddr?.toSimpleInfo()
             val sum = calcSum(it.list)
             orderDetailSumTv.text = getString(R.string.price, sum)
             realPaidTv.text = getString(R.string.real_paid, sum)

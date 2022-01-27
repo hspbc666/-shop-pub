@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:note_flutter/network/http_manager.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:note_flutter/pages/login/login_manager.dart';
 
 import '../../constants.dart';
 import '../add_note.dart';
@@ -11,30 +11,15 @@ import '../view_note.dart';
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
 /// 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
 /// 公众号：蓝不蓝编程
-class NoteListPage extends StatelessWidget {
-  final parentContext;
 
-  NoteListPage(this.parentContext);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'X商城-蓝不蓝编程',
-      home: NoteListWidget(this.parentContext),
-    );
-  }
-}
-
-class NoteListWidget extends StatefulWidget {
-  final parentContext;
-
-  NoteListWidget(this.parentContext);
+class CategoryPage extends StatefulWidget {
+  const CategoryPage({Key? key}) : super(key: key);
 
   @override
   createState() => _NoteListState();
 }
 
-class _NoteListState extends State<NoteListWidget> {
+class _NoteListState extends State<CategoryPage> {
   List notes = [];
 
   @override
@@ -47,7 +32,7 @@ class _NoteListState extends State<NoteListWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("X商城"),
+        title: Text("X商城23"),
         backgroundColor: LblColors.mainColor,
       ),
       body: Center(
@@ -57,21 +42,21 @@ class _NoteListState extends State<NoteListWidget> {
   }
 
   gotoAddNotePage() {
-    Navigator.push(widget.parentContext, MaterialPageRoute(builder: (context) => AddNotePage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => AddNotePage()));
   }
 
-  loadData() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    int? userId = sharedPreferences.getInt(Constants.SP_KEY_USER_ID);
-    if (userId != null) {
-      String url = "note/api/list/" + userId.toString();
-      HttpManager.getInstance().get(url).then((resp) {
-        Map<String, dynamic> result = new Map<String, dynamic>.from(resp);
-        setState(() {
-          notes = result['data'];
+  loadData() {
+    LoginManager.isLoggedIn().then((value) {
+      if (value) {
+        String url = "shop/cart/list";
+        HttpManager.getInstance().get(url).then((resp) {
+          Map<String, dynamic> result = new Map<String, dynamic>.from(resp);
+          setState(() {
+            notes = result['data'];
+          });
         });
-      });
-    }
+      }
+    });
   }
 
   getItem(note) {
@@ -101,7 +86,7 @@ class _NoteListState extends State<NoteListWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                note['content'],
+                note['name'],
                 style: TextStyle(
                   fontSize: 18.0,
                 ),
@@ -128,6 +113,6 @@ class _NoteListState extends State<NoteListWidget> {
   }
 
   onRowClick(note) {
-    Navigator.push(widget.parentContext, MaterialPageRoute(builder: (context) => ViewNotePage(noteId: note['id'])));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ViewNotePage(noteId: note['id'])));
   }
 }

@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:note_flutter/pages/addr/addr_list.dart';
+import 'package:note_flutter/pages/cart/cart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants.dart';
-import '../category/note_list.dart';
-import '../login.dart';
+import '../category/category.dart';
+import '../login/login.dart';
 import '../mine/mine.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
 /// 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
 /// 公众号：蓝不蓝编程
-class HomeWidget extends StatefulWidget {
+class MainPage extends StatefulWidget {
   @override
-  createState() => _HomeWidgetState();
+  createState() => _MainPageState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> {
+class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
   List<Widget> list = [];
 
@@ -24,8 +25,9 @@ class _HomeWidgetState extends State<HomeWidget> {
   initState() {
     super.initState();
     list
-      ..add(NoteListPage(context))
+      ..add(CategoryPage())
       ..add(AddrListPage(context))
+      ..add(CartPage())
       ..add(MinePage());
     checkLogin();
   }
@@ -47,40 +49,25 @@ class _HomeWidgetState extends State<HomeWidget> {
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
-                color: LblColors.mainColor,
               ),
-              title: Text(
-                '首页',
-                style: TextStyle(color: LblColors.mainColor),
-              )),
+              label: '首页'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.list,
-                color: LblColors.mainColor,
               ),
-              title: Text(
-                '分类',
-                style: TextStyle(color: LblColors.mainColor),
-              )),
+              label: '分类'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.shopping_cart,
-                color: LblColors.mainColor,
               ),
-              title: Text(
-                '购物车',
-                style: TextStyle(color: LblColors.mainColor),
-              )),
+              label: '购物车'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,
-                color: LblColors.mainColor,
               ),
-              title: Text(
-                '我的',
-                style: TextStyle(color: LblColors.mainColor),
-              )),
+              label: '我的'),
         ],
+        selectedItemColor: LblColors.mainColor,
         unselectedItemColor: Color(0xFF222222),
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,

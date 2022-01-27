@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:note_flutter/network/http_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -81,9 +81,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   login() async {
-    String url = "api/login";
-    HttpManager.getInstance()
-        .post(url, data: {"name": _nameController.text, "password": _passwordController.text}).then((resp) async {
+    String url = "user/login";
+    HttpManager.getInstance().post(url, data: {"name": _nameController.text, "password": _passwordController.text}).then((resp) async {
       SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
       sharedPreferences.setInt(Constants.SP_KEY_USER_ID, resp['data']['id']);
       sharedPreferences.setString(Constants.SP_KEY_TOKEN, resp['data']['token']);

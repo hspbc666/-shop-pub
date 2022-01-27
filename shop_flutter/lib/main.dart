@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:note_flutter/constants.dart';
+import 'package:note_flutter/util/sp_util.dart';
 
 import 'pages/home/home.dart';
 
@@ -7,7 +8,8 @@ import 'pages/home/home.dart';
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
 /// 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
 /// 公众号：蓝不蓝编程
-void main() => runApp(new MyApp());
+void main() {
+  runApp(new MyApp());}
 
 class MyApp extends StatelessWidget {
   @override
@@ -16,10 +18,10 @@ class MyApp extends StatelessWidget {
       title: 'X商城-蓝不蓝编程',
       debugShowCheckedModeBanner: false,
       theme: ThemeData().copyWith(
-        brightness: Brightness.light, //控件颜色模式Light
-        primaryColor: LblColors.mainColor, //设置主题色为黑色即可
+        brightness: Brightness.light,
+        primaryColor: LblColors.mainColor,
       ),
-      home: HomeWidget(),
+      home: MainPage(),
     );
   }
 }

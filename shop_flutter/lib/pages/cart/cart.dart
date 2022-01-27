@@ -1,7 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:note_flutter/network/http_manager.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:note_flutter/pages/login/login_manager.dart';
 
 import '../../constants.dart';
 import '../add_note.dart';
@@ -11,30 +13,15 @@ import '../view_note.dart';
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
 /// 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
 /// 公众号：蓝不蓝编程
-class AddrListPage extends StatelessWidget {
-  final parentContext;
 
-  AddrListPage(this.parentContext);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '收货地址',
-      home: AddrListWidget(this.parentContext),
-    );
-  }
-}
-
-class AddrListWidget extends StatefulWidget {
-  final parentContext;
-
-  AddrListWidget(this.parentContext);
+class CartPage extends StatefulWidget {
+  const CartPage({Key? key}) : super(key: key);
 
   @override
-  createState() => _AddrListState();
+  createState() => _CartState();
 }
 
-class _AddrListState extends State<AddrListWidget> {
+class _CartState extends State<CartPage> {
   List notes = [];
 
   @override
@@ -47,7 +34,8 @@ class _AddrListState extends State<AddrListWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("X商城"),
+        title: Text("购物车"),
+        backgroundColor: LblColors.mainColor,
       ),
       body: Center(
         child: getBody(),
@@ -56,21 +44,21 @@ class _AddrListState extends State<AddrListWidget> {
   }
 
   gotoAddNotePage() {
-    Navigator.push(widget.parentContext, MaterialPageRoute(builder: (context) => AddNotePage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => AddNotePage()));
   }
 
   loadData() async {
-    // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    // String? userId = sharedPreferences.getString(Constants.SP_KEY_USER_ID);
-    // if (userId != null) {
-    //   String url = "note/api/list/" + userId.toString();
-    //   HttpManager.getInstance().get(url).then((resp) {
-    //     Map<String, dynamic> result = new Map<String, dynamic>.from(resp);
-    //     setState(() {
-    //       notes = result['data'];
-    //     });
-    //   });
-    // }
+    LoginManager.isLoggedIn().then((value) {
+      if (value) {
+        String url = "shop/cart/list";
+        HttpManager.getInstance().get(url).then((resp) {
+          Map<String, dynamic> result = new Map<String, dynamic>.from(resp);
+          setState(() {
+            notes = result['data'];
+          });
+        });
+      }
+    });
   }
 
   getItem(note) {
@@ -100,7 +88,7 @@ class _AddrListState extends State<AddrListWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                note['content'],
+                note['name'],
                 style: TextStyle(
                   fontSize: 18.0,
                 ),
@@ -127,6 +115,6 @@ class _AddrListState extends State<AddrListWidget> {
   }
 
   onRowClick(note) {
-    Navigator.push(widget.parentContext, MaterialPageRoute(builder: (context) => ViewNotePage(noteId: note['id'])));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ViewNotePage(noteId: note['id'])));
   }
 }

@@ -63,6 +63,10 @@ class UserAddr {
     var address: String? = null
     var defaultAddress = false
     var addrType = 0
+
+    fun toSimpleInfo(): String {
+        return "$name，$phone，$address"
+    }
 }
 
 class CategoryInfo {

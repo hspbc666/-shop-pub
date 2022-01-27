@@ -13,4 +13,5 @@ class Constants {
 
 class LblColors {
   static const mainColor = Color(0xFFEF3965);
+  // static const mainColor = Color(0xFFEF3965);
 }
