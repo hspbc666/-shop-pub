@@ -13,6 +13,15 @@ class Constants {
   static const String httpHeaderTokenPrefix = "Bearer ";
 }
 
+class OrderTab {
+  static const int orderTabAll = 0;
+  static const int orderTabToPay = 1;
+  static const int orderTabToDeliver = 2;
+  static const int orderTabToReceive = 3;
+  static const int orderTabToComment = 4;
+  static const int orderTabToReturn = 5;
+}
+
 class LblColors {
   static const mainColor = Color(0xFFEF3965);
   static const themeColor = MaterialColor(

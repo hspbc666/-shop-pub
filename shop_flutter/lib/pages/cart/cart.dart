@@ -1,13 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_flutter/constants.dart';
 import 'package:shop_flutter/network/bean/cart_item_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/login/login_manager.dart';
-
-import 'package:shop_flutter/constants.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -55,7 +53,8 @@ class _CartState extends State<CartPage> {
                     Text("已选(" + selectedCartIdList.length.toString() + ")"),
                     const Spacer(flex: 1),
                     const Text("总计"),
-                    Text("￥" + selectedSum.toString(), style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965))),
+                    Text("￥" + selectedSum.toString(),
+                        style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965))),
                     const Spacer(flex: 3),
                     SizedBox(
                       width: 100,
@@ -172,7 +171,8 @@ class _CartState extends State<CartPage> {
                     thickness: 1,
                     color: Color(0XFFEBEBEB),
                   ),
-                  Container(padding: const EdgeInsets.only(left: 10, right: 10), child: Text(cartItem.quantity.toString())),
+                  Container(
+                      padding: const EdgeInsets.only(left: 10, right: 10), child: Text(cartItem.quantity.toString())),
                   const VerticalDivider(
                     width: 1,
                     thickness: 1,
@@ -236,8 +236,8 @@ class _CartState extends State<CartPage> {
 
   //TODO: 计算总计金额
   void calcSum() {
-    int sum=0;
-    for(int i=0;i<selectedCartIdList.length;i++){
+    int sum = 0;
+    for (int i = 0; i < selectedCartIdList.length; i++) {
       // sum += dataList.
     }
     selectedSum = sum;
