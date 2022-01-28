@@ -8,31 +8,50 @@ class MinePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('我的'),
-      ),
-      body: Center(
-        child: Container(margin: EdgeInsets.fromLTRB(20, 20, 20, 20), child: buildColumn()),
-      ),
+      body: Container(
+          margin: EdgeInsets.fromLTRB(20, 30, 20, 20),
+          child: Column(
+            children: [buildSettings(), buildUserInfo()],
+          )),
     );
   }
 
-  Column buildColumn() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
+  Row buildSettings() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        IconButton(
+          iconSize: 50,
+          icon: Image.asset(
+            'assets/images/settings.png',
+            width: 30,
+            height: 30,
+          ),
+          onPressed: () {
+            gotoSettingsPage();
+          },
+        )
+      ],
+    );
+  }
+
+  buildUserInfo() {
+    return Row(
       children: <Widget>[
-        CircleAvatar(backgroundColor: Colors.white, backgroundImage: AssetImage("assets/images/user_logo.png")),
-        Text(
-          "蓝不蓝编程",
-          style: TextStyle(fontSize: 15),
+        const Image(
+          image: AssetImage('assets/images/user.png'),
+          width: 50,
+          height: 50,
         ),
-        Expanded(child: Text("haha")),
-        Text(
-          "©2021 蓝不蓝编程",
-          style: TextStyle(fontSize: 15),
+        Column(
+          children: [
+            Text("尊贵会员"),
+            Text("级别：白银"),
+          ],
         ),
       ],
     );
   }
+
+  void gotoSettingsPage() {}
 }
