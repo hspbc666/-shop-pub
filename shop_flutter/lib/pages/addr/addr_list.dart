@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:note_flutter/network/http_manager.dart';
+import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants.dart';

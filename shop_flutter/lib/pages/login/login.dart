@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:note_flutter/network/http_manager.dart';
+import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants.dart';
@@ -10,15 +10,15 @@ import '../../constants.dart';
 /// 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
 /// 公众号：蓝不蓝编程
 class LoginPage extends StatefulWidget {
-  LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   String name = "";
   String password = "";
@@ -29,14 +29,14 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: Text("登录"),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
       ),
       body: Center(
-        child: Container(margin: EdgeInsets.fromLTRB(20, 20, 20, 20), child: buildColumn()),
+        child: Container(margin: const EdgeInsets.fromLTRB(20, 20, 20, 20), child: buildColumn()),
       ),
     );
   }
@@ -84,8 +84,8 @@ class _LoginPageState extends State<LoginPage> {
     String url = "user/login";
     HttpManager.getInstance().post(url, data: {"name": _nameController.text, "password": _passwordController.text}).then((resp) async {
       SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-      sharedPreferences.setInt(Constants.SP_KEY_USER_ID, resp['data']['id']);
-      sharedPreferences.setString(Constants.SP_KEY_TOKEN, resp['data']['token']);
+      sharedPreferences.setInt(Constants.spKeyUserId, resp['data']['id']);
+      sharedPreferences.setString(Constants.spKeyToken, resp['data']['token']);
       Navigator.pop(context);
     });
   }

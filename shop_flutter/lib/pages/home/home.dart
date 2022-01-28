@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:note_flutter/pages/addr/addr_list.dart';
-import 'package:note_flutter/pages/cart/cart.dart';
+import 'package:shop_flutter/pages/addr/addr_list.dart';
+import 'package:shop_flutter/pages/cart/cart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants.dart';
@@ -34,7 +34,7 @@ class _MainPageState extends State<MainPage> {
 
   Future<void> checkLogin() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String? token = sharedPreferences.getString(Constants.SP_KEY_TOKEN);
+    String? token = sharedPreferences.getString(Constants.spKeyToken);
     if (token == null) {
       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
     }

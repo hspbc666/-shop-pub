@@ -51,7 +51,7 @@
         <view class="cost-text">实付款</view>
         <view class="cost">{{costSum}}</view>
       </view>
-      <view class="buy-btn" bindtap="createOrder">提交订单</view>
+      <view class="buy-btn {{addr!=null?'btn-enabled':'btn-disabled'}}" bindtap="{{addr!=null?'createOrder':''}}">提交订单</view>
     </view>
   </view>
 

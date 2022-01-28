@@ -1,6 +1,16 @@
+# shop_flutter
 
-# 关于我
-厦门大学计算机专业|华为八年高级工程师  
-十年软件开发经验，5年编程培训教学经验  
-目前从事编程教学，软件开发指导，软件类毕业设计指导。  
-所有编程资料及开源项目见[https://juejin.cn/post/7002792005688360968](https://juejin.cn/post/7002792005688360968)
+X商城-蓝不蓝编程
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

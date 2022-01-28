@@ -12,9 +12,9 @@ class TokenInterceptor extends Interceptor {
   @override
   Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String? token = sharedPreferences.getString(Constants.SP_KEY_TOKEN);
+    String? token = sharedPreferences.getString(Constants.spKeyToken);
     if (token != null) {
-      options.headers[Constants.HTTP_HEADER_AUTH] = Constants.HTTP_HEADER_TOKEN_PREFIX + token;
+      options.headers[Constants.httpHeaderAuth] = Constants.httpHeaderTokenPrefix + token;
     }
     handler.next(options);
   }

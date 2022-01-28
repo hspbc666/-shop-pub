@@ -192,5 +192,12 @@
   display: flex;
   justify-content: center;
   margin-right: 50rpx;
+}
+
+.btn-enabled {
   background-color: #EF3965;
+}
+
+.btn-disabled {
+  background-color: #CBCCD2;
 }

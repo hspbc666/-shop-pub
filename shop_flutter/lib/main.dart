@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:note_flutter/constants.dart';
-import 'package:note_flutter/util/sp_util.dart';
+import 'package:shop_flutter/constants.dart';
 
 import 'pages/home/home.dart';
 
@@ -17,9 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'X商城-蓝不蓝编程',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData().copyWith(
-        brightness: Brightness.light,
-        primaryColor: LblColors.mainColor,
+      theme: ThemeData(
+        primarySwatch: LblColors.themeColor,
       ),
       home: MainPage(),
     );
