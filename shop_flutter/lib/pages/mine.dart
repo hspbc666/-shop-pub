@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_flutter/constants.dart';
 import 'package:shop_flutter/pages/login/login.dart';
 import 'package:shop_flutter/pages/login/login_manager.dart';
+import 'package:shop_flutter/pages/order/order_list.dart';
 import 'package:shop_flutter/pages/settings.dart';
 import 'package:shop_flutter/ui_kit.dart';
 
@@ -59,35 +60,35 @@ class _MineState extends State<MinePage> {
         InkWell(
           child: buildToOrderBtns('assets/images/to_pay.png', "待付款"),
           onTap: () {
-            gotoOrderPage(OrderTab.orderTabToPay);
+            gotoOrderPage(OrderTabCodes.orderTabToPay);
           },
         ),
         const Spacer(),
         InkWell(
           child: buildToOrderBtns('assets/images/to_deliver.png', "待发货"),
           onTap: () {
-            gotoOrderPage(OrderTab.orderTabToDeliver);
+            gotoOrderPage(OrderTabCodes.orderTabToDeliver);
           },
         ),
         const Spacer(),
         InkWell(
           child: buildToOrderBtns('assets/images/to_receive.png', "待收货"),
           onTap: () {
-            gotoOrderPage(OrderTab.orderTabToReceive);
+            gotoOrderPage(OrderTabCodes.orderTabToReceive);
           },
         ),
         const Spacer(),
         InkWell(
           child: buildToOrderBtns('assets/images/to_comment.png', "待评价"),
           onTap: () {
-            gotoOrderPage(OrderTab.orderTabToComment);
+            gotoOrderPage(OrderTabCodes.orderTabToComment);
           },
         ),
         const Spacer(),
         InkWell(
           child: buildToOrderBtns('assets/images/to_return.png', "退换/售后"),
           onTap: () {
-            gotoOrderPage(OrderTab.orderTabToReturn);
+            gotoOrderPage(OrderTabCodes.orderTabToReturn);
           },
         ),
       ],
@@ -128,7 +129,7 @@ class _MineState extends State<MinePage> {
             ],
           ),
           onTap: () {
-            gotoOrderPage(OrderTab.orderTabAll);
+            gotoOrderPage(OrderTabCodes.orderTabAll);
           },
         ),
       ],
@@ -210,7 +211,7 @@ class _MineState extends State<MinePage> {
   void gotoOrderPage(int tab) {
     LoginManager.isLoggedIn().then((value) {
       if (value) {
-        Navigator.push(mContext, MaterialPageRoute(builder: (context) => const SettingsPage()));
+        Navigator.push(mContext, MaterialPageRoute(builder: (context) => const OrderListPage()));
       } else {
         Navigator.push(mContext, MaterialPageRoute(builder: (context) => const LoginPage()));
       }

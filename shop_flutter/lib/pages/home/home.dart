@@ -4,7 +4,7 @@ import 'package:shop_flutter/pages/addr/addr_list.dart';
 import 'package:shop_flutter/pages/cart.dart';
 
 import '../../constants.dart';
-import '../category/category.dart';
+import '../category.dart';
 import '../login/login.dart';
 import '../mine.dart';
 

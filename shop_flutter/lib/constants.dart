@@ -13,7 +13,7 @@ class Constants {
   static const String httpHeaderTokenPrefix = "Bearer ";
 }
 
-class OrderTab {
+class OrderTabCodes {
   static const int orderTabAll = 0;
   static const int orderTabToPay = 1;
   static const int orderTabToDeliver = 2;
