@@ -1,14 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:shop_flutter/constants.dart';
+import 'package:shop_flutter/pages/login/login.dart';
+import 'package:shop_flutter/pages/login/login_manager.dart';
+import 'package:shop_flutter/pages/settings.dart';
 import 'package:shop_flutter/ui_kit.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
 /// 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
 /// 公众号：蓝不蓝编程
-class MinePage extends StatelessWidget {
+
+class MinePage extends StatefulWidget {
+  const MinePage({Key? key}) : super(key: key);
+
+  @override
+  createState() => _MineState();
+}
+
+class _MineState extends State<MinePage> {
+  late BuildContext mContext;
+  String userName = "登录/注册 >";
+
+  @override
+  void initState() {
+    super.initState();
+    initUserName();
+  }
+
   @override
   Widget build(BuildContext context) {
+    mContext = context;
     return Scaffold(
       body: Container(
           margin: const EdgeInsets.fromLTRB(20, 30, 20, 20),
@@ -122,8 +143,8 @@ class MinePage extends StatelessWidget {
           iconSize: 50,
           icon: Image.asset(
             'assets/images/settings.png',
-            width: 30,
-            height: 30,
+            width: 25,
+            height: 25,
           ),
           onPressed: () {
             gotoSettingsPage();
@@ -144,12 +165,17 @@ class MinePage extends StatelessWidget {
         Container(
           padding: EdgeInsets.only(left: 20),
           child: Column(
-            children: const [
-              Text("尊贵会员",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                  )),
-              Text("级别：白银"),
+            children: [
+              InkWell(
+                child: Text(userName,
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                    )),
+                onTap: () {
+                  checkLogin();
+                },
+              ),
+              const Text("级别：白银"),
             ],
           ),
         ),
@@ -157,7 +183,45 @@ class MinePage extends StatelessWidget {
     );
   }
 
-  void gotoSettingsPage() {}
+  void initUserName() {
+    LoginManager.isLoggedIn().then((value) {
+      if (value) {
+        userName = "尊贵会员";
+      } else {
+        userName = "登录/注册 >";
+      }
+      setState(() {
+        userName = userName;
+      });
+    });
+  }
 
-  void gotoOrderPage(int tab) {}
+  void gotoSettingsPage() {
+    LoginManager.isLoggedIn().then((value) {
+      if (value) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage()))
+            .then((value) => {initUserName()});
+      } else {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage())).then((value) => {initUserName()});
+      }
+    });
+  }
+
+  void gotoOrderPage(int tab) {
+    LoginManager.isLoggedIn().then((value) {
+      if (value) {
+        Navigator.push(mContext, MaterialPageRoute(builder: (context) => const SettingsPage()));
+      } else {
+        Navigator.push(mContext, MaterialPageRoute(builder: (context) => const LoginPage()));
+      }
+    });
+  }
+
+  void checkLogin() {
+    LoginManager.isLoggedIn().then((value) {
+      if (!value) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage())).then((value) => {initUserName()});
+      }
+    });
+  }
 }

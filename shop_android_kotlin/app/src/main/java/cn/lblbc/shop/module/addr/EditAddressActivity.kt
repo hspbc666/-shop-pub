@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.part_addr_type_info.*
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：蓝不蓝编程
  */
-class ModifyAddressActivity : BaseVmActivity<AddressViewModel>() {
+class EditAddressActivity : BaseVmActivity<AddressViewModel>() {
     private var addType = 0
     private var userAddr: UserAddr? = null
     override fun layoutResId(): Int = R.layout.activity_modify_address

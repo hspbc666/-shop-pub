@@ -36,7 +36,7 @@
         <activity android:name="cn.lblbc.shop.module.addr.AddressListActivity" />
         <activity android:name="cn.lblbc.shop.module.search.SearchActivity" />
         <activity android:name="cn.lblbc.shop.module.addr.AddAddressActivity" />
-        <activity android:name="cn.lblbc.shop.module.addr.ModifyAddressActivity" />
+        <activity android:name="cn.lblbc.shop.module.addr.EditAddressActivity" />
         <activity android:name="cn.lblbc.shop.module.addr.select.SelectAddressActivity" />
     </application>
 

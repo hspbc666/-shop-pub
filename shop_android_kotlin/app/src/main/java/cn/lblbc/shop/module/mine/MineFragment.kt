@@ -58,12 +58,12 @@ class MineFragment : BaseFragment() {
 
         if (LoginManager.isLoggedIn()) {
             userInfoLayout.setOnClickListener { }
-            allOrderTv.setOnClickListener { jumpToOrder(ORDER_TAB_ALL) }
-            toPayTv.setOnClickListener { jumpToOrder(ORDER_TAB_TO_PAY) }
-            toDeliverTv.setOnClickListener { jumpToOrder(ORDER_TAB_TO_DELIVER)}
-            toReceiveTv.setOnClickListener { jumpToOrder(ORDER_TAB_TO_RECEIVE)}
-            toCommentTv.setOnClickListener { jumpToOrder(ORDER_TAB_TO_COMMENT)}
-            toReturnTv.setOnClickListener { jumpToOrder(ORDER_TAB_TO_RETURN)}
+            allOrderTv.setOnClickListener { gotoOrderPage(ORDER_TAB_ALL) }
+            toPayTv.setOnClickListener { gotoOrderPage(ORDER_TAB_TO_PAY) }
+            toDeliverTv.setOnClickListener { gotoOrderPage(ORDER_TAB_TO_DELIVER)}
+            toReceiveTv.setOnClickListener { gotoOrderPage(ORDER_TAB_TO_RECEIVE)}
+            toCommentTv.setOnClickListener { gotoOrderPage(ORDER_TAB_TO_COMMENT)}
+            toReturnTv.setOnClickListener { gotoOrderPage(ORDER_TAB_TO_RETURN)}
         } else {
             userInfoLayout.setOnClickListener { gotoLoginPage() }
             allOrderTv.setOnClickListener { gotoLoginPage() }
@@ -75,7 +75,7 @@ class MineFragment : BaseFragment() {
         }
     }
 
-    private fun jumpToOrder(tabIndex: Int) {
+    private fun gotoOrderPage(tabIndex: Int) {
         val intent = Intent(context, OrderListActivity::class.java)
         intent.putExtra(Constants.EXTRA_KEY_TAB_INDEX, tabIndex)
         startActivity(intent)

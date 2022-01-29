@@ -3,9 +3,10 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_flutter/constants.dart';
-import 'package:shop_flutter/network/bean/cart_item_entity.dart';
+import 'package:shop_flutter/network/bean/query_cart_resp.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/login/login_manager.dart';
+import 'package:shop_flutter/ui_kit.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -20,7 +21,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartState extends State<CartPage> {
-  List<CartItemData> dataList = [];
+  List<CartItem> dataList = [];
   List<String> selectedCartIdList = [];
   int selectedSum = 0;
 
@@ -46,29 +47,32 @@ class _CartState extends State<CartPage> {
                 height: 10,
                 thickness: 1,
               ),
-              Container(
-                child: Row(
-                  children: [
-                    const Spacer(flex: 1),
-                    Text("已选(" + selectedCartIdList.length.toString() + ")"),
-                    const Spacer(flex: 1),
-                    const Text("总计"),
-                    Text("￥" + selectedSum.toString(),
-                        style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965))),
-                    const Spacer(flex: 3),
-                    SizedBox(
-                      width: 100,
-                      child: ElevatedButton(
-                        child: const Text('结算'),
-                        onPressed: () {},
-                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(buildBtnColor())),
-                      ),
-                    )
-                  ],
-                ),
-              )
+              buildBottomRow()
             ],
           )),
+    );
+  }
+
+  Container buildBottomRow() {
+    return Container(
+      child: Row(
+        children: [
+          const Spacer(flex: 1),
+          Text("已选(" + selectedCartIdList.length.toString() + ")"),
+          const Spacer(flex: 1),
+          const Text("总计"),
+          Text("￥" + selectedSum.toString(), style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965))),
+          const Spacer(flex: 3),
+          SizedBox(
+            width: 100,
+            child: ElevatedButton(
+              child: const Text('结算'),
+              onPressed: () {},
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(buildBtnColor())),
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -85,7 +89,7 @@ class _CartState extends State<CartPage> {
       if (value) {
         String url = "shop/cart/list";
         HttpManager.getInstance().get(url).then((resp) {
-          var result = CartItemEntity.fromJson(resp);
+          var result = QueryCartResp.fromJson(resp);
           // Map<String, dynamic> result = Map<String, dynamic>.from(resp);
           setState(() {
             dataList = result.data;
@@ -95,7 +99,7 @@ class _CartState extends State<CartPage> {
     });
   }
 
-  getItem(CartItemData cartItem) {
+  getItem(CartItem cartItem) {
     var row = Container(
       margin: EdgeInsets.all(4.0),
       child: InkWell(
@@ -110,7 +114,7 @@ class _CartState extends State<CartPage> {
     );
   }
 
-  Row buildRow(CartItemData cartItem) {
+  Row buildRow(CartItem cartItem) {
     return Row(
       children: <Widget>[
         Expanded(
@@ -137,7 +141,7 @@ class _CartState extends State<CartPage> {
     );
   }
 
-  Column buildGoodsInfoCol(CartItemData cartItem) {
+  Column buildGoodsInfoCol(CartItem cartItem) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -218,7 +222,7 @@ class _CartState extends State<CartPage> {
     );
   }
 
-  Checkbox buildCheckbox(CartItemData cartItem) {
+  Checkbox buildCheckbox(CartItem cartItem) {
     return Checkbox(
       value: selectedCartIdList.contains(cartItem.id),
       onChanged: (isChecked) {
@@ -252,12 +256,11 @@ class _CartState extends State<CartPage> {
         },
       );
     } else {
-      // 加载菊花
-      return CupertinoActivityIndicator();
+      return emptyContainer();
     }
   }
 
-  onRowClick(CartItemData cartItem) {
+  onRowClick(CartItem cartItem) {
     // Navigator.push(context, MaterialPageRoute(builder: (context) => ViewNotePage(noteId: note['id'])));
   }
 

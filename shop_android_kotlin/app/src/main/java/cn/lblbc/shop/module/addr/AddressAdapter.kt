@@ -53,7 +53,7 @@ class AddressAdapter(var mViewModel: AddressViewModel) : RecyclerView.Adapter<Re
     }
 
     private fun gotoEditAddrPage(data: UserAddr) {
-        val intent = Intent(mContext, ModifyAddressActivity::class.java)
+        val intent = Intent(mContext, EditAddressActivity::class.java)
         intent.putExtra(Constants.EXTRA_KEY_ADDR_INFO, JsonUtil.toJson(data))
         mContext.startActivity(intent)
     }

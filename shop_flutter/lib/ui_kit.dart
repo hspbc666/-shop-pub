@@ -11,3 +11,14 @@ myVerticalSpacer(double padding) {
     margin: EdgeInsets.only(left: padding),
   );
 }
+
+Divider buildDivider() {
+  return const Divider(
+    height: 10,
+    thickness: 1,
+  );
+}
+
+emptyContainer() {
+  return Container();
+}

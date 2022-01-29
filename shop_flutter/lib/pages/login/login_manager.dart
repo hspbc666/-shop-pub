@@ -1,5 +1,5 @@
-import 'package:shop_flutter/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_flutter/constants.dart';
 
 class LoginManager {
   static Future<bool> isLoggedIn() async {
@@ -10,5 +10,11 @@ class LoginManager {
       result = true;
     }
     return result;
+  }
+
+  static logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove(Constants.spKeyUserId);
+    prefs.remove(Constants.spKeyToken);
   }
 }

@@ -9,7 +9,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cn.lblbc.shop.R
-import cn.lblbc.shop.module.addr.ModifyAddressActivity
+import cn.lblbc.shop.module.addr.EditAddressActivity
 import cn.lblbc.shop.network.response.UserAddr
 import cn.lblbc.shop.utils.Constants
 import cn.lblbc.shop.utils.JsonUtil
@@ -60,7 +60,7 @@ class SelectAddressAdapter(
     }
 
     private fun gotoEditAddrPage(data: UserAddr) {
-        val intent = Intent(mContext, ModifyAddressActivity::class.java)
+        val intent = Intent(mContext, EditAddressActivity::class.java)
         intent.putExtra(Constants.EXTRA_KEY_ADDR_INFO, JsonUtil.toJson(data))
         mContext.startActivity(intent)
     }

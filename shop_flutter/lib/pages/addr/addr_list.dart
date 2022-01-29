@@ -1,111 +1,87 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_flutter/network/bean/query_user_addr_list_resp.dart';
 import 'package:shop_flutter/network/http_manager.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../constants.dart';
-import '../add_note.dart';
-import '../view_note.dart';
+import 'package:shop_flutter/pages/addr/addr_add.dart';
+import 'package:shop_flutter/pages/addr/addr_edit.dart';
+import 'package:shop_flutter/pages/login/login_manager.dart';
+import 'package:shop_flutter/ui_kit.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
 /// 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
 /// 公众号：蓝不蓝编程
-class AddrListPage extends StatelessWidget {
-  final parentContext;
 
-  AddrListPage(this.parentContext);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '收货地址',
-      home: AddrListWidget(this.parentContext),
-    );
-  }
-}
-
-class AddrListWidget extends StatefulWidget {
-  final parentContext;
-
-  AddrListWidget(this.parentContext);
+class AddrListPage extends StatefulWidget {
+  const AddrListPage({Key? key}) : super(key: key);
 
   @override
   createState() => _AddrListState();
 }
 
-class _AddrListState extends State<AddrListWidget> {
-  List notes = [];
+class _AddrListState extends State<AddrListPage> {
+  List<UserAddr> dataList = [];
 
   @override
   void initState() {
     super.initState();
-    loadData();
+    queryData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("X商城"),
+        title: Text("收货地址"),
       ),
-      body: Center(
-        child: getBody(),
+      body: Container(
+          margin: const EdgeInsets.fromLTRB(5, 20, 10, 0),
+          child: Column(
+            children: [Expanded(child: buildAddrInfoList()), buildBottomRow()],
+          )),
+    );
+  }
+
+  Container buildBottomRow() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 15),
+      width: double.infinity,
+      child: SizedBox(
+        child: ElevatedButton(
+          child: const Text('添加收货地址'),
+          onPressed: () {
+            gotoAddAddrPage();
+          },
+          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFEF3965))),
+        ),
       ),
     );
   }
 
-  gotoAddNotePage() {
-    Navigator.push(widget.parentContext, MaterialPageRoute(builder: (context) => AddNotePage()));
-  }
-
-  loadData() async {
-    // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    // String? userId = sharedPreferences.getString(Constants.SP_KEY_USER_ID);
-    // if (userId != null) {
-    //   String url = "note/api/list/" + userId.toString();
-    //   HttpManager.getInstance().get(url).then((resp) {
-    //     Map<String, dynamic> result = new Map<String, dynamic>.from(resp);
-    //     setState(() {
-    //       notes = result['data'];
-    //     });
-    //   });
-    // }
-  }
-
-  getItem(note) {
+  getItem(UserAddr userAddrData) {
     var row = Container(
-      margin: EdgeInsets.all(4.0),
-      child: InkWell(
-        onTap: () {
-          onRowClick(note);
-        },
-        child: buildRow(note),
-      ),
+      margin: const EdgeInsets.all(4.0),
+      child: buildRow(userAddrData),
     );
     return Card(
       child: row,
     );
   }
 
-  Row buildRow(note) {
+  Row buildRow(UserAddr userAddrData) {
     return Row(
       children: <Widget>[
         Expanded(
             child: Container(
-          margin: EdgeInsets.only(left: 8.0),
-          height: 40.0,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
+          padding: const EdgeInsets.only(top: 5, bottom: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(
-                note['content'],
-                style: TextStyle(
-                  fontSize: 18.0,
-                ),
-                maxLines: 1,
-              ),
+              Expanded(
+                  child: Container(
+                margin: const EdgeInsets.only(left: 10),
+                child: buildAddrInfoCol(userAddrData),
+              ))
             ],
           ),
         ))
@@ -113,20 +89,129 @@ class _AddrListState extends State<AddrListWidget> {
     );
   }
 
-  getBody() {
-    if (notes.length != 0) {
-      return ListView.builder(
-          itemCount: notes.length,
-          itemBuilder: (BuildContext context, int position) {
-            return getItem(notes[position]);
-          });
+  Column buildAddrInfoCol(UserAddr userAddrData) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        buildUserInfoRow(userAddrData),
+        mySpacer(10),
+        Text(userAddrData.address),
+        mySpacer(10),
+        buildDivider(),
+        Row(
+          children: [
+            Spacer(),
+            OutlinedButton(
+              child: const Text('删除', style: TextStyle(color: Color(0xFF575E64))),
+              onPressed: () {
+                deleteAddress(userAddrData.id);
+              },
+            ),
+            myVerticalSpacer(10),
+            OutlinedButton(
+              child: const Text('编辑', style: TextStyle(color: Color(0xFF575E64))),
+              onPressed: () {
+                gotoEditAddrPage(userAddrData.id);
+              },
+            )
+          ],
+        )
+      ],
+    );
+  }
+
+  Row buildUserInfoRow(UserAddr userAddrData) {
+    if (userAddrData.defaultAddress) {
+      return buildDefaultUserInfoRow(userAddrData);
     } else {
-      // 加载菊花
-      return CupertinoActivityIndicator();
+      return buildNonDefaultUserInfoRow(userAddrData);
     }
   }
 
-  onRowClick(note) {
-    Navigator.push(widget.parentContext, MaterialPageRoute(builder: (context) => ViewNotePage(noteId: note['id'])));
+  Row buildDefaultUserInfoRow(UserAddr userAddrData) {
+    return Row(
+      children: [
+        Text(userAddrData.name),
+        myVerticalSpacer(10),
+        Text(
+          userAddrData.phone,
+          style: const TextStyle(color: Color(0xFF999999)),
+        ),
+        myVerticalSpacer(10),
+        buildDefaultAddrButton(),
+      ],
+    );
+  }
+
+  Row buildNonDefaultUserInfoRow(UserAddr userAddrData) {
+    return Row(
+      children: [
+        Text(userAddrData.name),
+        myVerticalSpacer(10),
+        Text(
+          userAddrData.phone,
+          style: const TextStyle(color: Color(0xFF999999)),
+        ),
+        myVerticalSpacer(10),
+      ],
+    );
+  }
+
+  TextButton buildDefaultAddrButton() {
+    return TextButton(
+      onPressed: () {},
+      child: Text('默认', style: const TextStyle(color: Colors.white)),
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(Color(0xFF8298bd)),
+      ),
+    );
+  }
+
+  buildAddrInfoList() {
+    if (dataList.isNotEmpty) {
+      return ListView.builder(
+        itemCount: dataList.length,
+        itemBuilder: (BuildContext context, int position) {
+          return getItem(dataList[position]);
+        },
+      );
+    } else {
+      return emptyContainer();
+    }
+  }
+
+  void gotoAddAddrPage() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AddAddrPage()))
+        .then((value) => {queryData()});
+  }
+
+  void gotoEditAddrPage(String userAddrId) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => EditAddrPage(
+                  userAddrId: userAddrId,
+                ))).then((value) => {queryData()});
+  }
+
+  void deleteAddress(String userAddrId) {
+    String url = "shop/addr/del/" + userAddrId;
+    HttpManager.getInstance().get(url).then((resp) {
+      queryData();
+    });
+  }
+
+  queryData() async {
+    LoginManager.isLoggedIn().then((value) {
+      if (value) {
+        String url = "shop/addr/query";
+        HttpManager.getInstance().get(url).then((resp) {
+          var result = QueryUserAddrListResp.fromJson(resp);
+          setState(() {
+            dataList = result.data;
+          });
+        });
+      }
+    });
   }
 }

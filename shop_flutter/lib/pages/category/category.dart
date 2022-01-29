@@ -106,9 +106,6 @@ class _NoteListState extends State<CategoryPage> {
           itemBuilder: (BuildContext context, int position) {
             return getItem(notes[position]);
           });
-    } else {
-      // 加载菊花
-      return CupertinoActivityIndicator();
     }
   }
 
