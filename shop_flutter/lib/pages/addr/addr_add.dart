@@ -41,42 +41,44 @@ class _AddAddrState extends State<AddAddrPage> {
       ),
       body: Container(
           margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-          child: Column(
-            children: [
-              TextField(
-                decoration: const InputDecoration(hintText: "请输入收货人真实姓名", labelText: "收货人"),
-                controller: nameController,
-              ),
-              TextField(
-                  decoration: const InputDecoration(hintText: "请输入收货人手机号", labelText: "手机号"),
-                  controller: phoneController,
-                  keyboardType: TextInputType.number),
-              TextField(
-                decoration: const InputDecoration(hintText: "请输入所在地区", labelText: "所在地区"),
-                controller: regionController,
-              ),
-              TextField(
-                decoration: const InputDecoration(
-                  hintText: "请输入详细地址",
-                  labelText: "详细地址",
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                TextField(
+                  decoration: const InputDecoration(hintText: "请输入收货人真实姓名", labelText: "收货人"),
+                  controller: nameController,
                 ),
-                controller: addressController,
-              ),
-              Row(
-                children: [
-                  Text("地址类型"),
-                  buildAddrTypeRadio(1),
-                  const Text("家庭"),
-                  buildAddrTypeRadio(2),
-                  Text("公司"),
-                  buildAddrTypeRadio(3),
-                  const Text("其他")
-                ],
-              ),
-              Row(
-                children: [Text("设为默认地址"), Spacer(), _newSwitch()],
-              )
-            ],
+                TextField(
+                    decoration: const InputDecoration(hintText: "请输入收货人手机号", labelText: "手机号"),
+                    controller: phoneController,
+                    keyboardType: TextInputType.number),
+                TextField(
+                  decoration: const InputDecoration(hintText: "请输入所在地区", labelText: "所在地区"),
+                  controller: regionController,
+                ),
+                TextField(
+                  decoration: const InputDecoration(
+                    hintText: "请输入详细地址",
+                    labelText: "详细地址",
+                  ),
+                  controller: addressController,
+                ),
+                Row(
+                  children: [
+                    Text("地址类型"),
+                    buildAddrTypeRadio(1),
+                    const Text("家庭"),
+                    buildAddrTypeRadio(2),
+                    Text("公司"),
+                    buildAddrTypeRadio(3),
+                    const Text("其他")
+                  ],
+                ),
+                Row(
+                  children: [Text("设为默认地址"), Spacer(), _newSwitch()],
+                )
+              ],
+            ),
           )),
     );
   }
