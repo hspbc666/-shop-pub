@@ -28,10 +28,10 @@ class _EditNotePageState extends State<EditNotePage> {
   @override
   void initState() {
     super.initState();
-    loadData();
+    queryData();
   }
 
-  loadData() async {
+  queryData() async {
     String url = "note/api/query/$_noteId";
     HttpManager.getInstance().get(url).then((resp) {
       Map<String, dynamic> result = new Map<String, dynamic>.from(resp);

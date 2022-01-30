@@ -20,7 +20,7 @@ class AddrListPage extends StatefulWidget {
 }
 
 class _AddrListState extends State<AddrListPage> {
-  List<UserAddr> dataList = [];
+  List<UserAddr> _dataList = [];
 
   @override
   void initState() {
@@ -168,11 +168,11 @@ class _AddrListState extends State<AddrListPage> {
   }
 
   buildAddrInfoList() {
-    if (dataList.isNotEmpty) {
+    if (_dataList.isNotEmpty) {
       return ListView.builder(
-        itemCount: dataList.length,
+        itemCount: _dataList.length,
         itemBuilder: (BuildContext context, int position) {
-          return getItem(dataList[position]);
+          return getItem(_dataList[position]);
         },
       );
     } else {
@@ -208,7 +208,7 @@ class _AddrListState extends State<AddrListPage> {
         HttpManager.getInstance().get(url).then((resp) {
           var result = QueryUserAddrListResp.fromJson(resp);
           setState(() {
-            dataList = result.data;
+            _dataList = result.data;
           });
         });
       }

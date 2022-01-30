@@ -21,14 +21,14 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartState extends State<CartPage> {
-  List<CartItem> dataList = [];
+  List<CartItem> _dataList = [];
   List<String> selectedCartIdList = [];
   int selectedSum = 0;
 
   @override
   void initState() {
     super.initState();
-    loadData();
+    queryData();
   }
 
   @override
@@ -84,15 +84,14 @@ class _CartState extends State<CartPage> {
     }
   }
 
-  loadData() async {
+  queryData() async {
     LoginManager.isLoggedIn().then((value) {
       if (value) {
         String url = "shop/cart/list";
         HttpManager.getInstance().get(url).then((resp) {
           var result = QueryCartResp.fromJson(resp);
-          // Map<String, dynamic> result = Map<String, dynamic>.from(resp);
           setState(() {
-            dataList = result.data;
+            _dataList = result.data;
           });
         });
       }
@@ -242,17 +241,17 @@ class _CartState extends State<CartPage> {
   void calcSum() {
     int sum = 0;
     for (int i = 0; i < selectedCartIdList.length; i++) {
-      // sum += dataList.
+      // sum += _dataList.
     }
     selectedSum = sum;
   }
 
   buildCartInfoList() {
-    if (dataList.isNotEmpty) {
+    if (_dataList.isNotEmpty) {
       return ListView.builder(
-        itemCount: dataList.length,
+        itemCount: _dataList.length,
         itemBuilder: (BuildContext context, int position) {
-          return getItem(dataList[position]);
+          return getItem(_dataList[position]);
         },
       );
     } else {

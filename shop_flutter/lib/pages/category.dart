@@ -25,7 +25,7 @@ class _NoteListState extends State<CategoryPage> {
   @override
   void initState() {
     super.initState();
-    loadData();
+    queryData();
   }
 
   @override
@@ -45,7 +45,7 @@ class _NoteListState extends State<CategoryPage> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => AddNotePage()));
   }
 
-  loadData() {
+  queryData() {
     LoginManager.isLoggedIn().then((value) {
       if (value) {
         String url = "shop/cart/list";

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shop_flutter/network/bean/query_order_list_resp_entity.dart';
+import 'package:shop_flutter/network/http_manager.dart';
 
 class OrderListPage extends StatefulWidget {
   const OrderListPage({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class _OrderListState extends State<OrderListPage> {
     OrderTab(4, "待评价"),
     OrderTab(5, "退换/售后"),
   ];
+
   // List<ProjectListDataData> _listDatas = List();
 
   @override
@@ -38,7 +41,7 @@ class _OrderListState extends State<OrderListPage> {
           children: _tabList.map((OrderTab orderTab) {
             return Padding(
               padding: const EdgeInsets.all(16.0),
-              child: OrderListWidget(orderTab: orderTab),
+              child: ProjectList(orderTab.code),
             );
           }).toList(),
         ),
@@ -47,10 +50,20 @@ class _OrderListState extends State<OrderListPage> {
   }
 }
 
-class OrderListWidget extends StatelessWidget {
-  const OrderListWidget({Key? key, required this.orderTab}) : super(key: key);
+class ProjectList extends StatefulWidget {
+  final int id;
 
-  final OrderTab orderTab;
+  ProjectList(this.id);
+
+  @override
+  _ProjectListState createState() {
+    return new _ProjectListState();
+  }
+}
+
+class _ProjectListState extends State<ProjectList> {
+  List<QueryOrderListRespData> _dataList = [];
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -59,12 +72,30 @@ class OrderListWidget extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Text(orderTab.name),
-          ],
+          children: _dataList.map((QueryOrderListRespData queryOrderListRespData) {
+            return Tab(
+              text: queryOrderListRespData.orderId,
+            );
+          }).toList(),
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
+  _getData() async {
+    String url = "shop/order/queryByStatus/" + widget.id.toString();
+    HttpManager.getInstance().get(url).then((resp) {
+      var result = QueryOrderListResp.fromJson(resp);
+      setState(() {
+        _dataList = result.data;
+      });
+    });
   }
 }
 
