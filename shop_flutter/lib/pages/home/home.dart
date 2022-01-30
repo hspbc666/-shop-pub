@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_flutter/pages/addr/addr_list.dart';
 import 'package:shop_flutter/pages/cart.dart';
+import 'package:shop_flutter/pages/order/order_list.dart';
 
 import '../../constants.dart';
 import '../category.dart';
@@ -25,8 +25,8 @@ class _MainPageState extends State<MainPage> {
   initState() {
     super.initState();
     list
+      ..add(const OrderListPage())
       ..add(const CategoryPage())
-      ..add(const AddrListPage())
       ..add(const CartPage())
       ..add(MinePage());
     checkLogin();
@@ -45,7 +45,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: list[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
@@ -68,7 +68,7 @@ class _MainPageState extends State<MainPage> {
               label: '我的'),
         ],
         selectedItemColor: LblColors.mainColor,
-        unselectedItemColor: Color(0xFF222222),
+        unselectedItemColor: const Color(0xFF222222),
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         onTap: (int index) {

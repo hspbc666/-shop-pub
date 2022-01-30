@@ -40,8 +40,8 @@ QueryOrderListRespData $QueryOrderListRespDataFromJson(Map<String, dynamic> json
   if (createTime != null) {
     queryOrderListRespData.createTime = createTime;
   }
-  final List<QueryOrderListRespDataList>? list =
-      jsonConvert.convertListNotNull<QueryOrderListRespDataList>(json['list']);
+  final List<QueryOrderListRespDataItem>? list =
+      jsonConvert.convertListNotNull<QueryOrderListRespDataItem>(json['list']);
   if (list != null) {
     queryOrderListRespData.list = list;
   }
@@ -63,8 +63,8 @@ Map<String, dynamic> $QueryOrderListRespDataToJson(QueryOrderListRespData entity
   return data;
 }
 
-QueryOrderListRespDataList $QueryOrderListRespDataListFromJson(Map<String, dynamic> json) {
-  final QueryOrderListRespDataList queryOrderListRespDataList = QueryOrderListRespDataList();
+QueryOrderListRespDataItem $QueryOrderListRespDataListFromJson(Map<String, dynamic> json) {
+  final QueryOrderListRespDataItem queryOrderListRespDataList = QueryOrderListRespDataItem();
   final dynamic? orderId = jsonConvert.convert<dynamic>(json['orderId']);
   if (orderId != null) {
     queryOrderListRespDataList.orderId = orderId;
@@ -96,7 +96,7 @@ QueryOrderListRespDataList $QueryOrderListRespDataListFromJson(Map<String, dynam
   return queryOrderListRespDataList;
 }
 
-Map<String, dynamic> $QueryOrderListRespDataListToJson(QueryOrderListRespDataList entity) {
+Map<String, dynamic> $QueryOrderListRespDataListToJson(QueryOrderListRespDataItem entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['orderId'] = entity.orderId;
   data['status'] = entity.status;

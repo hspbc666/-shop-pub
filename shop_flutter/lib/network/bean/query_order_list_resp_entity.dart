@@ -26,7 +26,7 @@ class QueryOrderListRespData {
   late String orderId;
   late int status;
   late int createTime;
-  late List<QueryOrderListRespDataList> list;
+  late List<QueryOrderListRespDataItem> list;
   late QueryOrderListRespDataUserAddr userAddr;
 
   QueryOrderListRespData();
@@ -42,7 +42,7 @@ class QueryOrderListRespData {
 }
 
 @JsonSerializable()
-class QueryOrderListRespDataList {
+class QueryOrderListRespDataItem {
   late dynamic orderId;
   late int status;
   late String goodsId;
@@ -51,9 +51,9 @@ class QueryOrderListRespDataList {
   late String squarePic;
   late int quantity;
 
-  QueryOrderListRespDataList();
+  QueryOrderListRespDataItem();
 
-  factory QueryOrderListRespDataList.fromJson(Map<String, dynamic> json) => $QueryOrderListRespDataListFromJson(json);
+  factory QueryOrderListRespDataItem.fromJson(Map<String, dynamic> json) => $QueryOrderListRespDataListFromJson(json);
 
   Map<String, dynamic> toJson() => $QueryOrderListRespDataListToJson(this);
 

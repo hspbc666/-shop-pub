@@ -40,8 +40,8 @@ class _OrderListState extends State<OrderListPage> {
         body: TabBarView(
           children: _tabList.map((OrderTab orderTab) {
             return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ProjectList(orderTab.code),
+              padding: const EdgeInsets.all(10.0),
+              child: OrderListWidget(orderTab.status),
             );
           }).toList(),
         ),
@@ -50,18 +50,18 @@ class _OrderListState extends State<OrderListPage> {
   }
 }
 
-class ProjectList extends StatefulWidget {
-  final int id;
+class OrderListWidget extends StatefulWidget {
+  final int status;
 
-  ProjectList(this.id);
+  const OrderListWidget(this.status, {Key? key}) : super(key: key);
 
   @override
-  _ProjectListState createState() {
-    return new _ProjectListState();
+  _OrderListWidgetState createState() {
+    return _OrderListWidgetState();
   }
 }
 
-class _ProjectListState extends State<ProjectList> {
+class _OrderListWidgetState extends State<OrderListWidget> {
   List<QueryOrderListRespData> _dataList = [];
 
   @override
@@ -73,8 +73,36 @@ class _ProjectListState extends State<ProjectList> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: _dataList.map((QueryOrderListRespData queryOrderListRespData) {
-            return Tab(
-              text: queryOrderListRespData.orderId,
+            return Column(
+              children: [
+                Row(
+                  children: const [
+                    Text("X商自营", style: TextStyle(fontSize: 18.0, color: Colors.black)),
+                    Spacer(),
+                    Text("状态")
+                  ],
+                ),
+                Column(
+                  children: queryOrderListRespData.list.map((QueryOrderListRespDataItem queryOrderListRespDataItem) {
+                    return Column(
+                      children: [
+                        Row(
+                          children: [
+                            Image(
+                              image: NetworkImage(queryOrderListRespDataItem.squarePic),
+                              width: 100,
+                              height: 100,
+                            ),
+                            Expanded(
+                                child:
+                                    Text(queryOrderListRespDataItem.name, maxLines: 2, overflow: TextOverflow.ellipsis))
+                          ],
+                        ),
+                      ],
+                    );
+                  }).toList(),
+                )
+              ],
             );
           }).toList(),
         ),
@@ -85,11 +113,11 @@ class _ProjectListState extends State<ProjectList> {
   @override
   void initState() {
     super.initState();
-    _getData();
+    _queryData();
   }
 
-  _getData() async {
-    String url = "shop/order/queryByStatus/" + widget.id.toString();
+  _queryData() async {
+    String url = "shop/order/queryByStatus/" + widget.status.toString();
     HttpManager.getInstance().get(url).then((resp) {
       var result = QueryOrderListResp.fromJson(resp);
       setState(() {
@@ -100,8 +128,8 @@ class _ProjectListState extends State<ProjectList> {
 }
 
 class OrderTab {
-  int code = 0;
+  int status = 0;
   String name = "";
 
-  OrderTab(this.code, this.name);
+  OrderTab(this.status, this.name);
 }

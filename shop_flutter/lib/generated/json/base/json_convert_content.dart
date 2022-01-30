@@ -91,8 +91,8 @@ class JsonConvert {
     if (type == (QueryOrderListRespData).toString()) {
       return QueryOrderListRespData.fromJson(json) as M;
     }
-    if (type == (QueryOrderListRespDataList).toString()) {
-      return QueryOrderListRespDataList.fromJson(json) as M;
+    if (type == (QueryOrderListRespDataItem).toString()) {
+      return QueryOrderListRespDataItem.fromJson(json) as M;
     }
     if (type == (QueryOrderListRespDataUserAddr).toString()) {
       return QueryOrderListRespDataUserAddr.fromJson(json) as M;
@@ -127,9 +127,9 @@ class JsonConvert {
       return data.map<QueryOrderListRespData>((Map<String, dynamic> e) => QueryOrderListRespData.fromJson(e)).toList()
           as M;
     }
-    if (<QueryOrderListRespDataList>[] is M) {
+    if (<QueryOrderListRespDataItem>[] is M) {
       return data
-          .map<QueryOrderListRespDataList>((Map<String, dynamic> e) => QueryOrderListRespDataList.fromJson(e))
+          .map<QueryOrderListRespDataItem>((Map<String, dynamic> e) => QueryOrderListRespDataItem.fromJson(e))
           .toList() as M;
     }
     if (<QueryOrderListRespDataUserAddr>[] is M) {
