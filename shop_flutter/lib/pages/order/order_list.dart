@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shop_flutter/network/bean/query_order_list_resp_entity.dart';
+import 'package:shop_flutter/network/bean/query_order_list_resp_resp.dart';
 import 'package:shop_flutter/network/http_manager.dart';
+import 'package:shop_flutter/pages/order/order_detail.dart';
+import 'package:shop_flutter/ui_kit.dart';
 
 class OrderListPage extends StatefulWidget {
   const OrderListPage({Key? key}) : super(key: key);
@@ -66,17 +68,24 @@ class _OrderListWidgetState extends State<OrderListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: _dataList.map((QueryOrderListRespData queryOrderListRespData) {
-            return buildOrderBlock(queryOrderListRespData);
-          }).toList(),
-        ),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: _dataList.map((QueryOrderListRespData queryOrderListRespData) {
+          return Card(
+            color: Colors.white,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: InkWell(
+                child: buildOrderBlock(queryOrderListRespData),
+                onTap: () {
+                  gotoOrderDetailPage(queryOrderListRespData.orderId);
+                },
+              ),
+            ),
+          );
+        }).toList(),
       ),
     );
   }
@@ -98,12 +107,39 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                       width: 100,
                       height: 100,
                     ),
-                    Expanded(child: Text(queryOrderListRespDataItem.name, maxLines: 2, overflow: TextOverflow.ellipsis))
+                    myVerticalSpacer(10),
+                    Expanded(
+                        child: Text(queryOrderListRespDataItem.name, maxLines: 2, overflow: TextOverflow.ellipsis)),
+                    Column(
+                      children: [
+                        Text("￥" + (queryOrderListRespDataItem.price / 100).toString()),
+                        Text("×" + queryOrderListRespDataItem.quantity.toString())
+                      ],
+                    )
                   ],
                 ),
               ],
             );
           }).toList(),
+        ),
+        mySpacer(10),
+        const Divider(
+          height: 10,
+          thickness: 1,
+        ),
+        Row(
+          children: [
+            Spacer(),
+            OutlinedButton(
+              child: const Text('发票详情', style: TextStyle(color: Color(0xFF575E64))),
+              onPressed: () {},
+            ),
+            myVerticalSpacer(10),
+            OutlinedButton(
+              child: const Text('申请售后', style: TextStyle(color: Color(0xFF575E64))),
+              onPressed: () {},
+            )
+          ],
         )
       ],
     );
@@ -123,6 +159,10 @@ class _OrderListWidgetState extends State<OrderListWidget> {
         _dataList = result.data;
       });
     });
+  }
+
+  void gotoOrderDetailPage(String orderId) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => OrderDetailPage(orderId)));
   }
 }
 
