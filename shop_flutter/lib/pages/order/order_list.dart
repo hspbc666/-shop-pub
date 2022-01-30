@@ -68,45 +68,44 @@ class _OrderListWidgetState extends State<OrderListWidget> {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
-      child: Center(
+      child: Container(
+        padding: const EdgeInsets.all(10),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: _dataList.map((QueryOrderListRespData queryOrderListRespData) {
-            return Column(
-              children: [
-                Row(
-                  children: const [
-                    Text("X商自营", style: TextStyle(fontSize: 18.0, color: Colors.black)),
-                    Spacer(),
-                    Text("状态")
-                  ],
-                ),
-                Column(
-                  children: queryOrderListRespData.list.map((QueryOrderListRespDataItem queryOrderListRespDataItem) {
-                    return Column(
-                      children: [
-                        Row(
-                          children: [
-                            Image(
-                              image: NetworkImage(queryOrderListRespDataItem.squarePic),
-                              width: 100,
-                              height: 100,
-                            ),
-                            Expanded(
-                                child:
-                                    Text(queryOrderListRespDataItem.name, maxLines: 2, overflow: TextOverflow.ellipsis))
-                          ],
-                        ),
-                      ],
-                    );
-                  }).toList(),
-                )
-              ],
-            );
+            return buildOrderBlock(queryOrderListRespData);
           }).toList(),
         ),
       ),
+    );
+  }
+
+  Column buildOrderBlock(QueryOrderListRespData queryOrderListRespData) {
+    return Column(
+      children: [
+        Row(
+          children: const [Text("X商自营", style: TextStyle(fontSize: 18.0, color: Colors.black)), Spacer(), Text("状态")],
+        ),
+        Column(
+          children: queryOrderListRespData.list.map((QueryOrderListRespDataItem queryOrderListRespDataItem) {
+            return Column(
+              children: [
+                Row(
+                  children: [
+                    Image(
+                      image: NetworkImage(queryOrderListRespDataItem.squarePic),
+                      width: 100,
+                      height: 100,
+                    ),
+                    Expanded(child: Text(queryOrderListRespDataItem.name, maxLines: 2, overflow: TextOverflow.ellipsis))
+                  ],
+                ),
+              ],
+            );
+          }).toList(),
+        )
+      ],
     );
   }
 
