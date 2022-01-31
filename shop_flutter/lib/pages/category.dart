@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_flutter/constants.dart';
+import 'package:shop_flutter/lblbc_constants.dart';
 import 'package:shop_flutter/network/bean/query_category_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_goods_by_category_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';

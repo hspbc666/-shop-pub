@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_flutter/lblbc_constants.dart';
 import 'package:shop_flutter/pages/cart.dart';
 import 'package:shop_flutter/pages/order/order_list.dart';
 
-import '../../constants.dart';
 import '../category.dart';
 import '../login/login.dart';
 import '../mine.dart';

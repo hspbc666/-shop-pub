@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../constants.dart';
+import 'package:shop_flutter/lblbc_constants.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634

@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_flutter/constants.dart';
+import 'package:shop_flutter/lblbc_constants.dart';
 
 class LoginManager {
   static Future<bool> isLoggedIn() async {

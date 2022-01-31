@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_flutter/constants.dart';
+import 'package:shop_flutter/lblbc_constants.dart';
 import 'package:shop_flutter/lblbc_ui_kit.dart';
 import 'package:shop_flutter/pages/addr/addr_list.dart';
 import 'package:shop_flutter/pages/login/login_manager.dart';
