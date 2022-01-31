@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_flutter/lblbc_ui_kit.dart';
 import 'package:shop_flutter/network/bean/query_user_addr_list_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/addr/addr_add.dart';
 import 'package:shop_flutter/pages/addr/addr_edit.dart';
 import 'package:shop_flutter/pages/login/login_manager.dart';
-import 'package:shop_flutter/ui_kit.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
