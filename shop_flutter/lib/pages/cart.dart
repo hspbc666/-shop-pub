@@ -4,6 +4,7 @@ import 'package:shop_flutter/lblbc_constants.dart';
 import 'package:shop_flutter/lblbc_ui_kit.dart';
 import 'package:shop_flutter/network/bean/query_cart_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
+import 'package:shop_flutter/pages/goods.dart';
 import 'package:shop_flutter/pages/login/login_manager.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
@@ -236,7 +237,8 @@ class _CartState extends State<CartPage> {
   }
 
   onRowClick(QueryCartRespData cartItem) {
-    // Navigator.push(context, MaterialPageRoute(builder: (context) => ViewNotePage(noteId: note['id'])));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => GoodsPage(cartItem.goodsId)))
+        .then((value) => {_queryData()});
   }
 
   void decreaseQuantity(QueryCartRespData cartItem) {

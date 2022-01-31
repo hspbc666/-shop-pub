@@ -15,9 +15,9 @@ import 'package:shop_flutter/pages/login/login_manager.dart';
 /// 公众号：蓝不蓝编程
 
 class GoodsPage extends StatefulWidget {
-  String goodsId;
+  final String goodsId;
 
-  GoodsPage(this.goodsId, {Key? key}) : super(key: key);
+  const GoodsPage(this.goodsId, {Key? key}) : super(key: key);
 
   @override
   createState() => _GoodsState();
