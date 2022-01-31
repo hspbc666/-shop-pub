@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import cn.lblbc.shop.R
 import cn.lblbc.shop.network.response.FullOrderInfo
 import cn.lblbc.shop.network.response.QueryOrderResp
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.TO_DELIVER
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.TO_PAY
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.TO_RECEIVE
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.TO_RETURN
+import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_DELIVER
+import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_PAY
+import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_RECEIVE
+import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_RETURN
 import cn.lblbc.shop.utils.getMoneyByYuan
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_order.view.*
@@ -60,10 +60,10 @@ class OrderAdapter() :
 
     private fun getOrderStatus(orderStatus: Int): String {
         return when (orderStatus) {
-            TO_PAY -> "待付款"
-            TO_DELIVER -> "待发货"
-            TO_RECEIVE -> "待收货"
-            TO_RETURN -> "退货中"
+            ORDER_STATUS_TO_PAY -> "待付款"
+            ORDER_STATUS_TO_DELIVER -> "待发货"
+            ORDER_STATUS_TO_RECEIVE -> "待收货"
+            ORDER_STATUS_TO_RETURN -> "退货中"
             else -> "已完成"
         }
     }

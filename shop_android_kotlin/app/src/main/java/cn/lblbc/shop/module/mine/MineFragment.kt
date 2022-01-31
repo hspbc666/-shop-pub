@@ -11,12 +11,13 @@ import cn.lblbc.shop.module.login.LoginManager
 import cn.lblbc.shop.module.order.list.OrderListActivity
 import cn.lblbc.shop.module.settings.SettingsActivity
 import cn.lblbc.shop.utils.Constants
-import cn.lblbc.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_ALL
-import cn.lblbc.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_COMMENT
-import cn.lblbc.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_DELIVER
-import cn.lblbc.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_PAY
-import cn.lblbc.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RECEIVE
-import cn.lblbc.shop.utils.Constants.OrderTab.Companion.ORDER_TAB_TO_RETURN
+import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_ALL
+import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_COMMENT
+import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_DELIVER
+import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_PAY
+import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_RECEIVE
+import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_RETURN
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -58,12 +59,12 @@ class MineFragment : BaseFragment() {
 
         if (LoginManager.isLoggedIn()) {
             userInfoLayout.setOnClickListener { }
-            allOrderTv.setOnClickListener { gotoOrderPage(ORDER_TAB_ALL) }
-            toPayTv.setOnClickListener { gotoOrderPage(ORDER_TAB_TO_PAY) }
-            toDeliverTv.setOnClickListener { gotoOrderPage(ORDER_TAB_TO_DELIVER)}
-            toReceiveTv.setOnClickListener { gotoOrderPage(ORDER_TAB_TO_RECEIVE)}
-            toCommentTv.setOnClickListener { gotoOrderPage(ORDER_TAB_TO_COMMENT)}
-            toReturnTv.setOnClickListener { gotoOrderPage(ORDER_TAB_TO_RETURN)}
+            allOrderTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_ALL) }
+            toPayTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_PAY) }
+            toDeliverTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_DELIVER)}
+            toReceiveTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_RECEIVE)}
+            toCommentTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_COMMENT)}
+            toReturnTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_RETURN)}
         } else {
             userInfoLayout.setOnClickListener { gotoLoginPage() }
             allOrderTv.setOnClickListener { gotoLoginPage() }
