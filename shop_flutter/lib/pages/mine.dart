@@ -211,7 +211,7 @@ class _MineState extends State<MinePage> {
   void gotoOrderPage(int orderStatus) {
     LoginManager.isLoggedIn().then((value) {
       if (value) {
-        Navigator.push(mContext, MaterialPageRoute(builder: (context) => const OrderListPage()));
+        Navigator.push(mContext, MaterialPageRoute(builder: (context) => OrderListPage(orderStatus)));
       } else {
         Navigator.push(mContext, MaterialPageRoute(builder: (context) => const LoginPage()));
       }

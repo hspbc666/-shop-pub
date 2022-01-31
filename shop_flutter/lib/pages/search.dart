@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shop_flutter/lblbc_constants.dart';
-import 'package:shop_flutter/lblbc_ui_kit.dart';
 import 'package:shop_flutter/pages/login/login.dart';
 import 'package:shop_flutter/pages/login/login_manager.dart';
 import 'package:shop_flutter/pages/order/order_list.dart';
@@ -146,7 +145,7 @@ class _SearchState extends State<SearchPage> {
   void gotoOrderPage(int orderStatus) {
     LoginManager.isLoggedIn().then((value) {
       if (value) {
-        Navigator.push(mContext, MaterialPageRoute(builder: (context) => const OrderListPage()));
+        Navigator.push(mContext, MaterialPageRoute(builder: (context) => OrderListPage(orderStatus)));
       } else {
         Navigator.push(mContext, MaterialPageRoute(builder: (context) => const LoginPage()));
       }

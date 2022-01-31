@@ -6,7 +6,9 @@ import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/order/order_detail.dart';
 
 class OrderListPage extends StatefulWidget {
-  const OrderListPage({Key? key}) : super(key: key);
+  final int orderStatus;
+
+  const OrderListPage(this.orderStatus, {Key? key}) : super(key: key);
 
   @override
   createState() => _OrderListState();
@@ -21,12 +23,18 @@ class _OrderListState extends State<OrderListPage> {
     OrderTab(4, "待评价"),
     OrderTab(5, "退换/售后"),
   ];
+  int currentTab = 0;
 
-  // List<ProjectListDataData> _listDatas = List();
+  @override
+  void initState() {
+    super.initState();
+    currentTab = widget.orderStatus;
+  }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      initialIndex: currentTab,
       length: _tabList.length,
       child: Scaffold(
         appBar: AppBar(

@@ -5,7 +5,6 @@ import 'package:shop_flutter/pages/cart.dart';
 import 'package:shop_flutter/pages/category.dart';
 import 'package:shop_flutter/pages/login/login.dart';
 import 'package:shop_flutter/pages/mine.dart';
-import 'package:shop_flutter/pages/order/order_list.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -24,7 +23,7 @@ class _MainPageState extends State<MainPage> {
   initState() {
     super.initState();
     list
-      ..add(const OrderListPage())
+      ..add(const CategoryPage())
       ..add(const CategoryPage())
       ..add(const CartPage())
       ..add(MinePage());
