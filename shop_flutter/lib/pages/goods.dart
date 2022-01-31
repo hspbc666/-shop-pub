@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_flutter/lblbc_constants.dart';
 import 'package:shop_flutter/lblbc_ui_kit.dart';
+import 'package:shop_flutter/network/bean/query_goods_detail_resp_entity.dart';
+import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/addr/addr_list.dart';
 import 'package:shop_flutter/pages/login/login_manager.dart';
 
@@ -11,15 +13,17 @@ import 'package:shop_flutter/pages/login/login_manager.dart';
 /// 公众号：蓝不蓝编程
 
 class GoodsPage extends StatefulWidget {
-  String orderId;
+  String goodsId;
 
-  GoodsPage(this.orderId, {Key? key}) : super(key: key);
+  GoodsPage(this.goodsId, {Key? key}) : super(key: key);
 
   @override
   createState() => _GoodsState();
 }
 
 class _GoodsState extends State<GoodsPage> {
+  QueryGoodsDetailRespData? queryGoodsDetailRespData;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,49 +42,31 @@ class _GoodsState extends State<GoodsPage> {
                     //设置背景色
                     color: Colors.white,
                   ),
-                  child: Column(
-                    children: [
-                      buildUserInfo(),
-                      mySpacer(10),
-                      defaultDivider(),
-                      mySpacer(10),
-                      buildRowWithArrow("收货地址", () {
-                        gotoAddrPage();
-                      })
-                    ],
-                  ),
+                  child: buildGoodsInfoBlock(),
                   padding: const EdgeInsets.all(10),
                 ),
-                Container(
-                  decoration: const BoxDecoration(
-                    //设置背景色
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    children: [
-                      buildRowWithArrow("隐私设置", () {}),
-                      mySpacer(10),
-                      defaultDivider(),
-                      mySpacer(10),
-                      buildRowWithArrow("APP版本", () {}),
-                      mySpacer(10),
-                      defaultDivider(),
-                      mySpacer(10),
-                      buildRowWithArrow("隐私政策", () {}),
-                      mySpacer(10),
-                      defaultDivider(),
-                      mySpacer(10),
-                      buildRowWithArrow("关于", () {})
-                    ],
-                  ),
-                  padding: const EdgeInsets.all(10),
-                  margin: EdgeInsets.only(top: 20),
-                )
               ])),
               buildBottomRow()
             ],
           )),
     );
+  }
+
+  buildGoodsInfoBlock() {
+    if (queryGoodsDetailRespData == null) {
+      return emptyContainer();
+    } else {
+      return Column(
+        children: [
+          Image(
+            image: NetworkImage(queryGoodsDetailRespData!.squarePic),
+            width: 100,
+            height: 100,
+          ),
+          myVerticalSpacer(10),
+        ],
+      );
+    }
   }
 
   buildUserInfo() {
@@ -151,5 +137,21 @@ class _GoodsState extends State<GoodsPage> {
 
   void gotoAddrPage() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => AddrListPage()));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _queryData();
+  }
+
+  _queryData() async {
+    String url = "shop/goods/query/" + widget.goodsId;
+    HttpManager.getInstance().get(url).then((resp) {
+      var result = QueryGoodsDetailRespEntity.fromJson(resp);
+      setState(() {
+        queryGoodsDetailRespData = result.data;
+      });
+    });
   }
 }
