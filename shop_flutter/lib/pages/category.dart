@@ -32,10 +32,13 @@ class _CategoryState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("X商城"),
-        backgroundColor: LblColors.mainColor,
-      ),
+      appBar: AppBar(title: const Text("X商城"), backgroundColor: LblColors.mainColor, actions: [
+        IconButton(
+            onPressed: () {
+              gotoSearchPage();
+            },
+            icon: const Icon(Icons.search))
+      ]),
       body: Center(
         child: getBody(),
       ),
@@ -141,4 +144,6 @@ class _CategoryState extends State<CategoryPage> {
       });
     });
   }
+
+  void gotoSearchPage() {}
 }
