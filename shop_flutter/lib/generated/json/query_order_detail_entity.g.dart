@@ -1,5 +1,5 @@
 import 'package:shop_flutter/generated/json/base/json_convert_content.dart';
-import 'package:shop_flutter/network/bean/query_order_detail_resp.dart';
+import 'package:shop_flutter/network/bean/query_order_detail_resp_entity.dart';
 
 QueryOrderDetailResp $QueryOrderDetailEntityFromJson(Map<String, dynamic> json) {
   final QueryOrderDetailResp queryOrderDetailEntity = QueryOrderDetailResp();

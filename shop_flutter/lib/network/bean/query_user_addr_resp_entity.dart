@@ -1,7 +1,8 @@
 import 'dart:convert';
+
 import 'package:shop_flutter/generated/json/base/json_field.dart';
 import 'package:shop_flutter/generated/json/query_user_addr_resp_entity.g.dart';
-import 'package:shop_flutter/network/bean/query_user_addr_list_resp.dart';
+import 'package:shop_flutter/network/bean/query_user_addr_list_resp_entity.dart';
 
 @JsonSerializable()
 class QueryUserAddrResp {

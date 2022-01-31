@@ -1,5 +1,5 @@
 import 'package:shop_flutter/generated/json/base/json_convert_content.dart';
-import 'package:shop_flutter/network/bean/query_cart_resp.dart';
+import 'package:shop_flutter/network/bean/query_cart_resp_entity.dart';
 
 QueryCartResp $QueryCartRespFromJson(Map<String, dynamic> json) {
   final QueryCartResp queryCartResp = QueryCartResp();

@@ -1,6 +1,6 @@
 import 'package:shop_flutter/generated/json/base/json_convert_content.dart';
-import 'package:shop_flutter/network/bean/query_user_addr_list_resp.dart';
-import 'package:shop_flutter/network/bean/query_user_addr_resp.dart';
+import 'package:shop_flutter/network/bean/query_user_addr_list_resp_entity.dart';
+import 'package:shop_flutter/network/bean/query_user_addr_resp_entity.dart';
 
 QueryUserAddrResp $QueryUserAddrRespEntityFromJson(Map<String, dynamic> json) {
   final QueryUserAddrResp queryUserAddrRespEntity = QueryUserAddrResp();

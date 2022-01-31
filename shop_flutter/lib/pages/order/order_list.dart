@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_flutter/constants.dart';
-import 'package:shop_flutter/network/bean/query_order_list_resp_resp.dart';
+import 'package:shop_flutter/network/bean/query_order_list_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/order/order_detail.dart';
 import 'package:shop_flutter/ui_kit.dart';

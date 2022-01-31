@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_flutter/constants.dart';
-import 'package:shop_flutter/network/bean/query_user_addr_list_resp.dart';
+import 'package:shop_flutter/network/bean/query_user_addr_list_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师

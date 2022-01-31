@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_flutter/constants.dart';
-import 'package:shop_flutter/network/bean/query_cart_resp.dart';
+import 'package:shop_flutter/network/bean/query_cart_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/login/login_manager.dart';
 import 'package:shop_flutter/ui_kit.dart';
@@ -75,20 +75,6 @@ class _CartState extends State<CartPage> {
     } else {
       return const Color(0xFFCBCCD2);
     }
-  }
-
-  _queryData() async {
-    LoginManager.isLoggedIn().then((value) {
-      if (value) {
-        String url = "shop/cart/list";
-        HttpManager.getInstance().get(url).then((resp) {
-          var result = QueryCartResp.fromJson(resp);
-          setState(() {
-            _dataList = result.data;
-          });
-        });
-      }
-    });
   }
 
   getItem(CartItem cartItem) {
@@ -262,5 +248,19 @@ class _CartState extends State<CartPage> {
 
   void increaseQuantity() {
     log("ddddd3333333333");
+  }
+
+  _queryData() async {
+    LoginManager.isLoggedIn().then((value) {
+      if (value) {
+        String url = "shop/cart/list";
+        HttpManager.getInstance().get(url).then((resp) {
+          var result = QueryCartResp.fromJson(resp);
+          setState(() {
+            _dataList = result.data;
+          });
+        });
+      }
+    });
   }
 }
