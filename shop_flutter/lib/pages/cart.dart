@@ -41,14 +41,7 @@ class _CartState extends State<CartPage> {
       body: Container(
           margin: const EdgeInsets.fromLTRB(5, 20, 10, 0),
           child: Column(
-            children: [
-              Expanded(child: buildCartInfoList()),
-              const Divider(
-                height: 10,
-                thickness: 1,
-              ),
-              buildBottomRow()
-            ],
+            children: [Expanded(child: buildCartInfoList()), defaultDivider(), buildBottomRow()],
           )),
     );
   }

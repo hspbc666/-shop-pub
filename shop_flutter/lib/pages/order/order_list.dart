@@ -123,10 +123,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
           }).toList(),
         ),
         mySpacer(10),
-        const Divider(
-          height: 10,
-          thickness: 1,
-        ),
+        defaultDivider(),
         Row(
           children: [
             Spacer(),

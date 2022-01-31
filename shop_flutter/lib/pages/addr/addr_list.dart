@@ -97,7 +97,7 @@ class _AddrListState extends State<AddrListPage> {
         mySpacer(10),
         Text(userAddrData.address),
         mySpacer(10),
-        buildDivider(),
+        defaultDivider(),
         Row(
           children: [
             Spacer(),

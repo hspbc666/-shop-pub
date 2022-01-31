@@ -12,7 +12,7 @@ myVerticalSpacer(double padding) {
   );
 }
 
-Divider buildDivider() {
+Divider defaultDivider() {
   return const Divider(
     height: 10,
     thickness: 1,
