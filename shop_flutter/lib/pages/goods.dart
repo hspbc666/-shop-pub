@@ -39,14 +39,7 @@ class _GoodsState extends State<GoodsPage> {
             children: [
               Expanded(
                   child: Column(children: [
-                Container(
-                  decoration: const BoxDecoration(
-                    //设置背景色
-                    color: Colors.white,
-                  ),
-                  child: buildGoodsInfoBlock(),
-                  padding: const EdgeInsets.all(10),
-                ),
+                buildGoodsInfoBlock(),
               ])),
               lblDivider(),
               buildBottomRow()
@@ -66,7 +59,7 @@ class _GoodsState extends State<GoodsPage> {
             width: 200,
             height: 200,
           ),
-          lblVerticalSpacer(10),
+          lblSpacer(10),
           Card(
             child: Column(
               children: [
@@ -74,6 +67,7 @@ class _GoodsState extends State<GoodsPage> {
                     style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965))),
                 Row(
                   children: [
+                    lblVerticalSpacer(10),
                     OutlinedButton(
                       child: const Text('券 ￥5', style: TextStyle(color: Color(0xFFEF3965))),
                       onPressed: () {},
@@ -97,10 +91,53 @@ class _GoodsState extends State<GoodsPage> {
                     )
                   ],
                 ),
-                ElevatedButton(
-                  child: Text('X商自营'),
-                  onPressed: () {},
-                )
+                Row(
+                  children: [
+                    lblVerticalSpacer(10),
+                    ElevatedButton(
+                      child: Text('X商自营'),
+                      onPressed: () {},
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child:
+                      Text(queryGoodsDetailRespData!.name, style: const TextStyle(fontSize: 16.0, color: Colors.black)),
+                ),
+                Row(
+                  children: [
+                    lblVerticalSpacer(10),
+                    const Image(
+                      image: AssetImage('assets/images/secure.png'),
+                      width: 20,
+                      height: 20,
+                    ),
+                    const Text("100%正品", style: TextStyle(color: Colors.black)),
+                    lblVerticalSpacer(10),
+                    const Image(
+                      image: AssetImage('assets/images/good.png'),
+                      width: 20,
+                      height: 20,
+                    ),
+                    const Text("满88免邮", style: TextStyle(color: Color(0XFF595d63))),
+                    lblVerticalSpacer(10),
+                    const Image(
+                      image: AssetImage('assets/images/good.png'),
+                      width: 20,
+                      height: 20,
+                    ),
+                    const Text("7天可退", style: TextStyle(color: Color(0XFF595d63))),
+                    lblVerticalSpacer(10),
+                    const Image(
+                      image: AssetImage('assets/images/good.png'),
+                      width: 20,
+                      height: 20,
+                    ),
+                    const Text("上门退货", style: TextStyle(color: Color(0XFF595d63))),
+                  ],
+                ),
+                lblSpacer(10),
               ],
             ),
           )
