@@ -46,7 +46,7 @@ class _MineState extends State<MinePage> {
                   borderRadius: BorderRadius.all(Radius.circular(5.0)), //设置圆角矩形背景
                 ),
                 child: Column(
-                  children: [buildOrderTitleRow(), mySpacer(10), buildOrderBtnRow()],
+                  children: [buildOrderTitleRow(), lblSpacer(10), buildOrderBtnRow()],
                 ),
               ),
             ],

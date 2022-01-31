@@ -57,7 +57,7 @@ class _OrderDetailState extends State<OrderDetailPage> {
                   padding: const EdgeInsets.all(10),
                 ),
               ])),
-              defaultDivider(),
+              lblDivider(),
               buildBottomRow()
             ],
           )),
@@ -78,7 +78,7 @@ class _OrderDetailState extends State<OrderDetailPage> {
                   width: 100,
                   height: 100,
                 ),
-                myVerticalSpacer(10),
+                lblVerticalSpacer(10),
                 Expanded(child: Text(queryOrderDetailDataItem.name, maxLines: 2, overflow: TextOverflow.ellipsis)),
                 Column(
                   children: [
@@ -107,7 +107,7 @@ class _OrderDetailState extends State<OrderDetailPage> {
               _deleteOrder();
             },
           ),
-          myVerticalSpacer(10),
+          lblVerticalSpacer(10),
           OutlinedButton(
             child: const Text('申请售后', style: TextStyle(color: Color(0xFF575E64))),
             onPressed: () {},

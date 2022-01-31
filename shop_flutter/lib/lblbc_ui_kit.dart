@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-mySpacer(double padding) {
+lblSpacer(double padding) {
   return Container(
     margin: EdgeInsets.only(top: padding),
   );
 }
 
-myVerticalSpacer(double padding) {
+lblVerticalSpacer(double padding) {
   return Container(
     margin: EdgeInsets.only(left: padding),
   );
 }
 
-Divider defaultDivider() {
+Divider lblDivider() {
   return const Divider(
     height: 10,
     thickness: 1,

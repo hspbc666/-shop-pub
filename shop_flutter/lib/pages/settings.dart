@@ -39,9 +39,9 @@ class _SettingsState extends State<SettingsPage> {
                   child: Column(
                     children: [
                       buildUserInfo(),
-                      mySpacer(10),
-                      defaultDivider(),
-                      mySpacer(10),
+                      lblSpacer(10),
+                      lblDivider(),
+                      lblSpacer(10),
                       buildRowWithArrow("收货地址", () {
                         gotoAddrPage();
                       })
@@ -57,17 +57,17 @@ class _SettingsState extends State<SettingsPage> {
                   child: Column(
                     children: [
                       buildRowWithArrow("隐私设置", () {}),
-                      mySpacer(10),
-                      defaultDivider(),
-                      mySpacer(10),
+                      lblSpacer(10),
+                      lblDivider(),
+                      lblSpacer(10),
                       buildRowWithArrow("APP版本", () {}),
-                      mySpacer(10),
-                      defaultDivider(),
-                      mySpacer(10),
+                      lblSpacer(10),
+                      lblDivider(),
+                      lblSpacer(10),
                       buildRowWithArrow("隐私政策", () {}),
-                      mySpacer(10),
-                      defaultDivider(),
-                      mySpacer(10),
+                      lblSpacer(10),
+                      lblDivider(),
+                      lblSpacer(10),
                       buildRowWithArrow("关于", () {})
                     ],
                   ),

@@ -112,7 +112,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                       width: 100,
                       height: 100,
                     ),
-                    myVerticalSpacer(10),
+                    lblVerticalSpacer(10),
                     Expanded(
                         child: Text(queryOrderListRespDataItem.name, maxLines: 2, overflow: TextOverflow.ellipsis)),
                     Column(
@@ -127,8 +127,8 @@ class _OrderListWidgetState extends State<OrderListWidget> {
             );
           }).toList(),
         ),
-        mySpacer(10),
-        defaultDivider(),
+        lblSpacer(10),
+        lblDivider(),
         Row(
           children: [
             Spacer(),
@@ -136,7 +136,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
               child: const Text('发票详情', style: TextStyle(color: Color(0xFF575E64))),
               onPressed: () {},
             ),
-            myVerticalSpacer(10),
+            lblVerticalSpacer(10),
             OutlinedButton(
               child: const Text('申请售后', style: TextStyle(color: Color(0xFF575E64))),
               onPressed: () {},

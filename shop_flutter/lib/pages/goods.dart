@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shop_flutter/lblbc_constants.dart';
 import 'package:shop_flutter/lblbc_ui_kit.dart';
 import 'package:shop_flutter/network/bean/query_goods_detail_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/addr/addr_list.dart';
+import 'package:shop_flutter/pages/login/login.dart';
 import 'package:shop_flutter/pages/login/login_manager.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
@@ -46,6 +48,7 @@ class _GoodsState extends State<GoodsPage> {
                   padding: const EdgeInsets.all(10),
                 ),
               ])),
+              lblDivider(),
               buildBottomRow()
             ],
           )),
@@ -60,79 +63,85 @@ class _GoodsState extends State<GoodsPage> {
         children: [
           Image(
             image: NetworkImage(queryGoodsDetailRespData!.squarePic),
-            width: 100,
-            height: 100,
+            width: 200,
+            height: 200,
           ),
-          myVerticalSpacer(10),
+          lblVerticalSpacer(10),
+          Card(
+            child: Column(
+              children: [
+                Text("￥" + queryGoodsDetailRespData!.price.toString(),
+                    style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965))),
+                Row(
+                  children: [
+                    OutlinedButton(
+                      child: const Text('券 ￥5', style: TextStyle(color: Color(0xFFEF3965))),
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        side: const BorderSide(width: 1, color: Color(0xFFEF3965)),
+                      ),
+                    ),
+                    const Spacer(),
+                    ElevatedButton(
+                      child: const Text('领券>'),
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.only(topLeft: Radius.circular(18), bottomLeft: Radius.circular(18)),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                ElevatedButton(
+                  child: Text('X商自营'),
+                  onPressed: () {},
+                )
+              ],
+            ),
+          )
         ],
       );
     }
   }
 
-  buildUserInfo() {
-    return Row(
-      children: <Widget>[
-        const Image(
-          image: AssetImage('assets/images/user.png'),
-          width: 50,
-          height: 50,
-        ),
-        Container(
-          padding: EdgeInsets.only(left: 20),
-          child: Column(
-            children: const [
-              Text("尊贵会员"),
-              Text("级别：白银", style: TextStyle(fontSize: 12.0, color: Color(0xFF9E9EA2))),
-            ],
-          ),
-        ),
-        Spacer(),
-        Row(
-          children: const [
-            Text('查看个人资料'),
-            Image(
-              image: AssetImage('assets/images/right_arrow.png'),
-              width: 20,
-              height: 20,
-            )
-          ],
-        )
-      ],
-    );
-  }
-
-  buildRowWithArrow(String text, GestureTapCallback? onTap) {
-    return InkWell(
-      child: Row(
-        children: <Widget>[
-          Text(text),
-          const Spacer(),
-          const Image(
-            image: AssetImage('assets/images/right_arrow.png'),
-            width: 20,
-            height: 20,
-          )
-        ],
-      ),
-      onTap: onTap,
-    );
-  }
-
   Container buildBottomRow() {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
-      width: double.infinity,
-      child: SizedBox(
-        child: ElevatedButton(
-          child: const Text('退出登录', style: const TextStyle(color: Color(0xFFEF3965))),
-          onPressed: () {
-            LoginManager.logout();
-            Navigator.pop(context);
-          },
-          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white)),
-        ),
-      ),
-    );
+        margin: const EdgeInsets.only(bottom: 10),
+        child: Row(
+          children: [
+            const Spacer(),
+            InkWell(
+              onTap: () {
+                addToCart();
+              },
+              child: Row(children: const [
+                Text("购物车", style: TextStyle(fontSize: 16.0, color: Color(0xFF737373))),
+                Image(
+                  image: AssetImage('assets/images/cart.png'),
+                  width: 30,
+                  height: 30,
+                )
+              ]),
+            ),
+            const Spacer(),
+            SizedBox(
+              width: 120,
+              child: ElevatedButton(
+                child: const Text('购买'),
+                onPressed: () {
+                  LoginManager.logout();
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+            const Spacer(),
+          ],
+        ));
   }
 
   void gotoAddrPage() {
@@ -152,6 +161,21 @@ class _GoodsState extends State<GoodsPage> {
       setState(() {
         queryGoodsDetailRespData = result.data;
       });
+    });
+  }
+
+  void addToCart() {
+    LoginManager.isLoggedIn().then((value) {
+      if (value) {
+        String url = "shop/cart/add/" + widget.goodsId;
+        HttpManager.getInstance().get(url).then((resp) {
+          Fluttertoast.showToast(
+            msg: "已加入购物车",
+          );
+        });
+      } else {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+      }
     });
   }
 }
