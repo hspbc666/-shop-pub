@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_flutter/lblbc_constants.dart';
-import 'package:shop_flutter/lblbc_ui_kit.dart';
 import 'package:shop_flutter/network/bean/query_category_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_goods_by_category_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
@@ -71,17 +70,47 @@ class _CategoryState extends State<CategoryPage> {
 
   Row buildRow(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
     return Row(
+      children: <Widget>[
+        Expanded(
+            child: Container(
+          padding: const EdgeInsets.only(top: 5, bottom: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Image(
+                image: NetworkImage(queryGoodsByCategoryRespData.squarePic),
+                width: 100,
+                height: 100,
+              ),
+              Expanded(
+                  child: Container(
+                margin: const EdgeInsets.only(left: 10),
+                child: buildGoodsInfoCol(queryGoodsByCategoryRespData),
+              ))
+            ],
+          ),
+        ))
+      ],
+    );
+  }
+
+  Column buildGoodsInfoCol(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image(
-          image: NetworkImage(queryGoodsByCategoryRespData.squarePic),
-          width: 100,
-          height: 100,
-        ),
-        myVerticalSpacer(10),
-        Expanded(child: Text(queryGoodsByCategoryRespData.name, maxLines: 2, overflow: TextOverflow.ellipsis)),
-        Column(
+        Text(queryGoodsByCategoryRespData.name,
+            style: const TextStyle(
+              fontSize: 18.0,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis),
+        Row(
           children: [
-            Text("￥" + (queryGoodsByCategoryRespData.price / 100).toString()),
+            Text(
+              "￥" + (queryGoodsByCategoryRespData.price / 100).toString(),
+              style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965)),
+              maxLines: 1,
+            ),
           ],
         )
       ],

@@ -104,8 +104,8 @@ class _CartState extends State<CartPage> {
               buildCheckbox(cartItem),
               Image(
                 image: NetworkImage(cartItem.squarePic),
-                width: 50,
-                height: 50,
+                width: 100,
+                height: 100,
               ),
               Expanded(
                   child: Container(
@@ -123,13 +123,12 @@ class _CartState extends State<CartPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          cartItem.name,
-          style: const TextStyle(
-            fontSize: 18.0,
-          ),
-          maxLines: 2,
-        ),
+        Text(cartItem.name,
+            style: const TextStyle(
+              fontSize: 18.0,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis),
         Row(
           children: [
             Text(
