@@ -21,13 +21,13 @@ class CartPage extends StatefulWidget {
 
 class _CartState extends State<CartPage> {
   List<QueryCartRespData> _dataList = [];
-  List<String> selectedCartIdList = [];
-  int selectedSum = 0;
+  final List<int> _selectedCartIndexes = [];
+  int _selectedSum = 0;
 
   @override
   void initState() {
     super.initState();
-    _queryData();
+    _refreshPage();
   }
 
   @override
@@ -50,10 +50,10 @@ class _CartState extends State<CartPage> {
       child: Row(
         children: [
           const Spacer(flex: 1),
-          Text("已选(" + selectedCartIdList.length.toString() + ")"),
+          Text("已选(" + _selectedCartIndexes.length.toString() + ")"),
           const Spacer(flex: 1),
           const Text("总计"),
-          Text("￥" + selectedSum.toString(), style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965))),
+          Text("￥" + _selectedSum.toString(), style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965))),
           const Spacer(flex: 3),
           SizedBox(
             width: 100,
@@ -69,21 +69,21 @@ class _CartState extends State<CartPage> {
   }
 
   Color buildBtnColor() {
-    if (selectedCartIdList.isNotEmpty) {
+    if (_selectedCartIndexes.isNotEmpty) {
       return const Color(0xFFEF3965);
     } else {
       return const Color(0xFFCBCCD2);
     }
   }
 
-  getItem(QueryCartRespData cartItem) {
+  getItem(QueryCartRespData cartItem, int position) {
     var row = Container(
-      margin: EdgeInsets.all(4.0),
+      margin: const EdgeInsets.all(4.0),
       child: InkWell(
         onTap: () {
           onRowClick(cartItem);
         },
-        child: buildRow(cartItem),
+        child: buildRow(cartItem, position),
       ),
     );
     return Card(
@@ -91,7 +91,7 @@ class _CartState extends State<CartPage> {
     );
   }
 
-  Row buildRow(QueryCartRespData cartItem) {
+  Row buildRow(QueryCartRespData cartItem, int position) {
     return Row(
       children: <Widget>[
         Expanded(
@@ -100,7 +100,7 @@ class _CartState extends State<CartPage> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              buildCheckbox(cartItem),
+              buildCheckbox(position),
               Image(
                 image: NetworkImage(cartItem.squarePic),
                 width: 100,
@@ -198,15 +198,15 @@ class _CartState extends State<CartPage> {
     );
   }
 
-  Checkbox buildCheckbox(QueryCartRespData cartItem) {
+  Checkbox buildCheckbox(int index) {
     return Checkbox(
-      value: selectedCartIdList.contains(cartItem.id),
+      value: _selectedCartIndexes.contains(index),
       onChanged: (isChecked) {
         setState(() {
           if (isChecked == true) {
-            selectedCartIdList.add(cartItem.id);
+            _selectedCartIndexes.add(index);
           } else {
-            selectedCartIdList.remove(cartItem.id);
+            _selectedCartIndexes.remove(index);
           }
           calcSum();
         });
@@ -214,13 +214,13 @@ class _CartState extends State<CartPage> {
     );
   }
 
-  //TODO: 计算总计金额
   void calcSum() {
     int sum = 0;
-    for (int i = 0; i < selectedCartIdList.length; i++) {
-      // sum += _dataList.
+    for (int i = 0; i < _selectedCartIndexes.length; i++) {
+      QueryCartRespData cartItem = _dataList[_selectedCartIndexes[i]];
+      sum += (cartItem.price * cartItem.quantity) ~/ 100;
     }
-    selectedSum = sum;
+    _selectedSum = sum;
   }
 
   buildCartInfoList() {
@@ -228,7 +228,7 @@ class _CartState extends State<CartPage> {
       return ListView.builder(
         itemCount: _dataList.length,
         itemBuilder: (BuildContext context, int position) {
-          return getItem(_dataList[position]);
+          return getItem(_dataList[position], position);
         },
       );
     } else {
@@ -238,7 +238,7 @@ class _CartState extends State<CartPage> {
 
   onRowClick(QueryCartRespData cartItem) {
     Navigator.push(context, MaterialPageRoute(builder: (context) => GoodsPage(cartItem.goodsId)))
-        .then((value) => {_queryData()});
+        .then((value) => {_refreshPage()});
   }
 
   void decreaseQuantity(QueryCartRespData cartItem) {
@@ -262,6 +262,14 @@ class _CartState extends State<CartPage> {
     });
     String url = "shop/cart/modify/" + cartItem.id + "/" + quantity.toString();
     HttpManager.getInstance().get(url).then((resp) {});
+  }
+
+  _refreshPage() {
+    _queryData();
+    setState(() {
+      _selectedCartIndexes.clear();
+      _selectedSum = 0;
+    });
   }
 
   _queryData() async {
