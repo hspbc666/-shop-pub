@@ -60,35 +60,35 @@ class _MineState extends State<MinePage> {
         InkWell(
           child: buildToOrderBtns('assets/images/to_pay.png', "待付款"),
           onTap: () {
-            gotoOrderPage(OrderTabCodes.orderTabToPay);
+            gotoOrderPage(OrderStatus.orderStatusToPay);
           },
         ),
         const Spacer(),
         InkWell(
           child: buildToOrderBtns('assets/images/to_deliver.png', "待发货"),
           onTap: () {
-            gotoOrderPage(OrderTabCodes.orderTabToDeliver);
+            gotoOrderPage(OrderStatus.orderStatusToDeliver);
           },
         ),
         const Spacer(),
         InkWell(
           child: buildToOrderBtns('assets/images/to_receive.png', "待收货"),
           onTap: () {
-            gotoOrderPage(OrderTabCodes.orderTabToReceive);
+            gotoOrderPage(OrderStatus.orderStatusToReceive);
           },
         ),
         const Spacer(),
         InkWell(
           child: buildToOrderBtns('assets/images/to_comment.png', "待评价"),
           onTap: () {
-            gotoOrderPage(OrderTabCodes.orderTabToComment);
+            gotoOrderPage(OrderStatus.orderStatusToComment);
           },
         ),
         const Spacer(),
         InkWell(
           child: buildToOrderBtns('assets/images/to_return.png', "退换/售后"),
           onTap: () {
-            gotoOrderPage(OrderTabCodes.orderTabToReturn);
+            gotoOrderPage(OrderStatus.orderStatusToReturn);
           },
         ),
       ],
@@ -129,7 +129,7 @@ class _MineState extends State<MinePage> {
             ],
           ),
           onTap: () {
-            gotoOrderPage(OrderTabCodes.orderTabAll);
+            gotoOrderPage(OrderStatus.orderStatusAll);
           },
         ),
       ],
@@ -208,7 +208,7 @@ class _MineState extends State<MinePage> {
     });
   }
 
-  void gotoOrderPage(int tab) {
+  void gotoOrderPage(int orderStatus) {
     LoginManager.isLoggedIn().then((value) {
       if (value) {
         Navigator.push(mContext, MaterialPageRoute(builder: (context) => const OrderListPage()));

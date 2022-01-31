@@ -13,13 +13,37 @@ class Constants {
   static const String httpHeaderTokenPrefix = "Bearer ";
 }
 
-class OrderTabCodes {
-  static const int orderTabAll = 0;
-  static const int orderTabToPay = 1;
-  static const int orderTabToDeliver = 2;
-  static const int orderTabToReceive = 3;
-  static const int orderTabToComment = 4;
-  static const int orderTabToReturn = 5;
+class OrderStatus {
+  static const int orderStatusAll = 0;
+  static const int orderStatusToPay = 1;
+  static const int orderStatusToDeliver = 2;
+  static const int orderStatusToReceive = 3;
+  static const int orderStatusToComment = 4;
+  static const int orderStatusToReturn = 5;
+
+  getStatusName(int status) {
+    String statusName = "";
+    switch (status) {
+      case orderStatusToPay:
+        statusName = "待付款";
+        break;
+      case orderStatusToDeliver:
+        statusName = "待发货";
+        break;
+      case orderStatusToReceive:
+        statusName = "待收货";
+        break;
+      case orderStatusToComment:
+        statusName = "待评价";
+        break;
+      case orderStatusToReturn:
+        statusName = "退货中";
+        break;
+      default:
+        statusName = "完成";
+    }
+    return statusName;
+  }
 }
 
 class LblColors {
