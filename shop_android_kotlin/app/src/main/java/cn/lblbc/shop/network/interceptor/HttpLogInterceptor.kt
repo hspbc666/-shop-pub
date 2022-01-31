@@ -33,15 +33,16 @@ class HttpLogInterceptor : BaseInterceptor() {
             body = buffer.readString(charset!!)
         }
 
-        Log.d(TAG,
-                "发送请求: method：" + request.method()
-                        + "\nurl：" + request.url()
-                        + "\n请求头：" + request.headers()
-                        + "\n请求参数: " + body)
+        Log.d(
+            TAG,
+            "发送请求: method：" + request.method()
+                    + "\nurl：" + request.url()
+                    + "\n请求头：" + request.headers()
+                    + "\n请求参数: " + body
+        )
 
         val startNs = System.nanoTime()
         val response = chain.proceed(request)
-        val tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs)
 
         val responseBody = response.body()
         val rBody: String
@@ -56,16 +57,18 @@ class HttpLogInterceptor : BaseInterceptor() {
             try {
                 charset = contentType.charset(UTF8)
             } catch (e: UnsupportedCharsetException) {
-                Log.e(TAG, e.message)
+                Log.e(TAG, e.message ?: "未知错误")
             }
         }
         rBody = buffer.clone().readString(charset!!)
 
-        Log.d(TAG,
-                "收到响应: code:" + response.code()
-                        + "\n请求url：" + response.request().url()
-                        + "\n请求body：" + body
-                        + "\nResponse: " + rBody)
+        Log.d(
+            TAG,
+            "收到响应: code:" + response.code()
+                    + "\n请求url：" + response.request().url()
+                    + "\n请求body：" + body
+                    + "\nResponse: " + rBody
+        )
 
         return response
     }

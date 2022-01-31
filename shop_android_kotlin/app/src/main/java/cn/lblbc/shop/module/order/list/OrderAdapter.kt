@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cn.lblbc.shop.R
 import cn.lblbc.shop.network.response.FullOrderInfo
 import cn.lblbc.shop.network.response.QueryOrderResp
+import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_COMMENT
 import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_DELIVER
 import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_PAY
 import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_RECEIVE
@@ -63,6 +64,7 @@ class OrderAdapter() :
             ORDER_STATUS_TO_PAY -> "待付款"
             ORDER_STATUS_TO_DELIVER -> "待发货"
             ORDER_STATUS_TO_RECEIVE -> "待收货"
+            ORDER_STATUS_TO_COMMENT -> "待评价"
             ORDER_STATUS_TO_RETURN -> "退货中"
             else -> "已完成"
         }

@@ -3,7 +3,7 @@ buildscript {
 
     ext {
         // Sdk and tools
-        compileSdkVersion = 29
+        compileSdkVersion = 31
         minSdkVersion = 24
         targetSdkVersion = 31
 
