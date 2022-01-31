@@ -164,7 +164,8 @@ class _OrderListWidgetState extends State<OrderListWidget> {
   }
 
   void gotoOrderDetailPage(String orderId) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => OrderDetailPage(orderId)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => OrderDetailPage(orderId)))
+        .then((value) => {_queryData()});
   }
 }
 

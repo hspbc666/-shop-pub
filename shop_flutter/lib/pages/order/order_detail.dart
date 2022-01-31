@@ -96,14 +96,16 @@ class _OrderDetailState extends State<OrderDetailPage> {
 
   Container buildBottomRow() {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
+      margin: const EdgeInsets.only(bottom: 20),
       width: double.infinity,
       child: Row(
         children: [
-          Spacer(),
+          const Spacer(),
           OutlinedButton(
             child: const Text('删除订单', style: TextStyle(color: Color(0xFF575E64))),
-            onPressed: () {},
+            onPressed: () {
+              _deleteOrder();
+            },
           ),
           myVerticalSpacer(10),
           OutlinedButton(
@@ -128,6 +130,13 @@ class _OrderDetailState extends State<OrderDetailPage> {
       setState(() {
         _queryOrderDetailData = result.data;
       });
+    });
+  }
+
+  _deleteOrder() async {
+    String url = "shop/order/del/" + widget.orderId;
+    HttpManager.getInstance().get(url).then((resp) {
+      Navigator.pop(context);
     });
   }
 }

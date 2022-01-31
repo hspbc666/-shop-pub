@@ -28,7 +28,7 @@ class _CartState extends State<CartPage> {
   @override
   void initState() {
     super.initState();
-    queryData();
+    _queryData();
   }
 
   @override
@@ -77,7 +77,7 @@ class _CartState extends State<CartPage> {
     }
   }
 
-  queryData() async {
+  _queryData() async {
     LoginManager.isLoggedIn().then((value) {
       if (value) {
         String url = "shop/cart/list";

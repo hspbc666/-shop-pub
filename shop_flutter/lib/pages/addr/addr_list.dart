@@ -25,7 +25,7 @@ class _AddrListState extends State<AddrListPage> {
   @override
   void initState() {
     super.initState();
-    queryData();
+    _queryData();
   }
 
   @override
@@ -182,7 +182,7 @@ class _AddrListState extends State<AddrListPage> {
 
   void gotoAddAddrPage() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const AddAddrPage()))
-        .then((value) => {queryData()});
+        .then((value) => {_queryData()});
   }
 
   void gotoEditAddrPage(String userAddrId) {
@@ -191,17 +191,17 @@ class _AddrListState extends State<AddrListPage> {
         MaterialPageRoute(
             builder: (context) => EditAddrPage(
                   userAddrId: userAddrId,
-                ))).then((value) => {queryData()});
+                ))).then((value) => {_queryData()});
   }
 
   void deleteAddress(String userAddrId) {
     String url = "shop/addr/del/" + userAddrId;
     HttpManager.getInstance().get(url).then((resp) {
-      queryData();
+      _queryData();
     });
   }
 
-  queryData() async {
+  _queryData() async {
     LoginManager.isLoggedIn().then((value) {
       if (value) {
         String url = "shop/addr/query";

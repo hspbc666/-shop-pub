@@ -31,7 +31,7 @@ class _EditAddrState extends State<EditAddrPage> {
   @override
   void initState() {
     super.initState();
-    queryData();
+    _queryData();
   }
 
   @override
@@ -136,7 +136,7 @@ class _EditAddrState extends State<EditAddrPage> {
     );
   }
 
-  queryData() async {
+  _queryData() async {
     String url = "shop/addr/query/" + widget.userAddrId;
     HttpManager.getInstance().get(url).then((resp) {
       var result = QueryUserAddrResp.fromJson(resp);
