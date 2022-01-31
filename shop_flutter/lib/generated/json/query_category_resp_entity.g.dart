@@ -1,24 +1,24 @@
 import 'package:shop_flutter/generated/json/base/json_convert_content.dart';
 import 'package:shop_flutter/network/bean/query_category_resp_entity.dart';
 
-QueryCategroyResp $QueryCategroyRespEntityFromJson(Map<String, dynamic> json) {
-  final QueryCategroyResp queryCategroyRespEntity = QueryCategroyResp();
+QueryCategoryResp $QueryCategoryRespEntityFromJson(Map<String, dynamic> json) {
+  final QueryCategoryResp queryCategoryRespEntity = QueryCategoryResp();
   final int? code = jsonConvert.convert<int>(json['code']);
   if (code != null) {
-    queryCategroyRespEntity.code = code;
+    queryCategoryRespEntity.code = code;
   }
   final dynamic? msg = jsonConvert.convert<dynamic>(json['msg']);
   if (msg != null) {
-    queryCategroyRespEntity.msg = msg;
+    queryCategoryRespEntity.msg = msg;
   }
   final List<QueryCategoryRespData>? data = jsonConvert.convertListNotNull<QueryCategoryRespData>(json['data']);
   if (data != null) {
-    queryCategroyRespEntity.data = data;
+    queryCategoryRespEntity.data = data;
   }
-  return queryCategroyRespEntity;
+  return queryCategoryRespEntity;
 }
 
-Map<String, dynamic> $QueryCategroyRespEntityToJson(QueryCategroyResp entity) {
+Map<String, dynamic> $QueryCategoryRespEntityToJson(QueryCategoryResp entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['code'] = entity.code;
   data['msg'] = entity.msg;
@@ -26,20 +26,20 @@ Map<String, dynamic> $QueryCategroyRespEntityToJson(QueryCategroyResp entity) {
   return data;
 }
 
-QueryCategoryRespData $QueryCategroyRespDataFromJson(Map<String, dynamic> json) {
-  final QueryCategoryRespData queryCategroyRespData = QueryCategoryRespData();
+QueryCategoryRespData $QueryCategoryRespDataFromJson(Map<String, dynamic> json) {
+  final QueryCategoryRespData queryCategoryRespData = QueryCategoryRespData();
   final String? id = jsonConvert.convert<String>(json['id']);
   if (id != null) {
-    queryCategroyRespData.id = id;
+    queryCategoryRespData.id = id;
   }
   final String? name = jsonConvert.convert<String>(json['name']);
   if (name != null) {
-    queryCategroyRespData.name = name;
+    queryCategoryRespData.name = name;
   }
-  return queryCategroyRespData;
+  return queryCategoryRespData;
 }
 
-Map<String, dynamic> $QueryCategroyRespDataToJson(QueryCategoryRespData entity) {
+Map<String, dynamic> $QueryCategoryRespDataToJson(QueryCategoryRespData entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['id'] = entity.id;
   data['name'] = entity.name;

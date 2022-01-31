@@ -87,8 +87,8 @@ class JsonConvert {
     if (type == (CartItem).toString()) {
       return CartItem.fromJson(json) as M;
     }
-    if (type == (QueryCategroyResp).toString()) {
-      return QueryCategroyResp.fromJson(json) as M;
+    if (type == (QueryCategoryResp).toString()) {
+      return QueryCategoryResp.fromJson(json) as M;
     }
     if (type == (QueryCategoryRespData).toString()) {
       return QueryCategoryRespData.fromJson(json) as M;
@@ -137,8 +137,8 @@ class JsonConvert {
     if (<CartItem>[] is M) {
       return data.map<CartItem>((Map<String, dynamic> e) => CartItem.fromJson(e)).toList() as M;
     }
-    if (<QueryCategroyResp>[] is M) {
-      return data.map<QueryCategroyResp>((Map<String, dynamic> e) => QueryCategroyResp.fromJson(e)).toList() as M;
+    if (<QueryCategoryResp>[] is M) {
+      return data.map<QueryCategoryResp>((Map<String, dynamic> e) => QueryCategoryResp.fromJson(e)).toList() as M;
     }
     if (<QueryCategoryRespData>[] is M) {
       return data.map<QueryCategoryRespData>((Map<String, dynamic> e) => QueryCategoryRespData.fromJson(e)).toList()

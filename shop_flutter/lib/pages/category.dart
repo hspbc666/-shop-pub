@@ -65,12 +65,20 @@ class _CategoryState extends State<CategoryPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                queryCategoryRespData.name,
-                style: const TextStyle(
-                  fontSize: 18.0,
-                ),
-                maxLines: 1,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  // Image(
+                  //   image: NetworkImage(queryCategoryRespData.),
+                  //   width: 50,
+                  //   height: 50,
+                  // ),
+                  // Expanded(
+                  //     child: Container(
+                  //       margin: const EdgeInsets.only(left: 10),
+                  //       child: buildGoodsInfoCol(cartItem),
+                  //     ))
+                ],
               ),
             ],
           ),
@@ -98,7 +106,7 @@ class _CategoryState extends State<CategoryPage> {
       if (value) {
         String url = "shop/goods/category/1";
         HttpManager.getInstance().get(url).then((resp) {
-          var result = QueryCategroyResp.fromJson(resp);
+          var result = QueryCategoryResp.fromJson(resp);
           setState(() {
             _dataList = result.data;
           });

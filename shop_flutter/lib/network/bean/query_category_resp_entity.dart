@@ -4,16 +4,16 @@ import 'package:shop_flutter/generated/json/base/json_field.dart';
 import 'package:shop_flutter/generated/json/query_category_resp_entity.g.dart';
 
 @JsonSerializable()
-class QueryCategroyResp {
+class QueryCategoryResp {
   late int code;
   late dynamic msg;
   late List<QueryCategoryRespData> data;
 
-  QueryCategroyResp();
+  QueryCategoryResp();
 
-  factory QueryCategroyResp.fromJson(Map<String, dynamic> json) => $QueryCategroyRespEntityFromJson(json);
+  factory QueryCategoryResp.fromJson(Map<String, dynamic> json) => $QueryCategoryRespEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => $QueryCategroyRespEntityToJson(this);
+  Map<String, dynamic> toJson() => $QueryCategoryRespEntityToJson(this);
 
   @override
   String toString() {
@@ -28,9 +28,9 @@ class QueryCategoryRespData {
 
   QueryCategoryRespData();
 
-  factory QueryCategoryRespData.fromJson(Map<String, dynamic> json) => $QueryCategroyRespDataFromJson(json);
+  factory QueryCategoryRespData.fromJson(Map<String, dynamic> json) => $QueryCategoryRespDataFromJson(json);
 
-  Map<String, dynamic> toJson() => $QueryCategroyRespDataToJson(this);
+  Map<String, dynamic> toJson() => $QueryCategoryRespDataToJson(this);
 
   @override
   String toString() {
