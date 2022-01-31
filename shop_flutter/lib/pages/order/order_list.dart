@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_flutter/constants.dart';
 import 'package:shop_flutter/network/bean/query_order_list_resp_resp.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/order/order_detail.dart';
@@ -94,7 +95,11 @@ class _OrderListWidgetState extends State<OrderListWidget> {
     return Column(
       children: [
         Row(
-          children: const [Text("X商自营", style: TextStyle(fontSize: 18.0, color: Colors.black)), Spacer(), Text("状态")],
+          children: [
+            const Text("X商自营", style: TextStyle(fontSize: 18.0, color: Colors.black)),
+            const Spacer(),
+            Text(OrderStatus.getStatusName(queryOrderListRespData.status))
+          ],
         ),
         Column(
           children: queryOrderListRespData.list.map((QueryOrderListRespDataItem queryOrderListRespDataItem) {

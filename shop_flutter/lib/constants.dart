@@ -21,7 +21,7 @@ class OrderStatus {
   static const int orderStatusToComment = 4;
   static const int orderStatusToReturn = 5;
 
-  getStatusName(int status) {
+  static getStatusName(int? status) {
     String statusName = "";
     switch (status) {
       case orderStatusToPay:

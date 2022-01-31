@@ -43,10 +43,10 @@ class _OrderDetailState extends State<OrderDetailPage> {
                   child: Column(
                     children: [
                       Row(
-                        children: const [
+                        children: [
                           Text("X商自营", style: TextStyle(fontSize: 18.0, color: Colors.black)),
                           Spacer(),
-                          Text("状态")
+                          Text(OrderStatus.getStatusName(_queryOrderDetailData?.status))
                         ],
                       ),
                       Column(
