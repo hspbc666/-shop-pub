@@ -5,6 +5,7 @@ import 'package:shop_flutter/network/bean/query_category_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_goods_by_category_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/goods.dart';
+import 'package:shop_flutter/pages/search.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -145,5 +146,7 @@ class _CategoryState extends State<CategoryPage> {
     });
   }
 
-  void gotoSearchPage() {}
+  void gotoSearchPage() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
+  }
 }
