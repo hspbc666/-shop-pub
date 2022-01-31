@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_flutter/lblbc_constants.dart';
 import 'package:shop_flutter/pages/cart.dart';
+import 'package:shop_flutter/pages/category.dart';
+import 'package:shop_flutter/pages/login/login.dart';
+import 'package:shop_flutter/pages/mine.dart';
 import 'package:shop_flutter/pages/order/order_list.dart';
-
-import '../category.dart';
-import '../login/login.dart';
-import '../mine.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -36,7 +35,7 @@ class _MainPageState extends State<MainPage> {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? token = sharedPreferences.getString(Constants.spKeyToken);
     if (token == null) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
     }
   }
 
