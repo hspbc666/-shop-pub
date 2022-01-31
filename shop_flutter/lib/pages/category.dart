@@ -98,7 +98,7 @@ class _CategoryState extends State<CategoryPage> {
     }
   }
 
-  onRowClick(note) {
+  onRowClick(QueryCategoryRespData queryCategoryRespData) {
     // Navigator.push(context, MaterialPageRoute(builder: (context) => ViewNotePage(noteId: note['id'])));
   }
 
