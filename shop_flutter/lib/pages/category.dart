@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_flutter/lblbc_constants.dart';
+import 'package:shop_flutter/lblbc_ui_kit.dart';
 import 'package:shop_flutter/network/bean/query_category_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_goods_by_category_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
@@ -25,6 +26,7 @@ class _CategoryState extends State<CategoryPage> {
   void initState() {
     super.initState();
     _queryCategory();
+    _queryGoodsByCategory();
   }
 
   @override
@@ -40,65 +42,53 @@ class _CategoryState extends State<CategoryPage> {
     );
   }
 
-  getItem(QueryCategoryRespData queryCategoryRespData) {
-    var row = Container(
-      margin: const EdgeInsets.all(4.0),
-      child: InkWell(
-        onTap: () {
-          onRowClick(queryCategoryRespData);
-        },
-        child: buildRow(queryCategoryRespData),
-      ),
-    );
-    return Card(
-      child: row,
-    );
-  }
-
-  Row buildRow(QueryCategoryRespData queryCategoryRespData) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-            child: Container(
-          margin: const EdgeInsets.only(left: 8.0),
-          height: 40.0,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  // Image(
-                  //   image: NetworkImage(queryCategoryRespData.),
-                  //   width: 50,
-                  //   height: 50,
-                  // ),
-                  // Expanded(
-                  //     child: Container(
-                  //       margin: const EdgeInsets.only(left: 10),
-                  //       child: buildGoodsInfoCol(cartItem),
-                  //     ))
-                ],
-              ),
-            ],
-          ),
-        ))
-      ],
-    );
-  }
-
   getBody() {
-    if (_categoryList.isNotEmpty) {
+    if (_goodsList.isNotEmpty) {
       return ListView.builder(
-          itemCount: _categoryList.length,
+          itemCount: _goodsList.length,
           itemBuilder: (BuildContext context, int position) {
-            return getItem(_categoryList[position]);
+            return Container(
+              margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+              child: getItem(_goodsList[position]),
+            );
           });
     }
   }
 
-  onRowClick(QueryCategoryRespData queryCategoryRespData) {
+  getItem(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+    return Card(
+      child: Container(
+        margin: const EdgeInsets.all(10.0),
+        child: InkWell(
+          onTap: () {
+            onRowClick(queryGoodsByCategoryRespData);
+          },
+          child: buildRow(queryGoodsByCategoryRespData),
+        ),
+      ),
+    );
+  }
+
+  Row buildRow(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+    return Row(
+      children: [
+        Image(
+          image: NetworkImage(queryGoodsByCategoryRespData.squarePic),
+          width: 100,
+          height: 100,
+        ),
+        myVerticalSpacer(10),
+        Expanded(child: Text(queryGoodsByCategoryRespData.name, maxLines: 2, overflow: TextOverflow.ellipsis)),
+        Column(
+          children: [
+            Text("￥" + (queryGoodsByCategoryRespData.price / 100).toString()),
+          ],
+        )
+      ],
+    );
+  }
+
+  onRowClick(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
     // Navigator.push(context, MaterialPageRoute(builder: (context) => ViewNotePage(noteId: note['id'])));
   }
 
