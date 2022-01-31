@@ -1,8 +1,8 @@
 import 'package:shop_flutter/generated/json/base/json_convert_content.dart';
 import 'package:shop_flutter/network/bean/query_category_resp_entity.dart';
 
-QueryCategoryResp $QueryCategoryRespEntityFromJson(Map<String, dynamic> json) {
-  final QueryCategoryResp queryCategoryRespEntity = QueryCategoryResp();
+QueryCategoryRespEntity $QueryCategoryRespEntityFromJson(Map<String, dynamic> json) {
+  final QueryCategoryRespEntity queryCategoryRespEntity = QueryCategoryRespEntity();
   final int? code = jsonConvert.convert<int>(json['code']);
   if (code != null) {
     queryCategoryRespEntity.code = code;
@@ -18,7 +18,7 @@ QueryCategoryResp $QueryCategoryRespEntityFromJson(Map<String, dynamic> json) {
   return queryCategoryRespEntity;
 }
 
-Map<String, dynamic> $QueryCategoryRespEntityToJson(QueryCategoryResp entity) {
+Map<String, dynamic> $QueryCategoryRespEntityToJson(QueryCategoryRespEntity entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['code'] = entity.code;
   data['msg'] = entity.msg;

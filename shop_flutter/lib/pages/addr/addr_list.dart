@@ -20,7 +20,7 @@ class AddrListPage extends StatefulWidget {
 }
 
 class _AddrListState extends State<AddrListPage> {
-  List<UserAddr> _dataList = [];
+  List<QueryUserAddrListRespData> _dataList = [];
 
   @override
   void initState() {
@@ -58,7 +58,7 @@ class _AddrListState extends State<AddrListPage> {
     );
   }
 
-  getItem(UserAddr userAddrData) {
+  getItem(QueryUserAddrListRespData userAddrData) {
     var row = Container(
       margin: const EdgeInsets.all(4.0),
       child: buildRow(userAddrData),
@@ -68,7 +68,7 @@ class _AddrListState extends State<AddrListPage> {
     );
   }
 
-  Row buildRow(UserAddr userAddrData) {
+  Row buildRow(QueryUserAddrListRespData userAddrData) {
     return Row(
       children: <Widget>[
         Expanded(
@@ -89,7 +89,7 @@ class _AddrListState extends State<AddrListPage> {
     );
   }
 
-  Column buildAddrInfoCol(UserAddr userAddrData) {
+  Column buildAddrInfoCol(QueryUserAddrListRespData userAddrData) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -120,7 +120,7 @@ class _AddrListState extends State<AddrListPage> {
     );
   }
 
-  Row buildUserInfoRow(UserAddr userAddrData) {
+  Row buildUserInfoRow(QueryUserAddrListRespData userAddrData) {
     if (userAddrData.defaultAddress) {
       return buildDefaultUserInfoRow(userAddrData);
     } else {
@@ -128,7 +128,7 @@ class _AddrListState extends State<AddrListPage> {
     }
   }
 
-  Row buildDefaultUserInfoRow(UserAddr userAddrData) {
+  Row buildDefaultUserInfoRow(QueryUserAddrListRespData userAddrData) {
     return Row(
       children: [
         Text(userAddrData.name),
@@ -143,7 +143,7 @@ class _AddrListState extends State<AddrListPage> {
     );
   }
 
-  Row buildNonDefaultUserInfoRow(UserAddr userAddrData) {
+  Row buildNonDefaultUserInfoRow(QueryUserAddrListRespData userAddrData) {
     return Row(
       children: [
         Text(userAddrData.name),
@@ -206,7 +206,7 @@ class _AddrListState extends State<AddrListPage> {
       if (value) {
         String url = "shop/addr/query";
         HttpManager.getInstance().get(url).then((resp) {
-          var result = QueryUserAddrListResp.fromJson(resp);
+          var result = QueryUserAddrListRespEntity.fromJson(resp);
           setState(() {
             _dataList = result.data;
           });

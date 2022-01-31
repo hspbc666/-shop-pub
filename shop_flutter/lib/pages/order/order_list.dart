@@ -102,7 +102,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
           ],
         ),
         Column(
-          children: queryOrderListRespData.list.map((QueryOrderListRespDataItem queryOrderListRespDataItem) {
+          children: queryOrderListRespData.list.map((QueryOrderListRespDataList queryOrderListRespDataItem) {
             return Column(
               children: [
                 Row(
@@ -156,7 +156,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
   _queryData() async {
     String url = "shop/order/queryByStatus/" + widget.status.toString();
     HttpManager.getInstance().get(url).then((resp) {
-      var result = QueryOrderListResp.fromJson(resp);
+      var result = QueryOrderListRespEntity.fromJson(resp);
       setState(() {
         _dataList = result.data;
       });

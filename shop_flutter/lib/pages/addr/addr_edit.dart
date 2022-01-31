@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_flutter/constants.dart';
-import 'package:shop_flutter/network/bean/query_user_addr_list_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_user_addr_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 
@@ -20,7 +19,7 @@ class EditAddrPage extends StatefulWidget {
 }
 
 class _EditAddrState extends State<EditAddrPage> {
-  UserAddr? userAddrData;
+  QueryUserAddrRespData? userAddrData;
   var _addrType = 0;
   var _defaultAddress = true;
   var nameController = TextEditingController();
@@ -139,7 +138,7 @@ class _EditAddrState extends State<EditAddrPage> {
   _queryData() async {
     String url = "shop/addr/query/" + widget.userAddrId;
     HttpManager.getInstance().get(url).then((resp) {
-      var result = QueryUserAddrResp.fromJson(resp);
+      var result = QueryUserAddrRespEntity.fromJson(resp);
       var addrData = result.data;
       setState(() {
         userAddrData = addrData;

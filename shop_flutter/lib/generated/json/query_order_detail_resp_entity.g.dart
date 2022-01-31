@@ -1,24 +1,24 @@
 import 'package:shop_flutter/generated/json/base/json_convert_content.dart';
 import 'package:shop_flutter/network/bean/query_order_detail_resp_entity.dart';
 
-QueryOrderDetailResp $QueryOrderDetailEntityFromJson(Map<String, dynamic> json) {
-  final QueryOrderDetailResp queryOrderDetailEntity = QueryOrderDetailResp();
+QueryOrderDetailRespEntity $QueryOrderDetailRespEntityFromJson(Map<String, dynamic> json) {
+  final QueryOrderDetailRespEntity queryOrderDetailRespEntity = QueryOrderDetailRespEntity();
   final int? code = jsonConvert.convert<int>(json['code']);
   if (code != null) {
-    queryOrderDetailEntity.code = code;
+    queryOrderDetailRespEntity.code = code;
   }
   final dynamic? msg = jsonConvert.convert<dynamic>(json['msg']);
   if (msg != null) {
-    queryOrderDetailEntity.msg = msg;
+    queryOrderDetailRespEntity.msg = msg;
   }
-  final QueryOrderDetailData? data = jsonConvert.convert<QueryOrderDetailData>(json['data']);
+  final QueryOrderDetailRespData? data = jsonConvert.convert<QueryOrderDetailRespData>(json['data']);
   if (data != null) {
-    queryOrderDetailEntity.data = data;
+    queryOrderDetailRespEntity.data = data;
   }
-  return queryOrderDetailEntity;
+  return queryOrderDetailRespEntity;
 }
 
-Map<String, dynamic> $QueryOrderDetailEntityToJson(QueryOrderDetailResp entity) {
+Map<String, dynamic> $QueryOrderDetailRespEntityToJson(QueryOrderDetailRespEntity entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['code'] = entity.code;
   data['msg'] = entity.msg;
@@ -26,32 +26,33 @@ Map<String, dynamic> $QueryOrderDetailEntityToJson(QueryOrderDetailResp entity) 
   return data;
 }
 
-QueryOrderDetailData $QueryOrderDetailDataFromJson(Map<String, dynamic> json) {
-  final QueryOrderDetailData queryOrderDetailData = QueryOrderDetailData();
+QueryOrderDetailRespData $QueryOrderDetailRespDataFromJson(Map<String, dynamic> json) {
+  final QueryOrderDetailRespData queryOrderDetailRespData = QueryOrderDetailRespData();
   final String? orderId = jsonConvert.convert<String>(json['orderId']);
   if (orderId != null) {
-    queryOrderDetailData.orderId = orderId;
+    queryOrderDetailRespData.orderId = orderId;
   }
   final int? status = jsonConvert.convert<int>(json['status']);
   if (status != null) {
-    queryOrderDetailData.status = status;
+    queryOrderDetailRespData.status = status;
   }
   final int? createTime = jsonConvert.convert<int>(json['createTime']);
   if (createTime != null) {
-    queryOrderDetailData.createTime = createTime;
+    queryOrderDetailRespData.createTime = createTime;
   }
-  final List<QueryOrderDetailDataItem>? list = jsonConvert.convertListNotNull<QueryOrderDetailDataItem>(json['list']);
+  final List<QueryOrderDetailRespDataList>? list =
+      jsonConvert.convertListNotNull<QueryOrderDetailRespDataList>(json['list']);
   if (list != null) {
-    queryOrderDetailData.list = list;
+    queryOrderDetailRespData.list = list;
   }
   final dynamic? userAddr = jsonConvert.convert<dynamic>(json['userAddr']);
   if (userAddr != null) {
-    queryOrderDetailData.userAddr = userAddr;
+    queryOrderDetailRespData.userAddr = userAddr;
   }
-  return queryOrderDetailData;
+  return queryOrderDetailRespData;
 }
 
-Map<String, dynamic> $QueryOrderDetailDataToJson(QueryOrderDetailData entity) {
+Map<String, dynamic> $QueryOrderDetailRespDataToJson(QueryOrderDetailRespData entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['orderId'] = entity.orderId;
   data['status'] = entity.status;
@@ -61,40 +62,40 @@ Map<String, dynamic> $QueryOrderDetailDataToJson(QueryOrderDetailData entity) {
   return data;
 }
 
-QueryOrderDetailDataItem $QueryOrderDetailDataListFromJson(Map<String, dynamic> json) {
-  final QueryOrderDetailDataItem queryOrderDetailDataList = QueryOrderDetailDataItem();
+QueryOrderDetailRespDataList $QueryOrderDetailRespDataListFromJson(Map<String, dynamic> json) {
+  final QueryOrderDetailRespDataList queryOrderDetailRespDataList = QueryOrderDetailRespDataList();
   final dynamic? orderId = jsonConvert.convert<dynamic>(json['orderId']);
   if (orderId != null) {
-    queryOrderDetailDataList.orderId = orderId;
+    queryOrderDetailRespDataList.orderId = orderId;
   }
   final int? status = jsonConvert.convert<int>(json['status']);
   if (status != null) {
-    queryOrderDetailDataList.status = status;
+    queryOrderDetailRespDataList.status = status;
   }
   final String? goodsId = jsonConvert.convert<String>(json['goodsId']);
   if (goodsId != null) {
-    queryOrderDetailDataList.goodsId = goodsId;
+    queryOrderDetailRespDataList.goodsId = goodsId;
   }
   final String? name = jsonConvert.convert<String>(json['name']);
   if (name != null) {
-    queryOrderDetailDataList.name = name;
+    queryOrderDetailRespDataList.name = name;
   }
   final int? price = jsonConvert.convert<int>(json['price']);
   if (price != null) {
-    queryOrderDetailDataList.price = price;
+    queryOrderDetailRespDataList.price = price;
   }
   final String? squarePic = jsonConvert.convert<String>(json['squarePic']);
   if (squarePic != null) {
-    queryOrderDetailDataList.squarePic = squarePic;
+    queryOrderDetailRespDataList.squarePic = squarePic;
   }
   final int? quantity = jsonConvert.convert<int>(json['quantity']);
   if (quantity != null) {
-    queryOrderDetailDataList.quantity = quantity;
+    queryOrderDetailRespDataList.quantity = quantity;
   }
-  return queryOrderDetailDataList;
+  return queryOrderDetailRespDataList;
 }
 
-Map<String, dynamic> $QueryOrderDetailDataListToJson(QueryOrderDetailDataItem entity) {
+Map<String, dynamic> $QueryOrderDetailRespDataListToJson(QueryOrderDetailRespDataList entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['orderId'] = entity.orderId;
   data['status'] = entity.status;

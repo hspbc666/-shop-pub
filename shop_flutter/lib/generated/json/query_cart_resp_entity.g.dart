@@ -1,24 +1,24 @@
 import 'package:shop_flutter/generated/json/base/json_convert_content.dart';
 import 'package:shop_flutter/network/bean/query_cart_resp_entity.dart';
 
-QueryCartResp $QueryCartRespFromJson(Map<String, dynamic> json) {
-  final QueryCartResp queryCartResp = QueryCartResp();
+QueryCartRespEntity $QueryCartRespEntityFromJson(Map<String, dynamic> json) {
+  final QueryCartRespEntity queryCartRespEntity = QueryCartRespEntity();
   final int? code = jsonConvert.convert<int>(json['code']);
   if (code != null) {
-    queryCartResp.code = code;
+    queryCartRespEntity.code = code;
   }
   final dynamic? msg = jsonConvert.convert<dynamic>(json['msg']);
   if (msg != null) {
-    queryCartResp.msg = msg;
+    queryCartRespEntity.msg = msg;
   }
-  final List<CartItem>? data = jsonConvert.convertListNotNull<CartItem>(json['data']);
+  final List<QueryCartRespData>? data = jsonConvert.convertListNotNull<QueryCartRespData>(json['data']);
   if (data != null) {
-    queryCartResp.data = data;
+    queryCartRespEntity.data = data;
   }
-  return queryCartResp;
+  return queryCartRespEntity;
 }
 
-Map<String, dynamic> $QueryCartRespToJson(QueryCartResp entity) {
+Map<String, dynamic> $QueryCartRespEntityToJson(QueryCartRespEntity entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['code'] = entity.code;
   data['msg'] = entity.msg;
@@ -26,40 +26,40 @@ Map<String, dynamic> $QueryCartRespToJson(QueryCartResp entity) {
   return data;
 }
 
-CartItem $CartItemFromJson(Map<String, dynamic> json) {
-  final CartItem cartItem = CartItem();
+QueryCartRespData $QueryCartRespDataFromJson(Map<String, dynamic> json) {
+  final QueryCartRespData queryCartRespData = QueryCartRespData();
   final String? id = jsonConvert.convert<String>(json['id']);
   if (id != null) {
-    cartItem.id = id;
+    queryCartRespData.id = id;
   }
   final String? goodsId = jsonConvert.convert<String>(json['goodsId']);
   if (goodsId != null) {
-    cartItem.goodsId = goodsId;
+    queryCartRespData.goodsId = goodsId;
   }
   final String? name = jsonConvert.convert<String>(json['name']);
   if (name != null) {
-    cartItem.name = name;
+    queryCartRespData.name = name;
   }
   final int? price = jsonConvert.convert<int>(json['price']);
   if (price != null) {
-    cartItem.price = price;
+    queryCartRespData.price = price;
   }
   final String? longPic = jsonConvert.convert<String>(json['longPic']);
   if (longPic != null) {
-    cartItem.longPic = longPic;
+    queryCartRespData.longPic = longPic;
   }
   final String? squarePic = jsonConvert.convert<String>(json['squarePic']);
   if (squarePic != null) {
-    cartItem.squarePic = squarePic;
+    queryCartRespData.squarePic = squarePic;
   }
   final int? quantity = jsonConvert.convert<int>(json['quantity']);
   if (quantity != null) {
-    cartItem.quantity = quantity;
+    queryCartRespData.quantity = quantity;
   }
-  return cartItem;
+  return queryCartRespData;
 }
 
-Map<String, dynamic> $CartItemToJson(CartItem entity) {
+Map<String, dynamic> $QueryCartRespDataToJson(QueryCartRespData entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['id'] = entity.id;
   data['goodsId'] = entity.goodsId;

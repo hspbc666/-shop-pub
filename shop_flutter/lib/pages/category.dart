@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_flutter/constants.dart';
 import 'package:shop_flutter/network/bean/query_category_resp_entity.dart';
+import 'package:shop_flutter/network/bean/query_goods_by_category_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
-import 'package:shop_flutter/pages/login/login_manager.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -18,12 +18,13 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryState extends State<CategoryPage> {
-  List<QueryCategoryRespData> _dataList = [];
+  List<QueryCategoryRespData> _categoryList = [];
+  List<QueryGoodsByCategoryRespData> _goodsList = [];
 
   @override
   void initState() {
     super.initState();
-    _queryData();
+    _queryCategory();
   }
 
   @override
@@ -88,11 +89,11 @@ class _CategoryState extends State<CategoryPage> {
   }
 
   getBody() {
-    if (_dataList.isNotEmpty) {
+    if (_categoryList.isNotEmpty) {
       return ListView.builder(
-          itemCount: _dataList.length,
+          itemCount: _categoryList.length,
           itemBuilder: (BuildContext context, int position) {
-            return getItem(_dataList[position]);
+            return getItem(_categoryList[position]);
           });
     }
   }
@@ -101,17 +102,23 @@ class _CategoryState extends State<CategoryPage> {
     // Navigator.push(context, MaterialPageRoute(builder: (context) => ViewNotePage(noteId: note['id'])));
   }
 
-  _queryData() async {
-    LoginManager.isLoggedIn().then((value) {
-      if (value) {
-        String url = "shop/goods/category/1";
-        HttpManager.getInstance().get(url).then((resp) {
-          var result = QueryCategoryResp.fromJson(resp);
-          setState(() {
-            _dataList = result.data;
-          });
-        });
-      }
+  _queryCategory() async {
+    String url = "shop/category";
+    HttpManager.getInstance().get(url).then((resp) {
+      var result = QueryCategoryRespEntity.fromJson(resp);
+      setState(() {
+        _categoryList = result.data;
+      });
+    });
+  }
+
+  _queryGoodsByCategory() async {
+    String url = "shop/goods/category/1";
+    HttpManager.getInstance().get(url).then((resp) {
+      var result = QueryGoodsByCategoryRespEntity.fromJson(resp);
+      setState(() {
+        _goodsList = result.data;
+      });
     });
   }
 }

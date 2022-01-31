@@ -1,8 +1,8 @@
 import 'package:shop_flutter/generated/json/base/json_convert_content.dart';
 import 'package:shop_flutter/network/bean/query_order_list_resp_entity.dart';
 
-QueryOrderListResp $QueryOrderListRespEntityFromJson(Map<String, dynamic> json) {
-  final QueryOrderListResp queryOrderListRespEntity = QueryOrderListResp();
+QueryOrderListRespEntity $QueryOrderListRespEntityFromJson(Map<String, dynamic> json) {
+  final QueryOrderListRespEntity queryOrderListRespEntity = QueryOrderListRespEntity();
   final int? code = jsonConvert.convert<int>(json['code']);
   if (code != null) {
     queryOrderListRespEntity.code = code;
@@ -18,7 +18,7 @@ QueryOrderListResp $QueryOrderListRespEntityFromJson(Map<String, dynamic> json) 
   return queryOrderListRespEntity;
 }
 
-Map<String, dynamic> $QueryOrderListRespEntityToJson(QueryOrderListResp entity) {
+Map<String, dynamic> $QueryOrderListRespEntityToJson(QueryOrderListRespEntity entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['code'] = entity.code;
   data['msg'] = entity.msg;
@@ -40,13 +40,12 @@ QueryOrderListRespData $QueryOrderListRespDataFromJson(Map<String, dynamic> json
   if (createTime != null) {
     queryOrderListRespData.createTime = createTime;
   }
-  final List<QueryOrderListRespDataItem>? list =
-      jsonConvert.convertListNotNull<QueryOrderListRespDataItem>(json['list']);
+  final List<QueryOrderListRespDataList>? list =
+      jsonConvert.convertListNotNull<QueryOrderListRespDataList>(json['list']);
   if (list != null) {
     queryOrderListRespData.list = list;
   }
-  final QueryOrderListRespDataUserAddr? userAddr =
-      jsonConvert.convert<QueryOrderListRespDataUserAddr>(json['userAddr']);
+  final dynamic? userAddr = jsonConvert.convert<dynamic>(json['userAddr']);
   if (userAddr != null) {
     queryOrderListRespData.userAddr = userAddr;
   }
@@ -59,12 +58,12 @@ Map<String, dynamic> $QueryOrderListRespDataToJson(QueryOrderListRespData entity
   data['status'] = entity.status;
   data['createTime'] = entity.createTime;
   data['list'] = entity.list.map((v) => v.toJson()).toList();
-  data['userAddr'] = entity.userAddr.toJson();
+  data['userAddr'] = entity.userAddr;
   return data;
 }
 
-QueryOrderListRespDataItem $QueryOrderListRespDataListFromJson(Map<String, dynamic> json) {
-  final QueryOrderListRespDataItem queryOrderListRespDataList = QueryOrderListRespDataItem();
+QueryOrderListRespDataList $QueryOrderListRespDataListFromJson(Map<String, dynamic> json) {
+  final QueryOrderListRespDataList queryOrderListRespDataList = QueryOrderListRespDataList();
   final dynamic? orderId = jsonConvert.convert<dynamic>(json['orderId']);
   if (orderId != null) {
     queryOrderListRespDataList.orderId = orderId;
@@ -96,7 +95,7 @@ QueryOrderListRespDataItem $QueryOrderListRespDataListFromJson(Map<String, dynam
   return queryOrderListRespDataList;
 }
 
-Map<String, dynamic> $QueryOrderListRespDataListToJson(QueryOrderListRespDataItem entity) {
+Map<String, dynamic> $QueryOrderListRespDataListToJson(QueryOrderListRespDataList entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['orderId'] = entity.orderId;
   data['status'] = entity.status;
@@ -105,55 +104,5 @@ Map<String, dynamic> $QueryOrderListRespDataListToJson(QueryOrderListRespDataIte
   data['price'] = entity.price;
   data['squarePic'] = entity.squarePic;
   data['quantity'] = entity.quantity;
-  return data;
-}
-
-QueryOrderListRespDataUserAddr $QueryOrderListRespDataUserAddrFromJson(Map<String, dynamic> json) {
-  final QueryOrderListRespDataUserAddr queryOrderListRespDataUserAddr = QueryOrderListRespDataUserAddr();
-  final String? id = jsonConvert.convert<String>(json['id']);
-  if (id != null) {
-    queryOrderListRespDataUserAddr.id = id;
-  }
-  final int? userId = jsonConvert.convert<int>(json['userId']);
-  if (userId != null) {
-    queryOrderListRespDataUserAddr.userId = userId;
-  }
-  final String? name = jsonConvert.convert<String>(json['name']);
-  if (name != null) {
-    queryOrderListRespDataUserAddr.name = name;
-  }
-  final String? phone = jsonConvert.convert<String>(json['phone']);
-  if (phone != null) {
-    queryOrderListRespDataUserAddr.phone = phone;
-  }
-  final String? region = jsonConvert.convert<String>(json['region']);
-  if (region != null) {
-    queryOrderListRespDataUserAddr.region = region;
-  }
-  final String? address = jsonConvert.convert<String>(json['address']);
-  if (address != null) {
-    queryOrderListRespDataUserAddr.address = address;
-  }
-  final bool? defaultAddress = jsonConvert.convert<bool>(json['defaultAddress']);
-  if (defaultAddress != null) {
-    queryOrderListRespDataUserAddr.defaultAddress = defaultAddress;
-  }
-  final int? addrType = jsonConvert.convert<int>(json['addrType']);
-  if (addrType != null) {
-    queryOrderListRespDataUserAddr.addrType = addrType;
-  }
-  return queryOrderListRespDataUserAddr;
-}
-
-Map<String, dynamic> $QueryOrderListRespDataUserAddrToJson(QueryOrderListRespDataUserAddr entity) {
-  final Map<String, dynamic> data = <String, dynamic>{};
-  data['id'] = entity.id;
-  data['userId'] = entity.userId;
-  data['name'] = entity.name;
-  data['phone'] = entity.phone;
-  data['region'] = entity.region;
-  data['address'] = entity.address;
-  data['defaultAddress'] = entity.defaultAddress;
-  data['addrType'] = entity.addrType;
   return data;
 }

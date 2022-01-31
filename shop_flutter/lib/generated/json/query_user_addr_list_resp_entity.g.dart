@@ -1,24 +1,24 @@
 import 'package:shop_flutter/generated/json/base/json_convert_content.dart';
 import 'package:shop_flutter/network/bean/query_user_addr_list_resp_entity.dart';
 
-QueryUserAddrListResp $QueryUserAddrListRespFromJson(Map<String, dynamic> json) {
-  final QueryUserAddrListResp queryUserAddrListResp = QueryUserAddrListResp();
+QueryUserAddrListRespEntity $QueryUserAddrListRespEntityFromJson(Map<String, dynamic> json) {
+  final QueryUserAddrListRespEntity queryUserAddrListRespEntity = QueryUserAddrListRespEntity();
   final int? code = jsonConvert.convert<int>(json['code']);
   if (code != null) {
-    queryUserAddrListResp.code = code;
+    queryUserAddrListRespEntity.code = code;
   }
   final dynamic? msg = jsonConvert.convert<dynamic>(json['msg']);
   if (msg != null) {
-    queryUserAddrListResp.msg = msg;
+    queryUserAddrListRespEntity.msg = msg;
   }
-  final List<UserAddr>? data = jsonConvert.convertListNotNull<UserAddr>(json['data']);
+  final List<QueryUserAddrListRespData>? data = jsonConvert.convertListNotNull<QueryUserAddrListRespData>(json['data']);
   if (data != null) {
-    queryUserAddrListResp.data = data;
+    queryUserAddrListRespEntity.data = data;
   }
-  return queryUserAddrListResp;
+  return queryUserAddrListRespEntity;
 }
 
-Map<String, dynamic> $QueryUserAddrListRespToJson(QueryUserAddrListResp entity) {
+Map<String, dynamic> $QueryUserAddrListRespEntityToJson(QueryUserAddrListRespEntity entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['code'] = entity.code;
   data['msg'] = entity.msg;
@@ -26,44 +26,44 @@ Map<String, dynamic> $QueryUserAddrListRespToJson(QueryUserAddrListResp entity) 
   return data;
 }
 
-UserAddr $UserAddrFromJson(Map<String, dynamic> json) {
-  final UserAddr userAddr = UserAddr();
+QueryUserAddrListRespData $QueryUserAddrListRespDataFromJson(Map<String, dynamic> json) {
+  final QueryUserAddrListRespData queryUserAddrListRespData = QueryUserAddrListRespData();
   final String? id = jsonConvert.convert<String>(json['id']);
   if (id != null) {
-    userAddr.id = id;
+    queryUserAddrListRespData.id = id;
   }
   final int? userId = jsonConvert.convert<int>(json['userId']);
   if (userId != null) {
-    userAddr.userId = userId;
+    queryUserAddrListRespData.userId = userId;
   }
   final String? name = jsonConvert.convert<String>(json['name']);
   if (name != null) {
-    userAddr.name = name;
+    queryUserAddrListRespData.name = name;
   }
   final String? phone = jsonConvert.convert<String>(json['phone']);
   if (phone != null) {
-    userAddr.phone = phone;
+    queryUserAddrListRespData.phone = phone;
   }
   final String? region = jsonConvert.convert<String>(json['region']);
   if (region != null) {
-    userAddr.region = region;
+    queryUserAddrListRespData.region = region;
   }
   final String? address = jsonConvert.convert<String>(json['address']);
   if (address != null) {
-    userAddr.address = address;
+    queryUserAddrListRespData.address = address;
   }
   final bool? defaultAddress = jsonConvert.convert<bool>(json['defaultAddress']);
   if (defaultAddress != null) {
-    userAddr.defaultAddress = defaultAddress;
+    queryUserAddrListRespData.defaultAddress = defaultAddress;
   }
   final int? addrType = jsonConvert.convert<int>(json['addrType']);
   if (addrType != null) {
-    userAddr.addrType = addrType;
+    queryUserAddrListRespData.addrType = addrType;
   }
-  return userAddr;
+  return queryUserAddrListRespData;
 }
 
-Map<String, dynamic> $UserAddrToJson(UserAddr entity) {
+Map<String, dynamic> $QueryUserAddrListRespDataToJson(QueryUserAddrListRespData entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['id'] = entity.id;
   data['userId'] = entity.userId;

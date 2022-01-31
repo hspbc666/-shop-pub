@@ -1,18 +1,19 @@
 import 'dart:convert';
+
 import 'package:shop_flutter/generated/json/base/json_field.dart';
-import 'package:shop_flutter/generated/json/query_user_addr_list_resp.g.dart';
+import 'package:shop_flutter/generated/json/query_user_addr_list_resp_entity.g.dart';
 
 @JsonSerializable()
-class QueryUserAddrListResp {
+class QueryUserAddrListRespEntity {
   late int code;
   late dynamic msg;
-  late List<UserAddr> data;
+  late List<QueryUserAddrListRespData> data;
 
-  QueryUserAddrListResp();
+  QueryUserAddrListRespEntity();
 
-  factory QueryUserAddrListResp.fromJson(Map<String, dynamic> json) => $QueryUserAddrListRespFromJson(json);
+  factory QueryUserAddrListRespEntity.fromJson(Map<String, dynamic> json) => $QueryUserAddrListRespEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => $QueryUserAddrListRespToJson(this);
+  Map<String, dynamic> toJson() => $QueryUserAddrListRespEntityToJson(this);
 
   @override
   String toString() {
@@ -21,9 +22,9 @@ class QueryUserAddrListResp {
 }
 
 @JsonSerializable()
-class UserAddr {
-  String id = "";
-  int userId = 0;
+class QueryUserAddrListRespData {
+  late String id;
+  late int userId;
   late String name;
   late String phone;
   late String region;
@@ -31,11 +32,11 @@ class UserAddr {
   late bool defaultAddress;
   late int addrType;
 
-  UserAddr();
+  QueryUserAddrListRespData();
 
-  factory UserAddr.fromJson(Map<String, dynamic> json) => $UserAddrFromJson(json);
+  factory QueryUserAddrListRespData.fromJson(Map<String, dynamic> json) => $QueryUserAddrListRespDataFromJson(json);
 
-  Map<String, dynamic> toJson() => $UserAddrToJson(this);
+  Map<String, dynamic> toJson() => $QueryUserAddrListRespDataToJson(this);
 
   @override
   String toString() {

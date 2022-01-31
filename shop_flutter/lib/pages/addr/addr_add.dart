@@ -17,7 +17,7 @@ class AddAddrPage extends StatefulWidget {
 }
 
 class _AddAddrState extends State<AddAddrPage> {
-  UserAddr userAddrData = UserAddr();
+  QueryUserAddrListRespData userAddrData = QueryUserAddrListRespData();
   var _addrType = 0;
   var _defaultAddress = true;
   var nameController = TextEditingController();

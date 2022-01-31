@@ -2,19 +2,41 @@ import 'dart:convert';
 
 import 'package:shop_flutter/generated/json/base/json_field.dart';
 import 'package:shop_flutter/generated/json/query_user_addr_resp_entity.g.dart';
-import 'package:shop_flutter/network/bean/query_user_addr_list_resp_entity.dart';
 
 @JsonSerializable()
-class QueryUserAddrResp {
+class QueryUserAddrRespEntity {
   late int code;
   late dynamic msg;
-  late UserAddr data;
+  late QueryUserAddrRespData data;
 
-  QueryUserAddrResp();
+  QueryUserAddrRespEntity();
 
-  factory QueryUserAddrResp.fromJson(Map<String, dynamic> json) => $QueryUserAddrRespEntityFromJson(json);
+  factory QueryUserAddrRespEntity.fromJson(Map<String, dynamic> json) => $QueryUserAddrRespEntityFromJson(json);
 
   Map<String, dynamic> toJson() => $QueryUserAddrRespEntityToJson(this);
+
+  @override
+  String toString() {
+    return jsonEncode(this);
+  }
+}
+
+@JsonSerializable()
+class QueryUserAddrRespData {
+  late String id;
+  late int userId;
+  late String name;
+  late String phone;
+  late String region;
+  late String address;
+  late bool defaultAddress;
+  late int addrType;
+
+  QueryUserAddrRespData();
+
+  factory QueryUserAddrRespData.fromJson(Map<String, dynamic> json) => $QueryUserAddrRespDataFromJson(json);
+
+  Map<String, dynamic> toJson() => $QueryUserAddrRespDataToJson(this);
 
   @override
   String toString() {

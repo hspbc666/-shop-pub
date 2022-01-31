@@ -21,7 +21,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartState extends State<CartPage> {
-  List<CartItem> _dataList = [];
+  List<QueryCartRespData> _dataList = [];
   List<String> selectedCartIdList = [];
   int selectedSum = 0;
 
@@ -77,7 +77,7 @@ class _CartState extends State<CartPage> {
     }
   }
 
-  getItem(CartItem cartItem) {
+  getItem(QueryCartRespData cartItem) {
     var row = Container(
       margin: EdgeInsets.all(4.0),
       child: InkWell(
@@ -92,7 +92,7 @@ class _CartState extends State<CartPage> {
     );
   }
 
-  Row buildRow(CartItem cartItem) {
+  Row buildRow(QueryCartRespData cartItem) {
     return Row(
       children: <Widget>[
         Expanded(
@@ -119,7 +119,7 @@ class _CartState extends State<CartPage> {
     );
   }
 
-  Column buildGoodsInfoCol(CartItem cartItem) {
+  Column buildGoodsInfoCol(QueryCartRespData cartItem) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -200,7 +200,7 @@ class _CartState extends State<CartPage> {
     );
   }
 
-  Checkbox buildCheckbox(CartItem cartItem) {
+  Checkbox buildCheckbox(QueryCartRespData cartItem) {
     return Checkbox(
       value: selectedCartIdList.contains(cartItem.id),
       onChanged: (isChecked) {
@@ -238,7 +238,7 @@ class _CartState extends State<CartPage> {
     }
   }
 
-  onRowClick(CartItem cartItem) {
+  onRowClick(QueryCartRespData cartItem) {
     // Navigator.push(context, MaterialPageRoute(builder: (context) => ViewNotePage(noteId: note['id'])));
   }
 
@@ -255,7 +255,7 @@ class _CartState extends State<CartPage> {
       if (value) {
         String url = "shop/cart/list";
         HttpManager.getInstance().get(url).then((resp) {
-          var result = QueryCartResp.fromJson(resp);
+          var result = QueryCartRespEntity.fromJson(resp);
           setState(() {
             _dataList = result.data;
           });

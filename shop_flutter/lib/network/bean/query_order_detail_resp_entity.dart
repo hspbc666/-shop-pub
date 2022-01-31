@@ -1,19 +1,19 @@
 import 'dart:convert';
 
 import 'package:shop_flutter/generated/json/base/json_field.dart';
-import 'package:shop_flutter/generated/json/query_order_detail_entity.g.dart';
+import 'package:shop_flutter/generated/json/query_order_detail_resp_entity.g.dart';
 
 @JsonSerializable()
-class QueryOrderDetailResp {
+class QueryOrderDetailRespEntity {
   late int code;
   late dynamic msg;
-  late QueryOrderDetailData data;
+  late QueryOrderDetailRespData data;
 
-  QueryOrderDetailResp();
+  QueryOrderDetailRespEntity();
 
-  factory QueryOrderDetailResp.fromJson(Map<String, dynamic> json) => $QueryOrderDetailEntityFromJson(json);
+  factory QueryOrderDetailRespEntity.fromJson(Map<String, dynamic> json) => $QueryOrderDetailRespEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => $QueryOrderDetailEntityToJson(this);
+  Map<String, dynamic> toJson() => $QueryOrderDetailRespEntityToJson(this);
 
   @override
   String toString() {
@@ -22,18 +22,18 @@ class QueryOrderDetailResp {
 }
 
 @JsonSerializable()
-class QueryOrderDetailData {
+class QueryOrderDetailRespData {
   late String orderId;
   late int status;
   late int createTime;
-  late List<QueryOrderDetailDataItem> list;
+  late List<QueryOrderDetailRespDataList> list;
   late dynamic userAddr;
 
-  QueryOrderDetailData();
+  QueryOrderDetailRespData();
 
-  factory QueryOrderDetailData.fromJson(Map<String, dynamic> json) => $QueryOrderDetailDataFromJson(json);
+  factory QueryOrderDetailRespData.fromJson(Map<String, dynamic> json) => $QueryOrderDetailRespDataFromJson(json);
 
-  Map<String, dynamic> toJson() => $QueryOrderDetailDataToJson(this);
+  Map<String, dynamic> toJson() => $QueryOrderDetailRespDataToJson(this);
 
   @override
   String toString() {
@@ -42,7 +42,7 @@ class QueryOrderDetailData {
 }
 
 @JsonSerializable()
-class QueryOrderDetailDataItem {
+class QueryOrderDetailRespDataList {
   late dynamic orderId;
   late int status;
   late String goodsId;
@@ -51,11 +51,12 @@ class QueryOrderDetailDataItem {
   late String squarePic;
   late int quantity;
 
-  QueryOrderDetailDataItem();
+  QueryOrderDetailRespDataList();
 
-  factory QueryOrderDetailDataItem.fromJson(Map<String, dynamic> json) => $QueryOrderDetailDataListFromJson(json);
+  factory QueryOrderDetailRespDataList.fromJson(Map<String, dynamic> json) =>
+      $QueryOrderDetailRespDataListFromJson(json);
 
-  Map<String, dynamic> toJson() => $QueryOrderDetailDataListToJson(this);
+  Map<String, dynamic> toJson() => $QueryOrderDetailRespDataListToJson(this);
 
   @override
   String toString() {

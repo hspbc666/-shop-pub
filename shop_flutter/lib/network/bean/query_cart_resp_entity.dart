@@ -1,19 +1,19 @@
 import 'dart:convert';
 
 import 'package:shop_flutter/generated/json/base/json_field.dart';
-import 'package:shop_flutter/generated/json/query_cart_resp.g.dart';
+import 'package:shop_flutter/generated/json/query_cart_resp_entity.g.dart';
 
 @JsonSerializable()
-class QueryCartResp {
+class QueryCartRespEntity {
   late int code;
   late dynamic msg;
-  late List<CartItem> data;
+  late List<QueryCartRespData> data;
 
-  QueryCartResp();
+  QueryCartRespEntity();
 
-  factory QueryCartResp.fromJson(Map<String, dynamic> json) => $QueryCartRespFromJson(json);
+  factory QueryCartRespEntity.fromJson(Map<String, dynamic> json) => $QueryCartRespEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => $QueryCartRespToJson(this);
+  Map<String, dynamic> toJson() => $QueryCartRespEntityToJson(this);
 
   @override
   String toString() {
@@ -22,7 +22,7 @@ class QueryCartResp {
 }
 
 @JsonSerializable()
-class CartItem {
+class QueryCartRespData {
   late String id;
   late String goodsId;
   late String name;
@@ -31,11 +31,11 @@ class CartItem {
   late String squarePic;
   late int quantity;
 
-  CartItem();
+  QueryCartRespData();
 
-  factory CartItem.fromJson(Map<String, dynamic> json) => $CartItemFromJson(json);
+  factory QueryCartRespData.fromJson(Map<String, dynamic> json) => $QueryCartRespDataFromJson(json);
 
-  Map<String, dynamic> toJson() => $CartItemToJson(this);
+  Map<String, dynamic> toJson() => $QueryCartRespDataToJson(this);
 
   @override
   String toString() {

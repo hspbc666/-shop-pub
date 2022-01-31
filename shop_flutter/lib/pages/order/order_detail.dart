@@ -20,7 +20,7 @@ class OrderDetailPage extends StatefulWidget {
 }
 
 class _OrderDetailState extends State<OrderDetailPage> {
-  QueryOrderDetailData? _queryOrderDetailData;
+  QueryOrderDetailRespData? _queryOrderDetailData;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class _OrderDetailState extends State<OrderDetailPage> {
     if (_queryOrderDetailData == null) {
       return [emptyContainer()];
     } else {
-      return _queryOrderDetailData!.list.map((QueryOrderDetailDataItem queryOrderDetailDataItem) {
+      return _queryOrderDetailData!.list.map((QueryOrderDetailRespDataList queryOrderDetailDataItem) {
         return Column(
           children: [
             Row(
@@ -126,7 +126,7 @@ class _OrderDetailState extends State<OrderDetailPage> {
   _queryData() async {
     String url = "shop/order/query/" + widget.orderId;
     HttpManager.getInstance().get(url).then((resp) {
-      var result = QueryOrderDetailResp.fromJson(resp);
+      var result = QueryOrderDetailRespEntity.fromJson(resp);
       setState(() {
         _queryOrderDetailData = result.data;
       });
