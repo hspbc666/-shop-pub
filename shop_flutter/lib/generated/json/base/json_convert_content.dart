@@ -6,10 +6,12 @@
 import 'package:shop_flutter/network/bean/query_cart_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_category_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_goods_by_category_resp_entity.dart';
+import 'package:shop_flutter/network/bean/query_goods_detail_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_order_detail_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_order_list_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_user_addr_list_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_user_addr_resp_entity.dart';
+import 'package:shop_flutter/network/bean/search_resp_entity.dart';
 
 JsonConvert jsonConvert = JsonConvert();
 
@@ -100,6 +102,12 @@ class JsonConvert {
     if (type == (QueryGoodsByCategoryRespData).toString()) {
       return QueryGoodsByCategoryRespData.fromJson(json) as M;
     }
+    if (type == (QueryGoodsDetailRespEntity).toString()) {
+      return QueryGoodsDetailRespEntity.fromJson(json) as M;
+    }
+    if (type == (QueryGoodsDetailRespData).toString()) {
+      return QueryGoodsDetailRespData.fromJson(json) as M;
+    }
     if (type == (QueryOrderDetailRespEntity).toString()) {
       return QueryOrderDetailRespEntity.fromJson(json) as M;
     }
@@ -129,6 +137,12 @@ class JsonConvert {
     }
     if (type == (QueryUserAddrRespData).toString()) {
       return QueryUserAddrRespData.fromJson(json) as M;
+    }
+    if (type == (SearchRespEntity).toString()) {
+      return SearchRespEntity.fromJson(json) as M;
+    }
+    if (type == (SearchRespData).toString()) {
+      return SearchRespData.fromJson(json) as M;
     }
 
     print("$type not found");
@@ -160,6 +174,16 @@ class JsonConvert {
     if (<QueryGoodsByCategoryRespData>[] is M) {
       return data
           .map<QueryGoodsByCategoryRespData>((Map<String, dynamic> e) => QueryGoodsByCategoryRespData.fromJson(e))
+          .toList() as M;
+    }
+    if (<QueryGoodsDetailRespEntity>[] is M) {
+      return data
+          .map<QueryGoodsDetailRespEntity>((Map<String, dynamic> e) => QueryGoodsDetailRespEntity.fromJson(e))
+          .toList() as M;
+    }
+    if (<QueryGoodsDetailRespData>[] is M) {
+      return data
+          .map<QueryGoodsDetailRespData>((Map<String, dynamic> e) => QueryGoodsDetailRespData.fromJson(e))
           .toList() as M;
     }
     if (<QueryOrderDetailRespEntity>[] is M) {
@@ -208,6 +232,12 @@ class JsonConvert {
     if (<QueryUserAddrRespData>[] is M) {
       return data.map<QueryUserAddrRespData>((Map<String, dynamic> e) => QueryUserAddrRespData.fromJson(e)).toList()
           as M;
+    }
+    if (<SearchRespEntity>[] is M) {
+      return data.map<SearchRespEntity>((Map<String, dynamic> e) => SearchRespEntity.fromJson(e)).toList() as M;
+    }
+    if (<SearchRespData>[] is M) {
+      return data.map<SearchRespData>((Map<String, dynamic> e) => SearchRespData.fromJson(e)).toList() as M;
     }
 
     print("${M.toString()} not found");
