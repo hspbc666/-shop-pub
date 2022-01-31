@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_flutter/lblbc_constants.dart';
@@ -146,7 +144,7 @@ class _CartState extends State<CartPage> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  buildDecreaseQuantityView(),
+                  buildDecreaseQuantityView(cartItem),
                   const VerticalDivider(
                     width: 1,
                     thickness: 1,
@@ -159,7 +157,7 @@ class _CartState extends State<CartPage> {
                     thickness: 1,
                     color: Color(0XFFEBEBEB),
                   ),
-                  buildIncreaseQuantityView(),
+                  buildIncreaseQuantityView(cartItem),
                 ],
               ),
             )
@@ -169,7 +167,7 @@ class _CartState extends State<CartPage> {
     );
   }
 
-  InkWell buildDecreaseQuantityView() {
+  InkWell buildDecreaseQuantityView(QueryCartRespData cartItem) {
     return InkWell(
       child: Container(
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -179,12 +177,12 @@ class _CartState extends State<CartPage> {
             )),
       ),
       onTap: () {
-        decreaseQuantity();
+        decreaseQuantity(cartItem);
       },
     );
   }
 
-  InkWell buildIncreaseQuantityView() {
+  InkWell buildIncreaseQuantityView(QueryCartRespData cartItem) {
     return InkWell(
       child: Container(
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -194,7 +192,7 @@ class _CartState extends State<CartPage> {
             )),
       ),
       onTap: () {
-        increaseQuantity();
+        increaseQuantity(cartItem);
       },
     );
   }
@@ -241,12 +239,27 @@ class _CartState extends State<CartPage> {
     // Navigator.push(context, MaterialPageRoute(builder: (context) => ViewNotePage(noteId: note['id'])));
   }
 
-  void decreaseQuantity() {
-    log("ddddd");
+  void decreaseQuantity(QueryCartRespData cartItem) {
+    int quantity = cartItem.quantity - 1;
+    cartItem.quantity = quantity;
+    if (quantity <= 0) {
+      _dataList.remove(cartItem);
+    }
+    setState(() {
+      _dataList = _dataList;
+    });
+    String url = "shop/cart/modify/" + cartItem.id + "/" + quantity.toString();
+    HttpManager.getInstance().get(url).then((resp) {});
   }
 
-  void increaseQuantity() {
-    log("ddddd3333333333");
+  void increaseQuantity(QueryCartRespData cartItem) {
+    int quantity = cartItem.quantity + 1;
+    cartItem.quantity = quantity;
+    setState(() {
+      _dataList = _dataList;
+    });
+    String url = "shop/cart/modify/" + cartItem.id + "/" + quantity.toString();
+    HttpManager.getInstance().get(url).then((resp) {});
   }
 
   _queryData() async {
