@@ -173,7 +173,7 @@ class _GoodsState extends State<GoodsPage> {
               child: ElevatedButton(
                 child: const Text('购买'),
                 onPressed: () {
-                  gotoConfirmOrder();
+                  gotoConfirmOrderPage();
                 },
               ),
             ),
@@ -182,7 +182,7 @@ class _GoodsState extends State<GoodsPage> {
         ));
   }
 
-  void gotoConfirmOrder() {
+  void gotoConfirmOrderPage() {
     if (queryGoodsDetailRespData != null) {
       Navigator.push(context, MaterialPageRoute(builder: (context) => OrderConfirmPage(queryGoodsDetailRespData!.id)));
     }

@@ -6,6 +6,7 @@ import 'package:shop_flutter/network/bean/query_cart_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/goods.dart';
 import 'package:shop_flutter/pages/login/login_manager.dart';
+import 'package:shop_flutter/pages/order/order_confirm_from_cart.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -59,13 +60,25 @@ class _CartState extends State<CartPage> {
             width: 100,
             child: ElevatedButton(
               child: const Text('结算'),
-              onPressed: () {},
+              onPressed: () {
+                gotoConfirmOrderPage();
+              },
               style: ButtonStyle(backgroundColor: MaterialStateProperty.all(buildBtnColor())),
             ),
           )
         ],
       ),
     );
+  }
+
+  void gotoConfirmOrderPage() {
+    if (_selectedCartIndexes.isNotEmpty) {
+      String cartIds = "";
+      for (var item in _selectedCartIndexes) {
+        cartIds += _dataList.elementAt(item).id + ",";
+      }
+      Navigator.push(context, MaterialPageRoute(builder: (context) => OrderConfirmFromCartPage(cartIds)));
+    }
   }
 
   Color buildBtnColor() {

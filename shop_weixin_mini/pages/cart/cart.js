@@ -99,18 +99,18 @@ Page({
     })
   },
   gotoConfirmOrder(e) {
-    var goodsIds = ""
+    var cartIds = ""
 
     let selectedCartIndexes = this.data.selectedCartIndexes
     if (selectedCartIndexes != null && typeof (selectedCartIndexes) != 'undefined') {
       selectedCartIndexes.forEach((elem, index) => {
-        goodsIds += this.data.dataList[elem].id + ","
+        cartIds += this.data.dataList[elem].id + ","
       });
     }
 
-    if (goodsIds != "") {
+    if (cartIds != "") {
       wx.navigateTo({
-        url: '/pages/order/order-confirm-from-cart/order-confirm-from-cart?ids=' + goodsIds
+        url: '/pages/order/order-confirm-from-cart/order-confirm-from-cart?ids=' + cartIds
       })
     }
   },

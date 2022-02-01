@@ -46,6 +46,9 @@ public class OrderService {
         addUserOder(userId, orderId, userAddrId);
 
         for (String cartId : cartIdList) {
+            if (cartId.isEmpty()) {
+                continue;
+            }
             CartSimpleItem cartItem = cartMapper.queryByCartId(cartId);
             String id = LblIdGenerator.generateId();
             orderMapper.add(id, orderId, cartItem.getGoodsId(), cartItem.getQuantity());
@@ -57,14 +60,14 @@ public class OrderService {
     @Transactional
     public String createOrder(int userId, String goodsId, String userAddrId) {
         String orderId = LblIdGenerator.generateId();
-        addUserOder(userId, orderId,userAddrId);
+        addUserOder(userId, orderId, userAddrId);
         String id = LblIdGenerator.generateId();
         orderMapper.add(id, orderId, goodsId, 1);
         return orderId;
     }
 
     private void addUserOder(int userId, String orderId, String userAddrId) {
-        userOrderMapper.add(orderId, userId, TO_PAY, System.currentTimeMillis(),userAddrId);
+        userOrderMapper.add(orderId, userId, TO_PAY, System.currentTimeMillis(), userAddrId);
     }
 
     public void changeOrderStatus(String orderId, int status) {
