@@ -7,6 +7,7 @@ import 'package:shop_flutter/network/bean/query_default_addr_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_goods_detail_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/addr/addr_add.dart';
+import 'package:shop_flutter/pages/addr/addr_select.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -270,6 +271,10 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
     if (queryDefaultAddrRespData == null) {
       Navigator.push(context, MaterialPageRoute(builder: (context) => const AddAddrPage()))
           .then((value) => {refreshPage()});
-    } else {}
+    } else {
+      Navigator.push(context,
+              MaterialPageRoute(builder: (context) => SelectAddrListPage(userAddrId: queryDefaultAddrRespData!.id)))
+          .then((value) => {refreshPage()});
+    }
   }
 }

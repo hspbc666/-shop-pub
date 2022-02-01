@@ -99,7 +99,6 @@ class _EditAddrState extends State<EditAddrPage> {
         onChanged: (v) {
           setState(() {
             _addrType = v as int;
-            print(_addrType);
           });
         });
   }
