@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:shop_flutter/lblbc_constants.dart';
 import 'package:shop_flutter/lblbc_ui_kit.dart';
 import 'package:shop_flutter/network/bean/create_order_req.dart';
+import 'package:shop_flutter/network/bean/create_order_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_default_addr_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_goods_detail_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_user_addr_list_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/addr/addr_select.dart';
+import 'package:shop_flutter/pages/order/order_detail.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -206,13 +208,10 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
             const Spacer(),
             InkWell(
               onTap: () {},
-              child: Row(children: const [
-                Text("购物车", style: TextStyle(fontSize: 16.0, color: Color(0xFF737373))),
-                Image(
-                  image: AssetImage('assets/images/cart.png'),
-                  width: 30,
-                  height: 30,
-                )
+              child: Row(children: [
+                const Text("实付款"),
+                Text("￥" + (queryGoodsDetailRespData!.price / 100).toString(),
+                    style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965))),
               ]),
             ),
             const Spacer(),
@@ -262,9 +261,14 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
   }
 
   void createOrder() {
-    String url = "shop/order/create" + widget.goodsId;
-    CreateOrderReq createOrderReq = CreateOrderReq(goodsId: widget.goodsId, userAddrId: "1111");
-    HttpManager.getInstance().post(url, data: createOrderReq.toJson()).then((resp) {});
+    if (queryDefaultAddrRespData != null) {
+      String url = "shop/order/create";
+      CreateOrderReq createOrderReq = CreateOrderReq(goodsId: widget.goodsId, userAddrId: queryDefaultAddrRespData!.id);
+      HttpManager.getInstance().post(url, data: createOrderReq.toJson()).then((resp) {
+        var result = CreateOrderRespEntity.fromJson(resp);
+        gotoOrderDetailPage(result.data.orderId);
+      });
+    }
   }
 
   void gotoSelectAddrPage() {
@@ -286,5 +290,10 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
         queryDefaultAddrRespData = queryDefaultAddrRespData;
       });
     }
+  }
+
+  void gotoOrderDetailPage(String orderId) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => OrderDetailPage(orderId)))
+        .then((value) => Navigator.pop(context));
   }
 }
