@@ -5,8 +5,8 @@ import 'package:shop_flutter/lblbc_ui_kit.dart';
 import 'package:shop_flutter/network/bean/create_order_req.dart';
 import 'package:shop_flutter/network/bean/query_default_addr_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_goods_detail_resp_entity.dart';
+import 'package:shop_flutter/network/bean/query_user_addr_list_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
-import 'package:shop_flutter/pages/addr/addr_add.dart';
 import 'package:shop_flutter/pages/addr/addr_select.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
@@ -64,7 +64,7 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
     return InkWell(
       child: buildAddrInfoBlock(),
       onTap: () {
-        gotoAddrPage();
+        gotoSelectAddrPage();
       },
     );
   }
@@ -267,14 +267,24 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
     HttpManager.getInstance().post(url, data: createOrderReq.toJson()).then((resp) {});
   }
 
-  void gotoAddrPage() {
-    if (queryDefaultAddrRespData == null) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const AddAddrPage()))
-          .then((value) => {refreshPage()});
-    } else {
-      Navigator.push(context,
-              MaterialPageRoute(builder: (context) => SelectAddrListPage(userAddrId: queryDefaultAddrRespData!.id)))
-          .then((value) => {refreshPage()});
+  void gotoSelectAddrPage() {
+    String addrId = "";
+    if (queryDefaultAddrRespData != null) {
+      addrId = queryDefaultAddrRespData!.id;
+    }
+    Navigator.push(context, MaterialPageRoute(builder: (context) => SelectAddrListPage(userAddrId: addrId)))
+        .then((value) => {refreshBackFromAddrPage(value)});
+  }
+
+  refreshBackFromAddrPage(value) {
+    if (value is QueryUserAddrListRespData) {
+      queryDefaultAddrRespData = QueryDefaultAddrRespData();
+      queryDefaultAddrRespData!.id = value.id;
+      queryDefaultAddrRespData!.name = value.name;
+      queryDefaultAddrRespData!.address = value.address;
+      setState(() {
+        queryDefaultAddrRespData = queryDefaultAddrRespData;
+      });
     }
   }
 }

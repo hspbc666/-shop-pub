@@ -61,7 +61,12 @@ class _SelectAddrListState extends State<SelectAddrListPage> {
   getItem(QueryUserAddrListRespData userAddrData) {
     var row = Container(
       margin: const EdgeInsets.all(4.0),
-      child: buildRow(userAddrData),
+      child: InkWell(
+        child: buildRow(userAddrData),
+        onTap: () {
+          selectAddr(userAddrData);
+        },
+      ),
     );
     return Card(
       child: row,
@@ -220,5 +225,9 @@ class _SelectAddrListState extends State<SelectAddrListPage> {
         });
       }
     });
+  }
+
+  void selectAddr(QueryUserAddrListRespData userAddrData) {
+    Navigator.pop(context, userAddrData);
   }
 }
