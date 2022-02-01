@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shop_flutter/lblbc_constants.dart';
 import 'package:shop_flutter/lblbc_ui_kit.dart';
 import 'package:shop_flutter/network/bean/create_order_req.dart';
+import 'package:shop_flutter/network/bean/query_default_addr_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_goods_detail_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
-import 'package:shop_flutter/pages/login/login.dart';
-import 'package:shop_flutter/pages/login/login_manager.dart';
+import 'package:shop_flutter/pages/addr/addr_add.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -25,6 +24,7 @@ class OrderConfirmPage extends StatefulWidget {
 
 class _OrderConfirmState extends State<OrderConfirmPage> {
   QueryGoodsDetailRespData? queryGoodsDetailRespData;
+  QueryDefaultAddrRespData? queryDefaultAddrRespData;
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +46,8 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
           child: Column(
             children: [
               Expanded(
-                  child: Column(children: [
-                buildAddrInfoBlock(),
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                buildAddrInfoBlockWithTap(),
                 buildGoodsInfoBlock(),
                 buildDeliveryInfoBlock(),
                 buildFeeInfoBlock(),
@@ -59,35 +59,59 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
     }
   }
 
-  buildAddrInfoBlock() {
-    return Card(
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        child: Row(
-          children: [
-            const Text("配送", style: TextStyle(color: Color(0xFF595D65))),
-            lblRowSpacer(10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text("顺丰速运",
-                    style: TextStyle(
-                      color: Color(0xFF333333),
-                      fontWeight: FontWeight.bold,
-                    )),
-                Text("1个包裹，预计明天送达", style: TextStyle(color: Color(0xFF717171))),
-              ],
-            ),
-            const Spacer(),
-            const Image(
-              image: AssetImage('assets/images/right_arrow.png'),
-              width: 20,
-              height: 20,
-            ),
-          ],
-        ),
-      ),
+  buildAddrInfoBlockWithTap() {
+    return InkWell(
+      child: buildAddrInfoBlock(),
+      onTap: () {
+        gotoAddrPage();
+      },
     );
+  }
+
+  buildAddrInfoBlock() {
+    if (queryDefaultAddrRespData == null) {
+      return Card(
+          child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
+        child: const Text("+ 添加收货地址",
+            style: TextStyle(
+              fontSize: 16.0,
+            )),
+      ));
+    } else {
+      return Card(
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          child: Row(
+            children: [
+              const Image(
+                image: AssetImage('assets/images/location.png'),
+                width: 20,
+                height: 20,
+              ),
+              lblRowSpacer(10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(queryDefaultAddrRespData!.name,
+                      style: const TextStyle(
+                        color: Color(0xFF333333),
+                      )),
+                  Text(queryDefaultAddrRespData!.address, style: TextStyle(color: const Color(0xFF717171))),
+                ],
+              ),
+              const Spacer(),
+              const Image(
+                image: AssetImage('assets/images/right_arrow.png'),
+                width: 20,
+                height: 20,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
   }
 
   buildGoodsInfoBlock() {
@@ -180,9 +204,7 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
           children: [
             const Spacer(),
             InkWell(
-              onTap: () {
-                addToCart();
-              },
+              onTap: () {},
               child: Row(children: const [
                 Text("购物车", style: TextStyle(fontSize: 16.0, color: Color(0xFF737373))),
                 Image(
@@ -207,19 +229,18 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
         ));
   }
 
-  void createOrder() {
-    String url = "shop/order/create" + widget.goodsId;
-    CreateOrderReq createOrderReq = CreateOrderReq(goodsId: widget.goodsId, userAddrId: "1111");
-    HttpManager.getInstance().post(url, data: createOrderReq.toJson()).then((resp) {});
-  }
-
   @override
   void initState() {
     super.initState();
-    _queryData();
+    refreshPage();
   }
 
-  _queryData() async {
+  refreshPage() {
+    _queryGoods();
+    _queryDefaultAddr();
+  }
+
+  _queryGoods() async {
     String url = "shop/goods/query/" + widget.goodsId;
     HttpManager.getInstance().get(url).then((resp) {
       var result = QueryGoodsDetailRespEntity.fromJson(resp);
@@ -229,18 +250,26 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
     });
   }
 
-  void addToCart() {
-    LoginManager.isLoggedIn().then((value) {
-      if (value) {
-        String url = "shop/cart/add/" + widget.goodsId;
-        HttpManager.getInstance().get(url).then((resp) {
-          Fluttertoast.showToast(
-            msg: "已加入购物车",
-          );
-        });
-      } else {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
-      }
+  _queryDefaultAddr() async {
+    String url = "shop/addr/query_default";
+    HttpManager.getInstance().get(url).then((resp) {
+      var result = QueryDefaultAddrRespEntity.fromJson(resp);
+      setState(() {
+        queryDefaultAddrRespData = result.data;
+      });
     });
+  }
+
+  void createOrder() {
+    String url = "shop/order/create" + widget.goodsId;
+    CreateOrderReq createOrderReq = CreateOrderReq(goodsId: widget.goodsId, userAddrId: "1111");
+    HttpManager.getInstance().post(url, data: createOrderReq.toJson()).then((resp) {});
+  }
+
+  void gotoAddrPage() {
+    if (queryDefaultAddrRespData == null) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const AddAddrPage()))
+          .then((value) => {refreshPage()});
+    } else {}
   }
 }
