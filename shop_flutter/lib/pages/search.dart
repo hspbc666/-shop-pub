@@ -33,17 +33,16 @@ class _SearchState extends State<SearchPage> {
       appBar: AppBar(
         title: TextField(
           autofocus: true,
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: Color(0XFF222222)),
           decoration: const InputDecoration(
-              hintStyle: TextStyle(color: Colors.white), border: InputBorder.none, hintText: "搜索更多干货"),
-          // focusNode: focusNode,
+              filled: true, fillColor: Colors.white, hintStyle: TextStyle(color: Color(0XFF97999E)), hintText: "点击搜索"),
           controller: keywordController,
         ),
         actions: [
           IconButton(
               icon: const Icon(Icons.search),
               onPressed: () {
-                // changeContent();
+                search();
               })
         ],
       ),
@@ -73,6 +72,16 @@ class _SearchState extends State<SearchPage> {
 
   _queryData() async {
     String url = "shop/goods/search/" + "手";
+    HttpManager.getInstance().get(url).then((resp) {
+      var result = SearchRespEntity.fromJson(resp);
+      setState(() {
+        _dataList = result.data;
+      });
+    });
+  }
+
+  void search() {
+    String url = "shop/goods/search/" + keywordController.value.text;
     HttpManager.getInstance().get(url).then((resp) {
       var result = SearchRespEntity.fromJson(resp);
       setState(() {
