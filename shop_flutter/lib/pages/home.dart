@@ -31,7 +31,9 @@ class _HomeState extends State<HomePage> {
               gotoSearchPage();
             })
       ]),
-      body: _buildBody(),
+      body: SingleChildScrollView(
+        child: _buildBody(),
+      ),
     );
   }
 
@@ -40,7 +42,23 @@ class _HomeState extends State<HomePage> {
       return emptyContainer();
     } else {
       return Column(
-        children: [_buildBanner(), buildItem(_goodsList[3]), buildItem(_goodsList[4])],
+        children: [
+          _buildBanner(),
+          // buildItem(_goodsList[3]),
+          // buildItem(_goodsList[4]),
+          GoodsStyle1(
+            goods: _goodsList[3],
+          ),
+          GoodsStyle1(
+            goods: _goodsList[4],
+          ),
+          GoodsStyle2(
+            goods: _goodsList[5],
+          ),
+          GoodsStyle2(
+            goods: _goodsList[6],
+          ),
+        ],
       );
     }
   }
@@ -63,6 +81,44 @@ class _HomeState extends State<HomePage> {
         ));
   }
 
+  onItemClick(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => GoodsPage(queryGoodsByCategoryRespData.id)));
+  }
+
+  void gotoSearchPage() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _queryData();
+  }
+
+  _queryData() async {
+    String url = "shop/goods/category/0";
+    HttpManager.getInstance().get(url).then((resp) {
+      var result = QueryGoodsByCategoryRespEntity.fromJson(resp);
+      setState(() {
+        _goodsList = result.data;
+      });
+    });
+  }
+}
+
+class GoodsStyle1 extends StatelessWidget {
+  final QueryGoodsByCategoryRespData goods;
+  late BuildContext _context;
+
+  GoodsStyle1({Key? key, required this.goods}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    _context = context;
+    return buildItem(goods);
+  }
+
   buildItem(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
     return Card(
       child: Container(
@@ -77,7 +133,7 @@ class _HomeState extends State<HomePage> {
     );
   }
 
-  Row buildRow(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+  buildRow(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
     return Row(
       children: <Widget>[
         Expanded(
@@ -127,26 +183,61 @@ class _HomeState extends State<HomePage> {
   }
 
   onItemClick(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => GoodsPage(queryGoodsByCategoryRespData.id)));
+    Navigator.push(_context, MaterialPageRoute(builder: (context) => GoodsPage(queryGoodsByCategoryRespData.id)));
   }
+}
 
-  void gotoSearchPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
-  }
+class GoodsStyle2 extends StatelessWidget {
+  final QueryGoodsByCategoryRespData goods;
+  late BuildContext _context;
 
+  GoodsStyle2({Key? key, required this.goods}) : super(key: key);
+
+  // This widget is the root of your application.
   @override
-  void initState() {
-    super.initState();
-    _queryData();
+  Widget build(BuildContext context) {
+    _context = context;
+    return buildItem(goods);
   }
 
-  _queryData() async {
-    String url = "shop/goods/category/0";
-    HttpManager.getInstance().get(url).then((resp) {
-      var result = QueryGoodsByCategoryRespEntity.fromJson(resp);
-      setState(() {
-        _goodsList = result.data;
-      });
-    });
+  buildItem(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+    return Card(
+      child: Container(
+        margin: const EdgeInsets.all(10.0),
+        child: InkWell(
+          onTap: () {
+            onItemClick(queryGoodsByCategoryRespData);
+          },
+          child: buildRow(queryGoodsByCategoryRespData),
+        ),
+      ),
+    );
+  }
+
+  buildRow(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Image(
+          image: NetworkImage(queryGoodsByCategoryRespData.longPic),
+          height: 200,
+        ),
+        Text(queryGoodsByCategoryRespData.name,
+            style: const TextStyle(
+              fontSize: 18.0,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis),
+        Text(
+          "￥" + (queryGoodsByCategoryRespData.price / 100).toString(),
+          style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965)),
+          maxLines: 1,
+        ),
+      ],
+    );
+  }
+
+  onItemClick(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+    Navigator.push(_context, MaterialPageRoute(builder: (context) => GoodsPage(queryGoodsByCategoryRespData.id)));
   }
 }
