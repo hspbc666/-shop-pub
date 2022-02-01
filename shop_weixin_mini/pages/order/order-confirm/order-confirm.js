@@ -13,10 +13,10 @@ Page({
   methods: {
   },
   onLoad: function (option) {
-    this.queryCart(option.id)
+    this.queryData(option.id)
     this.queryDefaultAddr()
   },
-  queryCart(goodsId) {
+  queryData(goodsId) {
     let _this = this
     http.get('shop/goods/query/' + goodsId, '',
       function (resp) {
