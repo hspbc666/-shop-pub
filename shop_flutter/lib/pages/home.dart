@@ -20,11 +20,6 @@ class HomePage extends StatefulWidget {
 
 class _HomeState extends State<HomePage> {
   List<QueryGoodsByCategoryRespData> _goodsList = [];
-  List<String> imageUrls = [
-    "https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/01/06/102/ias_a28a4efde3be0890bb22724e5dedaeb5_1135x545_85.jpg",
-    "https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2021/07/30/160/ias_86095df3cfe17ce6437098d7d0519d9f_1135x545_85.jpg",
-    "https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2021/11/01/161/ias_f2b8d6ecbc6ec61a89d20d19a6a98b8c_1135x545_85.jpg",
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,32 +31,102 @@ class _HomeState extends State<HomePage> {
               gotoSearchPage();
             })
       ]),
-      body: Column(
-        children: [_buildBanner()],
+      body: _buildBody(),
+    );
+  }
+
+  _buildBody() {
+    if (_goodsList.isEmpty) {
+      return emptyContainer();
+    } else {
+      return Column(
+        children: [_buildBanner(), buildItem(_goodsList[3]), buildItem(_goodsList[4])],
+      );
+    }
+  }
+
+  _buildBanner() {
+    return SizedBox(
+        height: 200,
+        child: Swiper(
+          itemCount: 3,
+          itemBuilder: (BuildContext context, int index) {
+            return Image.network(
+              _goodsList[index].longPic,
+              fit: BoxFit.cover,
+            );
+          },
+          pagination: const SwiperPagination(),
+          onTap: (index) {
+            onItemClick(_goodsList[index]);
+          },
+        ));
+  }
+
+  buildItem(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+    return Card(
+      child: Container(
+        margin: const EdgeInsets.all(10.0),
+        child: InkWell(
+          onTap: () {
+            onItemClick(queryGoodsByCategoryRespData);
+          },
+          child: buildRow(queryGoodsByCategoryRespData),
+        ),
       ),
     );
   }
 
-  _buildBanner() {
-    if (_goodsList.isEmpty) {
-      return emptyContainer();
-    } else {
-      return Container(
-          height: 200,
-          child: Swiper(
-            itemCount: 3,
-            itemBuilder: (BuildContext context, int index) {
-              return Image.network(
-                _goodsList[index].longPic,
-                fit: BoxFit.cover,
-              );
-            },
-            pagination: const SwiperPagination(),
-          ));
-    }
+  Row buildRow(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+    return Row(
+      children: <Widget>[
+        Expanded(
+            child: Container(
+          padding: const EdgeInsets.only(top: 5, bottom: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Image(
+                image: NetworkImage(queryGoodsByCategoryRespData.squarePic),
+                width: 100,
+                height: 100,
+              ),
+              Expanded(
+                  child: Container(
+                margin: const EdgeInsets.only(left: 10),
+                child: buildGoodsInfoCol(queryGoodsByCategoryRespData),
+              ))
+            ],
+          ),
+        ))
+      ],
+    );
   }
 
-  onRowClick(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+  Column buildGoodsInfoCol(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(queryGoodsByCategoryRespData.name,
+            style: const TextStyle(
+              fontSize: 18.0,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis),
+        Row(
+          children: [
+            Text(
+              "￥" + (queryGoodsByCategoryRespData.price / 100).toString(),
+              style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965)),
+              maxLines: 1,
+            ),
+          ],
+        )
+      ],
+    );
+  }
+
+  onItemClick(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
     Navigator.push(context, MaterialPageRoute(builder: (context) => GoodsPage(queryGoodsByCategoryRespData.id)));
   }
 

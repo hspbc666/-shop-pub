@@ -99,7 +99,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
           itemBuilder: (BuildContext context, int position) {
             return Container(
               margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-              child: getItem(_goodsList[position]),
+              child: buildItem(_goodsList[position]),
             );
           });
     } else {
@@ -107,13 +107,13 @@ class _OrderListWidgetState extends State<OrderListWidget> {
     }
   }
 
-  getItem(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+  buildItem(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
     return Card(
       child: Container(
         margin: const EdgeInsets.all(10.0),
         child: InkWell(
           onTap: () {
-            onRowClick(queryGoodsByCategoryRespData);
+            onItemClick(queryGoodsByCategoryRespData);
           },
           child: buildRow(queryGoodsByCategoryRespData),
         ),
@@ -170,7 +170,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
     );
   }
 
-  onRowClick(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+  onItemClick(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
     Navigator.push(context, MaterialPageRoute(builder: (context) => GoodsPage(queryGoodsByCategoryRespData.id)));
   }
 
