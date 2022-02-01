@@ -62,9 +62,13 @@ class _GoodsState extends State<GoodsPage> {
           lblSpacer(10),
           Card(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("￥" + queryGoodsDetailRespData!.price.toString(),
-                    style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965))),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text("￥" + queryGoodsDetailRespData!.price.toString(),
+                      style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965))),
+                ),
                 Row(
                   children: [
                     lblVerticalSpacer(10),
@@ -91,14 +95,12 @@ class _GoodsState extends State<GoodsPage> {
                     )
                   ],
                 ),
-                Row(
-                  children: [
-                    lblVerticalSpacer(10),
-                    ElevatedButton(
-                      child: Text('X商自营'),
-                      onPressed: () {},
-                    )
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: ElevatedButton(
+                    child: const Text('X商自营'),
+                    onPressed: () {},
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
