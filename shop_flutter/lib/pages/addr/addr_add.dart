@@ -129,6 +129,8 @@ class _AddAddrState extends State<AddAddrPage> {
 
   void addAddr() {
     String url = "shop/addr/add";
+    userAddrData.id = '';
+    userAddrData.userId = 0;
     userAddrData.name = nameController.value.text;
     userAddrData.phone = phoneController.value.text;
     userAddrData.region = regionController.value.text;
