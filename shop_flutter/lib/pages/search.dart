@@ -18,6 +18,7 @@ class SearchPage extends StatefulWidget {
 class _SearchState extends State<SearchPage> {
   late BuildContext mContext;
   List<SearchRespData> _dataList = [];
+  var keywordController = TextEditingController();
 
   @override
   void initState() {
@@ -29,6 +30,23 @@ class _SearchState extends State<SearchPage> {
   Widget build(BuildContext context) {
     mContext = context;
     return Scaffold(
+      appBar: AppBar(
+        title: TextField(
+          autofocus: true,
+          style: const TextStyle(color: Colors.white),
+          decoration: const InputDecoration(
+              hintStyle: TextStyle(color: Colors.white), border: InputBorder.none, hintText: "搜索更多干货"),
+          // focusNode: focusNode,
+          controller: keywordController,
+        ),
+        actions: [
+          IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                // changeContent();
+              })
+        ],
+      ),
       body: Container(margin: const EdgeInsets.fromLTRB(20, 30, 20, 20), child: buildSearchResult()),
     );
   }
@@ -37,10 +55,8 @@ class _SearchState extends State<SearchPage> {
     if (_dataList.isNotEmpty) {
       return Column(
         children: [
-          ListTile(
-            title: Text("ddddd"),
-          ),
           ListView.builder(
+              shrinkWrap: true,
               itemCount: _dataList.length,
               itemBuilder: (BuildContext context, int position) {
                 return Container(
