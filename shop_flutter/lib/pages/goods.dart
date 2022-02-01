@@ -5,9 +5,9 @@ import 'package:shop_flutter/lblbc_constants.dart';
 import 'package:shop_flutter/lblbc_ui_kit.dart';
 import 'package:shop_flutter/network/bean/query_goods_detail_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
-import 'package:shop_flutter/pages/addr/addr_list.dart';
 import 'package:shop_flutter/pages/login/login.dart';
 import 'package:shop_flutter/pages/login/login_manager.dart';
+import 'package:shop_flutter/pages/order/order_confirm.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -59,7 +59,7 @@ class _GoodsState extends State<GoodsPage> {
             width: 200,
             height: 200,
           ),
-          lblSpacer(10),
+          lblColumnSpacer(10),
           Card(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +71,7 @@ class _GoodsState extends State<GoodsPage> {
                 ),
                 Row(
                   children: [
-                    lblVerticalSpacer(10),
+                    lblRowSpacer(10),
                     OutlinedButton(
                       child: const Text('券 ￥5', style: TextStyle(color: Color(0xFFEF3965))),
                       onPressed: () {},
@@ -109,28 +109,28 @@ class _GoodsState extends State<GoodsPage> {
                 ),
                 Row(
                   children: [
-                    lblVerticalSpacer(10),
+                    lblRowSpacer(10),
                     const Image(
                       image: AssetImage('assets/images/secure.png'),
                       width: 20,
                       height: 20,
                     ),
                     const Text("100%正品", style: TextStyle(color: Colors.black)),
-                    lblVerticalSpacer(10),
+                    lblRowSpacer(10),
                     const Image(
                       image: AssetImage('assets/images/good.png'),
                       width: 20,
                       height: 20,
                     ),
                     const Text("满88免邮", style: TextStyle(color: Color(0XFF595d63))),
-                    lblVerticalSpacer(10),
+                    lblRowSpacer(10),
                     const Image(
                       image: AssetImage('assets/images/good.png'),
                       width: 20,
                       height: 20,
                     ),
                     const Text("7天可退", style: TextStyle(color: Color(0XFF595d63))),
-                    lblVerticalSpacer(10),
+                    lblRowSpacer(10),
                     const Image(
                       image: AssetImage('assets/images/good.png'),
                       width: 20,
@@ -139,7 +139,7 @@ class _GoodsState extends State<GoodsPage> {
                     const Text("上门退货", style: TextStyle(color: Color(0XFF595d63))),
                   ],
                 ),
-                lblSpacer(10),
+                lblColumnSpacer(10),
               ],
             ),
           )
@@ -173,8 +173,7 @@ class _GoodsState extends State<GoodsPage> {
               child: ElevatedButton(
                 child: const Text('购买'),
                 onPressed: () {
-                  LoginManager.logout();
-                  Navigator.pop(context);
+                  gotoConfirmOrder();
                 },
               ),
             ),
@@ -183,8 +182,10 @@ class _GoodsState extends State<GoodsPage> {
         ));
   }
 
-  void gotoAddrPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => AddrListPage()));
+  void gotoConfirmOrder() {
+    if (queryGoodsDetailRespData != null) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => OrderConfirmPage(queryGoodsDetailRespData!.id)));
+    }
   }
 
   @override

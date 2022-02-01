@@ -94,9 +94,9 @@ class _AddrListState extends State<AddrListPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         buildUserInfoRow(userAddrData),
-        lblSpacer(10),
+        lblColumnSpacer(10),
         Text(userAddrData.address),
-        lblSpacer(10),
+        lblColumnSpacer(10),
         lblDivider(),
         Row(
           children: [
@@ -107,7 +107,7 @@ class _AddrListState extends State<AddrListPage> {
                 deleteAddress(userAddrData.id);
               },
             ),
-            lblVerticalSpacer(10),
+            lblRowSpacer(10),
             OutlinedButton(
               child: const Text('编辑', style: TextStyle(color: Color(0xFF575E64))),
               onPressed: () {
@@ -132,12 +132,12 @@ class _AddrListState extends State<AddrListPage> {
     return Row(
       children: [
         Text(userAddrData.name),
-        lblVerticalSpacer(10),
+        lblRowSpacer(10),
         Text(
           userAddrData.phone,
           style: const TextStyle(color: Color(0xFF999999)),
         ),
-        lblVerticalSpacer(10),
+        lblRowSpacer(10),
         buildDefaultAddrButton(),
       ],
     );
@@ -147,12 +147,12 @@ class _AddrListState extends State<AddrListPage> {
     return Row(
       children: [
         Text(userAddrData.name),
-        lblVerticalSpacer(10),
+        lblRowSpacer(10),
         Text(
           userAddrData.phone,
           style: const TextStyle(color: Color(0xFF999999)),
         ),
-        lblVerticalSpacer(10),
+        lblRowSpacer(10),
       ],
     );
   }

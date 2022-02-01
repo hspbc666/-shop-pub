@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-lblSpacer(double padding) {
+lblColumnSpacer(double padding) {
   return Container(
     margin: EdgeInsets.only(top: padding),
   );
 }
 
-lblVerticalSpacer(double padding) {
+lblRowSpacer(double padding) {
   return Container(
     margin: EdgeInsets.only(left: padding),
   );
