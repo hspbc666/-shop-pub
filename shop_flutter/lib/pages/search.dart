@@ -118,6 +118,7 @@ class _SearchState extends State<SearchPage> {
   }
 
   void search() {
+    hideKeyboard();
     String url = "shop/goods/search/" + keywordController.value.text;
     HttpManager.getInstance().get(url).then((resp) {
       var result = SearchRespEntity.fromJson(resp);
@@ -125,5 +126,10 @@ class _SearchState extends State<SearchPage> {
         _dataList = result.data;
       });
     });
+  }
+
+  /// 隐藏软键盘
+  void hideKeyboard() {
+    FocusScope.of(context).requestFocus(FocusNode());
   }
 }
