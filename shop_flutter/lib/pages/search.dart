@@ -22,12 +22,6 @@ class _SearchState extends State<SearchPage> {
   var keywordController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    _queryData();
-  }
-
-  @override
   Widget build(BuildContext context) {
     mContext = context;
     return Scaffold(
@@ -121,16 +115,6 @@ class _SearchState extends State<SearchPage> {
 
   onRowClick(SearchRespData searchRespData) {
     Navigator.push(context, MaterialPageRoute(builder: (context) => GoodsPage(searchRespData.id)));
-  }
-
-  _queryData() async {
-    String url = "shop/goods/search/" + "手";
-    HttpManager.getInstance().get(url).then((resp) {
-      var result = SearchRespEntity.fromJson(resp);
-      setState(() {
-        _dataList = result.data;
-      });
-    });
   }
 
   void search() {
