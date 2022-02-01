@@ -47,6 +47,7 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
             children: [
               Expanded(
                   child: Column(children: [
+                buildAddrInfoBlock(),
                 buildGoodsInfoBlock(),
                 buildDeliveryInfoBlock(),
                 buildFeeInfoBlock(),
@@ -56,6 +57,37 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
             ],
           ));
     }
+  }
+
+  buildAddrInfoBlock() {
+    return Card(
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          children: [
+            const Text("配送", style: TextStyle(color: Color(0xFF595D65))),
+            lblRowSpacer(10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text("顺丰速运",
+                    style: TextStyle(
+                      color: Color(0xFF333333),
+                      fontWeight: FontWeight.bold,
+                    )),
+                Text("1个包裹，预计明天送达", style: TextStyle(color: Color(0xFF717171))),
+              ],
+            ),
+            const Spacer(),
+            const Image(
+              image: AssetImage('assets/images/right_arrow.png'),
+              width: 20,
+              height: 20,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   buildGoodsInfoBlock() {
@@ -117,7 +149,7 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
               children: [
                 const Text("商品金额", style: TextStyle(color: Color(0xFF595D65))),
                 const Spacer(),
-                Text("￥" + queryGoodsDetailRespData!.price.toString(),
+                Text("￥" + (queryGoodsDetailRespData!.price / 100).toString(),
                     style: const TextStyle(color: Color(0xFF222222))),
               ],
             ),
