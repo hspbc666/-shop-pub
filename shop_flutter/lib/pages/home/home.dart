@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_flutter/lblbc_constants.dart';
 import 'package:shop_flutter/pages/cart.dart';
 import 'package:shop_flutter/pages/category.dart';
+import 'package:shop_flutter/pages/home.dart';
 import 'package:shop_flutter/pages/login/login.dart';
 import 'package:shop_flutter/pages/mine.dart';
 
@@ -23,10 +24,10 @@ class _MainPageState extends State<MainPage> {
   initState() {
     super.initState();
     list
-      ..add(const CategoryPage())
+      ..add(const HomePage())
       ..add(const CategoryPage())
       ..add(const CartPage())
-      ..add(MinePage());
+      ..add(const MinePage());
     checkLogin();
   }
 
