@@ -34,16 +34,22 @@ class _CategoryState extends State<CategoryPage> {
       length: _categoryList.length,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('X商城'),
-          bottom: TabBar(
-            isScrollable: true,
-            tabs: _categoryList.map((QueryCategoryRespData queryCategoryRespData) {
-              return Tab(
-                text: queryCategoryRespData.name,
-              );
-            }).toList(),
-          ),
-        ),
+            title: const Text('X商城'),
+            bottom: TabBar(
+              isScrollable: true,
+              tabs: _categoryList.map((QueryCategoryRespData queryCategoryRespData) {
+                return Tab(
+                  text: queryCategoryRespData.name,
+                );
+              }).toList(),
+            ),
+            actions: [
+              IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () {
+                    gotoSearchPage();
+                  })
+            ]),
         body: TabBarView(
           children: _categoryList.map((QueryCategoryRespData queryCategoryRespData) {
             return Padding(
@@ -55,22 +61,6 @@ class _CategoryState extends State<CategoryPage> {
       ),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     appBar: AppBar(title: const Text("X商城"), backgroundColor: LblColors.mainColor, actions: [
-  //       IconButton(
-  //           onPressed: () {
-  //             gotoSearchPage();
-  //           },
-  //           icon: const Icon(Icons.search))
-  //     ]),
-  //     body: Center(
-  //       child: getBody(),
-  //     ),
-  //   );
-  // }
 
   _queryCategory() async {
     String url = "shop/category";
