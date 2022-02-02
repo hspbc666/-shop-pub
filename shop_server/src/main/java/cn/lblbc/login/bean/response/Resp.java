@@ -12,7 +12,7 @@ import lombok.Data;
 public class Resp<T> {
 
     private int code;
-    private String msg;
+    private String msg="";
     private T data;
 
     public final static int ERROR = -1;
