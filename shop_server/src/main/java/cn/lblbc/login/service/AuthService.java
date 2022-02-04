@@ -14,7 +14,7 @@ public interface AuthService {
     /**
      * 注册用户
      */
-    Resp<String> register(UserDetail userDetail);
+    Resp<LoginResp> register(UserDetail userDetail);
 
     /**
      * 登陆
