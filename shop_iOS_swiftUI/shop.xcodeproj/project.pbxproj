@@ -12,6 +12,7 @@
 		C443007527AD39FC00B8D697 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443007427AD39FC00B8D697 /* ContentView.swift */; };
 		C443007727AD39FD00B8D697 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C443007627AD39FD00B8D697 /* Assets.xcassets */; };
 		C443007A27AD39FD00B8D697 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C443007927AD39FD00B8D697 /* Preview Assets.xcassets */; };
+		C4DED1DA27AD5D610010E271 /* LblAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DED1D927AD5D610010E271 /* LblAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		C443007427AD39FC00B8D697 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C443007627AD39FD00B8D697 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C443007927AD39FD00B8D697 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C4DED1D927AD5D610010E271 /* LblAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LblAPI.swift; sourceTree = "<group>"; };
 		FD3BCD0D72387CF909AD3CF3 /* Pods-shop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shop.debug.xcconfig"; path = "Target Support Files/Pods-shop/Pods-shop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -43,7 +45,6 @@
 				FD3BCD0D72387CF909AD3CF3 /* Pods-shop.debug.xcconfig */,
 				3C39F00BB0E6EA1BDE611767 /* Pods-shop.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -76,6 +77,7 @@
 		C443007127AD39FC00B8D697 /* shop */ = {
 			isa = PBXGroup;
 			children = (
+				C4DED1D827AD5D490010E271 /* network */,
 				C443007227AD39FC00B8D697 /* shopApp.swift */,
 				C443007427AD39FC00B8D697 /* ContentView.swift */,
 				C443007627AD39FD00B8D697 /* Assets.xcassets */,
@@ -90,6 +92,14 @@
 				C443007927AD39FD00B8D697 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C4DED1D827AD5D490010E271 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				C4DED1D927AD5D610010E271 /* LblAPI.swift */,
+			);
+			path = network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C443007527AD39FC00B8D697 /* ContentView.swift in Sources */,
+				C4DED1DA27AD5D610010E271 /* LblAPI.swift in Sources */,
 				C443007327AD39FC00B8D697 /* shopApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
