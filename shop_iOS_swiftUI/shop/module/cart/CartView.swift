@@ -30,9 +30,18 @@ struct CartView: View {
                     Text("总计")
                     Text("￥\(_selectedSum)")
                     Spacer()
-                    Button("结算"){
-                                    print("我被点啦")
-                    }.buttonStyle(.borderedProminent)
+                    Button(action:{ print("我被点啦")}){
+                        Text("结算").font(.headline).frame(minWidth: 150)
+                    }
+                    .padding(EdgeInsets.init(top: 5, leading: 0, bottom: 5, trailing: 0))
+                    .foregroundColor(.white)
+                    .background(Color.main_color)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    Spacer()
+                    //                        Button("结算"){
+                    //                                        print("我被点啦")
+                    //                        }
+                    //                        .buttonStyle(.borderedProminent)
                 }
                 
             }
