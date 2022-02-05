@@ -9,8 +9,8 @@ import SDWebImageSwiftUI
 struct LblBanner: View {
     private var goodsList: [Goods]
     private var height: CGFloat
+    private var width: CGFloat
     private let threshold: CGFloat = 120
-    private let width = UIScreen.main.bounds.width
     
     @Binding private var now_img_index: Int
     @State private var local_x_offset: CGFloat = .zero
@@ -55,9 +55,10 @@ struct LblBanner: View {
             }
     }
     
-    init(goodsList: [Goods], height: CGFloat, index: Binding<Int>) {
+    init(goodsList: [Goods], height: CGFloat, width: CGFloat, index: Binding<Int>) {
         self.goodsList = goodsList
         self.height = height
+        self.width = width
         self._now_img_index = index
     }
     

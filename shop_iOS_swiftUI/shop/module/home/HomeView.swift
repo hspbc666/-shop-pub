@@ -14,7 +14,7 @@ struct HomeView: View {
         NavigationView {
             VStack{
                 List {
-                    LblBanner(goodsList: homeViewModel.dataListForBanner, height: 200, index: $imageIndex)
+                    LblBanner(goodsList: homeViewModel.dataListForBanner, height: 200, width: 330, index: $imageIndex)
                     
                     ForEach(homeViewModel.dataList.indices , id: \.self){ i in
                         NavigationLink(destination: GoodsView(goods: homeViewModel.dataList[i])) {
@@ -22,12 +22,6 @@ struct HomeView: View {
                         }
                     }
                 }
-                
-//                List(homeViewModel.dataList) { goods in
-//                    NavigationLink(destination: GoodsView(goods: goods)) {
-//                        GoodsItemView(goods: goods)
-//                    }
-//                }
             }
             .navigationBarTitle(Text("X商城"), displayMode: .inline)
             .navigationBarItems(trailing:NavigationLink(destination: SearchView()) {
