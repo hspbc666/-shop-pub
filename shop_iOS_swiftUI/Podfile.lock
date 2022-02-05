@@ -7,11 +7,17 @@ PODS:
     - Alamofire (~> 4.1)
     - Result (~> 4.1)
   - Result (4.1.0)
+  - SDWebImage (5.12.3):
+    - SDWebImage/Core (= 5.12.3)
+  - SDWebImage/Core (5.12.3)
+  - SDWebImageSwiftUI (2.0.2):
+    - SDWebImage (~> 5.10)
   - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
   - HandyJSON (~> 5.0.0-beta.1)
   - Moya
+  - SDWebImageSwiftUI
   - SwiftyJSON
 
 SPEC REPOS:
@@ -20,6 +26,8 @@ SPEC REPOS:
     - HandyJSON
     - Moya
     - Result
+    - SDWebImage
+    - SDWebImageSwiftUI
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -27,8 +35,10 @@ SPEC CHECKSUMS:
   HandyJSON: a9c67202df97805a0ba4a00e30b50e9a30ac28f3
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
+  SDWebImageSwiftUI: 8a3923c95108312b03a599ec1498754af55a6819
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 804bdbcf361ac8a676747c37670351781de300d8
+PODFILE CHECKSUM: 87f8a80f8116accbf6ca559157efdcec018e25f1
 
 COCOAPODS: 1.11.2

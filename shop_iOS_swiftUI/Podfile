@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '13.0'
 
 target 'shop' do
   use_frameworks!
@@ -8,6 +8,7 @@ target 'shop' do
   pod 'Moya'
   pod 'HandyJSON', '~> 5.0.0-beta.1'
   pod 'SwiftyJSON'
+  pod 'SDWebImageSwiftUI'
 end
 
 

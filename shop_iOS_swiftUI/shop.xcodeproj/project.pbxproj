@@ -22,6 +22,7 @@
 		C4E5556327AE1A9D004FA13E /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5556227AE1A9D004FA13E /* CartView.swift */; };
 		C4E5556527AE1ABE004FA13E /* MineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5556427AE1ABE004FA13E /* MineView.swift */; };
 		C4E5556927AE1BC7004FA13E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5556827AE1BC7004FA13E /* Color.swift */; };
+		C4E555DF27AE5BCF004FA13E /* LblBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E555DE27AE5BCF004FA13E /* LblBanner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		C4E5556227AE1A9D004FA13E /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		C4E5556427AE1ABE004FA13E /* MineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineView.swift; sourceTree = "<group>"; };
 		C4E5556827AE1BC7004FA13E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		C4E555DE27AE5BCF004FA13E /* LblBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LblBanner.swift; sourceTree = "<group>"; };
 		FD3BCD0D72387CF909AD3CF3 /* Pods-shop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shop.debug.xcconfig"; path = "Target Support Files/Pods-shop/Pods-shop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +159,7 @@
 				C4E5556027AE1A66004FA13E /* CategoryView.swift */,
 				C4E5556227AE1A9D004FA13E /* CartView.swift */,
 				C4E5556427AE1ABE004FA13E /* MineView.swift */,
+				C4E555DE27AE5BCF004FA13E /* LblBanner.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				C4E5555227AE0FED004FA13E /* LoginViewModel.swift in Sources */,
 				C443007527AD39FC00B8D697 /* ContentView.swift in Sources */,
 				C4E5556527AE1ABE004FA13E /* MineView.swift in Sources */,
+				C4E555DF27AE5BCF004FA13E /* LblBanner.swift in Sources */,
 				C4E5556927AE1BC7004FA13E /* Color.swift in Sources */,
 				C4E5555527AE1486004FA13E /* CommonResp.swift in Sources */,
 				C4DED1DA27AD5D610010E271 /* LblAPI.swift in Sources */,
