@@ -27,6 +27,7 @@
 		C4E555E627AE61D5004FA13E /* Goods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E555E527AE61D5004FA13E /* Goods.swift */; };
 		C4E555E827AE635C004FA13E /* QueryGoodsResp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E555E727AE635C004FA13E /* QueryGoodsResp.swift */; };
 		C4E555EA27AE6626004FA13E /* GoodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E555E927AE6626004FA13E /* GoodsView.swift */; };
+		C4E555EC27AE840B004FA13E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E555EB27AE840B004FA13E /* SearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		C4E555E527AE61D5004FA13E /* Goods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goods.swift; sourceTree = "<group>"; };
 		C4E555E727AE635C004FA13E /* QueryGoodsResp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryGoodsResp.swift; sourceTree = "<group>"; };
 		C4E555E927AE6626004FA13E /* GoodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsView.swift; sourceTree = "<group>"; };
+		C4E555EB27AE840B004FA13E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		FD3BCD0D72387CF909AD3CF3 /* Pods-shop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shop.debug.xcconfig"; path = "Target Support Files/Pods-shop/Pods-shop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				C4E555E227AE616D004FA13E /* home */,
+				C4E555EB27AE840B004FA13E /* SearchView.swift */,
 			);
 			path = module;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				C4E555EA27AE6626004FA13E /* GoodsView.swift in Sources */,
 				C4DED1DA27AD5D610010E271 /* LblAPI.swift in Sources */,
 				C4E5555A27AE14CC004FA13E /* LoginResp.swift in Sources */,
+				C4E555EC27AE840B004FA13E /* SearchView.swift in Sources */,
 				C4E555E427AE6191004FA13E /* HomeViewModel.swift in Sources */,
 				C4E5556127AE1A66004FA13E /* CategoryView.swift in Sources */,
 				C4E555E827AE635C004FA13E /* QueryGoodsResp.swift in Sources */,

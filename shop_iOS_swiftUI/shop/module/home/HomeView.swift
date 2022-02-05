@@ -14,23 +14,26 @@ struct HomeView: View {
         NavigationView {
             VStack{
                 LblBanner(goodsList: homeViewModel.dataListForBanner, height: 200, index: $imageIndex)
-
+                
                 List(homeViewModel.dataList) { goods in
                     NavigationLink(destination: GoodsView(goods: goods)) {
-                        GoodsItemView1(goods: goods)
+                        GoodsItemView(goods: goods)
                     }
                 }
             }
             .navigationBarTitle(Text("X商城"), displayMode: .inline)
+            .navigationBarItems(trailing:NavigationLink(destination: SearchView()) {
+                Image(systemName: "magnifyingglass")
+            })
         }
         .onAppear(perform: {
             homeViewModel.queryData()
         })
-      
+        
     }
 }
 
-struct GoodsItemView1: View {
+struct GoodsItemView: View {
     var goods: Goods
     var body: some View {
         HStack{
@@ -41,7 +44,7 @@ struct GoodsItemView1: View {
                 .frame(width: 100, height: 100)
             Text(goods.name).lineLimit(3)
         }
-       
+        
     }
 }
 
