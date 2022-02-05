@@ -6,33 +6,22 @@
 import SwiftUI
 
 struct SearchView: View {
-    let langs = [
-      "C",
-      "C++",
-      "Java",
-      "Python",
-      "JavaScript",
-      "Kotlin",
-      "Swift",
-      "Go",
-      "C#",
-      "Groovy"
-    ]
-    @StateObject private var homeViewModel = HomeViewModel()
+    @StateObject private var searchViewModel = SearchViewModel()
     @State private var searchText : String = ""
-    
     
     var body: some View {
         SearchBar(text: $searchText){
-            print(searchText)
+            searchViewModel.queryData(keyword: searchText)
         }
-        NavigationView{
-          List {
-            ForEach(self.langs.filter { self.searchText.isEmpty ? true : $0.localizedCaseInsensitiveContains(self.searchText) }, id: \.self) { name in
-              Text(name)
+        
+        List {
+            ForEach(searchViewModel.dataList.indices , id: \.self){ i in
+                NavigationLink(destination: GoodsView(goods: searchViewModel.dataList[i])) {
+                    GoodsItemView(goods: searchViewModel.dataList[i])
+                }
             }
-          }
         }
+        
     }
 }
 
