@@ -21,10 +21,6 @@ struct CartView: View {
                     }
                 }
             }
-            .navigationBarTitle(Text("X商城"), displayMode: .inline)
-            .navigationBarItems(trailing:NavigationLink(destination: SearchView()) {
-                Image(systemName: "magnifyingglass")
-            })
         }
         .onAppear(perform: {
             cartViewModel.queryData(categoryId: "1")
