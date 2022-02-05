@@ -16,6 +16,7 @@ enum LblAPI {
     case register(params: [String:Any])
     case queryGoodsByCategory(categoryId: String)
     case searchGoods(keyword: String)
+    case queryCart
     case addData(params: [String:Any])
     case modifyData(params: [String:Any])
     case deleteData(params:String)
@@ -33,6 +34,7 @@ extension LblAPI: TargetType {
         case .register: return "user/register"
         case .queryGoodsByCategory(let categoryId): return "shop/goods/category/"+categoryId
         case .searchGoods(let keyword): return "shop/goods/search/"+keyword
+        case .queryCart: return "shop/cart/list"
         case .addData: return "note/add"
         case .modifyData: return "note/modify"
         case .deleteData(let params): return "note/del/"+params
@@ -43,7 +45,7 @@ extension LblAPI: TargetType {
         switch self {
         case .login, .register, .addData, .modifyData:
             return .post
-        case .queryGoodsByCategory, .searchGoods, .deleteData:
+        case .queryGoodsByCategory, .searchGoods, .deleteData, .queryCart:
             return .get
         }
     }
@@ -52,7 +54,7 @@ extension LblAPI: TargetType {
         switch self {
         case .login(let params),.register(let params),.addData(let params),.modifyData(let params):
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-        case .queryGoodsByCategory, .searchGoods, .deleteData:
+        case .queryGoodsByCategory, .searchGoods, .queryCart, .deleteData:
             return .requestPlain
         }
     }

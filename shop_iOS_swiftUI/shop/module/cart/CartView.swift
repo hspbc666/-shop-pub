@@ -4,11 +4,46 @@
 // 公众号：蓝不蓝编程
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct CartView: View {
+    @StateObject private var cartViewModel = CartViewModel()
+    @State var imageIndex: Int = 0
+    
     var body: some View {
-        Text("Cart!")
-            .padding()
+        NavigationView {
+            VStack{
+                List {
+                    ForEach(cartViewModel.dataList.indices , id: \.self){ i in
+                        NavigationLink(destination: GoodsView(goods:Goods())) {
+                            CartItemView(cartItem: cartViewModel.dataList[i])
+                        }
+                    }
+                }
+            }
+            .navigationBarTitle(Text("X商城"), displayMode: .inline)
+            .navigationBarItems(trailing:NavigationLink(destination: SearchView()) {
+                Image(systemName: "magnifyingglass")
+            })
+        }
+        .onAppear(perform: {
+            cartViewModel.queryData(categoryId: "1")
+        })
+    }
+}
+
+struct CartItemView: View {
+    var cartItem: CartItem
+    var body: some View {
+        HStack{
+            WebImage(url: URL(string: cartItem.squarePic ?? ""))
+                .placeholder{Color.gray}
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 100)
+            Text(cartItem.name).lineLimit(3)
+        }
+        
     }
 }
 
