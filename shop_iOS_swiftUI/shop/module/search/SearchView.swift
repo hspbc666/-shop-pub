@@ -21,7 +21,6 @@ struct SearchView: View {
                 }
             }
         }
-        
     }
 }
 

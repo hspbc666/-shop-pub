@@ -30,6 +30,7 @@
 		C4E555EC27AE840B004FA13E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E555EB27AE840B004FA13E /* SearchView.swift */; };
 		C4E5560A27AE949F004FA13E /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5560927AE949F004FA13E /* SearchBar.swift */; };
 		C4E5562727AE9DE8004FA13E /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5562627AE9DE8004FA13E /* SearchViewModel.swift */; };
+		C4E5562C27AEAF8A004FA13E /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5562B27AEAF8A004FA13E /* CategoryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		C4E555EB27AE840B004FA13E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		C4E5560927AE949F004FA13E /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C4E5562627AE9DE8004FA13E /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		C4E5562B27AEAF8A004FA13E /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		FD3BCD0D72387CF909AD3CF3 /* Pods-shop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shop.debug.xcconfig"; path = "Target Support Files/Pods-shop/Pods-shop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,9 +174,6 @@
 		C4E5555D27AE18A2004FA13E /* views */ = {
 			isa = PBXGroup;
 			children = (
-				C4E5556027AE1A66004FA13E /* CategoryView.swift */,
-				C4E5556227AE1A9D004FA13E /* CartView.swift */,
-				C4E5556427AE1ABE004FA13E /* MineView.swift */,
 				C4E555DE27AE5BCF004FA13E /* LblBanner.swift */,
 				C4E555E927AE6626004FA13E /* GoodsView.swift */,
 				C4E5560927AE949F004FA13E /* SearchBar.swift */,
@@ -201,6 +200,9 @@
 		C4E555E127AE6152004FA13E /* module */ = {
 			isa = PBXGroup;
 			children = (
+				C4E5562A27AEAF3E004FA13E /* mine */,
+				C4E5562927AEAF30004FA13E /* category */,
+				C4E5562827AEAF2A004FA13E /* cart */,
 				C4E5562527AE9DC8004FA13E /* search */,
 				C4E555E227AE616D004FA13E /* home */,
 			);
@@ -223,6 +225,31 @@
 				C4E5562627AE9DE8004FA13E /* SearchViewModel.swift */,
 			);
 			path = search;
+			sourceTree = "<group>";
+		};
+		C4E5562827AEAF2A004FA13E /* cart */ = {
+			isa = PBXGroup;
+			children = (
+				C4E5556227AE1A9D004FA13E /* CartView.swift */,
+			);
+			path = cart;
+			sourceTree = "<group>";
+		};
+		C4E5562927AEAF30004FA13E /* category */ = {
+			isa = PBXGroup;
+			children = (
+				C4E5556027AE1A66004FA13E /* CategoryView.swift */,
+				C4E5562B27AEAF8A004FA13E /* CategoryViewModel.swift */,
+			);
+			path = category;
+			sourceTree = "<group>";
+		};
+		C4E5562A27AEAF3E004FA13E /* mine */ = {
+			isa = PBXGroup;
+			children = (
+				C4E5556427AE1ABE004FA13E /* MineView.swift */,
+			);
+			path = mine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,6 +373,7 @@
 				C4E555DF27AE5BCF004FA13E /* LblBanner.swift in Sources */,
 				C4E5556927AE1BC7004FA13E /* Color.swift in Sources */,
 				C4E5562727AE9DE8004FA13E /* SearchViewModel.swift in Sources */,
+				C4E5562C27AEAF8A004FA13E /* CategoryViewModel.swift in Sources */,
 				C4E5555527AE1486004FA13E /* CommonResp.swift in Sources */,
 				C4E555EA27AE6626004FA13E /* GoodsView.swift in Sources */,
 				C4DED1DA27AD5D610010E271 /* LblAPI.swift in Sources */,

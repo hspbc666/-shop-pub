@@ -16,11 +16,9 @@ class SearchViewModel: ObservableObject {
                 let data = try? response.mapJSON()
                 let json = JSON(data!)
                 if let resp = JSONDeserializer<QueryGoodsResp>.deserializeFrom(json: json.description) {
-                    if(resp.data != nil)
-                    {
+                    if(resp.data != nil){
                         self.dataList = resp.data ?? []
                     }
-                    
                 }
             }
         }
