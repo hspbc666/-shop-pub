@@ -14,8 +14,8 @@
             filePath = "shop/module/home/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "queryData()"
             landmarkType = "7">
          </BreakpointContent>

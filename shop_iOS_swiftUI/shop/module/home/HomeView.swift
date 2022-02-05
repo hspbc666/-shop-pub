@@ -7,16 +7,12 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var homeViewModel = HomeViewModel()
-    let images: [String] = [
-        "https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2022/01/06/102/ias_a28a4efde3be0890bb22724e5dedaeb5_1135x545_85.jpg",
-        "https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/2021/07/30/160/ias_86095df3cfe17ce6437098d7d0519d9f_1135x545_85.jpg"
-    ]
     @State var imageIndex: Int = 0
     
     var body: some View {
         NavigationView {
             VStack{
-                LblBanner(goodsList: homeViewModel.dataList, height: 200, index: $imageIndex)
+                LblBanner(goodsList: homeViewModel.dataListForBanner, height: 200, index: $imageIndex)
                 List(homeViewModel.dataList) { goods in
                     NavigationLink(destination: GoodsView(goods: goods)) {
                         GoodsItemView1(name: goods.name)
