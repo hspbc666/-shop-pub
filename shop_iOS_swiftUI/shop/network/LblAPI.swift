@@ -15,6 +15,7 @@ enum LblAPI {
     case login(params: [String:Any])
     case register(params: [String:Any])
     case queryGoodsByCategory(categoryId: String)
+    case searchGoods(keyword: String)
     case addData(params: [String:Any])
     case modifyData(params: [String:Any])
     case deleteData(params:String)
@@ -31,6 +32,7 @@ extension LblAPI: TargetType {
         case .login: return "user/login"
         case .register: return "user/register"
         case .queryGoodsByCategory(let categoryId): return "shop/goods/category/"+categoryId
+        case .searchGoods(let keyword): return "shop/goods/search/"+keyword
         case .addData: return "note/add"
         case .modifyData: return "note/modify"
         case .deleteData(let params): return "note/del/"+params
@@ -39,9 +41,9 @@ extension LblAPI: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .login,.register,.addData,.modifyData:
+        case .login, .register, .addData, .modifyData:
             return .post
-        case .queryGoodsByCategory,.deleteData:
+        case .queryGoodsByCategory, .searchGoods, .deleteData:
             return .get
         }
     }
@@ -50,7 +52,7 @@ extension LblAPI: TargetType {
         switch self {
         case .login(let params),.register(let params),.addData(let params),.modifyData(let params):
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-        case .queryGoodsByCategory,.deleteData:
+        case .queryGoodsByCategory, .searchGoods, .deleteData:
             return .requestPlain
         }
     }

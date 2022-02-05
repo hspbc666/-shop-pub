@@ -7,13 +7,14 @@ import SwiftUI
 
 struct SearchBar : UIViewRepresentable {
     @Binding var text : String
+    var searchCallback: (()->())
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         text = searchText
     }
     
     func makeCoordinator() -> Cordinator {
-        return Cordinator(text: $text)
+        return Cordinator(text: $text, searchCallback: searchCallback)
     }
     
     func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
@@ -30,8 +31,11 @@ struct SearchBar : UIViewRepresentable {
     
     class Cordinator : NSObject, UISearchBarDelegate {
         @Binding var text : String
-        init(text : Binding<String>){
+        var searchCallback: (()->())
+        
+        init(text : Binding<String>, searchCallback: @escaping(()->())){
             _text = text
+            self.searchCallback = searchCallback
         }
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
             text = searchText
@@ -39,12 +43,13 @@ struct SearchBar : UIViewRepresentable {
         
         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
             searchBar.endEditing(true)
+            searchCallback()
         }
     }
 }
 
-struct SearchBar_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchBar(text: .constant("蓝不蓝编程"))
-    }
-}
+//struct SearchBar_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchBar(text: .constant("蓝不蓝编程"))
+//    }
+//}

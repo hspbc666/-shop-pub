@@ -18,11 +18,14 @@ struct SearchView: View {
       "C#",
       "Groovy"
     ]
+    @StateObject private var homeViewModel = HomeViewModel()
     @State private var searchText : String = ""
     
     
     var body: some View {
-        SearchBar(text: $searchText)
+        SearchBar(text: $searchText){
+            print(searchText)
+        }
         NavigationView{
           List {
             ForEach(self.langs.filter { self.searchText.isEmpty ? true : $0.localizedCaseInsensitiveContains(self.searchText) }, id: \.self) { name in
