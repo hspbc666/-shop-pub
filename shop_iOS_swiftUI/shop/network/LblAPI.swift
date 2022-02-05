@@ -14,7 +14,7 @@ let LblProvider = MoyaProvider<LblAPI>()
 enum LblAPI {
     case login(params: [String:Any])
     case register(params: [String:Any])
-    case queryData
+    case queryGoodsByCategory(categoryId: String)
     case addData(params: [String:Any])
     case modifyData(params: [String:Any])
     case deleteData(params:String)
@@ -22,14 +22,15 @@ enum LblAPI {
 
 extension LblAPI: TargetType {
     public var baseURL: URL {
-        return URL(string: "http://192.168.31.10:8080/")!
+        //        return URL(string: "http://192.168.31.10:8080/")!
+        return URL(string: "http://10.10.10.200:8080/")!
     }
     
     var path: String {
         switch self {
         case .login: return "user/login"
         case .register: return "user/register"
-        case .queryData: return "note/list"
+        case .queryGoodsByCategory(let categoryId): return "shop/goods/category/"+categoryId
         case .addData: return "note/add"
         case .modifyData: return "note/modify"
         case .deleteData(let params): return "note/del/"+params
@@ -40,7 +41,7 @@ extension LblAPI: TargetType {
         switch self {
         case .login,.register,.addData,.modifyData:
             return .post
-        case .queryData,.deleteData:
+        case .queryGoodsByCategory,.deleteData:
             return .get
         }
     }
@@ -49,7 +50,7 @@ extension LblAPI: TargetType {
         switch self {
         case .login(let params),.register(let params),.addData(let params),.modifyData(let params):
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-        case .queryData,.deleteData:
+        case .queryGoodsByCategory,.deleteData:
             return .requestPlain
         }
     }

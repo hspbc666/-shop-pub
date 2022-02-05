@@ -7,7 +7,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct LblBanner: View {
-    private var images: [String]
+    private var goodsList: [Goods]
     private var height: CGFloat
     private let threshold: CGFloat = 120
     private let width = UIScreen.main.bounds.width
@@ -20,7 +20,7 @@ struct LblBanner: View {
     }
     
     private var last_index: Int {
-        images.count - 1
+        goodsList.count - 1
     }
     private var pre_index: Int {
         now_img_index == 0 ? last_index : now_img_index - 1
@@ -28,7 +28,7 @@ struct LblBanner: View {
     private var next_index: Int {
         now_img_index == last_index ? 0 : now_img_index + 1
     }
-
+    
     private var points: some View {
         HStack(spacing: 5) {
             ForEach(0...last_index, id: \.self) { index in
@@ -53,10 +53,10 @@ struct LblBanner: View {
                 }
                 local_x_offset = 0
             }
-        }
+    }
     
-    init(images: [String], height: CGFloat, index: Binding<Int>) {
-        self.images = images
+    init(goodsList: [Goods], height: CGFloat, index: Binding<Int>) {
+        self.goodsList = goodsList
         self.height = height
         self._now_img_index = index
     }
@@ -65,29 +65,23 @@ struct LblBanner: View {
         ZStack(alignment: .bottomTrailing) {
             
             HStack(spacing: 0) {
-                ForEach(images.indices, id: \.self) { index in
-                    WebImage(url: URL(string: images[index]))
-                        .placeholder{Color.gray}
-                        .resizable()
-                        .onSuccess(perform: { _, _, _ in
-                            print("Success")
-                            SDWebImageManager.shared.imageCache.clear(with: .all, completion: nil)//清除图片缓存
-                        })
-                        .onFailure(perform: { _ in
-                            print("Failure")
-                        })
-                        .scaledToFit()
-                        .frame(width: width, height: height)
+                ForEach(goodsList.indices, id: \.self) { index in
+                    NavigationLink(destination: GoodsView(goods: goodsList[index])) {
+                        WebImage(url: URL(string: goodsList[index].longPic ?? ""))
+                            .placeholder{Color.gray}
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: width, height: height)
+                    }
                 }
             }
             .offset(x: total_x_offset)
             .gesture( lunbo_drag_gesture )
-            .animation(.spring())
             .frame(width: width, height: height, alignment: .leading)
             
-            points
-                .padding(.bottom, 10)
-                .padding(.trailing, 30)
+            //            points
+            //                .padding(.bottom, 10)
+            //                .padding(.trailing, 30)
         }
     }
 }
