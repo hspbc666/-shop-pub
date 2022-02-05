@@ -5,15 +5,15 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct CartView: View {
     var body: some View {
-        Text("Hello, world!")
+        Text("Cart!")
             .padding()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        CartView()
     }
 }

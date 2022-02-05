@@ -5,15 +5,15 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MineView: View {
     var body: some View {
-        Text("Hello, world!")
+        Text("Mine!")
             .padding()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MineView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MineView()
     }
 }
