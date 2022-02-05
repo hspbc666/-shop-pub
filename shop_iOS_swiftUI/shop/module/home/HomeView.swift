@@ -4,6 +4,7 @@
 // 公众号：蓝不蓝编程
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct HomeView: View {
     @StateObject private var homeViewModel = HomeViewModel()
@@ -13,9 +14,10 @@ struct HomeView: View {
         NavigationView {
             VStack{
                 LblBanner(goodsList: homeViewModel.dataListForBanner, height: 200, index: $imageIndex)
+
                 List(homeViewModel.dataList) { goods in
                     NavigationLink(destination: GoodsView(goods: goods)) {
-                        GoodsItemView1(name: goods.name)
+                        GoodsItemView1(goods: goods)
                     }
                 }
             }
@@ -29,10 +31,17 @@ struct HomeView: View {
 }
 
 struct GoodsItemView1: View {
-    var name: String
+    var goods: Goods
     var body: some View {
-        Text(name)
-            .padding()
+        HStack{
+            WebImage(url: URL(string: goods.squarePic ?? ""))
+                .placeholder{Color.gray}
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 100)
+            Text(goods.name).lineLimit(3)
+        }
+       
     }
 }
 
