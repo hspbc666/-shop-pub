@@ -38,10 +38,6 @@ struct CartView: View {
                     .background(Color.main_color)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
                     Spacer()
-                    //                        Button("结算"){
-                    //                                        print("我被点啦")
-                    //                        }
-                    //                        .buttonStyle(.borderedProminent)
                 }
             }
         }
