@@ -7,8 +7,13 @@ import SwiftUI
 
 struct MineView: View {
     var body: some View {
-        Text("Mine!")
-            .padding()
+        VStack{
+            Text("Mine!")
+                .padding()
+            Spacer()
+            Text("wwwwwwwwww")
+        }
+        
     }
 }
 

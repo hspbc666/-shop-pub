@@ -9,6 +9,8 @@ import SDWebImageSwiftUI
 struct CartView: View {
     @StateObject private var cartViewModel = CartViewModel()
     @State var imageIndex: Int = 0
+    @State var _selectedCartIndexes: [Int] = []
+    @State var _selectedSum = 0
     
     var body: some View {
         NavigationView {
@@ -20,6 +22,19 @@ struct CartView: View {
                         }
                     }
                 }
+                Spacer()
+                HStack{
+                    Spacer()
+                    Text("已选 (\(_selectedCartIndexes.count))")
+                    Spacer()
+                    Text("总计")
+                    Text("￥\(_selectedSum)")
+                    Spacer()
+                    Button("结算"){
+                                    print("我被点啦")
+                    }.buttonStyle(.borderedProminent)
+                }
+                
             }
         }
         .onAppear(perform: {
