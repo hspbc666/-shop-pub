@@ -20,7 +20,7 @@ struct LblBanner: View {
     }
     
     private var last_index: Int {
-        goodsList.count - 1
+        goodsList.count>0 ? goodsList.count - 1 : 0
     }
     private var pre_index: Int {
         now_img_index == 0 ? last_index : now_img_index - 1
@@ -79,9 +79,9 @@ struct LblBanner: View {
             .gesture( lunbo_drag_gesture )
             .frame(width: width, height: height, alignment: .leading)
             
-            //            points
-            //                .padding(.bottom, 10)
-            //                .padding(.trailing, 30)
+            points
+                .padding(.bottom, 10)
+                .padding(.trailing, 30)
         }
     }
 }
