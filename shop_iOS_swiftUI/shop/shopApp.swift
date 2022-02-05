@@ -15,22 +15,22 @@ struct shopApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TabbarView().accentColor(.tsmg_blue)
+            TabbarView().accentColor(.main_color)
         }
     }
     
     private func setupApperance() {
         UINavigationBar.appearance().largeTitleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor(named: "tsmg_blue")]
+            NSAttributedString.Key.foregroundColor: UIColor(named: "main_color")]
         
         UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor(named: "tsmg_blue")]
+            NSAttributedString.Key.foregroundColor: UIColor(named: "main_color")]
         
         UIBarButtonItem.appearance().setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: UIColor(named: "tsmg_blue"),
+            NSAttributedString.Key.foregroundColor: UIColor(named: "main_color"),
         ], for: .normal)
         
-        UIWindow.appearance().tintColor = UIColor(named: "tsmg_blue")
+        UIWindow.appearance().tintColor = UIColor(named: "main_color")
     }
 }
 
