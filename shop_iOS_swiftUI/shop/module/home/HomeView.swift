@@ -13,13 +13,21 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack{
-                LblBanner(goodsList: homeViewModel.dataListForBanner, height: 200, index: $imageIndex)
-                
-                List(homeViewModel.dataList) { goods in
-                    NavigationLink(destination: GoodsView(goods: goods)) {
-                        GoodsItemView(goods: goods)
+                List {
+                    LblBanner(goodsList: homeViewModel.dataListForBanner, height: 200, index: $imageIndex)
+                    
+                    ForEach(homeViewModel.dataList.indices , id: \.self){ i in
+                        NavigationLink(destination: GoodsView(goods: homeViewModel.dataList[i])) {
+                            GoodsItemView(goods: homeViewModel.dataList[i])
+                        }
                     }
                 }
+                
+//                List(homeViewModel.dataList) { goods in
+//                    NavigationLink(destination: GoodsView(goods: goods)) {
+//                        GoodsItemView(goods: goods)
+//                    }
+//                }
             }
             .navigationBarTitle(Text("X商城"), displayMode: .inline)
             .navigationBarItems(trailing:NavigationLink(destination: SearchView()) {
