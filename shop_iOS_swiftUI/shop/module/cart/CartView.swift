@@ -43,7 +43,6 @@ struct CartView: View {
                     //                        }
                     //                        .buttonStyle(.borderedProminent)
                 }
-                
             }
         }
         .onAppear(perform: {
