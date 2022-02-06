@@ -7,7 +7,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct CartView: View {
-    @StateObject private var cartViewModel = CartViewModel()
+    @StateObject private var viewModel = CartViewModel()
     @State var imageIndex: Int = 0
     @State var _selectedCartIndexes: [Int] = []
     @State var _selectedSum = 0
@@ -16,10 +16,8 @@ struct CartView: View {
         NavigationView {
             VStack{
                 List {
-                    ForEach(cartViewModel.dataList.indices , id: \.self){ i in
-                        NavigationLink(destination: GoodsView(goods:Goods())) {
-                            CartItemView(cartItem: cartViewModel.dataList[i])
-                        }
+                    ForEach(viewModel.dataList.indices , id: \.self){ i in
+                        CartItemView(cartItem: viewModel.dataList[i])
                     }
                 }
                 Spacer()
@@ -38,11 +36,11 @@ struct CartView: View {
                     .background(Color.main_color)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
                     Spacer()
-                    
                 }
             }
-        }
-        
+        }.onAppear(perform: {
+            viewModel.queryData()
+        })
     }
 }
 

@@ -10,7 +10,7 @@ import HandyJSON
 class CartViewModel: ObservableObject {
     @Published var dataList:[CartItem] = []
     
-    func queryData(categoryId: String) {
+    func queryData() {
         LblProvider.request(.queryCart) { result in
             if case let .success(response) = result {
                 let data = try? response.mapJSON()
