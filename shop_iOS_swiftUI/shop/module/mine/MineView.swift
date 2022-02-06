@@ -30,12 +30,49 @@ struct MineView: View {
                 }
                 Spacer()
             }
-            Text("Mine!")
+            VStack{
+                HStack{
+                    Text("我的订单").font(.title3)
+                    Spacer()
+                    Button(action:{ print("我被点啦")}){
+                        Text("全部订单").font(.body).foregroundColor(Color(hex: 0x595D63))
+                        Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
+                    }
+                }
+                HStack{
+                    VStack{
+                        Image("to_pay").resizable().frame(width: 40, height: 40)
+                        Text("待付款").font(.body).foregroundColor(Color(hex: 0x595D63))
+                    }
+                    Spacer()
+                    VStack{
+                        Image("to_deliver").resizable().frame(width: 40, height: 40)
+                        Text("待发货").font(.body).foregroundColor(Color(hex: 0x595D63))
+                    }
+                    Spacer()
+                    VStack{
+                        Image("to_receive").resizable().frame(width: 40, height: 40)
+                        Text("待收货").font(.body).foregroundColor(Color(hex: 0x595D63))
+                    }
+                    Spacer()
+                    VStack{
+                        Image("to_comment").resizable().frame(width: 40, height: 40)
+                        Text("待评价").font(.body).foregroundColor(Color(hex: 0x595D63))
+                    }
+                    Spacer()
+                    VStack{
+                        Image("to_return").resizable().frame(width: 40, height: 40)
+                        Text("退换/售后").font(.body).foregroundColor(Color(hex: 0x595D63))
+                    }
+                }
+            }.padding(EdgeInsets.init(top: 20, leading: 10, bottom: 10, trailing: 10))
+                .frame(maxWidth: .infinity,alignment: .leading)
+                .background(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
                 .padding()
-            Spacer()
-            Text("wwwwwwwwww")
         }
-        
+        .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
+        .background(Color(hex: 0xF4F4F4))
     }
 }
 
