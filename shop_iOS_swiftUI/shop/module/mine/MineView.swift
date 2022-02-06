@@ -20,21 +20,15 @@ struct MineView: View {
                     .resizable()
                     .frame(width: 50, height: 50)
                     .foregroundColor(Color.main_color)
+                    .padding(EdgeInsets.init(top: 0, leading: 10, bottom: 0, trailing: 0))
                 VStack{
                     Text("尊贵会员").font(.title2)
                     Text("级别：白银")
                         .padding(EdgeInsets.init(top: 5, leading: 15, bottom: 5, trailing: 15))
                         .background(Color(hex: 0xD3D3F7))
                         .clipShape(RoundedRectangle(cornerRadius: 20))
-                    
-//                    Button(action:{ print("我被点啦")}){
-//                        Text("结算").font(.headline).frame(minWidth: 150)
-//                    }
-//                    .padding(EdgeInsets.init(top: 5, leading: 0, bottom: 5, trailing: 0))
-//                    .foregroundColor(.white)
-//                    .background(Color.main_color)
-//                    .clipShape(RoundedRectangle(cornerRadius: 5))
                 }
+                Spacer()
             }
             Text("Mine!")
                 .padding()
