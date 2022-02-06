@@ -43,6 +43,7 @@
 		C4E5564727AFAEFA004FA13E /* AddrListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5564627AFAEFA004FA13E /* AddrListViewModel.swift */; };
 		C4E5564927AFAFA3004FA13E /* QueryAddrResp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5564827AFAFA3004FA13E /* QueryAddrResp.swift */; };
 		C4E5564B27AFAFEE004FA13E /* UserAddr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5564A27AFAFEE004FA13E /* UserAddr.swift */; };
+		C4E5564E27AFC242004FA13E /* GoodsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5564D27AFC242004FA13E /* GoodsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		C4E5564627AFAEFA004FA13E /* AddrListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddrListViewModel.swift; sourceTree = "<group>"; };
 		C4E5564827AFAFA3004FA13E /* QueryAddrResp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryAddrResp.swift; sourceTree = "<group>"; };
 		C4E5564A27AFAFEE004FA13E /* UserAddr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddr.swift; sourceTree = "<group>"; };
+		C4E5564D27AFC242004FA13E /* GoodsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsViewModel.swift; sourceTree = "<group>"; };
 		FD3BCD0D72387CF909AD3CF3 /* Pods-shop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shop.debug.xcconfig"; path = "Target Support Files/Pods-shop/Pods-shop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				C4E555DE27AE5BCF004FA13E /* LblBanner.swift */,
-				C4E555E927AE6626004FA13E /* GoodsView.swift */,
 				C4E5560927AE949F004FA13E /* SearchBar.swift */,
 			);
 			path = views;
@@ -219,6 +220,7 @@
 		C4E555E127AE6152004FA13E /* module */ = {
 			isa = PBXGroup;
 			children = (
+				C4E5564C27AFC22C004FA13E /* goods */,
 				C4E5564027AFAEA8004FA13E /* addr */,
 				C4E5563D27AFA402004FA13E /* order */,
 				C4E5563A27AF9D08004FA13E /* settings */,
@@ -310,6 +312,15 @@
 				C4E5564627AFAEFA004FA13E /* AddrListViewModel.swift */,
 			);
 			path = addr;
+			sourceTree = "<group>";
+		};
+		C4E5564C27AFC22C004FA13E /* goods */ = {
+			isa = PBXGroup;
+			children = (
+				C4E555E927AE6626004FA13E /* GoodsView.swift */,
+				C4E5564D27AFC242004FA13E /* GoodsViewModel.swift */,
+			);
+			path = goods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -457,6 +468,7 @@
 				C4E5555F27AE18B3004FA13E /* HomeView.swift in Sources */,
 				C4E5560A27AE949F004FA13E /* SearchBar.swift in Sources */,
 				C4E5555727AE14A1004FA13E /* UserInfo.swift in Sources */,
+				C4E5564E27AFC242004FA13E /* GoodsViewModel.swift in Sources */,
 				C4E555E627AE61D5004FA13E /* Goods.swift in Sources */,
 				C443007327AD39FC00B8D697 /* shopApp.swift in Sources */,
 			);

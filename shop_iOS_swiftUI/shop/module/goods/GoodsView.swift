@@ -7,7 +7,8 @@ import SwiftUI
 
 
 struct GoodsView: View {
-    var goods: Goods
+    @StateObject private var viewModel = GoodsViewModel()
+    @State var goods: Goods
     var body: some View {
         VStack{
             Text(goods.name)
@@ -15,7 +16,7 @@ struct GoodsView: View {
             Spacer()
             HStack{
                 Spacer()
-                Button(action:{ print("加购物车啦")}){
+                Button(action:{ addToCart()}){
                     Text("购物车").foregroundColor(Color(hex: 0x737373))
                     Image(systemName: "cart").foregroundColor(Color(hex: 0x737373))
                 }
@@ -31,6 +32,13 @@ struct GoodsView: View {
                 Spacer()
             }.padding()
         }
+    }
+    
+    func addToCart()
+    {
+        viewModel.addToCart(goodsId: goods.id, callback: {
+            
+        })
     }
 }
 
