@@ -24,7 +24,7 @@ struct MineView: View {
                     Text("尊贵会员").font(.title2)
                     Text("级别：白银")
                         .padding(EdgeInsets.init(top: 5, leading: 15, bottom: 5, trailing: 15))
-                        .background(.gray)
+                        .background(Color(hex: 0xD3D3F7))
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                     
 //                    Button(action:{ print("我被点啦")}){
