@@ -11,9 +11,16 @@ struct MineView: View {
             HStack{
                 Button(action:{ print("我被点啦")}){
                     Image("settings")
+                        .resizable()
+                        .frame(width: 40, height: 40)
                 }.padding()
+            }.frame(maxWidth: .infinity,alignment: .trailing)
+            HStack{
+                Image(systemName: "person.circle.fill")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .foregroundColor(Color.main_color)
             }
-            .frame(maxWidth: .infinity,alignment: .trailing)
             Text("Mine!")
                 .padding()
             Spacer()
