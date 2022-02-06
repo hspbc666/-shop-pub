@@ -6,87 +6,116 @@
 import SwiftUI
 
 struct MineView: View {
+    @State var isLoggedIn: Bool = false
+    @StateObject private var refreshViewModel = RefreshViewModel()
+    
     var body: some View {
         NavigationView{
             VStack{
-                HStack{
-                    NavigationLink(destination: SettingsView()) {
-                        Image("settings")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .padding()
-                    }.navigationBarTitle(Text(""), displayMode: .inline)
-                }.frame(maxWidth: .infinity,alignment: .trailing)
-                HStack{
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .foregroundColor(Color.main_color)
-                        .padding(EdgeInsets.init(top: 0, leading: 10, bottom: 0, trailing: 0))
-                    VStack{
-                        Text("尊贵会员").font(.title2)
-                        Text("级别：白银")
-                            .padding(EdgeInsets.init(top: 5, leading: 15, bottom: 5, trailing: 15))
-                            .background(Color(hex: 0xD3D3F7))
-                            .clipShape(RoundedRectangle(cornerRadius: 20))
-                    }
-                    Spacer()
-                }
-                VStack{
-                    HStack{
-                        Text("我的订单").font(.title3)
-                        Spacer()
-                        NavigationLink(destination: OrderListView()) {
-                            Text("全部订单").font(.body).foregroundColor(Color(hex: 0x595D63))
-                            Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
-                        }
-                    }
-                    HStack{
-                        NavigationLink(destination: OrderListView()) {
-                            VStack{
-                                Image("to_pay").resizable().frame(width: 40, height: 40)
-                                Text("待付款").font(.body).foregroundColor(Color(hex: 0x595D63))
-                            }
-                        }
-                        Spacer()
-                        NavigationLink(destination: OrderListView()) {
-                            VStack{
-                                Image("to_deliver").resizable().frame(width: 40, height: 40)
-                                Text("待发货").font(.body).foregroundColor(Color(hex: 0x595D63))
-                            }
-                        }
-                        Spacer()
-                        NavigationLink(destination: OrderListView()) {
-                            VStack{
-                                Image("to_receive").resizable().frame(width: 40, height: 40)
-                                Text("待收货").font(.body).foregroundColor(Color(hex: 0x595D63))
-                            }
-                        }
-                        Spacer()
-                        NavigationLink(destination: OrderListView()) {
-                            VStack{
-                                Image("to_comment").resizable().frame(width: 40, height: 40)
-                                Text("待评价").font(.body).foregroundColor(Color(hex: 0x595D63))
-                            }
-                        }
-                        Spacer()
-                        NavigationLink(destination: OrderListView()) {
-                            VStack{
-                                Image("to_return").resizable().frame(width: 40, height: 40)
-                                Text("退换/售后").font(.body).foregroundColor(Color(hex: 0x595D63))
-                            }
-                        }
-                    }
-                }.padding(EdgeInsets.init(top: 20, leading: 10, bottom: 10, trailing: 10))
-                    .frame(maxWidth: .infinity,alignment: .leading)
-                    .background(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
-                    .padding()
+                buildSettingsInfo()
+                buildUserInfo()
+                buildOrderInfo()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .background(Color(hex: 0xF4F4F4))
+        }.onChange(of: refreshViewModel.shouldRefresh, perform: { value in
+            if(value){
+                refreshViewModel.shouldRefresh = false
+                isLoggedIn = true
+            }
+        })
+    }
+    
+    fileprivate func buildSettingsInfo() -> some View{
+        HStack{
+            NavigationLink(destination: SettingsView()) {
+                Image("settings")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .padding()
+            }.navigationBarTitle(Text(""), displayMode: .inline)
+        }.frame(maxWidth: .infinity,alignment: .trailing)
+    }
+    
+    fileprivate func buildUserInfo() -> some View{
+        return HStack{
+            Image(systemName: "person.circle.fill")
+                .resizable()
+                .frame(width: 50, height: 50)
+                .foregroundColor(Color.main_color)
+                .padding(EdgeInsets.init(top: 0, leading: 10, bottom: 0, trailing: 0))
+            VStack{
+                if isLoggedIn {
+                    Text("尊贵会员").font(.title3)
+                }
+                else{
+                    NavigationLink(destination: LoginView(refreshViewModel: refreshViewModel)) {
+                        Text("登录/注册 >").font(.title3).foregroundColor(.black)
+                    }.navigationBarTitle(Text(""), displayMode: .inline)
+                }
+                
+                Text("级别：白银")
+                    .padding(EdgeInsets.init(top: 5, leading: 15, bottom: 5, trailing: 15))
+                    .background(Color(hex: 0xD3D3F7))
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+            }
+            Spacer()
         }
     }
+    
+    fileprivate func buildOrderInfo() -> some View{
+        return  VStack{
+            HStack{
+                Text("我的订单").font(.title3)
+                Spacer()
+                NavigationLink(destination: OrderListView()) {
+                    Text("全部订单").font(.body).foregroundColor(Color(hex: 0x595D63))
+                    Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
+                }
+            }
+            HStack{
+                NavigationLink(destination: OrderListView()) {
+                    VStack{
+                        Image("to_pay").resizable().frame(width: 40, height: 40)
+                        Text("待付款").font(.body).foregroundColor(Color(hex: 0x595D63))
+                    }
+                }
+                Spacer()
+                NavigationLink(destination: OrderListView()) {
+                    VStack{
+                        Image("to_deliver").resizable().frame(width: 40, height: 40)
+                        Text("待发货").font(.body).foregroundColor(Color(hex: 0x595D63))
+                    }
+                }
+                Spacer()
+                NavigationLink(destination: OrderListView()) {
+                    VStack{
+                        Image("to_receive").resizable().frame(width: 40, height: 40)
+                        Text("待收货").font(.body).foregroundColor(Color(hex: 0x595D63))
+                    }
+                }
+                Spacer()
+                NavigationLink(destination: OrderListView()) {
+                    VStack{
+                        Image("to_comment").resizable().frame(width: 40, height: 40)
+                        Text("待评价").font(.body).foregroundColor(Color(hex: 0x595D63))
+                    }
+                }
+                Spacer()
+                NavigationLink(destination: OrderListView()) {
+                    VStack{
+                        Image("to_return").resizable().frame(width: 40, height: 40)
+                        Text("退换/售后").font(.body).foregroundColor(Color(hex: 0x595D63))
+                    }
+                }
+            }
+        }.padding(EdgeInsets.init(top: 20, leading: 10, bottom: 10, trailing: 10))
+            .frame(maxWidth: .infinity,alignment: .leading)
+            .background(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 5))
+            .padding()
+    }
+    
 }
 
 struct MineView_Previews: PreviewProvider {

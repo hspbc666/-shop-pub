@@ -7,16 +7,16 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct CategoryView: View {
-    @StateObject private var categoryViewModel = CategoryViewModel()
+    @StateObject private var viewModel = CategoryViewModel()
     @State var imageIndex: Int = 0
     
     var body: some View {
         NavigationView {
             VStack{
                 List {
-                    ForEach(categoryViewModel.dataList.indices , id: \.self){ i in
-                        NavigationLink(destination: GoodsView(goods:categoryViewModel.dataList[i])) {
-                            GoodsItemView(goods: categoryViewModel.dataList[i])
+                    ForEach(viewModel.dataList.indices , id: \.self){ i in
+                        NavigationLink(destination: GoodsView(goods:viewModel.dataList[i])) {
+                            GoodsItemView(goods: viewModel.dataList[i])
                         }
                     }
                 }
@@ -26,7 +26,7 @@ struct CategoryView: View {
                 Image(systemName: "magnifyingglass")
             })
             .onAppear(perform: {
-                categoryViewModel.queryData(categoryId: "1")
+                viewModel.queryData(categoryId: "1")
             })
         }
     }

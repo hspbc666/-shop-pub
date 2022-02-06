@@ -17,9 +17,7 @@ enum LblAPI {
     case queryGoodsByCategory(categoryId: String)
     case searchGoods(keyword: String)
     case queryCart
-    case addData(params: [String:Any])
-    case modifyData(params: [String:Any])
-    case deleteData(params:String)
+    case queryAddress
 }
 
 extension LblAPI: TargetType {
@@ -35,26 +33,24 @@ extension LblAPI: TargetType {
         case .queryGoodsByCategory(let categoryId): return "shop/goods/category/"+categoryId
         case .searchGoods(let keyword): return "shop/goods/search/"+keyword
         case .queryCart: return "shop/cart/list"
-        case .addData: return "note/add"
-        case .modifyData: return "note/modify"
-        case .deleteData(let params): return "note/del/"+params
+        case .queryAddress: return "shop/addr/list"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .login, .register, .addData, .modifyData:
+        case .login, .register:
             return .post
-        case .queryGoodsByCategory, .searchGoods, .deleteData, .queryCart:
+        case .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress:
             return .get
         }
     }
     
     var task: Task {
         switch self {
-        case .login(let params),.register(let params),.addData(let params),.modifyData(let params):
+        case .login(let params),.register(let params):
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-        case .queryGoodsByCategory, .searchGoods, .queryCart, .deleteData:
+        case .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress:
             return .requestPlain
         }
     }

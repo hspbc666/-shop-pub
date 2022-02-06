@@ -6,11 +6,11 @@ import SwiftUI
 
 struct LoginView : View {
     var refreshViewModel: RefreshViewModel
-    @Binding var isLoginViewPresented: Bool
     @State var name: String = "lbl"
     @State var password: String = "1"
     @State var error: String = ""
     @State var showPwd = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var isCanLogin: Bool {
         name.count > 0 &&
@@ -45,37 +45,37 @@ struct LoginView : View {
                     error = ""
                     LoginViewModel.shared.login(name: name , password: password){isSuccess,msg in
                         if(isSuccess){
-                            isLoginViewPresented = false
                             refreshViewModel.shouldRefresh = true
+                            goBack()
                         }else{
                             error = msg
                         }
                     }
                 }) {
-                        Text("登录").foregroundColor(.white)
-                    }
-                    .frame(width: 100, height: 45, alignment: .center)
-                    .background(isCanLogin ? Color.blue: Color.gray)
-                    .cornerRadius(10)
-                    .disabled(!isCanLogin)
+                    Text("登录").foregroundColor(.white)
+                }
+                .frame(width: 100, height: 45, alignment: .center)
+                .background(isCanLogin ? Color.main_color: Color.gray)
+                .cornerRadius(10)
+                .disabled(!isCanLogin)
                 
                 Button(action: {
                     error = ""
                     LoginViewModel.shared.register(name: name , password: password){isSuccess,msg in
                         if(isSuccess){
-                            isLoginViewPresented = false
                             refreshViewModel.shouldRefresh = true
+                            goBack()
                         }else{
                             error = msg
                         }
                     }
                 }) {
-                        Text("注册").foregroundColor(.white)
-                    }
-                    .frame(width: 100, height: 45, alignment: .center)
-                    .background(isCanLogin ? Color.blue: Color.gray)
-                    .cornerRadius(10)
-                    .disabled(!isCanLogin)
+                    Text("注册").foregroundColor(.white)
+                }
+                .frame(width: 100, height: 45, alignment: .center)
+                .background(isCanLogin ? Color.main_color: Color.gray)
+                .cornerRadius(10)
+                .disabled(!isCanLogin)
             }
             
             Spacer()
@@ -84,13 +84,16 @@ struct LoginView : View {
         .padding(.leading)
         .padding(.trailing)
     }
+    
+    private func goBack(){
+        self.presentationMode.wrappedValue.dismiss()
+    }
 }
 
 //#if DEBUG
 //struct LoginView_Previews : PreviewProvider {
-//    @State private var isLoginViewPresented: Bool = true
 //    static var previews: some View {
-//        LoginView(isAddPresented : $isLoginViewPresented)
+//        LoginView()
 //    }
 //}
 //#endif

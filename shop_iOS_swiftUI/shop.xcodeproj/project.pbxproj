@@ -38,6 +38,11 @@
 		C4E5563927AEB87D004FA13E /* RefreshViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5563827AEB87D004FA13E /* RefreshViewModel.swift */; };
 		C4E5563C27AF9D1D004FA13E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5563B27AF9D1D004FA13E /* SettingsView.swift */; };
 		C4E5563F27AFA41D004FA13E /* OrderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5563E27AFA41D004FA13E /* OrderListView.swift */; };
+		C4E5564327AFAED2004FA13E /* AddAddrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5564227AFAED2004FA13E /* AddAddrView.swift */; };
+		C4E5564527AFAEE4004FA13E /* AddrListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5564427AFAEE4004FA13E /* AddrListView.swift */; };
+		C4E5564727AFAEFA004FA13E /* AddrListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5564627AFAEFA004FA13E /* AddrListViewModel.swift */; };
+		C4E5564927AFAFA3004FA13E /* QueryAddrResp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5564827AFAFA3004FA13E /* QueryAddrResp.swift */; };
+		C4E5564B27AFAFEE004FA13E /* UserAddr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5564A27AFAFEE004FA13E /* UserAddr.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +79,11 @@
 		C4E5563827AEB87D004FA13E /* RefreshViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshViewModel.swift; sourceTree = "<group>"; };
 		C4E5563B27AF9D1D004FA13E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C4E5563E27AFA41D004FA13E /* OrderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListView.swift; sourceTree = "<group>"; };
+		C4E5564227AFAED2004FA13E /* AddAddrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddrView.swift; sourceTree = "<group>"; };
+		C4E5564427AFAEE4004FA13E /* AddrListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddrListView.swift; sourceTree = "<group>"; };
+		C4E5564627AFAEFA004FA13E /* AddrListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddrListViewModel.swift; sourceTree = "<group>"; };
+		C4E5564827AFAFA3004FA13E /* QueryAddrResp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryAddrResp.swift; sourceTree = "<group>"; };
+		C4E5564A27AFAFEE004FA13E /* UserAddr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddr.swift; sourceTree = "<group>"; };
 		FD3BCD0D72387CF909AD3CF3 /* Pods-shop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shop.debug.xcconfig"; path = "Target Support Files/Pods-shop/Pods-shop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,9 +173,11 @@
 				C4E5555427AE1486004FA13E /* CommonResp.swift */,
 				C4E555E727AE635C004FA13E /* QueryGoodsResp.swift */,
 				C4E5562F27AEB337004FA13E /* QueryCartResp.swift */,
+				C4E5564827AFAFA3004FA13E /* QueryAddrResp.swift */,
 				C4E5555627AE14A1004FA13E /* UserInfo.swift */,
 				C4E555E527AE61D5004FA13E /* Goods.swift */,
 				C4E5562D27AEB291004FA13E /* CartItem.swift */,
+				C4E5564A27AFAFEE004FA13E /* UserAddr.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -207,6 +219,7 @@
 		C4E555E127AE6152004FA13E /* module */ = {
 			isa = PBXGroup;
 			children = (
+				C4E5564027AFAEA8004FA13E /* addr */,
 				C4E5563D27AFA402004FA13E /* order */,
 				C4E5563A27AF9D08004FA13E /* settings */,
 				C4E5563327AEB79E004FA13E /* login */,
@@ -287,6 +300,16 @@
 				C4E5563E27AFA41D004FA13E /* OrderListView.swift */,
 			);
 			path = order;
+			sourceTree = "<group>";
+		};
+		C4E5564027AFAEA8004FA13E /* addr */ = {
+			isa = PBXGroup;
+			children = (
+				C4E5564227AFAED2004FA13E /* AddAddrView.swift */,
+				C4E5564427AFAEE4004FA13E /* AddrListView.swift */,
+				C4E5564627AFAEFA004FA13E /* AddrListViewModel.swift */,
+			);
+			path = addr;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,8 +431,10 @@
 				C4E5562E27AEB291004FA13E /* CartItem.swift in Sources */,
 				C443007527AD39FC00B8D697 /* ContentView.swift in Sources */,
 				C4E5556527AE1ABE004FA13E /* MineView.swift in Sources */,
+				C4E5564727AFAEFA004FA13E /* AddrListViewModel.swift in Sources */,
 				C4E555DF27AE5BCF004FA13E /* LblBanner.swift in Sources */,
 				C4E5556927AE1BC7004FA13E /* Color.swift in Sources */,
+				C4E5564527AFAEE4004FA13E /* AddrListView.swift in Sources */,
 				C4E5562727AE9DE8004FA13E /* SearchViewModel.swift in Sources */,
 				C4E5563727AEB7FB004FA13E /* LoginViewModel.swift in Sources */,
 				C4E5562C27AEAF8A004FA13E /* CategoryViewModel.swift in Sources */,
@@ -418,13 +443,16 @@
 				C4E5563027AEB337004FA13E /* QueryCartResp.swift in Sources */,
 				C4E5563227AEB50D004FA13E /* CartViewModel.swift in Sources */,
 				C4E5563527AEB7CF004FA13E /* LoginView.swift in Sources */,
+				C4E5564B27AFAFEE004FA13E /* UserAddr.swift in Sources */,
 				C4DED1DA27AD5D610010E271 /* LblAPI.swift in Sources */,
 				C4E5555A27AE14CC004FA13E /* LoginResp.swift in Sources */,
 				C4E5563F27AFA41D004FA13E /* OrderListView.swift in Sources */,
 				C4E555EC27AE840B004FA13E /* SearchView.swift in Sources */,
 				C4E555E427AE6191004FA13E /* HomeViewModel.swift in Sources */,
 				C4E5556127AE1A66004FA13E /* CategoryView.swift in Sources */,
+				C4E5564327AFAED2004FA13E /* AddAddrView.swift in Sources */,
 				C4E555E827AE635C004FA13E /* QueryGoodsResp.swift in Sources */,
+				C4E5564927AFAFA3004FA13E /* QueryAddrResp.swift in Sources */,
 				C4E5563C27AF9D1D004FA13E /* SettingsView.swift in Sources */,
 				C4E5555F27AE18B3004FA13E /* HomeView.swift in Sources */,
 				C4E5560A27AE949F004FA13E /* SearchBar.swift in Sources */,
