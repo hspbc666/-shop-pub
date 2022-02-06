@@ -12,7 +12,7 @@ struct MineView: View {
                 Button(action:{ print("我被点啦")}){
                     Image("settings")
                         .resizable()
-                        .frame(width: 40, height: 40)
+                        .frame(width: 30, height: 30)
                 }.padding()
             }.frame(maxWidth: .infinity,alignment: .trailing)
             HStack{
