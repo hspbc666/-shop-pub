@@ -8,6 +8,12 @@ import SwiftUI
 struct MineView: View {
     var body: some View {
         VStack{
+            HStack{
+                Button(action:{ print("我被点啦")}){
+                    Image("settings")
+                }.padding()
+            }
+            .frame(maxWidth: .infinity,alignment: .trailing)
             Text("Mine!")
                 .padding()
             Spacer()
