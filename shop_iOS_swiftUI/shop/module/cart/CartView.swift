@@ -38,6 +38,7 @@ struct CartView: View {
                     .background(Color.main_color)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
                     Spacer()
+                    
                 }
             }
         }
