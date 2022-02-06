@@ -8,9 +8,6 @@ import SDWebImageSwiftUI
 
 struct AddrListView: View {
     @StateObject private var viewModel = AddrListViewModel()
-    @State var imageIndex: Int = 0
-    @State var _selectedCartIndexes: [Int] = []
-    @State var _selectedSum = 0
     
     var body: some View {
         NavigationView {
@@ -18,7 +15,7 @@ struct AddrListView: View {
                 List {
                     ForEach(viewModel.dataList.indices , id: \.self){ i in
                         NavigationLink(destination: Text("")) {
-//                            CartItemView(cartItem: viewModel.dataList[i])
+                            AddrItemView(userAddr: viewModel.dataList[i])
                         }
                     }
                 }
@@ -27,6 +24,17 @@ struct AddrListView: View {
         
     }
 }
+
+struct AddrItemView: View {
+    var userAddr: UserAddr
+    var body: some View {
+        HStack{
+            Text(userAddr.name).lineLimit(3)
+        }
+        
+    }
+}
+
 
 
 struct AddrListView_Previews: PreviewProvider {
