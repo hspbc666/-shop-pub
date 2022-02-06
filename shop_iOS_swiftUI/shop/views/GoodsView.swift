@@ -9,8 +9,28 @@ import SwiftUI
 struct GoodsView: View {
     var goods: Goods
     var body: some View {
-        Text(goods.name)
-            .padding()
+        VStack{
+            Text(goods.name)
+                .padding()
+            Spacer()
+            HStack{
+                Spacer()
+                Button(action:{ print("加购物车啦")}){
+                    Text("购物车").foregroundColor(Color(hex: 0x737373))
+                    Image(systemName: "cart").foregroundColor(Color(hex: 0x737373))
+                }
+    
+                Spacer()
+                Button(action:{ print("我被点啦")}){
+                    Text("购买").font(.headline).frame(minWidth: 150)
+                }
+                .padding(EdgeInsets.init(top: 5, leading: 0, bottom: 5, trailing: 0))
+                .foregroundColor(.white)
+                .background(Color.main_color)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
+                Spacer()
+            }.padding()
+        }
     }
 }
 
