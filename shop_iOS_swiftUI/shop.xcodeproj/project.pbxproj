@@ -36,6 +36,8 @@
 		C4E5563527AEB7CF004FA13E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5563427AEB7CF004FA13E /* LoginView.swift */; };
 		C4E5563727AEB7FB004FA13E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5563627AEB7FB004FA13E /* LoginViewModel.swift */; };
 		C4E5563927AEB87D004FA13E /* RefreshViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5563827AEB87D004FA13E /* RefreshViewModel.swift */; };
+		C4E5563C27AF9D1D004FA13E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5563B27AF9D1D004FA13E /* SettingsView.swift */; };
+		C4E5563F27AFA41D004FA13E /* OrderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5563E27AFA41D004FA13E /* OrderListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,8 @@
 		C4E5563427AEB7CF004FA13E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C4E5563627AEB7FB004FA13E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C4E5563827AEB87D004FA13E /* RefreshViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshViewModel.swift; sourceTree = "<group>"; };
+		C4E5563B27AF9D1D004FA13E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C4E5563E27AFA41D004FA13E /* OrderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListView.swift; sourceTree = "<group>"; };
 		FD3BCD0D72387CF909AD3CF3 /* Pods-shop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shop.debug.xcconfig"; path = "Target Support Files/Pods-shop/Pods-shop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,6 +207,8 @@
 		C4E555E127AE6152004FA13E /* module */ = {
 			isa = PBXGroup;
 			children = (
+				C4E5563D27AFA402004FA13E /* order */,
+				C4E5563A27AF9D08004FA13E /* settings */,
 				C4E5563327AEB79E004FA13E /* login */,
 				C4E5562A27AEAF3E004FA13E /* mine */,
 				C4E5562927AEAF30004FA13E /* category */,
@@ -265,6 +271,22 @@
 				C4E5563827AEB87D004FA13E /* RefreshViewModel.swift */,
 			);
 			path = login;
+			sourceTree = "<group>";
+		};
+		C4E5563A27AF9D08004FA13E /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				C4E5563B27AF9D1D004FA13E /* SettingsView.swift */,
+			);
+			path = settings;
+			sourceTree = "<group>";
+		};
+		C4E5563D27AFA402004FA13E /* order */ = {
+			isa = PBXGroup;
+			children = (
+				C4E5563E27AFA41D004FA13E /* OrderListView.swift */,
+			);
+			path = order;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -398,10 +420,12 @@
 				C4E5563527AEB7CF004FA13E /* LoginView.swift in Sources */,
 				C4DED1DA27AD5D610010E271 /* LblAPI.swift in Sources */,
 				C4E5555A27AE14CC004FA13E /* LoginResp.swift in Sources */,
+				C4E5563F27AFA41D004FA13E /* OrderListView.swift in Sources */,
 				C4E555EC27AE840B004FA13E /* SearchView.swift in Sources */,
 				C4E555E427AE6191004FA13E /* HomeViewModel.swift in Sources */,
 				C4E5556127AE1A66004FA13E /* CategoryView.swift in Sources */,
 				C4E555E827AE635C004FA13E /* QueryGoodsResp.swift in Sources */,
+				C4E5563C27AF9D1D004FA13E /* SettingsView.swift in Sources */,
 				C4E5555F27AE18B3004FA13E /* HomeView.swift in Sources */,
 				C4E5560A27AE949F004FA13E /* SearchBar.swift in Sources */,
 				C4E5555727AE14A1004FA13E /* UserInfo.swift in Sources */,
