@@ -33,6 +33,33 @@ struct SettingsView: View {
             .padding()
             .background(.white)
             
+            VStack{
+                HStack{
+                    Text("隐私设置")
+                    Spacer()
+                    Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
+                }
+                Divider()
+                HStack{
+                    Text("APP版本")
+                    Spacer()
+                    Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
+                }
+                Divider()
+                HStack{
+                    Text("隐私政策")
+                    Spacer()
+                    Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
+                }
+                Divider()
+                HStack{
+                    Text("关于")
+                    Spacer()
+                    Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
+                }
+            }
+            .padding()
+            .background(.white)
             
         }
         .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)

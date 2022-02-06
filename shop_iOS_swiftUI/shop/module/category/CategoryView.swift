@@ -25,27 +25,12 @@ struct CategoryView: View {
             .navigationBarItems(trailing:NavigationLink(destination: SearchView()) {
                 Image(systemName: "magnifyingglass")
             })
+            .onAppear(perform: {
+                categoryViewModel.queryData(categoryId: "1")
+            })
         }
-        .onAppear(perform: {
-            categoryViewModel.queryData(categoryId: "1")
-        })
     }
 }
-
-//struct CartItemView: View {
-//    var cartItem: CartItem
-//    var body: some View {
-//        HStack{
-//            WebImage(url: URL(string: cartItem.squarePic ?? ""))
-//                .placeholder{Color.gray}
-//                .resizable()
-//                .scaledToFit()
-//                .frame(width: 100, height: 100)
-//            Text(cartItem.name).lineLimit(3)
-//        }
-//
-//    }
-//}
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {

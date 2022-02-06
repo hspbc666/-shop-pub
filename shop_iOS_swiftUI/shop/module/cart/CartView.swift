@@ -42,9 +42,7 @@ struct CartView: View {
                 }
             }
         }
-        .onAppear(perform: {
-            cartViewModel.queryData(categoryId: "1")
-        })
+        
     }
 }
 
