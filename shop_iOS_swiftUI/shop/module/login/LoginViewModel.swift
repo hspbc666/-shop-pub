@@ -9,7 +9,7 @@ import HandyJSON
 
 class LoginViewModel{
     static let shared = LoginViewModel()
-    private var storeName = "notepad"
+    private var storeName = "user_info"
     
     var userInfo : UserInfo?
     
@@ -27,6 +27,11 @@ class LoginViewModel{
     
     func save(userInfo : UserInfo){
         UserDefaults.standard.set(try? PropertyListEncoder().encode(userInfo),forKey: storeName)
+    }
+    
+    func quitLogin() {
+        UserDefaults.standard.removeObject(forKey: storeName)
+        userInfo = nil
     }
     
     func login(name: String, password: String, callback: @escaping((Bool,String)->())) {

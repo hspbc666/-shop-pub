@@ -6,11 +6,15 @@
 import SwiftUI
 
 struct SettingsView: View {
+    var refreshViewModel: RefreshViewModel
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         VStack{
             buildUserInfoWithAddr()
             buildAppInfo()
+            Spacer()
+            buildBottomBtn()
         }
         .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
         .background(Color(hex: 0xF4F4F4))
@@ -80,11 +84,31 @@ struct SettingsView: View {
         .padding()
         .background(.white)
     }
+    
+    fileprivate func buildBottomBtn() -> some View {
+        return Button(action:{ quitLogin()}){
+            Text("退出登录")
+                .padding()
+                .frame(maxWidth:.infinity)
+                .background(.white)
+                .padding(EdgeInsets.init(top: 0, leading: 0, bottom: 20, trailing: 0))
+        }
+    }
+    
+    func quitLogin() {
+        LoginViewModel.shared.quitLogin()
+        goBack()
+    }
+    
+    private func goBack(){
+        self.presentationMode.wrappedValue.dismiss()
+        refreshViewModel.shouldRefresh = true
+    }
 }
 
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(refreshViewModel: RefreshViewModel())
     }
 }

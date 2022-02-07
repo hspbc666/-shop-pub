@@ -19,16 +19,20 @@ struct MineView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .background(Color(hex: 0xF4F4F4))
         }.onChange(of: refreshViewModel.shouldRefresh, perform: { value in
-            if(value){
-                refreshViewModel.shouldRefresh = false
+            refreshViewModel.shouldRefresh = false
+            if(value) {
                 isLoggedIn = true
+            } else {
+                isLoggedIn = false
             }
+        }).onAppear(perform: {
+            isLoggedIn = LoginViewModel.shared.isLoggedIn()
         })
     }
     
     fileprivate func buildSettingsInfo() -> some View{
         HStack{
-            NavigationLink(destination: SettingsView()) {
+            NavigationLink(destination: SettingsView(refreshViewModel: refreshViewModel)) {
                 Image("settings")
                     .resizable()
                     .frame(width: 30, height: 30)
@@ -47,8 +51,7 @@ struct MineView: View {
             VStack{
                 if isLoggedIn {
                     Text("尊贵会员").font(.title3)
-                }
-                else{
+                } else {
                     NavigationLink(destination: LoginView(refreshViewModel: refreshViewModel)) {
                         Text("登录/注册 >").font(.title3).foregroundColor(.black)
                     }.navigationBarTitle(Text(""), displayMode: .inline)
@@ -68,10 +71,12 @@ struct MineView: View {
             HStack{
                 Text("我的订单").font(.title3)
                 Spacer()
-                NavigationLink(destination: OrderListView()) {
+                
+                NavigationLink(destination: buildLoginViewOrOrderView()) {
                     Text("全部订单").font(.body).foregroundColor(Color(hex: 0x595D63))
                     Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
                 }
+                
             }
             HStack{
                 NavigationLink(destination: OrderListView()) {
@@ -114,6 +119,16 @@ struct MineView: View {
             .background(.white)
             .clipShape(RoundedRectangle(cornerRadius: 5))
             .padding()
+    }
+    
+    fileprivate func buildLoginViewOrOrderView() -> some View{
+        return HStack{
+            if isLoggedIn {
+                OrderListView()
+            }else {
+                LoginView(refreshViewModel: refreshViewModel)
+            }
+        }
     }
     
 }
