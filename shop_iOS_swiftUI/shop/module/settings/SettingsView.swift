@@ -22,7 +22,7 @@ struct SettingsView: View {
             Divider()
             NavigationLink(destination: AddrListView()){
                 HStack{
-                    Text("收货地址")
+                    Text("收货地址").foregroundColor(.black)
                     Spacer()
                     Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
                 }.navigationBarTitle(Text(""), displayMode: .inline)
