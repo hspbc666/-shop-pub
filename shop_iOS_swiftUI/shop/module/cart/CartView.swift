@@ -8,9 +8,16 @@ import SDWebImageSwiftUI
 
 struct CartView: View {
     @StateObject private var viewModel = CartViewModel()
-    @State var imageIndex: Int = 0
-    @State var _selectedCartIndexes: [Int] = []
-    @State var _selectedSum = 0
+    var _selectedSum:Int{//通过计算属性获取选中商品金额总和
+        get {
+            viewModel.dataList
+                .filter(){return $0.isSelected == true}
+                .map({
+                    return $0.price*$0.quantity
+                })
+                .reduce(0,{return $0+$1})/100
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -23,7 +30,6 @@ struct CartView: View {
                 Spacer()
                 HStack{
                     Spacer()
-                    
                     Text("已选 (\(viewModel.dataList.filter(){return $0.isSelected == true}.count))")
                     Spacer()
                     Text("总计")
