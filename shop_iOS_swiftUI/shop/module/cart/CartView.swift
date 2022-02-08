@@ -17,7 +17,7 @@ struct CartView: View {
             VStack{
                 List {
                     ForEach(viewModel.dataList.indices , id: \.self){ i in
-                        CartItemView(cartItem: viewModel.dataList[i])
+                        CartItemView(cartItem: $viewModel.dataList[i])
                     }
                 }
                 Spacer()
@@ -45,9 +45,11 @@ struct CartView: View {
 }
 
 struct CartItemView: View {
-    var cartItem: CartItem
+    @Binding var cartItem: CartItem
     var body: some View {
         HStack{
+            Toggle("", isOn: $cartItem.isSelected)
+                .toggleStyle(CheckBoxToggleStyle(shape: .square))
             WebImage(url: URL(string: cartItem.squarePic ?? ""))
                 .placeholder{Color.gray}
                 .resizable()

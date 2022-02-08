@@ -15,4 +15,5 @@ struct CartItem: HandyJSON,Codable{
     var longPic: String?
     var squarePic: String?
     var quantity = 0
+    var isSelected = false //用于购物车列表选择
 }
