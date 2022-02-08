@@ -8,6 +8,13 @@ import SDWebImageSwiftUI
 
 struct CartView: View {
     @StateObject private var viewModel = CartViewModel()
+    var _selectedCount:Int{//通过计算属性获取选中商品总数
+        get {
+            viewModel.dataList
+                .filter(){return $0.isSelected == true}.count
+        }
+    }
+    
     var _selectedSum:Int{//通过计算属性获取选中商品金额总和
         get {
             viewModel.dataList
@@ -30,17 +37,17 @@ struct CartView: View {
                 Spacer()
                 HStack{
                     Spacer()
-                    Text("已选 (\(viewModel.dataList.filter(){return $0.isSelected == true}.count))")
+                    Text("已选 (\(_selectedCount))")
                     Spacer()
                     Text("总计")
                     Text("￥\(_selectedSum)")
                     Spacer()
-                    Button(action:{ print("我被点啦")}){
+                    Button(action:{ gotoConfirmOrder()}){
                         Text("结算").font(.headline).frame(minWidth: 150)
                     }
                     .padding(EdgeInsets.init(top: 5, leading: 0, bottom: 5, trailing: 0))
                     .foregroundColor(.white)
-                    .background(Color.main_color)
+                    .background(_selectedCount>0 ? Color.main_color : Color.gray)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
                     Spacer()
                 }
@@ -48,6 +55,13 @@ struct CartView: View {
         }.onAppear(perform: {
             viewModel.queryData()
         })
+    }
+    
+    fileprivate func gotoConfirmOrder(){
+        if(_selectedCount>0)
+        {
+            print("ddddd")
+        }
     }
 }
 
