@@ -11,6 +11,7 @@ class CartViewModel: ObservableObject {
     @Published var dataList:[CartItem] = []
     
     func queryData() {
+//        var xx = dataList.filter(){return $0.isSelected == true}
         LblProvider.request(.queryCart) { result in
             if case let .success(response) = result {
                 let data = try? response.mapJSON()

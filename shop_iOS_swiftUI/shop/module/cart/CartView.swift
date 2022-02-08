@@ -23,7 +23,8 @@ struct CartView: View {
                 Spacer()
                 HStack{
                     Spacer()
-                    Text("已选 (\(_selectedCartIndexes.count))")
+                    
+                    Text("已选 (\(viewModel.dataList.filter(){return $0.isSelected == true}.count))")
                     Spacer()
                     Text("总计")
                     Text("￥\(_selectedSum)")
