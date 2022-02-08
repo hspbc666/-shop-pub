@@ -23,7 +23,7 @@ struct CheckBoxToggleStyle: ToggleStyle{
             configuration.label
             Image(systemName: systemName)
                 .resizable()
-                .frame(width: 30, height: 30)
+                .frame(width: 20, height: 20)
         }
     }
 }
