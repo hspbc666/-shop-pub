@@ -60,8 +60,8 @@ struct AddrItemView: View {
                     Text("编辑").frame(width:60, height: 30)
                         .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
                 }
-            }.padding(EdgeInsets.init(top: 0, leading: 0, bottom: 5, trailing: 0))
-        }
+            }
+        }.padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
     }
 }
 
