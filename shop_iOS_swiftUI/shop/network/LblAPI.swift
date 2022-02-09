@@ -35,7 +35,7 @@ extension LblAPI: TargetType {
         case .searchGoods(let keyword): return "shop/goods/search/"+keyword
         case .queryCart: return "shop/cart/list"
         case .addToCart(let goodsId): return "shop/cart/add/"+goodsId
-        case .queryAddress: return "shop/addr/list"
+        case .queryAddress: return "shop/addr/query"
         }
     }
     

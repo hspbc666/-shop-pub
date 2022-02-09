@@ -10,7 +10,7 @@ import HandyJSON
 class AddrListViewModel: ObservableObject {
     @Published var dataList:[UserAddr] = []
     
-    func queryData(categoryId: String) {
+    func queryData() {
         LblProvider.request(.queryAddress) { result in
             if case let .success(response) = result {
                 let data = try? response.mapJSON()

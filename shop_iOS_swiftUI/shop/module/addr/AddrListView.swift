@@ -20,7 +20,9 @@ struct AddrListView: View {
                     }
                 }
             }
-        }
+        }.onAppear(perform: {
+            viewModel.queryData()
+        })
         
     }
 }
@@ -31,7 +33,6 @@ struct AddrItemView: View {
         HStack{
             Text(userAddr.name).lineLimit(3)
         }
-        
     }
 }
 
