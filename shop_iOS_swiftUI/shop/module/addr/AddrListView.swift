@@ -32,13 +32,22 @@ struct AddrItemView: View {
         VStack{
             HStack{
                 Text(userAddr.name)
-                Text(userAddr.phone)
-                Text(userAddr.defaultAddress ? "默认" : "")
+                Text(userAddr.phone).foregroundColor(Color.gray)
+                if userAddr.defaultAddress {
+                    Text("默认").foregroundColor(.white)
+                        .frame(width:50, height: 30)
+                        .background(RoundedRectangle(cornerRadius: 5)
+                                        .foregroundColor(Color(hex: 0x8298bd)))
+                }
+               
+                Spacer()
             }
             HStack{
                 Text(userAddr.address)
+                Spacer()
             }
             HStack{
+                Spacer()
                 Button(action: {
                     isLoginViewPresented = true
                 }) {
@@ -51,8 +60,7 @@ struct AddrItemView: View {
                     Text("编辑").frame(width:60, height: 30)
                         .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
                 }
-            }
-            
+            }.padding(EdgeInsets.init(top: 0, leading: 0, bottom: 5, trailing: 0))
         }
     }
 }
