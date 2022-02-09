@@ -8,30 +8,51 @@ import SDWebImageSwiftUI
 
 struct AddrListView: View {
     @StateObject private var viewModel = AddrListViewModel()
+    @State private var isLoginViewPresented: Bool = false
     
     var body: some View {
-        NavigationView {
-            VStack{
-                List {
-                    ForEach(viewModel.dataList.indices , id: \.self){ i in
-                        NavigationLink(destination: Text("")) {
-                            AddrItemView(userAddr: viewModel.dataList[i])
-                        }
-                    }
+        VStack{
+            List {
+                ForEach(viewModel.dataList.indices , id: \.self){ i in
+                    AddrItemView(userAddr: viewModel.dataList[i],isLoginViewPresented: $isLoginViewPresented)
                 }
             }
         }.onAppear(perform: {
             viewModel.queryData()
+        }).sheet(isPresented: $isLoginViewPresented, content: {
+            Text("dddddddddddddddddddddddddddd")
         })
-        
     }
 }
 
 struct AddrItemView: View {
     var userAddr: UserAddr
+    @Binding var isLoginViewPresented: Bool
     var body: some View {
-        HStack{
-            Text(userAddr.name).lineLimit(3)
+        VStack{
+            HStack{
+                Text(userAddr.name)
+                Text(userAddr.phone)
+                Text(userAddr.defaultAddress ? "默认" : "")
+            }
+            HStack{
+                Text(userAddr.address)
+            }
+            HStack{
+                Button(action: {
+                    isLoginViewPresented = true
+                }) {
+                    Text("删除").frame(width:60, height: 30)
+                        .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
+                }
+                Button(action: {
+                    isLoginViewPresented = true
+                }) {
+                    Text("编辑").frame(width:60, height: 30)
+                        .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
+                }
+            }
+            
         }
     }
 }

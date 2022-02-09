@@ -10,9 +10,9 @@ import HandyJSON
 struct UserAddr: HandyJSON,Codable{
     var id: String = ""
     var name: String = ""
-    var phone: String?
-    var region: String?
-    var address: String?
+    var phone: String = ""
+    var region: String = ""
+    var address: String = ""
     var defaultAddress = false
     var addrType = 0
 }
