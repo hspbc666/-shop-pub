@@ -9,6 +9,7 @@ import SDWebImageSwiftUI
 struct AddrListView: View {
     @StateObject private var viewModel = AddrListViewModel()
     @State private var isLoginViewPresented: Bool = false
+    @StateObject private var refreshViewModel = RefreshViewModel()
     
     var body: some View {
         VStack{
@@ -20,14 +21,15 @@ struct AddrListView: View {
                 }
             }
             
-            Button(action:{ print("我被点啦")}){
+            NavigationLink(destination: AddAddrView(refreshViewModel:refreshViewModel))
+            {
                 Text("添加收货地址").font(.headline).frame(maxWidth:.infinity)
+                    .padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
+                    .foregroundColor(.white)
+                    .background(Color.main_color)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    .padding(EdgeInsets.init(top: 2, leading: 10, bottom: 5, trailing: 10))
             }
-            .padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
-            .foregroundColor(.white)
-            .background(Color.main_color)
-            .clipShape(RoundedRectangle(cornerRadius: 5))
-            .padding(EdgeInsets.init(top: 2, leading: 0, bottom: 5, trailing: 0))
             
         }.onAppear(perform: {
             viewModel.queryData()

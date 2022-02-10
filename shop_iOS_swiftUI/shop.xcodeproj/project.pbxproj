@@ -46,6 +46,8 @@
 		C4E5564E27AFC242004FA13E /* GoodsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5564D27AFC242004FA13E /* GoodsViewModel.swift */; };
 		C4E5565027B2ADB3004FA13E /* CheckBoxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5564F27B2ADB3004FA13E /* CheckBoxToggleStyle.swift */; };
 		C4E5565227B3380B004FA13E /* EditAddrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5565127B3380B004FA13E /* EditAddrView.swift */; };
+		C4E5565527B55909004FA13E /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5565427B55909004FA13E /* RadioButton.swift */; };
+		C4E5565727B5591E004FA13E /* RadioGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5565627B5591E004FA13E /* RadioGroup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,8 @@
 		C4E5564D27AFC242004FA13E /* GoodsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsViewModel.swift; sourceTree = "<group>"; };
 		C4E5564F27B2ADB3004FA13E /* CheckBoxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxToggleStyle.swift; sourceTree = "<group>"; };
 		C4E5565127B3380B004FA13E /* EditAddrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddrView.swift; sourceTree = "<group>"; };
+		C4E5565427B55909004FA13E /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		C4E5565627B5591E004FA13E /* RadioGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioGroup.swift; sourceTree = "<group>"; };
 		FD3BCD0D72387CF909AD3CF3 /* Pods-shop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shop.debug.xcconfig"; path = "Target Support Files/Pods-shop/Pods-shop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,6 +203,7 @@
 		C4E5555D27AE18A2004FA13E /* views */ = {
 			isa = PBXGroup;
 			children = (
+				C4E5565327B558EE004FA13E /* radioGroup */,
 				C4E555DE27AE5BCF004FA13E /* LblBanner.swift */,
 				C4E5560927AE949F004FA13E /* SearchBar.swift */,
 				C4E5564F27B2ADB3004FA13E /* CheckBoxToggleStyle.swift */,
@@ -327,6 +332,15 @@
 				C4E5564D27AFC242004FA13E /* GoodsViewModel.swift */,
 			);
 			path = goods;
+			sourceTree = "<group>";
+		};
+		C4E5565327B558EE004FA13E /* radioGroup */ = {
+			isa = PBXGroup;
+			children = (
+				C4E5565427B55909004FA13E /* RadioButton.swift */,
+				C4E5565627B5591E004FA13E /* RadioGroup.swift */,
+			);
+			path = radioGroup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -468,6 +482,7 @@
 				C4E555EC27AE840B004FA13E /* SearchView.swift in Sources */,
 				C4E555E427AE6191004FA13E /* HomeViewModel.swift in Sources */,
 				C4E5556127AE1A66004FA13E /* CategoryView.swift in Sources */,
+				C4E5565727B5591E004FA13E /* RadioGroup.swift in Sources */,
 				C4E5565227B3380B004FA13E /* EditAddrView.swift in Sources */,
 				C4E5564327AFAED2004FA13E /* AddAddrView.swift in Sources */,
 				C4E555E827AE635C004FA13E /* QueryGoodsResp.swift in Sources */,
@@ -476,6 +491,7 @@
 				C4E5555F27AE18B3004FA13E /* HomeView.swift in Sources */,
 				C4E5560A27AE949F004FA13E /* SearchBar.swift in Sources */,
 				C4E5555727AE14A1004FA13E /* UserInfo.swift in Sources */,
+				C4E5565527B55909004FA13E /* RadioButton.swift in Sources */,
 				C4E5564E27AFC242004FA13E /* GoodsViewModel.swift in Sources */,
 				C4E555E627AE61D5004FA13E /* Goods.swift in Sources */,
 				C443007327AD39FC00B8D697 /* shopApp.swift in Sources */,
