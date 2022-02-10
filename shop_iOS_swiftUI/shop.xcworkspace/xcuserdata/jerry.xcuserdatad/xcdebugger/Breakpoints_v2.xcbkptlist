@@ -100,5 +100,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25DB0EA5-FFCD-4147-BCD0-AAF75408A26D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "shop/module/addr/AddrListViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "deleteAddress(userAddrId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "25DB0EA5-FFCD-4147-BCD0-AAF75408A26D - 4cbcb6a82dc9605c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Result.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in shop.AddrListViewModel.deleteAddress(userAddrId: Swift.String) -&gt; ()"
+                  moduleName = "shop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jerry/projects/mine/gitee/demos/shop/shop_iOS_swiftUI/shop/module/addr/AddrListViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "218">
+               </Location>
+               <Location
+                  uuid = "25DB0EA5-FFCD-4147-BCD0-AAF75408A26D - 4cbcb6a82dc9605c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Result.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in shop.AddrListViewModel.deleteAddress(userAddrId: Swift.String) -&gt; ()"
+                  moduleName = "shop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jerry/projects/mine/gitee/demos/shop/shop_iOS_swiftUI/shop/module/addr/AddrListViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "317">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -23,4 +23,16 @@ class AddrListViewModel: ObservableObject {
             }
         }
     }
+    
+    func deleteAddress(userAddrId: String) {
+        LblProvider.request(.deleteAddress(userAddrId: userAddrId)) { result in
+            if case let .success(response) = result {
+                let data = try? response.mapJSON()
+                let json = JSON(data!)
+                if let resp = JSONDeserializer<CommonResp>.deserializeFrom(json: json.description) {
+                    self.queryData()
+                }
+            }
+        }
+    }
 }

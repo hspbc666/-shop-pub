@@ -14,9 +14,21 @@ struct AddrListView: View {
         VStack{
             List {
                 ForEach(viewModel.dataList.indices , id: \.self){ i in
-                    AddrItemView(userAddr: viewModel.dataList[i],isLoginViewPresented: $isLoginViewPresented)
+                    AddrItemView(viewModel: viewModel,
+                                 userAddr: viewModel.dataList[i],
+                                 isLoginViewPresented: $isLoginViewPresented)
                 }
             }
+            
+            Button(action:{ print("我被点啦")}){
+                Text("添加收货地址").font(.headline).frame(maxWidth:.infinity)
+            }
+            .padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
+            .foregroundColor(.white)
+            .background(Color.main_color)
+            .clipShape(RoundedRectangle(cornerRadius: 5))
+            .padding(EdgeInsets.init(top: 2, leading: 0, bottom: 5, trailing: 0))
+            
         }.onAppear(perform: {
             viewModel.queryData()
         }).sheet(isPresented: $isLoginViewPresented, content: {
@@ -26,6 +38,7 @@ struct AddrListView: View {
 }
 
 struct AddrItemView: View {
+    var viewModel: AddrListViewModel
     var userAddr: UserAddr
     @Binding var isLoginViewPresented: Bool
     var body: some View {
@@ -39,7 +52,7 @@ struct AddrItemView: View {
                         .background(RoundedRectangle(cornerRadius: 5)
                                         .foregroundColor(Color(hex: 0x8298bd)))
                 }
-               
+                
                 Spacer()
             }
             HStack{
@@ -49,13 +62,13 @@ struct AddrItemView: View {
             HStack{
                 Spacer()
                 Button(action: {
-                    isLoginViewPresented = true
+                    viewModel.deleteAddress(userAddrId: userAddr.id)
                 }) {
                     Text("删除").frame(width:60, height: 30)
                         .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
                 }
                 Button(action: {
-                    isLoginViewPresented = true
+                    //                    isLoginViewPresented = true
                 }) {
                     Text("编辑").frame(width:60, height: 30)
                         .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))

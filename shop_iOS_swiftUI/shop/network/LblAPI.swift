@@ -19,6 +19,7 @@ enum LblAPI {
     case queryCart
     case addToCart(goodsId: String)
     case queryAddress
+    case deleteAddress(userAddrId: String)
 }
 
 extension LblAPI: TargetType {
@@ -36,6 +37,7 @@ extension LblAPI: TargetType {
         case .queryCart: return "shop/cart/list"
         case .addToCart(let goodsId): return "shop/cart/add/"+goodsId
         case .queryAddress: return "shop/addr/query"
+        case .deleteAddress(let userAddrId): return "shop/addr/del/"+userAddrId
         }
     }
     
@@ -43,7 +45,7 @@ extension LblAPI: TargetType {
         switch self {
         case .login, .register:
             return .post
-        case .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress, .addToCart:
+        case .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress, .addToCart, .deleteAddress:
             return .get
         }
     }
@@ -52,7 +54,7 @@ extension LblAPI: TargetType {
         switch self {
         case .login(let params),.register(let params):
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-        case .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress, .addToCart:
+        case .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress, .addToCart, .deleteAddress:
             return .requestPlain
         }
     }
