@@ -35,4 +35,28 @@ class AddrListViewModel: ObservableObject {
             }
         }
     }
+
+    func addAddress(userAddr: UserAddr, callback: @escaping((Bool,String)->())) {
+        LblProvider.request(.addAddress(params: userAddr)) { result in
+            if case let .success(response) = result {
+                let data = try? response.mapJSON()
+                let json = JSON(data!)
+                if let resp = JSONDeserializer<CommonResp>.deserializeFrom(json: json.description) {
+                    callback(resp.isSuccess(),resp.msg)
+                }
+            }
+        }
+    }
+
+    func modifyAddress(userAddr: UserAddr, callback: @escaping((Bool,String)->())) {
+        LblProvider.request(.modifyAddress(params: userAddr)) { result in
+            if case let .success(response) = result {
+                let data = try? response.mapJSON()
+                let json = JSON(data!)
+                if let resp = JSONDeserializer<CommonResp>.deserializeFrom(json: json.description) {
+                    callback(resp.isSuccess(),resp.msg)
+                }
+            }
+        }
+    }
 }

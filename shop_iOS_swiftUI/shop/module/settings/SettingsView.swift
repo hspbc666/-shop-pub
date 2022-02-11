@@ -97,12 +97,12 @@ struct SettingsView: View {
     
     func quitLogin() {
         LoginViewModel.shared.quitLogin()
+        refreshViewModel.shouldRefresh = true
         goBack()
     }
     
     private func goBack(){
         self.presentationMode.wrappedValue.dismiss()
-        refreshViewModel.shouldRefresh = true
     }
 }
 

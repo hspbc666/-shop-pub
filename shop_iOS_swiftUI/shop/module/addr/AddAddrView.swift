@@ -6,7 +6,8 @@
 import SwiftUI
 
 struct AddAddrView: View {
-    var refreshViewModel: RefreshViewModel
+    var viewModel: AddrListViewModel
+    @EnvironmentObject var refreshViewModel: RefreshViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State var name: String = ""
@@ -14,15 +15,13 @@ struct AddAddrView: View {
     @State var region: String = ""
     @State var address: String = ""
     @State var addrType: Int = 0
-    
+    @State var defaultAddress = true
+
     var addrTypeRadios: [RadioOption<Int>] = [
         RadioOption(label: "家庭", value: 1),
         RadioOption(label: "公司", value: 2),
         RadioOption(label: "其他", value: 3)
     ]
-    
-    @State var showNotification = true
-    
     
     var body: some View {
         VStack{
@@ -67,7 +66,7 @@ struct AddAddrView: View {
                 
             }
             HStack{
-                Toggle(isOn: $showNotification) {
+                Toggle(isOn: $defaultAddress) {
                     Text("设为默认地址")
                 }
             }
@@ -77,7 +76,7 @@ struct AddAddrView: View {
     }
     
     fileprivate func buildBottomBtn() -> some View {
-        return Button(action:{ print("我被点啦")}){
+        return Button(action:{ addAddress() }){
             Text("确定").font(.headline).frame(maxWidth:.infinity)
         }
         .padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
@@ -87,14 +86,26 @@ struct AddAddrView: View {
         .padding(EdgeInsets.init(top: 2, leading: 10, bottom: 5, trailing: 10))
     }
     
-    func quitLogin() {
-        LoginViewModel.shared.quitLogin()
-        goBack()
+    func addAddress() {
+        var userAddr = UserAddr()
+        userAddr.name = name
+        userAddr.phone = phone
+        userAddr.region = region
+        userAddr.address = address
+        userAddr.addrType = addrType
+        userAddr.defaultAddress = defaultAddress
+        viewModel.addAddress(userAddr: userAddr){isSuccess,msg in
+                        if(isSuccess){
+                            refreshViewModel.shouldRefresh = true
+                            goBack()
+                        }else{
+                            // error = msg
+                        }
+                    }
     }
     
     private func goBack(){
         self.presentationMode.wrappedValue.dismiss()
-        refreshViewModel.shouldRefresh = true
     }
 }
 

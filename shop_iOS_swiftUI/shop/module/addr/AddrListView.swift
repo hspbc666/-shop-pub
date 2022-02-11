@@ -21,7 +21,7 @@ struct AddrListView: View {
                 }
             }
             
-            NavigationLink(destination: AddAddrView(refreshViewModel:refreshViewModel))
+            NavigationLink(destination: AddAddrView(refreshViewModel: refreshViewModel))
             {
                 Text("添加收货地址").font(.headline).frame(maxWidth:.infinity)
                     .padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
@@ -35,7 +35,7 @@ struct AddrListView: View {
             viewModel.queryData()
         }).sheet(isPresented: $isLoginViewPresented, content: {
             Text("dddddddddddddddddddddddddddd")
-        })
+        }).environmentObject(viewModel)
     }
 }
 
