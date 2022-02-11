@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct AddAddrView: View {
-    var viewModel: AddrListViewModel
+    var viewModel: AddrViewModel
     var refreshViewModel: RefreshViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -110,8 +110,8 @@ struct AddAddrView: View {
 }
 
 
-//struct AddAddrView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddAddrView()
-//    }
-//}
+struct AddAddrView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddAddrView(viewModel: AddrViewModel(),refreshViewModel: RefreshViewModel())
+    }
+}

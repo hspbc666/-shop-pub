@@ -7,7 +7,7 @@ import UIKit
 import SwiftyJSON
 import HandyJSON
 
-class AddrListViewModel: ObservableObject {
+class AddrViewModel: ObservableObject {
     @Published var dataList:[UserAddr] = []
     
     func queryData() {

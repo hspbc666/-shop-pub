@@ -7,7 +7,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct AddrListView: View {
-    @StateObject private var viewModel = AddrListViewModel()
+    @StateObject private var viewModel = AddrViewModel()
     @State private var isLoginViewPresented: Bool = false
     @StateObject private var refreshViewModel = RefreshViewModel()
     
@@ -16,6 +16,7 @@ struct AddrListView: View {
             List {
                 ForEach(viewModel.dataList.indices , id: \.self){ i in
                     AddrItemView(viewModel: viewModel,
+                                 refreshViewModel: refreshViewModel,
                                  userAddr: viewModel.dataList[i],
                                  isLoginViewPresented: $isLoginViewPresented)
                 }
@@ -40,7 +41,8 @@ struct AddrListView: View {
 }
 
 struct AddrItemView: View {
-    var viewModel: AddrListViewModel
+    var viewModel: AddrViewModel
+    var refreshViewModel: RefreshViewModel
     var userAddr: UserAddr
     @Binding var isLoginViewPresented: Bool
     var body: some View {
@@ -68,13 +70,12 @@ struct AddrItemView: View {
                 }) {
                     Text("删除").frame(width:60, height: 30)
                         .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
+                        .foregroundColor(Color(hex: 0x141414))
                 }
-                Button(action: {
-                    //                    isLoginViewPresented = true
-                }) {
-                    Text("编辑").frame(width:60, height: 30)
-                        .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
-                }
+                
+                Text("编辑").frame(width:60, height: 30)
+                    .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
+                    .background(NavigationLink("", destination: EditAddrView(viewModel: viewModel, refreshViewModel: refreshViewModel)).opacity(0) )
             }
         }.padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
     }
