@@ -6,8 +6,8 @@
 import SwiftUI
 
 struct AddAddrView: View {
-    var viewModel: AddrListViewModel
-    @EnvironmentObject var refreshViewModel: RefreshViewModel
+    @EnvironmentObject  var viewModel: AddrListViewModel
+    var refreshViewModel: RefreshViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State var name: String = ""
@@ -16,7 +16,7 @@ struct AddAddrView: View {
     @State var address: String = ""
     @State var addrType: Int = 0
     @State var defaultAddress = true
-
+    
     var addrTypeRadios: [RadioOption<Int>] = [
         RadioOption(label: "家庭", value: 1),
         RadioOption(label: "公司", value: 2),
@@ -95,13 +95,13 @@ struct AddAddrView: View {
         userAddr.addrType = addrType
         userAddr.defaultAddress = defaultAddress
         viewModel.addAddress(userAddr: userAddr){isSuccess,msg in
-                        if(isSuccess){
-                            refreshViewModel.shouldRefresh = true
-                            goBack()
-                        }else{
-                            // error = msg
-                        }
-                    }
+            if(isSuccess){
+                refreshViewModel.shouldRefresh = true
+                goBack()
+            }else{
+                // error = msg
+            }
+        }
     }
     
     private func goBack(){
@@ -110,8 +110,8 @@ struct AddAddrView: View {
 }
 
 
-struct AddAddrView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddAddrView(refreshViewModel: RefreshViewModel())
-    }
-}
+//struct AddAddrView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddAddrView()
+//    }
+//}
