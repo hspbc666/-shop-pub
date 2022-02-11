@@ -6,7 +6,7 @@
 import Foundation
 import Moya
 import HandyJSON
-
+import SwiftyJSON
 
 let LblProvider = MoyaProvider<LblAPI>()
 
@@ -28,7 +28,7 @@ enum LblAPI {
 extension LblAPI: TargetType {
     public var baseURL: URL {
         return URL(string: "http://192.168.31.10:8080/")!
-//      return URL(string: "http://10.10.10.200:8080/")!
+        //      return URL(string: "http://10.10.10.200:8080/")!
     }
     
     var path: String {
@@ -58,13 +58,14 @@ extension LblAPI: TargetType {
     
     var task: Task {
         switch self {
-        case .login(let params), .register(let params), .addAddress(let params), .modifyAddress(let params):
+        case .addAddress(let params), .modifyAddress(let params):
+            return .requestParameters(parameters: params.toJSON() ?? ["":""], encoding: JSONEncoding.default)
+        case .login(let params), .register(let params):
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         case .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress, .queryDefaultAddress, .addToCart, .deleteAddress:
             return .requestPlain
         }
     }
-    
     
     var sampleData: Data { return "".data(using: String.Encoding.utf8)! }
     var headers: [String : String]? {

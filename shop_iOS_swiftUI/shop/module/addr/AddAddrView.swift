@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct AddAddrView: View {
-    @EnvironmentObject  var viewModel: AddrListViewModel
+    var viewModel: AddrListViewModel
     var refreshViewModel: RefreshViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
