@@ -18,15 +18,11 @@ struct shopApp: App {
     }
     
     private func setupApperance() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor(named: "main_color")]
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "main_color")]
         
-        UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor(named: "main_color")]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "main_color")]
         
-        UIBarButtonItem.appearance().setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: UIColor(named: "main_color"),
-        ], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(named: "main_color"),], for: .normal)
         
         UIWindow.appearance().tintColor = UIColor(named: "main_color")
     }
