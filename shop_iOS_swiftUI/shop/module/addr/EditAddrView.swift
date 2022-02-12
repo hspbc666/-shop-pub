@@ -96,9 +96,8 @@ struct EditAddrView: View {
     }
 }
 
-
-//struct EditAddrView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditAddrView(viewModel: AddrViewModel(),refreshViewModel: RefreshViewModel())
-//    }
-//}
+struct EditAddrView_Previews: PreviewProvider {
+    static var previews: some View {
+        EditAddrView(viewModel: AddrViewModel(),refreshViewModel: RefreshViewModel(), userAddr: UserAddr())
+    }
+}

@@ -21,7 +21,6 @@ struct AddrListView: View {
                                  isLoginViewPresented: $isLoginViewPresented)
                 }
             }
-            
             NavigationLink(destination: AddAddrView(viewModel: viewModel, refreshViewModel: refreshViewModel))
             {
                 Text("添加收货地址").font(.headline).frame(maxWidth:.infinity)
@@ -65,14 +64,12 @@ struct AddrItemView: View {
             }
             HStack{
                 Spacer()
-//                Button(action: {
-//                    viewModel.deleteAddress(userAddrId: userAddr.id)
-//                }) {
-//                    Text("删除").frame(width:60, height: 30)
-//                        .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
-//                        .foregroundColor(Color(hex: 0x141414))
-//                }
-                
+                Text("删除").frame(width:60, height: 30)
+                    .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
+                    .foregroundColor(Color(hex: 0x141414))
+                    .onTapGesture(perform: {
+                        viewModel.deleteAddress(userAddrId: userAddr.id)
+                    })
                 Text("编辑").frame(width:60, height: 30)
                     .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
                     .background(NavigationLink("", destination: EditAddrView(viewModel: viewModel, refreshViewModel: refreshViewModel, userAddr: userAddr)).opacity(0) )
@@ -80,8 +77,6 @@ struct AddrItemView: View {
         }.padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
     }
 }
-
-
 
 struct AddrListView_Previews: PreviewProvider {
     static var previews: some View {
