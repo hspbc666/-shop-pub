@@ -30,19 +30,21 @@ struct TabbarView: View {
     }
     
     var body: some View {
-        TabView(selection: $selectedTab) {
-            HomeView().tabItem{
-                self.tabbarItem(text: "首页", image: "house")
-            }.tag(Tab.home)
-            CategoryView().tabItem{
-                self.tabbarItem(text: "分类", image: "list.bullet")
-            }.tag(Tab.category)
-            CartView().tabItem{
-                self.tabbarItem(text: "购物车", image: "cart")
-            }.tag(Tab.cart)
-            MineView().tabItem{
-                self.tabbarItem(text: "我的", image: "person")
-            }.tag(Tab.mine)
+        NavigationView{
+            TabView(selection: $selectedTab) {
+                HomeView().tabItem{
+                    self.tabbarItem(text: "首页", image: "house")
+                }.tag(Tab.home)
+                CategoryView().tabItem{
+                    self.tabbarItem(text: "分类", image: "list.bullet")
+                }.tag(Tab.category)
+                CartView().tabItem{
+                    self.tabbarItem(text: "购物车", image: "cart")
+                }.tag(Tab.cart)
+                MineView().tabItem{
+                    self.tabbarItem(text: "我的", image: "person")
+                }.tag(Tab.mine)
+            }
         }
     }
 }

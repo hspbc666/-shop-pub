@@ -11,23 +11,21 @@ struct HomeView: View {
     @State var imageIndex: Int = 0
     
     var body: some View {
-        NavigationView {
-            VStack{
-                List {
-                    LblBanner(goodsList: homeViewModel.dataListForBanner, height: 200, width: 330, index: $imageIndex)
-                    
-                    ForEach(homeViewModel.dataList.indices , id: \.self){ i in
-                        NavigationLink(destination: GoodsView(goods: homeViewModel.dataList[i])) {
-                            GoodsItemView(goods: homeViewModel.dataList[i])
-                        }
+        VStack{
+            List {
+                LblBanner(goodsList: homeViewModel.dataListForBanner, height: 200, width: 330, index: $imageIndex)
+                
+                ForEach(homeViewModel.dataList.indices , id: \.self){ i in
+                    NavigationLink(destination: GoodsView(goods: homeViewModel.dataList[i])) {
+                        GoodsItemView(goods: homeViewModel.dataList[i])
                     }
                 }
             }
-            .navigationBarTitle(Text("X商城"), displayMode: .inline)
-            .navigationBarItems(trailing:NavigationLink(destination: SearchView()) {
-                Image(systemName: "magnifyingglass")
-            })
         }
+        .navigationBarTitle(Text("X商城"), displayMode: .inline)
+        .navigationBarItems(trailing:NavigationLink(destination: SearchView()) {
+            Image(systemName: "magnifyingglass")
+        })
         .onAppear(perform: {
             homeViewModel.queryData()
         })

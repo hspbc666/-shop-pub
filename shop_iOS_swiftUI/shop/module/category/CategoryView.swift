@@ -11,24 +11,22 @@ struct CategoryView: View {
     @State var imageIndex: Int = 0
     
     var body: some View {
-        NavigationView {
-            VStack{
-                List {
-                    ForEach(viewModel.dataList.indices , id: \.self){ i in
-                        NavigationLink(destination: GoodsView(goods:viewModel.dataList[i])) {
-                            GoodsItemView(goods: viewModel.dataList[i])
-                        }
+        VStack{
+            List {
+                ForEach(viewModel.dataList.indices , id: \.self){ i in
+                    NavigationLink(destination: GoodsView(goods:viewModel.dataList[i])) {
+                        GoodsItemView(goods: viewModel.dataList[i])
                     }
                 }
             }
-            .navigationBarTitle(Text("X商城"), displayMode: .inline)
-            .navigationBarItems(trailing:NavigationLink(destination: SearchView()) {
-                Image(systemName: "magnifyingglass")
-            })
-            .onAppear(perform: {
-                viewModel.queryData(categoryId: "1")
-            })
         }
+        .navigationBarTitle(Text("X商城"), displayMode: .inline)
+        .navigationBarItems(trailing:NavigationLink(destination: SearchView()) {
+            Image(systemName: "magnifyingglass")
+        })
+        .onAppear(perform: {
+            viewModel.queryData(categoryId: "1")
+        })
     }
 }
 

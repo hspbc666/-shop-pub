@@ -10,15 +10,14 @@ struct MineView: View {
     @StateObject private var refreshViewModel = RefreshViewModel()
     
     var body: some View {
-        NavigationView{
-            VStack{
-                buildSettingsInfo()
-                buildUserInfo()
-                buildOrderInfo()
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .background(Color(hex: 0xF4F4F4))
-        }.onChange(of: refreshViewModel.shouldRefresh, perform: { value in
+        VStack{
+            buildSettingsInfo()
+            buildUserInfo()
+            buildOrderInfo()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .background(Color(hex: 0xF4F4F4))
+        .onChange(of: refreshViewModel.shouldRefresh, perform: { value in
             refreshViewModel.shouldRefresh = false
             if(value) {
                 isLoggedIn = true

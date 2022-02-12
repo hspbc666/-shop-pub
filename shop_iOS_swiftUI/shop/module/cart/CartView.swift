@@ -27,30 +27,28 @@ struct CartView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack{
-                List {
-                    ForEach(viewModel.dataList.indices , id: \.self){ i in
-                        CartItemView(cartItem: $viewModel.dataList[i])
-                    }
+        VStack{
+            List {
+                ForEach(viewModel.dataList.indices , id: \.self){ i in
+                    CartItemView(cartItem: $viewModel.dataList[i])
                 }
+            }
+            Spacer()
+            HStack{
                 Spacer()
-                HStack{
-                    Spacer()
-                    Text("已选 (\(selectedCount))")
-                    Spacer()
-                    Text("总计")
-                    Text("￥\(selectedSum)")
-                    Spacer()
-                    Button(action:{ gotoConfirmOrder()}){
-                        Text("结算").font(.headline).frame(minWidth: 150)
-                    }
-                    .padding(EdgeInsets.init(top: 5, leading: 0, bottom: 5, trailing: 0))
-                    .foregroundColor(.white)
-                    .background(selectedCount>0 ? Color.main_color : Color.gray)
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
-                    Spacer()
+                Text("已选 (\(selectedCount))")
+                Spacer()
+                Text("总计")
+                Text("￥\(selectedSum)")
+                Spacer()
+                Button(action:{ gotoConfirmOrder()}){
+                    Text("结算").font(.headline).frame(minWidth: 150)
                 }
+                .padding(EdgeInsets.init(top: 5, leading: 0, bottom: 5, trailing: 0))
+                .foregroundColor(.white)
+                .background(selectedCount>0 ? Color.main_color : Color.gray)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
+                Spacer()
             }
         }.onAppear(perform: {
             viewModel.queryData()
@@ -58,8 +56,7 @@ struct CartView: View {
     }
     
     private func gotoConfirmOrder(){
-        if(selectedCount>0)
-        {
+        if(selectedCount>0){
             print("ddddd")
         }
     }
