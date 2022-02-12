@@ -8,14 +8,8 @@ import SwiftUI
 struct AddAddrView: View {
     var viewModel: AddrViewModel
     var refreshViewModel: RefreshViewModel
+    @State var userAddr = UserAddr()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
-    @State var name: String = ""
-    @State var phone: String = ""
-    @State var region: String = ""
-    @State var address: String = ""
-    @State var addrType: Int = 0
-    @State var defaultAddress = true
     
     var addrTypeRadios: [RadioOption] = [
         RadioOption(label: "家庭", value: 1),
@@ -25,7 +19,7 @@ struct AddAddrView: View {
     
     var body: some View {
         VStack{
-            buildAppInfo()
+            buildUserInfo()
             Spacer()
             buildBottomBtn()
         }
@@ -33,40 +27,40 @@ struct AddAddrView: View {
         .background(Color(hex: 0xF4F4F4))
     }
     
-    fileprivate func buildAppInfo() -> some View {
+    fileprivate func buildUserInfo() -> some View {
         return VStack{
             HStack{
                 Text("收货人")
                 Spacer()
-                TextField("请输入收货人真实姓名", text: $name)
+                TextField("请输入收货人真实姓名", text: $userAddr.name)
             }
             Divider()
             HStack{
                 Text("手机号")
                 Spacer()
-                TextField("请输入收货人手机号", text: $phone)
+                TextField("请输入收货人手机号", text: $userAddr.phone)
             }
             Divider()
             HStack{
                 Text("所在地区")
                 Spacer()
-                TextField("所在地区", text: $region)
+                TextField("所在地区", text: $userAddr.region)
             }
             Divider()
             HStack{
                 Text("详细地址")
                 Spacer()
-                TextField("请输入详细地址", text: $address)
+                TextField("请输入详细地址", text: $userAddr.address)
             }
             Divider()
             HStack{
                 Text("地址类型")
                 Spacer()
-                RadioGroup(value: $addrType, options: addrTypeRadios)
+                RadioGroup(value: $userAddr.addrType, options: addrTypeRadios)
                 
             }
             HStack{
-                Toggle(isOn: $defaultAddress) {
+                Toggle(isOn: $userAddr.defaultAddress) {
                     Text("设为默认地址")
                 }
             }
@@ -87,13 +81,6 @@ struct AddAddrView: View {
     }
     
     func addAddress() {
-        var userAddr = UserAddr()
-        userAddr.name = name
-        userAddr.phone = phone
-        userAddr.region = region
-        userAddr.address = address
-        userAddr.addrType = addrType
-        userAddr.defaultAddress = defaultAddress
         viewModel.addAddress(userAddr: userAddr){isSuccess,msg in
             if(isSuccess){
                 refreshViewModel.shouldRefresh = true

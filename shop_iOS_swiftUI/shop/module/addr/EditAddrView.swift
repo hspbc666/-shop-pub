@@ -19,7 +19,7 @@ struct EditAddrView: View {
     
     var body: some View {
         VStack{
-            buildAppInfo()
+            buildUserInfo()
             Spacer()
             buildBottomBtn()
         }
@@ -27,7 +27,7 @@ struct EditAddrView: View {
         .background(Color(hex: 0xF4F4F4))
     }
     
-    fileprivate func buildAppInfo() -> some View {
+    fileprivate func buildUserInfo() -> some View {
         return VStack{
             HStack{
                 Text("收货人")
