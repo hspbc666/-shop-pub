@@ -65,17 +65,17 @@ struct AddrItemView: View {
             }
             HStack{
                 Spacer()
-                Button(action: {
-                    viewModel.deleteAddress(userAddrId: userAddr.id)
-                }) {
-                    Text("删除").frame(width:60, height: 30)
-                        .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
-                        .foregroundColor(Color(hex: 0x141414))
-                }
+//                Button(action: {
+//                    viewModel.deleteAddress(userAddrId: userAddr.id)
+//                }) {
+//                    Text("删除").frame(width:60, height: 30)
+//                        .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
+//                        .foregroundColor(Color(hex: 0x141414))
+//                }
                 
                 Text("编辑").frame(width:60, height: 30)
                     .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
-                    .background(NavigationLink("", destination: EditAddrView(viewModel: viewModel, refreshViewModel: refreshViewModel)).opacity(0) )
+                    .background(NavigationLink("", destination: EditAddrView(viewModel: viewModel, refreshViewModel: refreshViewModel, userAddr: userAddr)).opacity(0) )
             }
         }.padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
     }

@@ -8,16 +8,10 @@ import SwiftUI
 struct EditAddrView: View {
     var viewModel: AddrViewModel
     var refreshViewModel: RefreshViewModel
+    @State var userAddr: UserAddr
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @State var name: String = ""
-    @State var phone: String = ""
-    @State var region: String = ""
-    @State var address: String = ""
-    @State var addrType: Int = 0
-    @State var defaultAddress = true
-    
-    var addrTypeRadios: [RadioOption<Int>] = [
+    var addrTypeRadios: [RadioOption] = [
         RadioOption(label: "家庭", value: 1),
         RadioOption(label: "公司", value: 2),
         RadioOption(label: "其他", value: 3)
@@ -38,35 +32,35 @@ struct EditAddrView: View {
             HStack{
                 Text("收货人")
                 Spacer()
-                TextField("请输入收货人真实姓名", text: $name)
+                TextField("请输入收货人真实姓名", text: $userAddr.name)
             }
             Divider()
             HStack{
                 Text("手机号")
                 Spacer()
-                TextField("请输入收货人手机号", text: $phone)
+                TextField("请输入收货人手机号", text: $userAddr.phone)
             }
             Divider()
             HStack{
                 Text("所在地区")
                 Spacer()
-                TextField("所在地区", text: $region)
+                TextField("所在地区", text: $userAddr.region)
             }
             Divider()
             HStack{
                 Text("详细地址")
                 Spacer()
-                TextField("请输入详细地址", text: $address)
+                TextField("请输入详细地址", text: $userAddr.address)
             }
             Divider()
             HStack{
                 Text("地址类型")
                 Spacer()
-                RadioGroup(options: addrTypeRadios, value: $addrType)
+                RadioGroup(value: $userAddr.addrType, options: addrTypeRadios)
                 
             }
             HStack{
-                Toggle(isOn: $defaultAddress) {
+                Toggle(isOn: $userAddr.defaultAddress) {
                     Text("设为默认地址")
                 }
             }
@@ -76,7 +70,7 @@ struct EditAddrView: View {
     }
     
     fileprivate func buildBottomBtn() -> some View {
-        return Button(action:{ addAddress() }){
+        return Button(action:{ modifyAddress() }){
             Text("确定").font(.headline).frame(maxWidth:.infinity)
         }
         .padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
@@ -86,15 +80,8 @@ struct EditAddrView: View {
         .padding(EdgeInsets.init(top: 2, leading: 10, bottom: 5, trailing: 10))
     }
     
-    func addAddress() {
-        var userAddr = UserAddr()
-        userAddr.name = name
-        userAddr.phone = phone
-        userAddr.region = region
-        userAddr.address = address
-        userAddr.addrType = addrType
-        userAddr.defaultAddress = defaultAddress
-        viewModel.addAddress(userAddr: userAddr){isSuccess,msg in
+    func modifyAddress() {
+        viewModel.modifyAddress(userAddr: userAddr){isSuccess,msg in
             if(isSuccess){
                 refreshViewModel.shouldRefresh = true
                 goBack()
@@ -110,8 +97,8 @@ struct EditAddrView: View {
 }
 
 
-struct EditAddrView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditAddrView(viewModel: AddrViewModel(),refreshViewModel: RefreshViewModel())
-    }
-}
+//struct EditAddrView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditAddrView(viewModel: AddrViewModel(),refreshViewModel: RefreshViewModel())
+//    }
+//}

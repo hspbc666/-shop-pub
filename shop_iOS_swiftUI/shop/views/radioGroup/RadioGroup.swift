@@ -1,17 +1,15 @@
-//
-//  RadioButtonGroup.swift
-//
-//
-//  Created by 변경민 on 2021/01/14.
-//
+// 厦门大学计算机专业 | 前华为工程师
+// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
+// 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
+// 公众号：蓝不蓝编程
 
 import SwiftUI
 
-/// Radio Group Support Generic Type of Value for SwiftUI
-public struct RadioGroup<T>: View {
-    @Binding var value: T
-    @State var options: [RadioOption<T>]
-    @State var selectedIdx: Int = 0
+
+public struct RadioGroup: View {
+    @Binding var value: Int
+    @State var options: [RadioOption]
+    @State var selectedIdx: Int = -1
     var color: Color = Color(.sRGB, red: 50/255, green: 200/255, blue: 165/255)
     
     public var body: some View {
@@ -19,34 +17,12 @@ public struct RadioGroup<T>: View {
             ForEach(0..<options.count, id: \.self) { idx in
                 RadioButton(selectedIdx: self.$selectedIdx, idx: idx, option: options[idx], value: $value, color: color)
             }
-        }
-    }
-    
-    public init(options: [RadioOption<T>], value: Binding<T>) {
-        self._options = .init(initialValue: options)
-        self._value = value
-    }
-    
-    public init(options: [RadioOption<T>], value: Binding<T>, idx: Int) {
-        self._options = .init(initialValue: options)
-        self._value = value
-        self.selectedIdx = idx
-    }
-    
-    public init(options: [RadioOption<T>], value: Binding<T>, idx: Int, color: Color) {
-        self._options = .init(initialValue: options)
-        self._value = value
-        self.selectedIdx = idx
-        self.color = color
-    }
-}
-
-public extension RadioGroup {
-    /// Change accent color of the radio buttons
-    func accentColor(_ color: Color) -> RadioGroup {
-        RadioGroup(options: self.options,
-                   value: self.$value,
-                   idx: self.selectedIdx,
-                   color: color)
+        }.onAppear(perform: {
+            for i in 0..<options.count {
+                if options[i].value == $value.wrappedValue {
+                    self.selectedIdx = i
+                }
+            }
+        })
     }
 }

@@ -148,5 +148,53 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6DB24A3D-98B7-4D10-9E73-A0945FDA13D0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "shop/views/radioGroup/RadioGroup.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "6DB24A3D-98B7-4D10-9E73-A0945FDA13D0 - 7f41db476f9ee28f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "shop.RadioGroup.body.getter : some"
+                  moduleName = "shop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jerry/projects/mine/gitee/demos/shop/shop_iOS_swiftUI/shop/views/radioGroup/RadioGroup.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "401">
+               </Location>
+               <Location
+                  uuid = "6DB24A3D-98B7-4D10-9E73-A0945FDA13D0 - c03552ad5d6cf52d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, shop.RadioButton&gt; in shop.RadioGroup.body.getter : some"
+                  moduleName = "shop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jerry/projects/mine/gitee/demos/shop/shop_iOS_swiftUI/shop/views/radioGroup/RadioGroup.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "695">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

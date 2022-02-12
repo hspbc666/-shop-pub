@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2d163cb4-7ff6-4256-81ec-9f72599d13a7" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/addr/AddAddrView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/addr/AddAddrView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/addr/AddrListView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/addr/AddrListView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/addr/AddrListViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/addr/AddrListViewModel.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/settings/SettingsView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/settings/SettingsView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/network/LblAPI.swift" beforeDir="false" afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/network/LblAPI.swift" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="24wtXab2UBUCaggz6qPnmfRv3JR" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="2d163cb4-7ff6-4256-81ec-9f72599d13a7" name="变更" comment="" />
+      <created>1644553517083</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1644553517083</updated>
+    </task>
+    <servers />
+  </component>
+</project>

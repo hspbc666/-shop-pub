@@ -17,7 +17,7 @@ struct AddAddrView: View {
     @State var addrType: Int = 0
     @State var defaultAddress = true
     
-    var addrTypeRadios: [RadioOption<Int>] = [
+    var addrTypeRadios: [RadioOption] = [
         RadioOption(label: "家庭", value: 1),
         RadioOption(label: "公司", value: 2),
         RadioOption(label: "其他", value: 3)
@@ -62,7 +62,7 @@ struct AddAddrView: View {
             HStack{
                 Text("地址类型")
                 Spacer()
-                RadioGroup(options: addrTypeRadios, value: $addrType)
+                RadioGroup(value: $addrType, options: addrTypeRadios)
                 
             }
             HStack{
