@@ -8,14 +8,14 @@ import SwiftyJSON
 import HandyJSON
 
 class OrderViewModel: ObservableObject {
-    @Published var dataList:[UserAddr] = []
+    @Published var dataList: [OrderInfo] = []
     
-    func queryData() {
-        LblProvider.request(.queryAddress) { result in
+    func queryOrderByStatusResp(orderStatus: Int) {
+        LblProvider.request(.queryOrderByStatus(orderStatus: orderStatus)) { result in
             if case let .success(response) = result {
                 let data = try? response.mapJSON()
                 let json = JSON(data!)
-                if let resp = JSONDeserializer<QueryAddrResp>.deserializeFrom(json: json.description) {
+                if let resp = JSONDeserializer<QueryOrderByStatusResp>.deserializeFrom(json: json.description) {
                     if(resp.data != nil){
                         self.dataList = resp.data ?? []
                     }
@@ -24,39 +24,16 @@ class OrderViewModel: ObservableObject {
         }
     }
     
-    func deleteAddress(userAddrId: String) {
-        LblProvider.request(.deleteAddress(userAddrId: userAddrId)) { result in
-            if case let .success(response) = result {
-                let data = try? response.mapJSON()
-                let json = JSON(data!)
-                if let resp = JSONDeserializer<CommonResp>.deserializeFrom(json: json.description) {
-                    self.queryData()
-                }
-            }
-        }
-    }
+//    func deleteAddress(userAddrId: String) {
+//        LblProvider.request(.deleteAddress(userAddrId: userAddrId)) { result in
+//            if case let .success(response) = result {
+//                let data = try? response.mapJSON()
+//                let json = JSON(data!)
+//                if let resp = JSONDeserializer<CommonResp>.deserializeFrom(json: json.description) {
+//                    self.queryData()
+//                }
+//            }
+//        }
+//    }
 
-    func addAddress(userAddr: UserAddr, callback: @escaping((Bool,String)->())) {
-        LblProvider.request(.addAddress(params: userAddr)) { result in
-            if case let .success(response) = result {
-                let data = try? response.mapJSON()
-                let json = JSON(data!)
-                if let resp = JSONDeserializer<CommonResp>.deserializeFrom(json: json.description) {
-                    callback(resp.isSuccess(),resp.msg)
-                }
-            }
-        }
-    }
-
-    func modifyAddress(userAddr: UserAddr, callback: @escaping((Bool,String)->())) {
-        LblProvider.request(.modifyAddress(params: userAddr)) { result in
-            if case let .success(response) = result {
-                let data = try? response.mapJSON()
-                let json = JSON(data!)
-                if let resp = JSONDeserializer<CommonResp>.deserializeFrom(json: json.description) {
-                    callback(resp.isSuccess(),resp.msg)
-                }
-            }
-        }
-    }
 }
