@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import cn.lblbc.shop.R
-import cn.lblbc.shop.network.response.FullOrderInfo
+import cn.lblbc.shop.network.response.OrderDetail
 import cn.lblbc.shop.network.response.QueryOrderResp
 import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_COMMENT
 import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_DELIVER
@@ -47,12 +47,12 @@ class OrderAdapter() :
         holder.itemView.setOnClickListener { onItemClick(data) }
     }
 
-    private fun calcSum(data: List<FullOrderInfo>?): CharSequence {
+    private fun calcSum(data: List<OrderDetail>?): CharSequence {
         val sum = data?.sumOf { it.price * it.quantity } ?: 0L
         return mContext.getString(R.string.price, getMoneyByYuan(sum))
     }
 
-    private fun createOrderDetailItems(list: List<FullOrderInfo>?, ordersContainer: LinearLayout) {
+    private fun createOrderDetailItems(list: List<OrderDetail>?, ordersContainer: LinearLayout) {
         ordersContainer.removeAllViews()
         list?.forEach {
             createOrderDetailItem(mContext, it, ordersContainer)
@@ -70,14 +70,14 @@ class OrderAdapter() :
         }
     }
 
-    private fun createOrderDetailItem(context: Context, orderInfo: FullOrderInfo, ordersContainer: LinearLayout) {
+    private fun createOrderDetailItem(context: Context, orderDetail: OrderDetail, ordersContainer: LinearLayout) {
         val view = LayoutInflater.from(context).inflate(R.layout.item_order_detail, ordersContainer, false)
-        val imageUrl = orderInfo.squarePic
+        val imageUrl = orderDetail.squarePic
         Glide.with(context).load(imageUrl).into(view.findViewById(R.id.orderDetailGoodsIv))
-        view.findViewById<TextView>(R.id.orderDetailGoodsNameTv).text = orderInfo.name
+        view.findViewById<TextView>(R.id.orderDetailGoodsNameTv).text = orderDetail.name
         view.findViewById<TextView>(R.id.orderDetailPrice).text =
-            context.getString(R.string.price, getMoneyByYuan(orderInfo.price))
-        view.findViewById<TextView>(R.id.orderDetailQuantity).text = context.getString(R.string.amount_with_prefix, orderInfo.quantity)
+            context.getString(R.string.price, getMoneyByYuan(orderDetail.price))
+        view.findViewById<TextView>(R.id.orderDetailQuantity).text = context.getString(R.string.amount_with_prefix, orderDetail.quantity)
         ordersContainer.addView(view)
     }
 

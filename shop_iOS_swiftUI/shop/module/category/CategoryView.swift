@@ -20,7 +20,7 @@ struct CategoryView: View {
                         }
                     }
                 }.padding(EdgeInsets.init(top: 0, leading: 10, bottom: 0, trailing: 10))
-                LblTabPageView(viewModel: viewModel, selectedIndex: $selectedIndex)
+                CategoryPageView(viewModel: viewModel, selectedIndex: $selectedIndex)
                     .padding(EdgeInsets.init(top: 0, leading: 0, bottom: 1, trailing: 0))
             }
         }.navigationBarTitle(Text("X商城"), displayMode: .inline)
@@ -45,7 +45,7 @@ struct CategoryView: View {
     }
 }
 
-struct LblTabPageView: View {
+struct CategoryPageView: View {
     @StateObject var viewModel: CategoryViewModel
     @Binding var selectedIndex: Int
     

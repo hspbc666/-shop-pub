@@ -41,12 +41,11 @@ class QueryOrderResp {
     val orderId: String? = null
     val status: Int? = null
     val createTime: Long = 0
-    val list: List<FullOrderInfo>? = null
+    val list: List<OrderDetail>? = null
     val userAddr: UserAddr? = null
 }
 
-class FullOrderInfo {
-    val orderId: String? = null
+class OrderDetail {
     val goodsId: String? = null
     val name: String? = null
     val price: Long = 0
