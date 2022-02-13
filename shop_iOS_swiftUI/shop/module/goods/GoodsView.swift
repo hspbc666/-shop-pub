@@ -34,8 +34,7 @@ struct GoodsView: View {
         }
     }
     
-    func addToCart()
-    {
+    func addToCart() {
         viewModel.addToCart(goodsId: goods.id, callback: {
             
         })

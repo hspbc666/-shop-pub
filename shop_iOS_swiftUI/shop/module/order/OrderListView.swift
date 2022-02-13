@@ -56,7 +56,6 @@ struct OrderPageView: View {
     
     var body: some View {
         List {
-            
             ForEach(viewModel.dataList.indices , id: \.self){ i in
                 Text(viewModel.dataList[i].orderId)
             }
