@@ -19,7 +19,8 @@ struct CategoryView: View {
                     }
                 }
             }.padding(EdgeInsets.init(top: 0, leading: 10, bottom: 0, trailing: 10))
-            LblTabPageView(selectedIndex: $selectedIndex, tabs: tabs).padding(EdgeInsets.init(top: 0, leading: 0, bottom: 1, trailing: 0))
+            LblTabPageView(selectedIndex: $selectedIndex, tabs: tabs)
+                .padding(EdgeInsets.init(top: 0, leading: 0, bottom: 1, trailing: 0))
         }.navigationBarTitle(Text("X商城"), displayMode: .inline)
             .navigationBarItems(trailing:NavigationLink(destination: SearchView()) {
                 Image(systemName: "magnifyingglass")
