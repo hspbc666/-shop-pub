@@ -7,7 +7,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmFragment
 import cn.lblbc.shop.module.order.detail.OrderDetailActivity
-import cn.lblbc.shop.network.response.QueryOrderResp
+import cn.lblbc.shop.network.response.OrderInfo
 import cn.lblbc.shop.utils.Constants
 import cn.lblbc.shop.utils.JsonUtil
 /**
@@ -53,7 +53,7 @@ class OrderFragment(var tabId: Int) : BaseVmFragment<OrderListViewModel>() {
         mViewModel.orders.observe(this, { adapter.setData(it) })
     }
 
-    private fun onItemClick(resp: QueryOrderResp) {
+    private fun onItemClick(resp: OrderInfo) {
         val intent = Intent(context, OrderDetailActivity::class.java)
         val orderInfoInJson = JsonUtil.toJson(resp)
         intent.putExtra(Constants.EXTRA_KEY_ORDER_INFO, orderInfoInJson)

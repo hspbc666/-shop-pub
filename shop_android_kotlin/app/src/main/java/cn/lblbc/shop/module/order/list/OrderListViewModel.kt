@@ -3,7 +3,7 @@ package cn.lblbc.shop.module.order.list
 import androidx.lifecycle.MutableLiveData
 import cn.lblbc.shop.base.BaseViewModel
 import cn.lblbc.shop.network.ShopRepo
-import cn.lblbc.shop.network.response.QueryOrderResp
+import cn.lblbc.shop.network.response.OrderInfo
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -13,7 +13,7 @@ import cn.lblbc.shop.network.response.QueryOrderResp
  */
 class OrderListViewModel : BaseViewModel() {
     private val repo by lazy { ShopRepo() }
-    val orders: MutableLiveData<List<QueryOrderResp>> = MutableLiveData()
+    val orders: MutableLiveData<List<OrderInfo>> = MutableLiveData()
 
     fun queryOrder(
         orderStatus: Int,

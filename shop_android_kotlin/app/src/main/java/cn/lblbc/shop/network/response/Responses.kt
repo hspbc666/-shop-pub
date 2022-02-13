@@ -37,7 +37,7 @@ class CreateOrderResp {
     var orderId: String = ""
 }
 
-class QueryOrderResp {
+class OrderInfo {
     val orderId: String? = null
     val status: Int? = null
     val createTime: Long = 0

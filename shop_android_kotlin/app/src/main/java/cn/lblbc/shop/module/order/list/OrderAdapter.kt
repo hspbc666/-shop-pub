@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import cn.lblbc.shop.R
 import cn.lblbc.shop.network.response.OrderDetail
-import cn.lblbc.shop.network.response.QueryOrderResp
+import cn.lblbc.shop.network.response.OrderInfo
 import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_COMMENT
 import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_DELIVER
 import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_PAY
@@ -28,10 +28,10 @@ import kotlinx.android.synthetic.main.item_order.view.*
  */
 class OrderAdapter() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private lateinit var onItemClick: (queryOrderResp: QueryOrderResp) -> Unit
-    private var dataList = mutableListOf<QueryOrderResp>()
+    private lateinit var onItemClick: (orderInfo: OrderInfo) -> Unit
+    private var dataList = mutableListOf<OrderInfo>()
     private lateinit var mContext: Context
-    fun setData(list: List<QueryOrderResp>) {
+    fun setData(list: List<OrderInfo>) {
         dataList.clear()
         dataList.addAll(list)
         notifyDataSetChanged()
@@ -89,7 +89,7 @@ class OrderAdapter() :
         return ViewHolder(view)
     }
 
-    infix fun setOnItemClick(onClick: (QueryOrderResp: QueryOrderResp) -> Unit) {
+    infix fun setOnItemClick(onClick: (orderInfo: OrderInfo) -> Unit) {
         this.onItemClick = onClick
     }
 

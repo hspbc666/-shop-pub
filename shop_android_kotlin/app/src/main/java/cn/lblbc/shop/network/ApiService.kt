@@ -53,10 +53,10 @@ interface ApiService {
     suspend fun payForOrder(@Path("orderId") orderId: String): Result<String?>?
 
     @GET("shop/order/queryByStatus/{orderStatus}")
-    suspend fun queryOrderByStatus(@Path("orderStatus") orderStatus: Int): Result<List<QueryOrderResp>?>?
+    suspend fun queryOrderByStatus(@Path("orderStatus") orderStatus: Int): Result<List<OrderInfo>?>?
 
     @GET("shop/order/query/{orderId}")
-    suspend fun queryOrder(@Path("orderId") orderId: String): Result<QueryOrderResp?>?
+    suspend fun queryOrder(@Path("orderId") orderId: String): Result<OrderInfo?>?
 
     @GET("shop/order/del/{orderId}")
     suspend fun deleteOrder(@Path("orderId") orderId: String): Result<String?>?

@@ -6,7 +6,7 @@ import cn.lblbc.shop.network.ShopRepo
 import cn.lblbc.shop.network.request.CreateOrderFromCartReq
 import cn.lblbc.shop.network.request.CreateOrderReq
 import cn.lblbc.shop.network.response.CartItem
-import cn.lblbc.shop.network.response.QueryOrderResp
+import cn.lblbc.shop.network.response.OrderInfo
 import cn.lblbc.shop.network.response.UserAddr
 
 /**
@@ -69,7 +69,7 @@ class ConfirmOrderViewModel : BaseViewModel() {
 
     fun queryOrder(
         orderId: String,
-        onSuccess: ((queryOrderResp: QueryOrderResp) -> Unit)? = null,
+        onSuccess: ((orderInfo: OrderInfo) -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
     ) {
