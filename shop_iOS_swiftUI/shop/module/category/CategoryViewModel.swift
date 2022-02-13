@@ -19,7 +19,6 @@ class CategoryViewModel: ObservableObject {
                 if let resp = JSONDeserializer<QueryGoodsResp>.deserializeFrom(json: json.description) {
                     if(resp.data != nil){
                         self.goodsList = resp.data ?? []
-                        print("2222222")
                     }
                 }
             }
