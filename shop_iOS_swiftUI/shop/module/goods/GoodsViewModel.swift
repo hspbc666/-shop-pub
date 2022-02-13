@@ -15,7 +15,7 @@ class GoodsViewModel: ObservableObject {
                 let data = try? response.mapJSON()
                 let json = JSON(data!)
                 if let resp = JSONDeserializer<CommonResp>.deserializeFrom(json: json.description) {
-                    if(resp.data != nil){
+                    if(resp.isSuccess()) {
                         callback()
                     }
                 }

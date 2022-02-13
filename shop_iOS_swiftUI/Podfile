@@ -9,7 +9,7 @@ target 'shop' do
   pod 'HandyJSON', '~> 5.0.0-beta.1'
   pod 'SwiftyJSON'
   pod 'SDWebImageSwiftUI'
-  pod 'Toast-Swift’, '~> 5.0.1'
+  pod 'AlertToast'
 end
 
 

@@ -3,12 +3,14 @@
 // 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
 // 公众号：蓝不蓝编程
 
+import AlertToast
 import SwiftUI
 
 
 struct GoodsView: View {
     @StateObject private var viewModel = GoodsViewModel()
     @State var goods: Goods
+    @State private var showToast = false
     var body: some View {
         VStack{
             Text(goods.name)
@@ -20,7 +22,7 @@ struct GoodsView: View {
                     Text("购物车").foregroundColor(Color(hex: 0x737373))
                     Image(systemName: "cart").foregroundColor(Color(hex: 0x737373))
                 }
-    
+                
                 Spacer()
                 Button(action:{ print("我被点啦")}){
                     Text("购买").font(.headline).frame(minWidth: 150)
@@ -31,12 +33,14 @@ struct GoodsView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 5))
                 Spacer()
             }.padding()
+        }.toast(isPresenting: $showToast){
+            AlertToast(type: .regular, title: "已加入购物车")
         }
     }
     
     func addToCart() {
         viewModel.addToCart(goodsId: goods.id, callback: {
-            
+            showToast = true
         })
     }
 }
