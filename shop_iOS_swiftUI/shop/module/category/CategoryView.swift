@@ -30,7 +30,6 @@ struct CategoryView: View {
             .onAppear(perform: {
                 viewModel.queryCategory()
             })
-        
     }
     
     fileprivate func TabItemView(_ i: Int) -> some View {
@@ -47,7 +46,7 @@ struct CategoryView: View {
 }
 
 struct LblTabPageView: View {
-    var viewModel: CategoryViewModel
+    @StateObject var viewModel: CategoryViewModel
     @Binding var selectedIndex: Int
     
     var body: some View {
