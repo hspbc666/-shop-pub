@@ -14,6 +14,7 @@ let LblProvider = MoyaProvider<LblAPI>()
 enum LblAPI {
     case login(params: [String:Any])
     case register(params: [String:Any])
+    case queryCategory
     case queryGoodsByCategory(categoryId: String)
     case searchGoods(keyword: String)
     case queryCart
@@ -35,6 +36,7 @@ extension LblAPI: TargetType {
         switch self {
         case .login: return "user/login"
         case .register: return "user/register"
+        case .queryCategory: return "shop/category"
         case .queryGoodsByCategory(let categoryId): return "shop/goods/category/"+categoryId
         case .searchGoods(let keyword): return "shop/goods/search/"+keyword
         case .queryCart: return "shop/cart/list"
@@ -51,7 +53,7 @@ extension LblAPI: TargetType {
         switch self {
         case .login, .register, .addAddress, .modifyAddress:
             return .post
-        case .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress, .queryDefaultAddress, .addToCart, .deleteAddress:
+        case .queryCategory, .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress, .queryDefaultAddress, .addToCart, .deleteAddress:
             return .get
         }
     }
@@ -62,7 +64,7 @@ extension LblAPI: TargetType {
             return .requestParameters(parameters: params.toJSON() ?? ["":""], encoding: JSONEncoding.default)
         case .login(let params), .register(let params):
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-        case .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress, .queryDefaultAddress, .addToCart, .deleteAddress:
+        case .queryCategory, .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress, .queryDefaultAddress, .addToCart, .deleteAddress:
             return .requestPlain
         }
     }

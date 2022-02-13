@@ -7,30 +7,35 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct CategoryView: View {
-    var tabs: [LblTab] = [LblTab(id: "1",name: "测试11"),LblTab(id: "2",name: "测试2"),LblTab(id: "3",name: "测试3")]
+    @StateObject private var viewModel = CategoryViewModel()
     @State var selectedIndex = 0
     
     var body: some View {
         VStack{
-            ScrollView(.horizontal) {
-                HStack {
-                    ForEach(0..<tabs.count) { i in
-                        TabItemView(i)
+            if viewModel.categoryList.count > 0 {
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(0..<viewModel.categoryList.count) { i in
+                            TabItemView(i)
+                        }
                     }
-                }
-            }.padding(EdgeInsets.init(top: 0, leading: 10, bottom: 0, trailing: 10))
-            LblTabPageView(selectedIndex: $selectedIndex, tabs: tabs)
-                .padding(EdgeInsets.init(top: 0, leading: 0, bottom: 1, trailing: 0))
+                }.padding(EdgeInsets.init(top: 0, leading: 10, bottom: 0, trailing: 10))
+                LblTabPageView(viewModel: viewModel, selectedIndex: $selectedIndex)
+                    .padding(EdgeInsets.init(top: 0, leading: 0, bottom: 1, trailing: 0))
+            }
         }.navigationBarTitle(Text("X商城"), displayMode: .inline)
             .navigationBarItems(trailing:NavigationLink(destination: SearchView()) {
                 Image(systemName: "magnifyingglass")
+            })
+            .onAppear(perform: {
+                viewModel.queryCategory()
             })
         
     }
     
     fileprivate func TabItemView(_ i: Int) -> some View {
         return VStack{
-            Text(tabs[i].name)
+            Text(viewModel.categoryList[i].name)
                 .foregroundColor(selectedIndex == i ? Color.main_color : .gray)
                 .padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
                 .onTapGesture(perform: {
@@ -41,34 +46,23 @@ struct CategoryView: View {
     }
 }
 
-struct LblTab{
-    var id: String = ""
-    var name: String = ""
-    
-    init(id:String, name:String)
-    {
-        self.id = id
-        self.name = name
-    }
-}
-
 struct LblTabPageView: View {
+    var viewModel: CategoryViewModel
     @Binding var selectedIndex: Int
-    let tabs: [LblTab]
-    
-    @StateObject private var viewModel = CategoryViewModel()
     
     var body: some View {
         List {
-            ForEach(viewModel.dataList.indices , id: \.self){ i in
-                NavigationLink(destination: GoodsView(goods:viewModel.dataList[i])) {
-                    GoodsItemView(goods: viewModel.dataList[i])
+            ForEach(viewModel.goodsList.indices , id: \.self){ i in
+                if i < viewModel.goodsList.count {
+                    NavigationLink(destination: GoodsView(goods:viewModel.goodsList[i])) {
+                        GoodsItemView(goods: viewModel.goodsList[i])
+                    }
                 }
             }
         }.onChange(of: selectedIndex) {
-            viewModel.queryData(categoryId: tabs[$0].id)
+            viewModel.queryGoodsByCategory(categoryId: viewModel.categoryList[$0].id)
         }.onAppear(perform: {
-            viewModel.queryData(categoryId: tabs[selectedIndex].id)
+            viewModel.queryGoodsByCategory(categoryId: viewModel.categoryList[selectedIndex].id)
         })
     }
 }

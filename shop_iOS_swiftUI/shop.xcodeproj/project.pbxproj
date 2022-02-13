@@ -12,6 +12,8 @@
 		C443007527AD39FC00B8D697 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443007427AD39FC00B8D697 /* ContentView.swift */; };
 		C443007727AD39FD00B8D697 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C443007627AD39FD00B8D697 /* Assets.xcassets */; };
 		C443007A27AD39FD00B8D697 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C443007927AD39FD00B8D697 /* Preview Assets.xcassets */; };
+		C4BF53DE27B8E7FC00572628 /* CategoryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BF53DD27B8E7FC00572628 /* CategoryInfo.swift */; };
+		C4BF53E027B8E82F00572628 /* QueryCategoryResp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BF53DF27B8E82F00572628 /* QueryCategoryResp.swift */; };
 		C4DED1DA27AD5D610010E271 /* LblAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DED1D927AD5D610010E271 /* LblAPI.swift */; };
 		C4E5555527AE1486004FA13E /* CommonResp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5555427AE1486004FA13E /* CommonResp.swift */; };
 		C4E5555727AE14A1004FA13E /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5555627AE14A1004FA13E /* UserInfo.swift */; };
@@ -58,6 +60,8 @@
 		C443007427AD39FC00B8D697 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C443007627AD39FD00B8D697 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C443007927AD39FD00B8D697 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C4BF53DD27B8E7FC00572628 /* CategoryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInfo.swift; sourceTree = "<group>"; };
+		C4BF53DF27B8E82F00572628 /* QueryCategoryResp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryCategoryResp.swift; sourceTree = "<group>"; };
 		C4DED1D927AD5D610010E271 /* LblAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LblAPI.swift; sourceTree = "<group>"; };
 		C4E5555427AE1486004FA13E /* CommonResp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonResp.swift; sourceTree = "<group>"; };
 		C4E5555627AE14A1004FA13E /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -183,11 +187,13 @@
 				C4E5555427AE1486004FA13E /* CommonResp.swift */,
 				C4E555E727AE635C004FA13E /* QueryGoodsResp.swift */,
 				C4E5562F27AEB337004FA13E /* QueryCartResp.swift */,
+				C4BF53DF27B8E82F00572628 /* QueryCategoryResp.swift */,
 				C4E5564827AFAFA3004FA13E /* QueryAddrResp.swift */,
-				C4E5555627AE14A1004FA13E /* UserInfo.swift */,
-				C4E555E527AE61D5004FA13E /* Goods.swift */,
 				C4E5562D27AEB291004FA13E /* CartItem.swift */,
+				C4BF53DD27B8E7FC00572628 /* CategoryInfo.swift */,
+				C4E555E527AE61D5004FA13E /* Goods.swift */,
 				C4E5564A27AFAFEE004FA13E /* UserAddr.swift */,
+				C4E5555627AE14A1004FA13E /* UserInfo.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -474,12 +480,14 @@
 				C4E555EA27AE6626004FA13E /* GoodsView.swift in Sources */,
 				C4E5563027AEB337004FA13E /* QueryCartResp.swift in Sources */,
 				C4E5563227AEB50D004FA13E /* CartViewModel.swift in Sources */,
+				C4BF53DE27B8E7FC00572628 /* CategoryInfo.swift in Sources */,
 				C4E5563527AEB7CF004FA13E /* LoginView.swift in Sources */,
 				C4E5564B27AFAFEE004FA13E /* UserAddr.swift in Sources */,
 				C4DED1DA27AD5D610010E271 /* LblAPI.swift in Sources */,
 				C4E5555A27AE14CC004FA13E /* LoginResp.swift in Sources */,
 				C4E5563F27AFA41D004FA13E /* OrderListView.swift in Sources */,
 				C4E555EC27AE840B004FA13E /* SearchView.swift in Sources */,
+				C4BF53E027B8E82F00572628 /* QueryCategoryResp.swift in Sources */,
 				C4E555E427AE6191004FA13E /* HomeViewModel.swift in Sources */,
 				C4E5556127AE1A66004FA13E /* CategoryView.swift in Sources */,
 				C4E5565727B5591E004FA13E /* RadioGroup.swift in Sources */,

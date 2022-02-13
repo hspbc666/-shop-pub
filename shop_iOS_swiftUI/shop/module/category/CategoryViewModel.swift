@@ -8,16 +8,31 @@ import SwiftyJSON
 import HandyJSON
 
 class CategoryViewModel: ObservableObject {
-    @Published var dataList:[Goods] = []
+    @Published var categoryList:[CategoryInfo] = []
+    @Published var goodsList:[Goods] = []
     
-    func queryData(categoryId: String) {
+    func queryGoodsByCategory(categoryId: String) {
         LblProvider.request(.queryGoodsByCategory(categoryId: categoryId)) { result in
             if case let .success(response) = result {
                 let data = try? response.mapJSON()
                 let json = JSON(data!)
                 if let resp = JSONDeserializer<QueryGoodsResp>.deserializeFrom(json: json.description) {
                     if(resp.data != nil){
-                        self.dataList = resp.data ?? []
+                        self.goodsList = resp.data ?? []
+                    }
+                }
+            }
+        }
+    }
+    
+    func queryCategory() {
+        LblProvider.request(.queryCategory) { result in
+            if case let .success(response) = result {
+                let data = try? response.mapJSON()
+                let json = JSON(data!)
+                if let resp = JSONDeserializer<QueryCategroyResp>.deserializeFrom(json: json.description) {
+                    if(resp.data != nil){
+                        self.categoryList = resp.data ?? []
                     }
                 }
             }
