@@ -6,7 +6,7 @@
 import Foundation
 import HandyJSON
 
-struct Goods: HandyJSON,Codable,Identifiable{
+struct Goods: HandyJSON,Codable,Identifiable,Hashable{
     var id: String = ""
     var name: String = ""
     var price = 0

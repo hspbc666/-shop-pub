@@ -52,14 +52,13 @@ struct LblTabPageView: View {
     
     var body: some View {
         List {
-            ForEach(viewModel.goodsList.indices , id: \.self){ i in
-                if i < viewModel.goodsList.count {
-                    NavigationLink(destination: GoodsView(goods:viewModel.goodsList[i])) {
-                        GoodsItemView(goods: viewModel.goodsList[i])
-                    }
+            ForEach(viewModel.goodsList , id: \.self){ goods in
+                NavigationLink(destination: GoodsView(goods:goods)) {
+                    GoodsItemView(goods: goods)
                 }
             }
         }.onChange(of: selectedIndex) {
+            print(String(viewModel.goodsList.count))
             viewModel.queryGoodsByCategory(categoryId: viewModel.categoryList[$0].id)
         }.onAppear(perform: {
             viewModel.queryGoodsByCategory(categoryId: viewModel.categoryList[selectedIndex].id)
