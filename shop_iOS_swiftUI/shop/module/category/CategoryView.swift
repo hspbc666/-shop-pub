@@ -19,12 +19,12 @@ struct CategoryView: View {
                     }
                 }
             }.padding(EdgeInsets.init(top: 0, leading: 10, bottom: 0, trailing: 10))
-            LblTabPageView(selectedIndex: $selectedIndex, tabs: tabs)
-        }        .navigationBarTitle(Text("X商城"), displayMode: .inline)
+            LblTabPageView(selectedIndex: $selectedIndex, tabs: tabs).padding(EdgeInsets.init(top: 0, leading: 0, bottom: 1, trailing: 0))
+        }.navigationBarTitle(Text("X商城"), displayMode: .inline)
             .navigationBarItems(trailing:NavigationLink(destination: SearchView()) {
                 Image(systemName: "magnifyingglass")
             })
-    
+        
     }
     
     fileprivate func TabItemView(_ i: Int) -> some View {
@@ -67,7 +67,6 @@ struct LblTabPageView: View {
         }.onChange(of: selectedIndex) {
             viewModel.queryData(categoryId: tabs[$0].id)
         }.onAppear(perform: {
-            print("111111")
             viewModel.queryData(categoryId: tabs[selectedIndex].id)
         })
     }
