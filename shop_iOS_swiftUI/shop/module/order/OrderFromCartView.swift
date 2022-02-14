@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct OrderFromCartView: View {
-    var selectedSum = 30
+    var goodsSum = 30
     var body: some View {
         Text("Hello, world!")
             .padding()
@@ -15,7 +15,7 @@ struct OrderFromCartView: View {
         HStack{
             Spacer()
             Text("实付款")
-            Text("￥\(selectedSum)").foregroundColor(Color.main_color)
+            Text("￥\(goodsSum)").foregroundColor(Color.main_color)
             Spacer()
             NavigationLink(destination: OrderFromCartView()){
                 Text("提交订单").font(.headline).frame(minWidth: 150)
