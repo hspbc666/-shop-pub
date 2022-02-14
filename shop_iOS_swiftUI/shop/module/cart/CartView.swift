@@ -55,12 +55,6 @@ struct CartView: View {
             viewModel.queryData()
         })
     }
-    
-    private func gotoConfirmOrder(){
-        if(selectedCount>0){
-            print("ddddd")
-        }
-    }
 }
 
 struct CartItemView: View {

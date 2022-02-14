@@ -6,9 +6,27 @@
 import SwiftUI
 
 struct OrderFromCartView: View {
+    var selectedSum = 30
     var body: some View {
         Text("Hello, world!")
             .padding()
+        Spacer()
+        Divider()
+        HStack{
+            Spacer()
+            Text("实付款")
+            Text("￥\(selectedSum)").foregroundColor(Color.main_color)
+            Spacer()
+            NavigationLink(destination: OrderFromCartView()){
+                Text("提交订单").font(.headline).frame(minWidth: 150)
+                    .padding(EdgeInsets.init(top: 5, leading: 0, bottom: 5, trailing: 0))
+                    .foregroundColor(.white)
+                    .background(Color.main_color)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+            }
+            
+            Spacer()
+        } .padding(EdgeInsets.init(top: 0, leading: 0, bottom: 5, trailing: 0))
     }
 }
 
