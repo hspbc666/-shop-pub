@@ -10,6 +10,6 @@ struct OrderInfo: HandyJSON,Codable{
     var orderId:String = ""
     var status = 0
     var createTime = 0
-    var list:[OrderDetail]?
+    var list:[OrderDetail] = []
     var userAddr: UserAddr?
 }
