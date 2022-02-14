@@ -100,7 +100,6 @@ struct OrderPageView: View {
                         Text("共"+String(viewModel.dataList[i].list.count)+"件商品").padding()
                     }
                     
-                    Divider()
                     HStack{
                         Spacer()
                         Text("发票详情").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
