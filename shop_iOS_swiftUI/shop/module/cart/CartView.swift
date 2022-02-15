@@ -41,7 +41,7 @@ struct CartView: View {
                 Text("总计")
                 Text("￥\(selectedSum)")
                 Spacer()
-                NavigationLink(destination: OrderFromCartView()){
+                NavigationLink(destination: OrderFromCartView(cartItems: viewModel.dataList)){
                     Text("结算").font(.headline).frame(minWidth: 150)
                         .padding(EdgeInsets.init(top: 5, leading: 0, bottom: 5, trailing: 0))
                         .foregroundColor(.white)
