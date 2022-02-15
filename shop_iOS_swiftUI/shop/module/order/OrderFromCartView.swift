@@ -17,7 +17,7 @@ struct OrderFromCartView: View {
             HStack{
                 Image(systemName: "location.circle.fill")
                 VStack{
-                    Text(try! userAddr.name)
+                    Text(userAddr.name)
                     Text(userAddr.address)
                 }
                 Spacer()
