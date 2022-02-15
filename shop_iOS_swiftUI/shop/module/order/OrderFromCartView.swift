@@ -13,7 +13,19 @@ struct OrderFromCartView: View {
     @StateObject private var viewModel = OrderFromCartViewModel()
     var body: some View {
         VStack{
-            buildAddrInfoView()
+            if let userAddr = viewModel.userAddr {
+                HStack{
+                    Image(systemName: "location.circle.fill")
+                    VStack{
+                        Text(userAddr.name)
+                        Text(userAddr.address)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
+                }.padding().background(.white).padding()
+            }else{
+                Text("+ 添加收货地址").padding().background(.white).padding()
+            }
             
             WebImage(url: URL(string: cartItems[0].squarePic ?? ""))
                 .placeholder{Color.gray}
@@ -32,23 +44,6 @@ struct OrderFromCartView: View {
         
     }
     
-    func buildAddrInfoView() -> some View{
-        let userAddr = viewModel.userAddr
-        
-          if userAddr != nil {
-              return  HStack{
-                Image(systemName: "location.circle.fill")
-                VStack{
-                    Text(userAddr.name ?? "")
-                    Text(userAddr.address ?? "")
-                }
-                Spacer()
-                Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
-            }
-        }else{
-            return Text("+ 添加收货地址")
-        }
-    }
     
     func buildBottomView() -> some View{
         return HStack{
