@@ -15,7 +15,7 @@ class AddrViewModel: ObservableObject {
             if case let .success(response) = result {
                 let data = try? response.mapJSON()
                 let json = JSON(data!)
-                if let resp = JSONDeserializer<QueryAddrResp>.deserializeFrom(json: json.description) {
+                if let resp = JSONDeserializer<QueryAddrListResp>.deserializeFrom(json: json.description) {
                     if(resp.data != nil){
                         self.dataList = resp.data ?? []
                     }

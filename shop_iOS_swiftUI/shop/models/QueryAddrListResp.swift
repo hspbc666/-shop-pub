@@ -7,8 +7,8 @@
 import Foundation
 import HandyJSON
 
-struct QueryAddrResp: HandyJSON,Codable{
+struct QueryAddrListResp: HandyJSON,Codable{
     var code = 0
     var msg : String = ""
-    var data : UserAddr?
+    var data : [UserAddr]?
 }
