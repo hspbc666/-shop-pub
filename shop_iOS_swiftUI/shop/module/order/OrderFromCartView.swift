@@ -13,19 +13,22 @@ struct OrderFromCartView: View {
     @StateObject private var viewModel = OrderFromCartViewModel()
     var body: some View {
         VStack{
-            if let userAddr = viewModel.userAddr {
-                HStack{
-                    Image(systemName: "location.circle.fill")
-                    VStack{
-                        Text(userAddr.name)
-                        Text(userAddr.address)
+            HStack{
+                if let userAddr = viewModel.userAddr {
+                    HStack{
+                        Image(systemName: "location.circle.fill")
+                        VStack{
+                            Text(userAddr.name)
+                            Text(userAddr.address)
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
                     }
-                    Spacer()
-                    Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
-                }.padding().background(.white).padding()
-            }else{
-                Text("+ 添加收货地址").padding().background(.white).padding()
-            }
+                }else{
+                    Text("+ 添加收货地址")
+                }
+            }.padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
+            
             
             WebImage(url: URL(string: cartItems[0].squarePic ?? ""))
                 .placeholder{Color.gray}
