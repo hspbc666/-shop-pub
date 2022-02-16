@@ -58,7 +58,7 @@ struct ConfirmOrderFromCartView: View {
             HStack{
                 Text("商品金额").foregroundColor(.gray)
                 Spacer()
-                Text("￥")
+                Text("￥\(costSum)")
             }.padding()
             HStack{
                 Text("总运费").foregroundColor(.gray)
