@@ -121,8 +121,8 @@ struct OrderPageView: View {
 }
 
 
-struct OrderListView_Previews: PreviewProvider {
-    static var previews: some View {
-        OrderListView()
-    }
-}
+//struct OrderListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        OrderListView()
+//    }
+//}
