@@ -19,33 +19,38 @@ struct OrderDetailView: View {
     
     private func buildOrderItemView(orderInfo: OrderInfo) -> some View{
         return VStack{
-            HStack{
-                Text("X商自营").font(.title3)
-                Spacer()
-                Text("状态").foregroundColor(.gray)
-            }
+            VStack{
+                HStack{
+                    Text("X商自营").font(.title3)
+                    Spacer()
+                    Text("状态").foregroundColor(.gray)
+                }
+                
+                buildOrderListView(list: orderInfo.list)
+                
+                HStack{
+                    Spacer()
+                    Text("共"+String(orderInfo.list.count)+"件商品").padding()
+                }
+            }.padding(EdgeInsets.init(top: 20, leading: 10, bottom: 10, trailing: 10))
+                .frame(maxWidth: .infinity,alignment: .leading)
+                .background(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
+                .padding()
+           
             
-            buildOrderListView(list: orderInfo.list)
-            
+            Spacer()
+            Divider()
             HStack{
                 Spacer()
-                Text("共"+String(orderInfo.list.count)+"件商品").padding()
-            }
-            
-            HStack{
-                Spacer()
-                Text("发票详情").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                Text("删除订单").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
                     .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
                     .foregroundColor(Color(hex: 0x141414))
                 Text("申请售后").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
                     .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
                     .foregroundColor(Color(hex: 0x141414))
             }
-        }.padding(EdgeInsets.init(top: 20, leading: 10, bottom: 10, trailing: 10))
-            .frame(maxWidth: .infinity,alignment: .leading)
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 5))
-            .padding()
+        }
     }
     private func buildOrderListView(list: [OrderDetail]) -> some View{
         return VStack{
