@@ -9,7 +9,6 @@ import SDWebImageSwiftUI
 struct ConfirmOrderFromCartView: View {
     var costSum: Int
     var cartItems: [CartItem]
-    //    @State var userAddr: UserAddr? = nil
     @StateObject private var viewModel = ConfirmOrderViewModel()
     var body: some View {
         VStack{
@@ -28,14 +27,16 @@ struct ConfirmOrderFromCartView: View {
     
     func buildGoodsInfoView() -> some View{
         HStack{
-            WebImage(url: URL(string: cartItems[0].squarePic ?? ""))
-                .placeholder{Color.gray}
-                .resizable()
-                .scaledToFit()
-                .frame(width: 100, height: 100)
-            Spacer()
-            Text("共\(cartItems.count)种").foregroundColor(.gray)
-            Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
+            if !cartItems.isEmpty {
+                WebImage(url: URL(string: cartItems[0].squarePic ?? ""))
+                    .placeholder{Color.gray}
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100, height: 100)
+                Spacer()
+                Text("共\(cartItems.count)种").foregroundColor(.gray)
+                Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
+            }
         }.padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
         
     }
