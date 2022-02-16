@@ -8,11 +8,13 @@ import SDWebImageSwiftUI
 
 struct CartView: View {
     @StateObject private var viewModel = CartViewModel()
-    private var selectedCount:Int{//通过计算属性获取选中商品总数
+    private var selectedCartItems:[CartItem]{//通过计算属性获取选中商品总数
         get {
-            viewModel.dataList
-                .filter(){return $0.isSelected == true}.count
+            viewModel.dataList.filter(){return $0.isSelected == true}
         }
+    }
+    private var selectedCount:Int{//通过计算属性获取选中商品总数
+        get {selectedCartItems.count}
     }
     
     private var selectedSum:Int{//通过计算属性获取选中商品金额总和
@@ -41,7 +43,7 @@ struct CartView: View {
                 Text("总计")
                 Text("￥\(selectedSum)")
                 Spacer()
-                NavigationLink(destination: ConfirmOrderFromCartView(costSum: selectedSum, cartItems: viewModel.dataList)){
+                NavigationLink(destination: ConfirmOrderFromCartView(costSum: selectedSum, cartItems: selectedCartItems)){
                     Text("结算").font(.headline).frame(minWidth: 150)
                         .padding(EdgeInsets.init(top: 5, leading: 0, bottom: 5, trailing: 0))
                         .foregroundColor(.white)
