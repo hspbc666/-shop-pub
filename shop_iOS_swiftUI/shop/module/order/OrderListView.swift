@@ -58,65 +58,74 @@ struct OrderPageView: View {
         List {
             ForEach(viewModel.dataList.indices , id: \.self){ i in
                 let list = viewModel.dataList[i].list
-                VStack{
-                    HStack{
-                        Text("X商自营").font(.title3)
-                        Spacer()
-                        Text("状态").foregroundColor(.gray)
-                    }
-                    
-                    ForEach(list.indices , id: \.self){ j in
-                        let orderDetail = list[j]
-                        HStack{
-                            WebImage(url: URL(string: orderDetail.squarePic ?? ""))
-                                .placeholder{Color.gray}
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 50, height: 50)
-                            VStack(alignment: .leading){
-                                Text(orderDetail.name).padding(EdgeInsets.init(top: 0, leading: 0, bottom: 5, trailing: 0))
-                                HStack{
-                                    Text("7天无理由退货")
-                                        .font(.system(size:12))
-                                        .foregroundColor(Color(hex: 0x677DA5))
-                                        .padding(EdgeInsets.init(top: 5, leading: 5, bottom: 5, trailing: 5))
-                                        .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color(hex: 0xEAF3FF)))
-                                    Text("不支持换货")
-                                        .font(.system(size:12))
-                                        .foregroundColor(Color(hex: 0x97999E))
-                                        .padding(EdgeInsets.init(top: 5, leading: 5, bottom: 5, trailing: 5))
-                                        .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color(hex: 0xF2F5F5)))
-                                }
-                            }
-                            VStack{
-                                Text("￥" + String(orderDetail.price/100))
-                                Text("×" + String(orderDetail.quantity))
-                            }
-                        }
-                    }
-                    
-                    HStack{
-                        Spacer()
-                        Text("共"+String(viewModel.dataList[i].list.count)+"件商品").padding()
-                    }
-                    
-                    HStack{
-                        Spacer()
-                        Text("发票详情").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
-                            .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
-                            .foregroundColor(Color(hex: 0x141414))
-                        Text("申请售后").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
-                            .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
-                            .foregroundColor(Color(hex: 0x141414))
-                    }
-                }
                 
+                buildOrderItemView(list: list)
             }
         }.onChange(of: selectedIndex) {
             viewModel.queryOrderByStatusResp(orderStatus: tabs[$0].id)
         }.onAppear(perform: {
             viewModel.queryOrderByStatusResp(orderStatus: tabs[selectedIndex].id)
         })
+    }
+    
+    private func buildOrderItemView(list: [OrderDetail]) -> some View{
+        return VStack{
+            HStack{
+                Text("X商自营").font(.title3)
+                Spacer()
+                Text("状态").foregroundColor(.gray)
+            }
+            
+            buildOrderListView(list: list)
+            
+            HStack{
+                Spacer()
+                Text("共"+String(list.count)+"件商品").padding()
+            }
+            
+            HStack{
+                Spacer()
+                Text("发票详情").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                    .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
+                    .foregroundColor(Color(hex: 0x141414))
+                Text("申请售后").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                    .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
+                    .foregroundColor(Color(hex: 0x141414))
+            }
+        }
+    }
+    private func buildOrderListView(list: [OrderDetail]) -> some View{
+        return VStack{
+            ForEach(list.indices , id: \.self){ j in
+                let orderDetail = list[j]
+                HStack{
+                    WebImage(url: URL(string: orderDetail.squarePic ?? ""))
+                        .placeholder{Color.gray}
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50)
+                    VStack(alignment: .leading){
+                        Text(orderDetail.name).padding(EdgeInsets.init(top: 0, leading: 0, bottom: 5, trailing: 0))
+                        HStack{
+                            Text("7天无理由退货")
+                                .font(.system(size:12))
+                                .foregroundColor(Color(hex: 0x677DA5))
+                                .padding(EdgeInsets.init(top: 5, leading: 5, bottom: 5, trailing: 5))
+                                .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color(hex: 0xEAF3FF)))
+                            Text("不支持换货")
+                                .font(.system(size:12))
+                                .foregroundColor(Color(hex: 0x97999E))
+                                .padding(EdgeInsets.init(top: 5, leading: 5, bottom: 5, trailing: 5))
+                                .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color(hex: 0xF2F5F5)))
+                        }
+                    }
+                    VStack{
+                        Text("￥" + String(orderDetail.price/100))
+                        Text("×" + String(orderDetail.quantity))
+                    }
+                }
+            }
+        }
     }
 }
 
