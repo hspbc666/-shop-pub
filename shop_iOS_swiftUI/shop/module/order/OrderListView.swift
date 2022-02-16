@@ -57,9 +57,11 @@ struct OrderPageView: View {
     var body: some View {
         List {
             ForEach(viewModel.dataList.indices , id: \.self){ i in
-                let list = viewModel.dataList[i].list
+                let orderInfo = viewModel.dataList[i]
                 
-                buildOrderItemView(list: list)
+                NavigationLink(destination: OrderDetailView(orderInfo: orderInfo)){
+                    buildOrderItemView(list: orderInfo.list)
+                }
             }
         }.onChange(of: selectedIndex) {
             viewModel.queryOrderByStatusResp(orderStatus: tabs[$0].id)

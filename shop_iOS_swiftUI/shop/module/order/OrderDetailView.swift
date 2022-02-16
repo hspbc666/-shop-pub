@@ -7,8 +7,8 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct OrderDetailView: View {
-    private var viewModel = OrderViewModel()
-    private var orderInfo: OrderInfo
+//    private var viewModel = OrderViewModel()
+    var orderInfo: OrderInfo
     
     var body: some View {
         VStack{
