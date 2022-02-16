@@ -27,7 +27,7 @@ struct AddAddrView: View {
         .background(Color(hex: 0xF4F4F4))
     }
     
-    fileprivate func buildUserInfo() -> some View {
+    private func buildUserInfo() -> some View {
         return VStack{
             HStack{
                 Text("收货人")
@@ -69,7 +69,7 @@ struct AddAddrView: View {
         .background(.white)
     }
     
-    fileprivate func buildBottomBtn() -> some View {
+    private func buildBottomBtn() -> some View {
         return Button(action:{ addAddress() }){
             Text("确定").font(.headline).frame(maxWidth:.infinity)
         }

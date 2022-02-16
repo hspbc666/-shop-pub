@@ -29,7 +29,7 @@ struct MineView: View {
         })
     }
     
-    fileprivate func buildSettingsInfo() -> some View{
+    private func buildSettingsInfo() -> some View{
         HStack{
             NavigationLink(destination: SettingsView(refreshViewModel: refreshViewModel)) {
                 Image("settings")
@@ -40,7 +40,7 @@ struct MineView: View {
         }.frame(maxWidth: .infinity,alignment: .trailing)
     }
     
-    fileprivate func buildUserInfo() -> some View{
+    private func buildUserInfo() -> some View{
         return HStack{
             Image(systemName: "person.circle.fill")
                 .resizable()
@@ -65,7 +65,7 @@ struct MineView: View {
         }
     }
     
-    fileprivate func buildOrderInfo() -> some View{
+    private func buildOrderInfo() -> some View{
         return  VStack{
             HStack{
                 Text("我的订单").font(.title3)
@@ -120,7 +120,7 @@ struct MineView: View {
             .padding()
     }
     
-    fileprivate func buildLoginViewOrOrderView() -> some View{
+    private func buildLoginViewOrOrderView() -> some View{
         return HStack{
             if isLoggedIn {
                 OrderListView()

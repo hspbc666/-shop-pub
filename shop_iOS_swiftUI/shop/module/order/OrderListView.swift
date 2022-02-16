@@ -29,7 +29,7 @@ struct OrderListView: View {
         return VStack{
             Text(tabs[i].name)
                 .foregroundColor(selectedIndex == i ? Color.main_color : .gray)
-                .padding(EdgeInsets.init(top: 5, leading: 5, bottom: 5, trailing: 5))
+                .padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
                 .onTapGesture(perform: {
                     selectedIndex = i
                 })
@@ -57,61 +57,66 @@ struct OrderPageView: View {
     var body: some View {
         List {
             ForEach(viewModel.dataList.indices , id: \.self){ i in
-                let list = viewModel.dataList[i].list
+                Text(viewModel.dataList[i].orderId)
                 VStack{
                     HStack{
-                        Text("X商自营").font(.title3)
+                        Text("X商自营")
                         Spacer()
-                        Text("状态").foregroundColor(.gray)
+                        Text("状态")
                     }
-                    
-                    ForEach(list.indices , id: \.self){ j in
-                        let orderDetail = list[j]
+
+                    ForEach(viewModel.dataList[i].list.indices , id: \.self){ j in
                         HStack{
-                            WebImage(url: URL(string: orderDetail.squarePic ?? ""))
-                                .placeholder{Color.gray}
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 50, height: 50)
-                            VStack(alignment: .leading){
-                                Text(orderDetail.name).padding(EdgeInsets.init(top: 0, leading: 0, bottom: 5, trailing: 0))
+                            WebImage(url: URL(string: viewModel.dataList[i].list[j].squarePic ?? ""))
+                            .placeholder{Color.gray}
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
+                            VStack{
+                                Text(viewModel.dataList[i].list[j].name)  
                                 HStack{
                                     Text("7天无理由退货")
-                                        .font(.system(size:12))
-                                        .foregroundColor(Color(hex: 0x677DA5))
-                                        .padding(EdgeInsets.init(top: 5, leading: 5, bottom: 5, trailing: 5))
-                                        .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color(hex: 0xEAF3FF)))
+                                    .foregroundColor(Color(hex: 0x677DA5))
+                                    .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color(hex: 0xEAF3FF)))
+                                }
+                                HStack{
                                     Text("不支持换货")
-                                        .font(.system(size:12))
-                                        .foregroundColor(Color(hex: 0x97999E))
-                                        .padding(EdgeInsets.init(top: 5, leading: 5, bottom: 5, trailing: 5))
-                                        .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color(hex: 0xF2F5F5)))
+                                    .foregroundColor(Color(hex: 0x97999E))
+                                    .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color(hex: 0xF2F5F5)))
                                 }
                             }
                             VStack{
-                                Text("￥" + String(orderDetail.price/100))
-                                Text("×" + String(orderDetail.quantity))
+                                Text("￥"+String(viewModel.dataList[i].list[j].price/100))   
+                                Text("×"+viewModel.dataList[i].list[j].quantity)
                             }
                         }
                     }
-                    
+
                     HStack{
                         Spacer()
-                        Text("共"+String(viewModel.dataList[i].list.count)+"件商品").padding()
+                        Text("共"+String(viewModel.dataList[i].list.count)+"间商品").padding()
                     }
-                    
+            
+                    Divider()
                     HStack{
                         Spacer()
-                        Text("发票详情").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                        Text("发票详情").frame(width:60, height: 30)
                             .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
                             .foregroundColor(Color(hex: 0x141414))
-                        Text("申请售后").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                        Text("申请售后").frame(width:60, height: 30)
                             .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
                             .foregroundColor(Color(hex: 0x141414))
                     }
                 }
-                
+
             }
+            
+//            ForEach(viewModel.dataList , id: \.self){ orderInfo in
+//                Text(orderInfo.orderId)
+//                //                NavigationLink(destination: GoodsView(goods:goods)) {
+//                //                    GoodsItemView(goods: goods)
+//                //                }
+//            }
         }.onChange(of: selectedIndex) {
             viewModel.queryOrderByStatusResp(orderStatus: tabs[$0].id)
         }.onAppear(perform: {

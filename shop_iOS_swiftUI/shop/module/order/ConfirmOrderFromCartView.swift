@@ -6,11 +6,11 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct OrderFromCartView: View {
-    var goodsSum = 30
+struct ConfirmOrderFromCartView: View {
+    var costSum: Int
     var cartItems: [CartItem]
     //    @State var userAddr: UserAddr? = nil
-    @StateObject private var viewModel = OrderFromCartViewModel()
+    @StateObject private var viewModel = ConfirmOrderViewModel()
     var body: some View {
         VStack{
             HStack{
@@ -29,13 +29,47 @@ struct OrderFromCartView: View {
                 }
             }.padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
             
-            
-            WebImage(url: URL(string: cartItems[0].squarePic ?? ""))
+
+            HStack{
+                WebImage(url: URL(string: cartItems[0].squarePic ?? ""))
                 .placeholder{Color.gray}
                 .resizable()
                 .scaledToFit()
                 .frame(width: 100, height: 100)
+                 Spacer()
+                 Text("共\(cartItems.count)种").foregroundColor(.gray)
+                 Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
+            }.padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
+
+             HStack{
+                 Text("配送").foregroundColor(.gray).padding()
+                 VStack{
+                     Text("顺丰速运").font(.title3)
+                     Text("1个包裹，预计明天送达").foregroundColor(.gray)
+                 }
+                 Spacer()
+                 Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
+            }.padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
+
             
+            VStack{
+                HStack{
+                    Text("商品金额").foregroundColor(.gray)
+                    Spacer()
+                    Text("￥")
+                }.padding()
+                HStack{
+                    Text("总运费").foregroundColor(.gray)
+                    Spacer()
+                    Text("满XX元 免邮")
+                }.padding()
+                HStack{
+                    Text("优惠券").foregroundColor(.gray)
+                    Spacer()
+                    Text("无可用券")
+                }.padding()
+            }.padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
+           
             
             Spacer()
             Divider()
@@ -47,12 +81,11 @@ struct OrderFromCartView: View {
         
     }
     
-    
     func buildBottomView() -> some View{
         return HStack{
             Spacer()
             Text("实付款")
-            Text("￥\(goodsSum)").foregroundColor(Color.main_color)
+            Text("￥\(costSum)").foregroundColor(Color.main_color)
             Spacer()
             //            NavigationLink(destination: OrderFromCartView()){
             //                Text("提交订单").font(.headline).frame(minWidth: 150)

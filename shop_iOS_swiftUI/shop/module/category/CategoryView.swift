@@ -28,46 +28,4 @@ struct CategoryView: View {
                 Image(systemName: "magnifyingglass")
             })
             .onAppear(perform: {
-                viewModel.queryCategory()
-            })
-    }
-    
-    fileprivate func TabItemView(_ i: Int) -> some View {
-        return VStack{
-            Text(viewModel.categoryList[i].name)
-                .foregroundColor(selectedIndex == i ? Color.main_color : .gray)
-                .padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
-                .onTapGesture(perform: {
-                    selectedIndex = i
-                })
-            Divider().frame(height: 2).background(selectedIndex == i ? Color.main_color : .white)
-        }
-    }
-}
-
-struct CategoryPageView: View {
-    @StateObject var viewModel: CategoryViewModel
-    @Binding var selectedIndex: Int
-    
-    var body: some View {
-        List {
-            ForEach(viewModel.goodsList , id: \.self){ goods in
-                NavigationLink(destination: GoodsView(goods:goods)) {
-                    GoodsItemView(goods: goods)
-                }
-            }
-        }.onChange(of: selectedIndex) {
-            print(String(viewModel.goodsList.count))
-            viewModel.queryGoodsByCategory(categoryId: viewModel.categoryList[$0].id)
-        }.onAppear(perform: {
-            viewModel.queryGoodsByCategory(categoryId: viewModel.categoryList[selectedIndex].id)
-        })
-    }
-}
-
-
-struct CategoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoryView()
-    }
-}
+                viewModel.

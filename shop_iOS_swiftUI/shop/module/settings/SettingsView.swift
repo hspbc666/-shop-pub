@@ -20,7 +20,7 @@ struct SettingsView: View {
         .background(Color(hex: 0xF4F4F4))
     }
     
-    fileprivate func buildUserInfoWithAddr() -> some View {
+    private func buildUserInfoWithAddr() -> some View {
         return VStack{
             buildUserInfo()
             Divider()
@@ -36,7 +36,7 @@ struct SettingsView: View {
         .background(.white)
     }
     
-    fileprivate func buildUserInfo() -> some View {
+    private func buildUserInfo() -> some View {
         return HStack{
             Image(systemName: "person.circle.fill")
                 .resizable()
@@ -55,7 +55,7 @@ struct SettingsView: View {
         }
     }
     
-    fileprivate func buildAppInfo() -> some View {
+    private func buildAppInfo() -> some View {
         return VStack{
             HStack{
                 Text("隐私设置")
@@ -85,7 +85,7 @@ struct SettingsView: View {
         .background(.white)
     }
     
-    fileprivate func buildBottomBtn() -> some View {
+    private func buildBottomBtn() -> some View {
         return Button(action:{ quitLogin()}){
             Text("退出登录")
                 .padding()

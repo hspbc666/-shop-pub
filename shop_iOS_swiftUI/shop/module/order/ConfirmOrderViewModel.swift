@@ -7,7 +7,7 @@ import UIKit
 import SwiftyJSON
 import HandyJSON
 
-class OrderFromCartViewModel: ObservableObject {
+class ConfirmOrderViewModel: ObservableObject {
     @Published var userAddr: UserAddr?
     
     func queryData() {
