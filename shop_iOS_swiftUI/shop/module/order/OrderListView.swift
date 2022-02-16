@@ -7,7 +7,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct OrderListView: View {
-    @StateObject private var viewModel = OrderViewModel()
+    @State private var viewModel = OrderViewModel()
     @State var selectedIndex = 0
     var tabs: [LblTab] = [LblTab(id: 0,name: "全部"),LblTab(id: 1,name: "待付款"),LblTab(id: 2,name: "待发货"),LblTab(id: 3,name: "待收货"),LblTab(id: 4,name: "待评价"),LblTab(id: 5,name: "退换/售后")]
     
@@ -60,7 +60,7 @@ struct OrderPageView: View {
                 let orderInfo = viewModel.dataList[i]
                 
                 NavigationLink(destination: OrderDetailView(orderInfo: orderInfo)){
-                    buildOrderItemView(list: orderInfo.list)
+                    buildOrderItemView(orderInfo: orderInfo)
                 }
             }
         }.onChange(of: selectedIndex) {
@@ -70,7 +70,7 @@ struct OrderPageView: View {
         })
     }
     
-    private func buildOrderItemView(list: [OrderDetail]) -> some View{
+    private func buildOrderItemView(orderInfo: OrderInfo) -> some View{
         return VStack{
             HStack{
                 Text("X商自营").font(.title3)
@@ -78,11 +78,11 @@ struct OrderPageView: View {
                 Text("状态").foregroundColor(.gray)
             }
             
-            buildOrderListView(list: list)
+            buildOrderListView(list: orderInfo.list)
             
             HStack{
                 Spacer()
-                Text("共"+String(list.count)+"件商品").padding()
+                Text("共"+String(orderInfo.list.count)+"件商品").padding()
             }
             
             HStack{

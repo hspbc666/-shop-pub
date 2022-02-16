@@ -7,19 +7,50 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct OrderDetailView: View {
-//    private var viewModel = OrderViewModel()
     var orderInfo: OrderInfo
+    @State private var viewModel = OrderViewModel()
     
     var body: some View {
-        VStack{
+        buildOrderItemView(orderInfo: orderInfo)
+            .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
+            .background(Color(hex: 0xF4F4F4))
+            
+    }
+    
+    private func buildOrderItemView(orderInfo: OrderInfo) -> some View{
+        return VStack{
             HStack{
                 Text("X商自营").font(.title3)
                 Spacer()
                 Text("状态").foregroundColor(.gray)
             }
             
-            ForEach(orderInfo.list.indices , id: \.self){ j in
-                let orderDetail = orderInfo.list[j]
+            buildOrderListView(list: orderInfo.list)
+            
+            HStack{
+                Spacer()
+                Text("共"+String(orderInfo.list.count)+"件商品").padding()
+            }
+            
+            HStack{
+                Spacer()
+                Text("发票详情").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                    .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
+                    .foregroundColor(Color(hex: 0x141414))
+                Text("申请售后").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                    .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
+                    .foregroundColor(Color(hex: 0x141414))
+            }
+        }.padding(EdgeInsets.init(top: 20, leading: 10, bottom: 10, trailing: 10))
+            .frame(maxWidth: .infinity,alignment: .leading)
+            .background(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 5))
+            .padding()
+    }
+    private func buildOrderListView(list: [OrderDetail]) -> some View{
+        return VStack{
+            ForEach(list.indices , id: \.self){ j in
+                let orderDetail = list[j]
                 HStack{
                     WebImage(url: URL(string: orderDetail.squarePic ?? ""))
                         .placeholder{Color.gray}
@@ -46,21 +77,6 @@ struct OrderDetailView: View {
                         Text("×" + String(orderDetail.quantity))
                     }
                 }
-            }
-            
-            HStack{
-                Spacer()
-                Text("共"+String(orderInfo.list.count)+"件商品").padding()
-            }
-            
-            HStack{
-                Spacer()
-                Text("发票详情").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
-                    .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
-                    .foregroundColor(Color(hex: 0x141414))
-                Text("申请售后").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
-                    .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
-                    .foregroundColor(Color(hex: 0x141414))
             }
         }
     }
