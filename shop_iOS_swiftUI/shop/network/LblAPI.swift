@@ -68,7 +68,9 @@ extension LblAPI: TargetType {
     
     var task: Task {
         switch self {
-        case .addAddress(let params), .modifyAddress(let params), .createOrder(let params):
+        case .createOrder(let params):
+            return .requestParameters(parameters: params.toJSON() ?? ["":""], encoding: JSONEncoding.default)
+        case .addAddress(let params), .modifyAddress(let params):
             return .requestParameters(parameters: params.toJSON() ?? ["":""], encoding: JSONEncoding.default)
         case .login(let params), .register(let params):
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)

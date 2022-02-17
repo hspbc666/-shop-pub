@@ -6,15 +6,17 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct AddrListView: View {
-    @StateObject private var viewModel = AddrViewModel()
-    @StateObject private var refreshViewModel = RefreshViewModel()
+struct SelectAddrView: View {
+    @State private var selectedUserAddr: UserAddr
+    @State private var viewModel = AddrViewModel()
+    @State private var refreshViewModel = RefreshViewModel()
     
     var body: some View {
         VStack{
             List {
                 ForEach(viewModel.dataList.indices , id: \.self){ i in
-                    AddrItemView(viewModel: viewModel,
+                    SelectAddrItemView(selectedUserAddr: $selectedUserAddr,
+                                 viewModel: viewModel,
                                  refreshViewModel: refreshViewModel,
                                  userAddr: viewModel.dataList[i])
                 }
@@ -35,46 +37,46 @@ struct AddrListView: View {
     }
 }
 
-struct AddrItemView: View {
+struct SelectAddrItemView: View {
+    @Binding var selectedUserAddr: UserAddr
     var viewModel: AddrViewModel
     var refreshViewModel: RefreshViewModel
     var userAddr: UserAddr
     var body: some View {
-        VStack{
-            HStack{
-                Text(userAddr.name)
-                Text(userAddr.phone).foregroundColor(Color.gray)
-                if userAddr.defaultAddress {
-                    Text("默认").foregroundColor(.white)
-                        .frame(width:50, height: 30)
-                        .background(RoundedRectangle(cornerRadius: 5)
-                                        .foregroundColor(Color(hex: 0x8298bd)))
+        HStack{
+            SimpleRadioButton(id: userAddr.id, selectedID: selectedUserAddr.id, callBack: self.radioButtonCallBack)
+            VStack{
+                HStack{
+                    Text(userAddr.name)
+                    Text(userAddr.phone).foregroundColor(Color.gray)
                 }
-                
-                Spacer()
+                HStack{
+                    if userAddr.defaultAddress {
+                        Text("默认").foregroundColor(.white)
+                            .frame(width:50, height: 30)
+                            .background(RoundedRectangle(cornerRadius: 5)
+                                            .foregroundColor(Color(hex: 0x8298bd)))
+                    }
+                    Text(userAddr.address)
+                } 
             }
-            HStack{
-                Text(userAddr.address)
-                Spacer()
-            }
-            HStack{
-                Spacer()
-                Text("删除").frame(width:60, height: 30)
-                    .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
-                    .foregroundColor(Color(hex: 0x141414))
-                    .onTapGesture(perform: {
-                        viewModel.deleteAddress(userAddrId: userAddr.id)
-                    })
-                Text("编辑").frame(width:60, height: 30)
+            Spacer()
+            Divider()
+           
+             Text("编辑").frame(width:60, height: 30)
                     .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
                     .background(NavigationLink("", destination: EditAddrView(viewModel: viewModel, refreshViewModel: refreshViewModel, userAddr: userAddr)).opacity(0) )
-            }
+
         }.padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
+    }
+
+    func radioButtonCallBack(id: String) {
+//        self.selectedID = id
     }
 }
 
-struct AddrListView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddrListView()
-    }
-}
+//struct SelectAddrView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SelectAddrView()
+//    }
+//}
