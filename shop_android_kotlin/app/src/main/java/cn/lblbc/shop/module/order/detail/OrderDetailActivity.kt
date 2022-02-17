@@ -8,9 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.network.response.OrderDetail
-import cn.lblbc.shop.network.response.OrderInfo
-import cn.lblbc.shop.utils.Constants.EXTRA_KEY_ORDER_INFO
-import cn.lblbc.shop.utils.JsonUtil
+import cn.lblbc.shop.utils.Constants.EXTRA_KEY_ORDER_ID
 import cn.lblbc.shop.utils.formatTime
 import cn.lblbc.shop.utils.getMoneyByYuan
 import com.bumptech.glide.Glide
@@ -27,7 +25,7 @@ import kotlinx.android.synthetic.main.order_detail_order_info_layout.*
  * 公众号：蓝不蓝编程
  */
 open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
-    private var orderInfo: OrderInfo? = null
+    private var orderId: String? = null
     override fun viewModelClass() = OrderDetailViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_order_detail
 
@@ -36,16 +34,21 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
     }
 
     override fun initData() {
-        val orderInfoInJson = intent.getStringExtra(EXTRA_KEY_ORDER_INFO)
-        orderInfo = JsonUtil.fromJson(orderInfoInJson!!)
-        orderInfo?.let {
-            orderIdTv.text = it.orderId
-            receiverInfoTv.text = it.userAddr?.toSimpleInfo()
-            val sum = calcSum(it.list)
-            orderDetailSumTv.text = getString(R.string.price, sum)
-            realPaidTv.text = getString(R.string.real_paid, sum)
-            orderCreateTimeTv.text = formatTime(it.createTime)
-            createOrderDetailItems(it.list, ordersDetailContainer)
+        orderId = intent.getStringExtra(EXTRA_KEY_ORDER_ID)
+        orderId?.let { mViewModel.queryOrder(it) }
+    }
+
+    override fun observe() {
+        mViewModel.orderInfo.observe(this) { orderInfo ->
+            orderInfo?.let {
+                orderIdTv.text = it.orderId
+                receiverInfoTv.text = it.userAddr?.toSimpleInfo()
+                val sum = calcSum(it.list)
+                orderDetailSumTv.text = getString(R.string.price, sum)
+                realPaidTv.text = getString(R.string.real_paid, sum)
+                orderCreateTimeTv.text = formatTime(it.createTime)
+                createOrderDetailItems(it.list, ordersDetailContainer)
+            }
         }
     }
 
@@ -75,7 +78,7 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
 
     override fun initListeners() {
         deleteOrderTv.setOnClickListener {
-            orderInfo?.orderId?.let { showDeleteDialog(it) }
+            orderId?.let { showDeleteDialog(it) }
         }
     }
 

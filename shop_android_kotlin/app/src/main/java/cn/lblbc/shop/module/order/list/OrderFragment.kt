@@ -50,13 +50,12 @@ class OrderFragment(var tabId: Int) : BaseVmFragment<OrderListViewModel>() {
     }
 
     override fun observe() {
-        mViewModel.orders.observe(this, { adapter.setData(it) })
+        mViewModel.orders.observe(this) { adapter.setData(it) }
     }
 
     private fun onItemClick(resp: OrderInfo) {
         val intent = Intent(context, OrderDetailActivity::class.java)
-        val orderInfoInJson = JsonUtil.toJson(resp)
-        intent.putExtra(Constants.EXTRA_KEY_ORDER_INFO, orderInfoInJson)
+        intent.putExtra(Constants.EXTRA_KEY_ORDER_ID, resp.orderId)
         startActivity(intent)
     }
 

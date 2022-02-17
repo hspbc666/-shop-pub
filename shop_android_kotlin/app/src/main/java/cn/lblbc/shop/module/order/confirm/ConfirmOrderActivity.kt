@@ -100,12 +100,9 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
     }
 
     private fun closeAndGotoOrderDetailPage(orderId: String) {
-        mViewModel.queryOrder(orderId, onSuccess = {
-            val intent = Intent(this, OrderDetailActivity::class.java)
-            val orderInfoInJson = JsonUtil.toJson(it)
-            intent.putExtra(Constants.EXTRA_KEY_ORDER_INFO, orderInfoInJson)
-            startActivity(intent)
-        })
+        val intent = Intent(this, OrderDetailActivity::class.java)
+        intent.putExtra(Constants.EXTRA_KEY_ORDER_ID, orderId)
+        startActivity(intent)
         finish()
     }
 
@@ -120,10 +117,10 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
     }
 
     override fun observe() {
-        mViewModel.defaultAddress.observe(this, {
+        mViewModel.defaultAddress.observe(this) {
             userAddr = it
             updateUserAddr()
-        })
+        }
     }
 
     private fun updateUserAddr() {

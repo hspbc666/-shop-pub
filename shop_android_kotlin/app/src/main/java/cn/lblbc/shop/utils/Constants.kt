@@ -7,15 +7,15 @@ package cn.lblbc.shop.utils
  * 公众号：蓝不蓝编程
  */
 object Constants {
-    //    const val BASE_URL = "http://10.206.50.51:8080/"
-    const val BASE_URL = "http://192.168.31.10:8080/"
+        const val BASE_URL = "http://10.206.50.51:8080/"
+//    const val BASE_URL = "http://192.168.31.10:8080/"
 
     //    const val BASE_URL = "http://192.168.1.105:8080/"
     const val LOGIN_URL = "user/login"
     const val SP_KEY_TOKEN = "token"
     const val SP_KEY_USER_ID = "user_id"
     const val EXTRA_KEY_GOODS_ID = "goods_id"
-    const val EXTRA_KEY_ORDER_INFO = "order_info"
+    const val EXTRA_KEY_ORDER_ID = "order_id"
     const val EXTRA_KEY_ADDR_INFO = "addr_info"
     const val EXTRA_KEY_COST_SUM = "cost_sum"
     const val EXTRA_KEY_USER_ADDR_ID = "user_addr_id"
