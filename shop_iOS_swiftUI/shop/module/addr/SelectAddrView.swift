@@ -41,7 +41,7 @@ struct SelectAddrItemView: View {
     var viewModel: AddrViewModel
     var refreshViewModel: RefreshViewModel
     var userAddr: UserAddr
-    @State var showSheet = false
+    @State private var isShowingDetailView = false
     var body: some View {
         HStack{
             SimpleRadioButton(id: userAddr.id, selectedID: selectedUserAddr.id, callBack: self.radioButtonCallBack)
@@ -60,14 +60,14 @@ struct SelectAddrItemView: View {
                     Text(userAddr.address)
                 }
             }
+        }
+        
+        HStack{
             Spacer()
-            Divider()
-            
-            Text("编辑").onTapGesture(perform: {
-                showSheet = true
-            })
-        }.padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
-            .sheet(isPresented: $showSheet, content: {EditAddrView(viewModel: viewModel, refreshViewModel: refreshViewModel, userAddr: userAddr)})
+            Text("编辑").frame(width:60, height: 30)
+                .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
+                .background(NavigationLink("", destination: EditAddrView(viewModel: viewModel, refreshViewModel: refreshViewModel, userAddr: userAddr)).opacity(0) )
+        }
     }
     
     func radioButtonCallBack(id: String) {
