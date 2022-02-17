@@ -26,6 +26,29 @@ struct ConfirmOrderFromCartView: View {
             })
     }
     
+    func buildAddrInfoView() -> some View{
+        let userAddr = viewModel.userAddr
+        return NavigationLink(destination: SelectAddrView(selectedUserAddr: userAddr))
+        {
+            HStack{
+                
+                if !userAddr.id.isEmpty {
+                    HStack{
+                        Image(systemName: "location.circle.fill")
+                        VStack{
+                            Text(userAddr.name)
+                            Text(userAddr.address)
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
+                    }
+                }else{
+                    Text("+ 添加收货地址")
+                }
+            }.padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
+        }
+    }
+    
     func buildGoodsInfoView() -> some View{
         HStack{
             if !cartItems.isEmpty {
@@ -74,23 +97,6 @@ struct ConfirmOrderFromCartView: View {
         }.padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
     }
     
-    func buildAddrInfoView() -> some View{
-        return HStack{
-            if let userAddr = viewModel.userAddr {
-                HStack{
-                    Image(systemName: "location.circle.fill")
-                    VStack{
-                        Text(userAddr.name)
-                        Text(userAddr.address)
-                    }
-                    Spacer()
-                    Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
-                }
-            }else{
-                Text("+ 添加收货地址")
-            }
-        }.padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
-    }
     func buildBottomView() -> some View{
         return HStack{
             Spacer()
@@ -101,25 +107,25 @@ struct ConfirmOrderFromCartView: View {
             Spacer()
         } .padding(EdgeInsets.init(top: 0, leading: 0, bottom: 5, trailing: 0))
     }
-
+    
     func buildSubmitBtn() -> some View{
         NavigationLink(destination: OrderDetailView(orderId: viewModel.createdOrderId), isActive: $shouldShowNextPage) {
-                Button(action: {
-                    viewModel.createOrder(cartItems: cartItems) { isSuccess,orderId,msg in
-                        if(isSuccess){
-                             self.shouldShowNextPage = true
-                        }
-                    }
-                }) {
-                    Text("提交订单").font(.headline).frame(minWidth: 150)
-                            .padding(EdgeInsets.init(top: 5, leading: 0, bottom: 5, trailing: 0))
-                            .foregroundColor(.white)
-                            .background(Color.main_color)
-                            .clipShape(RoundedRectangle(cornerRadius: 5))
+            Button(action: {
+                viewModel.createOrder(cartItems: cartItems) { isSuccess,orderId,msg in
+                    if(isSuccess){
+                        self.shouldShowNextPage = true
                     }
                 }
+            }) {
+                Text("提交订单").font(.headline).frame(minWidth: 150)
+                    .padding(EdgeInsets.init(top: 5, leading: 0, bottom: 5, trailing: 0))
+                    .foregroundColor(.white)
+                    .background(Color.main_color)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+            }
+        }
     }
-
+    
 }
 
 //struct OrderFromCartView_Previews: PreviewProvider {

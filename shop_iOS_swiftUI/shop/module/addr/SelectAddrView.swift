@@ -7,7 +7,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct SelectAddrView: View {
-    @State private var selectedUserAddr: UserAddr
+    @State var selectedUserAddr: UserAddr
     @State private var viewModel = AddrViewModel()
     @State private var refreshViewModel = RefreshViewModel()
     

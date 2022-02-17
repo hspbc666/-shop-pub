@@ -8,7 +8,7 @@ import SwiftyJSON
 import HandyJSON
 
 class ConfirmOrderViewModel: ObservableObject {
-    @Published var userAddr: UserAddr?
+    @Published var userAddr = UserAddr()
     @Published var createdOrderId: String = ""
     
     func queryData() {
@@ -28,7 +28,7 @@ class ConfirmOrderViewModel: ObservableObject {
     func createOrder(cartItems: [CartItem], callback: @escaping((Bool,String,String)->())) {
         var createOrderReq = CreateOrderReq()
         createOrderReq.cartIdList = cartItems.map { $0.id }
-        createOrderReq.userAddrId = userAddr?.id ?? ""
+        createOrderReq.userAddrId = userAddr.id
 
         LblProvider.request(.createOrder(params: createOrderReq)) { result in
             if case let .success(response) = result {
