@@ -16,13 +16,12 @@ struct SelectAddrView: View {
             List {
                 ForEach(viewModel.dataList.indices , id: \.self){ i in
                     SelectAddrItemView(selectedUserAddr: $selectedUserAddr,
-                                 viewModel: viewModel,
-                                 refreshViewModel: refreshViewModel,
-                                 userAddr: viewModel.dataList[i])
+                                       viewModel: viewModel,
+                                       refreshViewModel: refreshViewModel,
+                                       userAddr: viewModel.dataList[i])
                 }
             }
-            NavigationLink(destination: AddAddrView(viewModel: viewModel, refreshViewModel: refreshViewModel))
-            {
+            NavigationLink(destination: AddAddrView(viewModel: viewModel, refreshViewModel: refreshViewModel)){
                 Text("添加收货地址").font(.headline).frame(maxWidth:.infinity)
                     .padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
                     .foregroundColor(.white)
@@ -58,20 +57,19 @@ struct SelectAddrItemView: View {
                                             .foregroundColor(Color(hex: 0x8298bd)))
                     }
                     Text(userAddr.address)
-                } 
+                }
             }
             Spacer()
             Divider()
-           
-             Text("编辑").frame(width:60, height: 30)
-                    .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
-                    .background(NavigationLink("", destination: EditAddrView(viewModel: viewModel, refreshViewModel: refreshViewModel, userAddr: userAddr)).opacity(0) )
-
+            
+            Text("编辑")
+                .background(NavigationLink("", destination: EditAddrView(viewModel: viewModel, refreshViewModel: refreshViewModel, userAddr: userAddr)).opacity(0) )
+            
         }.padding(EdgeInsets.init(top: 10, leading: 0, bottom: 10, trailing: 0))
     }
-
+    
     func radioButtonCallBack(id: String) {
-//        self.selectedID = id
+        //        self.selectedID = id
     }
 }
 

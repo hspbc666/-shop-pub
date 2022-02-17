@@ -23,9 +23,6 @@ struct SimpleRadioButton: View {
             HStack(alignment: .center, spacing: 12, content: {
                 Image(systemName: self.selectedID == self.id ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(self.selectedID == self.id ? Color.blue : Color.black)
-                Text(self.id)
-                    .font(Font.system(size: 20))
-                    .foregroundColor(Color.black)
             })
         })
     }
