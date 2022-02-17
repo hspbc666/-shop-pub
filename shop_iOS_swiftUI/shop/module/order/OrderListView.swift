@@ -59,7 +59,7 @@ struct OrderPageView: View {
             ForEach(viewModel.dataList.indices , id: \.self){ i in
                 let orderInfo = viewModel.dataList[i]
                 
-                NavigationLink(destination: OrderDetailView(orderInfo: orderInfo)){
+                NavigationLink(destination: OrderDetailView(orderId: orderInfo.orderId)){
                     buildOrderItemView(orderInfo: orderInfo)
                 }
             }

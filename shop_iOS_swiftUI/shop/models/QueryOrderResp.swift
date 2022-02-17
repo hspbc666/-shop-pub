@@ -3,13 +3,12 @@
 // 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
 // 公众号：蓝不蓝编程
 
+
 import Foundation
 import HandyJSON
 
-struct OrderInfo: HandyJSON,Codable{
-    var orderId: String = ""
-    var status = 0
-    var createTime = 0
-    var list:[OrderDetail] = []
-    var userAddr: UserAddr?
+struct QueryOrderResp: HandyJSON,Codable{
+    var code = 0
+    var msg : String = ""
+    var data : OrderInfo?
 }

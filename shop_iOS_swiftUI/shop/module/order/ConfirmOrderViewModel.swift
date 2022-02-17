@@ -9,6 +9,7 @@ import HandyJSON
 
 class ConfirmOrderViewModel: ObservableObject {
     @Published var userAddr: UserAddr?
+    @Published var createdOrderId: String = ""
     
     func queryData() {
         LblProvider.request(.queryDefaultAddress) { result in
@@ -18,6 +19,24 @@ class ConfirmOrderViewModel: ObservableObject {
                 if let resp = JSONDeserializer<QueryAddrResp>.deserializeFrom(json: json.description) {
                     if let data = resp.data {
                         self.userAddr = data
+                    }
+                }
+            }
+        }
+    }
+
+    func createOrder(cartItems: [CartItem], callback: @escaping((Bool,String,String)->())) {
+        var createOrderReq = CreateOrderReq()
+        createOrderReq.cartIdList = cartItems.map { $0.id }
+        createOrderReq.userAddrId = userAddr?.id ?? ""
+
+        LblProvider.request(.createOrder(req: createOrderReq)) { result in
+            if case let .success(response) = result {
+                let data = try? response.mapJSON()
+                let json = JSON(data!)
+                if let resp = JSONDeserializer<CreateOrderResp>.deserializeFrom(json: json.description) {
+                    if let data = resp.data {
+                        callback(resp.isSuccess(),data.orderId, resp.msg)
                     }
                 }
             }

@@ -25,6 +25,9 @@ enum LblAPI {
     case addAddress(params: UserAddr)
     case modifyAddress(params: UserAddr)
     case queryOrderByStatus(orderStatus: Int)
+    case queryOrder(orderId: String)
+    case deleteOrder(orderId: String)
+    case createOrder(params: CreateOrderReq)
 }
 
 extension LblAPI: TargetType {
@@ -47,26 +50,29 @@ extension LblAPI: TargetType {
         case .deleteAddress(let userAddrId): return "shop/addr/del/"+userAddrId
         case .addAddress: return "shop/addr/add"
         case .modifyAddress: return "shop/addr/modify"
-        case .queryOrderByStatus(let orderStatus): return "shop/order/queryByStatus/"+String(orderStatus)
+        case .queryOrderByStatus(let orderStatus): return "shop/order/queryByStatus/\(orderStatus)"
+        case .queryOrder(let orderId): return "shop/order/query/\(orderId)"
+        case .deleteOrder(let orderId): return "shop/order/del/\(orderId)"
+        case .createOrder: return "shop/order/create"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .login, .register, .addAddress, .modifyAddress:
+        case .login, .register, .addAddress, .modifyAddress, .createOrder:
             return .post
-        case .queryCategory, .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress, .queryDefaultAddress, .addToCart, .deleteAddress, .queryOrderByStatus:
+        case .queryCategory, .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress, .queryDefaultAddress, .addToCart, .deleteAddress, .queryOrderByStatus, .queryOrder, .deleteOrder:
             return .get
         }
     }
     
     var task: Task {
         switch self {
-        case .addAddress(let params), .modifyAddress(let params):
+        case .addAddress(let params), .modifyAddress(let params), .createOrder(let params):
             return .requestParameters(parameters: params.toJSON() ?? ["":""], encoding: JSONEncoding.default)
         case .login(let params), .register(let params):
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-        case .queryCategory, .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress, .queryDefaultAddress, .addToCart, .deleteAddress, .queryOrderByStatus:
+        case .queryCategory, .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress, .queryDefaultAddress, .addToCart, .deleteAddress, .queryOrderByStatus, .queryOrder, .deleteOrder:
             return .requestPlain
         }
     }

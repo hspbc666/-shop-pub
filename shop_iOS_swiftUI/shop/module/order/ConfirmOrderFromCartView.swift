@@ -9,6 +9,7 @@ import SDWebImageSwiftUI
 struct ConfirmOrderFromCartView: View {
     var costSum: Int
     var cartItems: [CartItem]
+    @State var shouldShowNextPage = false
     @StateObject private var viewModel = ConfirmOrderViewModel()
     var body: some View {
         VStack{
@@ -96,17 +97,29 @@ struct ConfirmOrderFromCartView: View {
             Text("实付款")
             Text("￥\(costSum)").foregroundColor(Color.main_color)
             Spacer()
-            //            NavigationLink(destination: OrderFromCartView()){
-            //                Text("提交订单").font(.headline).frame(minWidth: 150)
-            //                    .padding(EdgeInsets.init(top: 5, leading: 0, bottom: 5, trailing: 0))
-            //                    .foregroundColor(.white)
-            //                    .background(Color.main_color)
-            //                    .clipShape(RoundedRectangle(cornerRadius: 5))
-            //            }
-            
+            buildSubmitBtn()
             Spacer()
         } .padding(EdgeInsets.init(top: 0, leading: 0, bottom: 5, trailing: 0))
     }
+
+    func buildSubmitBtn() -> some View{
+        NavigationLink(destination: OrderDetailView(orderId: viewModel.createdOrderId), isActive: $shouldShowNextPage) {
+                Button(action: {
+                    viewModel.createOrder(cartItems: cartItems) { isSuccess,orderId,msg in
+                        if(isSuccess){
+                             self.shouldShowNextPage = true
+                        }
+                    }
+                }) {
+                    Text("提交订单").font(.headline).frame(minWidth: 150)
+                            .padding(EdgeInsets.init(top: 5, leading: 0, bottom: 5, trailing: 0))
+                            .foregroundColor(.white)
+                            .background(Color.main_color)
+                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                    }
+                }
+    }
+
 }
 
 //struct OrderFromCartView_Previews: PreviewProvider {

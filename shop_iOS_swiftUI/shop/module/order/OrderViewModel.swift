@@ -24,16 +24,16 @@ class OrderViewModel: ObservableObject {
         }
     }
     
-//    func deleteAddress(userAddrId: String) {
-//        LblProvider.request(.deleteAddress(userAddrId: userAddrId)) { result in
-//            if case let .success(response) = result {
-//                let data = try? response.mapJSON()
-//                let json = JSON(data!)
-//                if let resp = JSONDeserializer<CommonResp>.deserializeFrom(json: json.description) {
-//                    self.queryData()
-//                }
-//            }
-//        }
-//    }
+   func deleteOrder(orderId: String, callback: @escaping((Bool,String)->())) {
+       LblProvider.request(.deleteOrder(orderId: orderId)) { result in
+           if case let .success(response) = result {
+               let data = try? response.mapJSON()
+               let json = JSON(data!)
+               if let resp = JSONDeserializer<CommonResp>.deserializeFrom(json: json.description) {
+                    callback(resp.isSuccess(),resp.msg)
+               }
+           }
+       }
+   }
 
 }
