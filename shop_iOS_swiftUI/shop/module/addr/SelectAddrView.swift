@@ -49,24 +49,20 @@ struct SelectAddrItemView: View {
                 HStack{
                     Text(userAddr.name)
                     Text(userAddr.phone).foregroundColor(Color.gray)
-                }
-                HStack{
                     if userAddr.defaultAddress {
                         Text("默认").foregroundColor(.white)
                             .frame(width:50, height: 30)
                             .background(RoundedRectangle(cornerRadius: 5)
                                             .foregroundColor(Color(hex: 0x8298bd)))
                     }
+                    
+                    Spacer()
+                }
+                HStack{
                     Text(userAddr.address)
+                    Spacer()
                 }
             }
-        }
-        
-        HStack{
-            Spacer()
-            Text("编辑").frame(width:60, height: 30)
-                .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
-                .background(NavigationLink("", destination: EditAddrView(viewModel: viewModel, refreshViewModel: refreshViewModel, userAddr: userAddr)).opacity(0) )
         }
     }
     
