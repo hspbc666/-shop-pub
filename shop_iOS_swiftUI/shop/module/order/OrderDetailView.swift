@@ -14,7 +14,7 @@ struct OrderDetailView: View {
     
     var body: some View {
         VStack{
-
+            
             if let orderInfo = viewModel.orderInfo {
                 buildOrderItemView(orderInfo: orderInfo)
                 buildInvoiceView()
@@ -26,21 +26,15 @@ struct OrderDetailView: View {
         }
         .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
         .background(Color(hex: 0xF4F4F4))
-        // .overlay(
-        //         GeometryReader { geometry in
-        //             Text("Hello")
-        //                 .background(Color.red)
-        //                 .position(x: geometry.size.width * 0.9, y: geometry.size.height * 0.9)
-        //         }
-        //     )
         .overlay(//添加悬浮图标
-                VStack{
-                    Image(systemName: "checkmark")
-                    Text("客服")
-                }
+            VStack{
+                Image(systemName: "mic")
+                Text("客服")
+            }
                 .padding()
-                    .background(.gray)
+                .background(Color(hex: 0x8298BD))
                 .clipShape(Circle())
+                .padding()
             ,alignment: .bottomTrailing)
         .onAppear(perform: {
             viewModel.queryOrder(orderId: orderId)
@@ -63,14 +57,14 @@ struct OrderDetailView: View {
                 HStack{
                     Text("商品总金额")
                     Spacer()
-//                    Text("￥\(orderDetail.price*orderDetail.quantity/100)")
+                    //                    Text("￥\(orderDetail.price*orderDetail.quantity/100)")
                 }
                 HStack{
                     Text("运费")
                     Spacer()
                     Text("￥0.00")
                 }
-//                Text("实付￥\(orderDetail.price*orderDetail.quantity/100)").font(.title3)
+                //                Text("实付￥\(orderDetail.price*orderDetail.quantity/100)").font(.title3)
             }.padding(EdgeInsets.init(top: 20, leading: 10, bottom: 10, trailing: 10))
                 .frame(maxWidth: .infinity,alignment: .leading)
                 .background(.white)
@@ -88,22 +82,22 @@ struct OrderDetailView: View {
                 Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
             }
             HStack{
-                 Text("发票类型")
-                 Text("电子发票").foregroundColor(Color(hex: 0x595D63))
+                Text("发票类型")
+                Text("电子发票").foregroundColor(Color(hex: 0x595D63))
             }
             HStack{
-                 Text("发票抬头")
-                 Text("X先生").foregroundColor(Color(hex: 0x595D63))
+                Text("发票抬头")
+                Text("X先生").foregroundColor(Color(hex: 0x595D63))
             }
             HStack{
-                 Text("发票内容")
-                 Text("商品明细").foregroundColor(Color(hex: 0x595D63))
+                Text("发票内容")
+                Text("商品明细").foregroundColor(Color(hex: 0x595D63))
             }
         }
     }
-
+    
     private func buildOrderExtraView(orderInfo: OrderInfo) -> some View{
-      VStack{
+        VStack{
             Text("订单信息").font(.title3)
             HStack{
                 let userAddr = orderInfo.userAddr
@@ -121,9 +115,9 @@ struct OrderDetailView: View {
                 Text("下单时间")
                 
             }
-        }   
+        }
     }
-
+    
     private func buildBottomView(orderInfo: OrderInfo) -> some View{
         return HStack{
             Spacer()
@@ -131,16 +125,16 @@ struct OrderDetailView: View {
                 .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
                 .foregroundColor(Color(hex: 0x141414))
                 .onTapGesture(perform: {
-                        viewModel.deleteOrder(orderId: orderInfo.orderId){ isSuccess,msg in
-                            goBack()
-                        }
-                    })
+                    viewModel.deleteOrder(orderId: orderInfo.orderId){ isSuccess,msg in
+                        goBack()
+                    }
+                })
             Text("申请售后").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
                 .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
                 .foregroundColor(Color(hex: 0x141414))
         }
-    } 
-
+    }
+    
     private func buildOrderListView(list: [OrderDetail]) -> some View{
         return VStack{
             ForEach(list.indices , id: \.self){ j in
@@ -174,7 +168,7 @@ struct OrderDetailView: View {
             }
         }
     }
-
+    
     private func goBack(){
         self.presentationMode.wrappedValue.dismiss()
     }
