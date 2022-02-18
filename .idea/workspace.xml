@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d163cb4-7ff6-4256-81ec-9f72599d13a7" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/addr/SelectAddrView.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/views/SimpleRadioButton.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop_android_kotlin/app/src/main/res/layout/item_select_addr.xml" beforeDir="false" afterPath="$PROJECT_DIR$/shop_android_kotlin/app/src/main/res/layout/item_select_addr.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shop_iOS_swiftUI/shop.xcworkspace/xcuserdata/jerry.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop.xcworkspace/xcuserdata/jerry.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/addr/AddrListView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/addr/AddrListView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/addr/SelectAddrView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/addr/SelectAddrView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/order/OrderDetailView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/order/OrderDetailView.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

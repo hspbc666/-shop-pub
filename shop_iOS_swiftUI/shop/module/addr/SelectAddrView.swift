@@ -67,7 +67,7 @@ struct SelectAddrItemView: View {
     }
     
     func radioButtonCallBack(id: String) {
-        //        self.selectedID = id
+        self.selectedUserAddr = self.userAddr
     }
 }
 

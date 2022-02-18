@@ -14,13 +14,11 @@ struct OrderDetailView: View {
     
     var body: some View {
         VStack{
-            
             if let orderInfo = viewModel.orderInfo {
                 buildOrderItemView(orderInfo: orderInfo)
                 buildInvoiceView()
                 buildOrderExtraView(orderInfo: orderInfo)
                 Spacer()
-                Divider()
                 buildBottomView(orderInfo: orderInfo)
             }
         }
@@ -29,7 +27,7 @@ struct OrderDetailView: View {
         .overlay(//添加悬浮图标
             VStack{
                 Image(systemName: "mic")
-                Text("客服")
+                Text("客服").font(.system(size:12))
             }
                 .padding()
                 .foregroundColor(.white)
@@ -59,81 +57,93 @@ struct OrderDetailView: View {
                     Text("商品总金额")
                     Spacer()
                     //                    Text("￥\(orderDetail.price*orderDetail.quantity/100)")
-                }
+                }.padding(EdgeInsets.init(top: 5, leading: 0, bottom: 0, trailing: 0))
                 HStack{
                     Text("运费")
                     Spacer()
                     Text("￥0.00")
-                }
+                }.padding(EdgeInsets.init(top: 5, leading: 0, bottom: 0, trailing: 0))
                 //                Text("实付￥\(orderDetail.price*orderDetail.quantity/100)").font(.title3)
-            }.padding(EdgeInsets.init(top: 20, leading: 10, bottom: 10, trailing: 10))
+            }.padding(EdgeInsets.init(top: 10, leading: 10, bottom: 10, trailing: 10))
                 .frame(maxWidth: .infinity,alignment: .leading)
                 .background(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 5))
-                .padding()
+                .padding(EdgeInsets.init(top: 10, leading: 10, bottom: 0, trailing: 10))
         }
     }
     
     private func buildInvoiceView() -> some View{
-        VStack{
+        VStack(alignment: .leading){
             HStack{
-                Text("发票信息").font(.title3)
+                Text("发票信息")
                 Spacer()
-                Text("查看发票")
-                Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
+                Text("查看发票").foregroundColor(Color(hex: 0x565D66))
+                Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x565D66))
             }
             HStack{
-                Text("发票类型")
+                Text("发票类型").foregroundColor(Color(hex: 0x97999E))
                 Text("电子发票").foregroundColor(Color(hex: 0x595D63))
-            }
+            }.padding(EdgeInsets.init(top: 5, leading: 0, bottom: 0, trailing: 0))
             HStack{
-                Text("发票抬头")
+                Text("发票抬头").foregroundColor(Color(hex: 0x97999E))
                 Text("X先生").foregroundColor(Color(hex: 0x595D63))
-            }
+            }.padding(EdgeInsets.init(top: 5, leading: 0, bottom: 0, trailing: 0))
             HStack{
-                Text("发票内容")
+                Text("发票内容").foregroundColor(Color(hex: 0x97999E))
                 Text("商品明细").foregroundColor(Color(hex: 0x595D63))
-            }
-        }
+            }.padding(EdgeInsets.init(top: 5, leading: 0, bottom: 0, trailing: 0))
+        }.padding(EdgeInsets.init(top: 10, leading: 10, bottom: 10, trailing: 10))
+            .frame(maxWidth: .infinity,alignment: .leading)
+            .background(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 5))
+            .padding(EdgeInsets.init(top: 10, leading: 10, bottom: 0, trailing: 10))
     }
     
     private func buildOrderExtraView(orderInfo: OrderInfo) -> some View{
-        VStack{
-            Text("订单信息").font(.title3)
+        VStack(alignment: .leading){
+            Text("订单信息")
             HStack{
                 let userAddr = orderInfo.userAddr
                 let name = userAddr?.name ?? ""
                 let phone = userAddr?.phone ?? ""
                 let address = userAddr?.address ?? ""
-                Text("收货信息")
-                Text(name+"，"+phone+"，"+address)
-            }
+                Text("收货信息").foregroundColor(Color(hex: 0x97999E))
+                Text(name+"，"+phone+"，"+address).foregroundColor(Color(hex: 0x595D63))
+            }.padding(EdgeInsets.init(top: 5, leading: 0, bottom: 0, trailing: 0))
             HStack{
-                Text("订单编号")
-                Text("\(orderInfo.orderId)")
-            }
+                Text("订单编号").foregroundColor(Color(hex: 0x97999E))
+                Text("\(orderInfo.orderId)").foregroundColor(Color(hex: 0x595D63)).font(.system(size:14))
+            }.padding(EdgeInsets.init(top: 5, leading: 0, bottom: 0, trailing: 0))
             HStack{
-                Text("下单时间")
+                Text("下单时间").foregroundColor(Color(hex: 0x97999E))
                 
-            }
-        }
+            }.padding(EdgeInsets.init(top: 5, leading: 0, bottom: 0, trailing: 0))
+        }.padding(EdgeInsets.init(top: 10, leading: 10, bottom: 10, trailing: 10))
+            .frame(maxWidth: .infinity,alignment: .leading)
+            .background(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 5))
+            .padding(EdgeInsets.init(top: 10, leading: 10, bottom: 0, trailing: 10))
     }
     
     private func buildBottomView(orderInfo: OrderInfo) -> some View{
-        return HStack{
-            Spacer()
-            Text("删除订单").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
-                .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
-                .foregroundColor(Color(hex: 0x141414))
-                .onTapGesture(perform: {
-                    viewModel.deleteOrder(orderId: orderInfo.orderId){ isSuccess,msg in
-                        goBack()
-                    }
-                })
-            Text("申请售后").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
-                .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
-                .foregroundColor(Color(hex: 0x141414))
-        }
+        return VStack{
+            Divider()
+            HStack{
+                Spacer()
+                Text("删除订单").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                    .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
+                    .foregroundColor(Color(hex: 0x141414))
+                    .onTapGesture(perform: {
+                        viewModel.deleteOrder(orderId: orderInfo.orderId){ isSuccess,msg in
+                            goBack()
+                        }
+                    })
+                Text("申请售后").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                    .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
+                    .foregroundColor(Color(hex: 0x141414))
+                    .padding(EdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 10))
+            }
+        }.background(.white)
     }
     
     private func buildOrderListView(list: [OrderDetail]) -> some View{
