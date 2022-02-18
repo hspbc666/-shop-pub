@@ -10,12 +10,14 @@ struct SelectAddrView: View {
     @Binding var selectedUserAddr: UserAddr
     @StateObject private var viewModel = AddrViewModel()
     @StateObject private var refreshViewModel = RefreshViewModel()
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         VStack{
             List {
                 ForEach(viewModel.dataList.indices , id: \.self){ i in
-                    SelectAddrItemView(selectedUserAddr: $selectedUserAddr,
+                    SelectAddrItemView(presentationMode: presentationMode,
+                                       selectedUserAddr: $selectedUserAddr,
                                        viewModel: viewModel,
                                        refreshViewModel: refreshViewModel,
                                        userAddr: viewModel.dataList[i])
@@ -37,11 +39,13 @@ struct SelectAddrView: View {
 }
 
 struct SelectAddrItemView: View {
+    @Binding var presentationMode: PresentationMode
     @Binding var selectedUserAddr: UserAddr
     var viewModel: AddrViewModel
     var refreshViewModel: RefreshViewModel
     var userAddr: UserAddr
     @State private var isShowingDetailView = false
+
     var body: some View {
         HStack{
             SimpleRadioButton(id: userAddr.id, selectedID: selectedUserAddr.id, callBack: self.radioButtonCallBack)
@@ -66,9 +70,14 @@ struct SelectAddrItemView: View {
         }
     }
     
-    func radioButtonCallBack(id: String) {
+    private func radioButtonCallBack(id: String) {
         self.selectedUserAddr = self.userAddr
+        goBack()
         print(self.selectedUserAddr.name)
+    }
+    
+    private func goBack(){
+        presentationMode.dismiss()
     }
 }
 
