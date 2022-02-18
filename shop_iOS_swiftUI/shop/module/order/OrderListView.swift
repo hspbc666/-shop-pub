@@ -7,7 +7,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct OrderListView: View {
-    @State private var viewModel = OrderViewModel()
+    @StateObject private var viewModel = OrderViewModel()
     @State var selectedIndex = 0
     var tabs: [LblTab] = [LblTab(id: 0,name: "全部"),LblTab(id: 1,name: "待付款"),LblTab(id: 2,name: "待发货"),LblTab(id: 3,name: "待收货"),LblTab(id: 4,name: "待评价"),LblTab(id: 5,name: "退换/售后")]
     

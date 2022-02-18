@@ -9,7 +9,7 @@ import SDWebImageSwiftUI
 struct OrderDetailView: View {
     var orderInfo: OrderInfo?
     var orderId: String
-    @State private var viewModel = OrderDetailViewModel()
+    @StateObject private var viewModel = OrderDetailViewModel()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {

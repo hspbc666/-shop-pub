@@ -13,6 +13,7 @@ struct ConfirmOrderFromCartView: View {
     @StateObject private var viewModel = ConfirmOrderViewModel()
     var body: some View {
         VStack{
+            Text(viewModel.userAddr.name)
             buildAddrInfoView()
             buildGoodsInfoView()
             buildDeliveryInfoView()
@@ -28,7 +29,7 @@ struct ConfirmOrderFromCartView: View {
     
     func buildAddrInfoView() -> some View{
         let userAddr = viewModel.userAddr
-        return NavigationLink(destination: SelectAddrView(selectedUserAddr: userAddr))
+        return NavigationLink(destination: SelectAddrView(selectedUserAddr: $viewModel.userAddr))
         {
             HStack{
                 

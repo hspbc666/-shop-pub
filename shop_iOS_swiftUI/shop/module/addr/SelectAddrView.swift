@@ -7,9 +7,9 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct SelectAddrView: View {
-    @State var selectedUserAddr: UserAddr
-    @State private var viewModel = AddrViewModel()
-    @State private var refreshViewModel = RefreshViewModel()
+    @Binding var selectedUserAddr: UserAddr
+    @StateObject private var viewModel = AddrViewModel()
+    @StateObject private var refreshViewModel = RefreshViewModel()
     
     var body: some View {
         VStack{
@@ -68,6 +68,7 @@ struct SelectAddrItemView: View {
     
     func radioButtonCallBack(id: String) {
         self.selectedUserAddr = self.userAddr
+        print(self.selectedUserAddr.name)
     }
 }
 
