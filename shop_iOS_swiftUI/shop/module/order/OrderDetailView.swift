@@ -35,7 +35,7 @@ struct OrderDetailView: View {
                 .foregroundColor(.white)
                 .background(Color(hex: 0x8298BD))
                 .clipShape(Circle())
-                .padding(EdgeInsets.init(top: 0, leading: 0, bottom: 30, trailing: 10))
+                .padding(EdgeInsets.init(top: 0, leading: 0, bottom: 40, trailing: 10))
             ,alignment: .bottomTrailing)
         .onAppear(perform: {
             viewModel.queryOrder(orderId: orderId)
