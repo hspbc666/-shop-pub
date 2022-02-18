@@ -32,9 +32,10 @@ struct OrderDetailView: View {
                 Text("客服")
             }
                 .padding()
+                .foregroundColor(.white)
                 .background(Color(hex: 0x8298BD))
                 .clipShape(Circle())
-                .padding()
+                .padding(EdgeInsets.init(top: 0, leading: 0, bottom: 20, trailing: 10))
             ,alignment: .bottomTrailing)
         .onAppear(perform: {
             viewModel.queryOrder(orderId: orderId)
