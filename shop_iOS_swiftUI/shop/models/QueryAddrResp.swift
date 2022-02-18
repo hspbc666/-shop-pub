@@ -11,4 +11,7 @@ struct QueryAddrResp: HandyJSON,Codable{
     var code = 0
     var msg : String = ""
     var data : UserAddr?
+    func isSuccess() -> Bool{
+        return code == 0
+    }
 }
