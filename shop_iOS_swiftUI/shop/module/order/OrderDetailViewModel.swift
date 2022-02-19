@@ -7,7 +7,7 @@ import UIKit
 import SwiftyJSON
 import HandyJSON
 
-class GameSettings: ObservableObject {
+class SharedViewModel: ObservableObject {
     @Published var userAddr = UserAddr()
 }
 

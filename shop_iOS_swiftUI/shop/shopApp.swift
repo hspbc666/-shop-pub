@@ -45,6 +45,6 @@ struct TabbarView: View {
                     self.tabbarItem(text: "我的", image: "person")
                 }.tag(Tab.mine)
             }
-        }.environmentObject(GameSettings())
+        }.environmentObject(SharedViewModel())
     }
 }

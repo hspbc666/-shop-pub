@@ -11,7 +11,7 @@ struct ConfirmOrderFromCartView: View {
     var cartItems: [CartItem]
     @State var shouldShowNextPage = false
     @StateObject private var viewModel = ConfirmOrderViewModel()
-    @EnvironmentObject var settings: GameSettings
+    @EnvironmentObject var sharedViewModel: SharedViewModel
 
     var body: some View {
         VStack{
@@ -26,7 +26,7 @@ struct ConfirmOrderFromCartView: View {
     }
     
     func buildAddrInfoView() -> some View{
-        let userAddr = settings.userAddr
+        let userAddr = sharedViewModel.userAddr
         return NavigationLink(destination: SelectAddrView(selectedUserAddr: $viewModel.userAddr))
         {
             HStack{

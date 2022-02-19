@@ -45,7 +45,7 @@ struct SelectAddrItemView: View {
     var refreshViewModel: RefreshViewModel
     var userAddr: UserAddr
     @State private var isShowingDetailView = false
-    @EnvironmentObject var settings: GameSettings
+    @EnvironmentObject var sharedViewModel: SharedViewModel
 
     var body: some View {
         HStack{
@@ -73,8 +73,8 @@ struct SelectAddrItemView: View {
     
     private func radioButtonCallBack(id: String) {
         self.selectedUserAddr = self.userAddr
+        sharedViewModel.userAddr = self.userAddr
         goBack()
-        settings.userAddr = self.userAddr
     }
     
     private func goBack(){
