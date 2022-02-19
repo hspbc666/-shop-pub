@@ -7,6 +7,11 @@ import UIKit
 import SwiftyJSON
 import HandyJSON
 
+class GameSettings: ObservableObject {
+    @Published var score = 0
+    @Published var userAddr = UserAddr()
+}
+
 class OrderDetailViewModel: ObservableObject {
     @Published var orderInfo: OrderInfo?
 

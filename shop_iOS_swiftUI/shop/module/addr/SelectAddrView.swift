@@ -45,6 +45,7 @@ struct SelectAddrItemView: View {
     var refreshViewModel: RefreshViewModel
     var userAddr: UserAddr
     @State private var isShowingDetailView = false
+    @EnvironmentObject var settings: GameSettings
 
     var body: some View {
         HStack{
@@ -74,6 +75,8 @@ struct SelectAddrItemView: View {
         self.selectedUserAddr = self.userAddr
         goBack()
         print(self.selectedUserAddr.name)
+        settings.score += 1
+        settings.userAddr = self.userAddr
     }
     
     private func goBack(){

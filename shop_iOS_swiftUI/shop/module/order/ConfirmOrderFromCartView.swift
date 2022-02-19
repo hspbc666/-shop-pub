@@ -11,9 +11,11 @@ struct ConfirmOrderFromCartView: View {
     var cartItems: [CartItem]
     @State var shouldShowNextPage = false
     @StateObject private var viewModel = ConfirmOrderViewModel()
+    @EnvironmentObject var settings: GameSettings
+
     var body: some View {
         VStack{
-            Text(viewModel.userAddr.name)
+            Text(String(settings.userAddr.name))
             buildAddrInfoView()
             buildGoodsInfoView()
             buildDeliveryInfoView()
