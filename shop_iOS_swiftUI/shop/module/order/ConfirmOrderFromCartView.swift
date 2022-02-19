@@ -12,7 +12,7 @@ struct ConfirmOrderFromCartView: View {
     @State var shouldShowNextPage = false
     @StateObject private var viewModel = ConfirmOrderViewModel()
     @EnvironmentObject var sharedViewModel: SharedViewModel
-
+    
     var body: some View {
         VStack{
             buildAddrInfoView()
@@ -20,7 +20,6 @@ struct ConfirmOrderFromCartView: View {
             buildDeliveryInfoView()
             buildFeeInfoView()
             Spacer()
-            Divider()
             buildBottomView()
         }.background(Color(hex: 0xF4F4F4))
     }
@@ -48,7 +47,7 @@ struct ConfirmOrderFromCartView: View {
                 }
                 Spacer()
             }.frame(maxWidth:.infinity)
-            .padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
+                .padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
         }
     }
     
@@ -86,29 +85,32 @@ struct ConfirmOrderFromCartView: View {
                 Text("商品金额").foregroundColor(.gray)
                 Spacer()
                 Text("￥\(costSum)")
-            }.padding()
+            }.padding(EdgeInsets.init(top: 5, leading: 0, bottom: 0, trailing: 0))
             HStack{
                 Text("总运费").foregroundColor(.gray)
                 Spacer()
                 Text("满XX元 免邮")
-            }.padding()
+            }.padding(EdgeInsets.init(top: 5, leading: 0, bottom: 0, trailing: 0))
             HStack{
                 Text("优惠券").foregroundColor(.gray)
                 Spacer()
                 Text("无可用券")
-            }.padding()
+            }.padding(EdgeInsets.init(top: 5, leading: 0, bottom: 0, trailing: 0))
         }.padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
     }
     
     func buildBottomView() -> some View{
-        return HStack{
-            Spacer()
-            Text("实付款")
-            Text("￥\(costSum)").foregroundColor(Color.main_color)
-            Spacer()
-            buildSubmitBtn()
-            Spacer()
-        } .padding(EdgeInsets.init(top: 0, leading: 0, bottom: 5, trailing: 0))
+        return VStack{
+            Divider()
+            HStack{
+                Spacer()
+                Text("实付款")
+                Text("￥\(costSum)").foregroundColor(Color.main_color)
+                Spacer()
+                buildSubmitBtn()
+                Spacer()
+            } .padding(EdgeInsets.init(top: 0, leading: 0, bottom: 5, trailing: 0))
+        } .background(.white)
     }
     
     func buildSubmitBtn() -> some View{
