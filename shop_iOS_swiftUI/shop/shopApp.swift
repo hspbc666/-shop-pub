@@ -48,3 +48,7 @@ struct TabbarView: View {
         }.environmentObject(SharedViewModel())
     }
 }
+
+class SharedViewModel: ObservableObject {
+    @Published var userAddr = UserAddr()
+}

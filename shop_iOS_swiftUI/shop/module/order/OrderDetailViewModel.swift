@@ -7,10 +7,6 @@ import UIKit
 import SwiftyJSON
 import HandyJSON
 
-class SharedViewModel: ObservableObject {
-    @Published var userAddr = UserAddr()
-}
-
 class OrderDetailViewModel: ObservableObject {
     @Published var orderInfo: OrderInfo?
 
