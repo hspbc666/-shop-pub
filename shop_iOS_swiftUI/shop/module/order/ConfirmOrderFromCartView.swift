@@ -23,16 +23,6 @@ struct ConfirmOrderFromCartView: View {
             Divider()
             buildBottomView()
         }.background(Color(hex: 0xF4F4F4))
-            .onAppear(perform: {
-//                settings.userAddr.id = "lbl2ccc9913fb994459999a6e26a2e07163"
-//                settings.userAddr.name = "11"
-//                settings.userAddr.address = "222"
-//                viewModel.queryData{
-//                    settings.userAddr.id = $0.id
-//                    settings.userAddr.name = $0.name
-//                    settings.userAddr.address = $0.address
-//                }
-            })
     }
     
     func buildAddrInfoView() -> some View{
@@ -40,7 +30,6 @@ struct ConfirmOrderFromCartView: View {
         return NavigationLink(destination: SelectAddrView(selectedUserAddr: $viewModel.userAddr))
         {
             HStack{
-                
                 if !userAddr.id.isEmpty {
                     HStack{
                         Image(systemName: "location.circle.fill")
@@ -52,9 +41,14 @@ struct ConfirmOrderFromCartView: View {
                         Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
                     }
                 }else{
-                    Text("+ 添加收货地址")
+                    HStack{
+                        Image(systemName: "location.circle.fill")
+                        Text("选择收货地址")
+                    }
                 }
-            }.padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
+                Spacer()
+            }.frame(maxWidth:.infinity)
+            .padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
         }
     }
     
