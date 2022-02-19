@@ -16,8 +16,6 @@ struct shopApp: App {
 
 struct TabbarView: View {
     @State var selectedTab = Tab.home
-    @StateObject var settings = GameSettings()
-
     
     enum Tab: Int {
         case home, category, cart, mine
@@ -47,6 +45,6 @@ struct TabbarView: View {
                     self.tabbarItem(text: "我的", image: "person")
                 }.tag(Tab.mine)
             }
-        }.environmentObject(settings)
+        }.environmentObject(GameSettings())
     }
 }
