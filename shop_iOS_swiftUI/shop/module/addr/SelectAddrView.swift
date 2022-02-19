@@ -74,8 +74,6 @@ struct SelectAddrItemView: View {
     private func radioButtonCallBack(id: String) {
         self.selectedUserAddr = self.userAddr
         goBack()
-        print(self.selectedUserAddr.name)
-        settings.score += 1
         settings.userAddr = self.userAddr
     }
     

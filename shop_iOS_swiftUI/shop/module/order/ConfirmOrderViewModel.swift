@@ -11,14 +11,15 @@ class ConfirmOrderViewModel: ObservableObject {
     @Published var userAddr = UserAddr()
     @Published var createdOrderId: String = ""
     
-    func queryData() {
+    func queryData(callback: @escaping((UserAddr)->())) {
         LblProvider.request(.queryDefaultAddress) { result in
             if case let .success(response) = result {
                 let data = try? response.mapJSON()
                 let json = JSON(data!)
                 if let resp = JSONDeserializer<QueryAddrResp>.deserializeFrom(json: json.description) {
                     if let data = resp.data {
-                        self.userAddr = data
+//                        self.userAddr = data
+                        callback(data)
                     }
                 }
             }

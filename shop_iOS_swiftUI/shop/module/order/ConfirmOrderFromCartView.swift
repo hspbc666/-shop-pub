@@ -24,7 +24,14 @@ struct ConfirmOrderFromCartView: View {
             buildBottomView()
         }.background(Color(hex: 0xF4F4F4))
             .onAppear(perform: {
-                viewModel.queryData()
+//                settings.userAddr.id = "lbl2ccc9913fb994459999a6e26a2e07163"
+//                settings.userAddr.name = "11"
+//                settings.userAddr.address = "222"
+//                viewModel.queryData{
+//                    settings.userAddr.id = $0.id
+//                    settings.userAddr.name = $0.name
+//                    settings.userAddr.address = $0.address
+//                }
             })
     }
     
