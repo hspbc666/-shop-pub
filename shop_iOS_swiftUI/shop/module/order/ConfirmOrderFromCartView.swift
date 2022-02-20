@@ -71,7 +71,7 @@ struct ConfirmOrderFromCartView: View {
         HStack{
             Text("配送").foregroundColor(.gray).padding()
             VStack(alignment: .leading){
-                Text("顺丰速运").font(.title3)
+                Text("顺丰速运")
                 Text("1个包裹，预计明天送达").foregroundColor(.gray)
             }
             Spacer()
