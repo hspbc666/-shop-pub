@@ -27,7 +27,7 @@ enum LblAPI {
     case queryOrderByStatus(orderStatus: Int)
     case queryOrder(orderId: String)
     case deleteOrder(orderId: String)
-    case createOrder(params: CreateOrderReq)
+    case createFromCart(params: CreateOrderReq)
 }
 
 extension LblAPI: TargetType {
@@ -53,13 +53,13 @@ extension LblAPI: TargetType {
         case .queryOrderByStatus(let orderStatus): return "shop/order/queryByStatus/\(orderStatus)"
         case .queryOrder(let orderId): return "shop/order/query/\(orderId)"
         case .deleteOrder(let orderId): return "shop/order/del/\(orderId)"
-        case .createOrder: return "shop/order/create"
+        case .createFromCart: return "shop/order/createFromCart"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .login, .register, .addAddress, .modifyAddress, .createOrder:
+        case .login, .register, .addAddress, .modifyAddress, .createFromCart:
             return .post
         case .queryCategory, .queryGoodsByCategory, .searchGoods, .queryCart, .queryAddress, .queryDefaultAddress, .addToCart, .deleteAddress, .queryOrderByStatus, .queryOrder, .deleteOrder:
             return .get
@@ -68,7 +68,7 @@ extension LblAPI: TargetType {
     
     var task: Task {
         switch self {
-        case .createOrder(let params):
+        case .createFromCart(let params):
             return .requestParameters(parameters: params.toJSON() ?? ["":""], encoding: JSONEncoding.default)
         case .addAddress(let params), .modifyAddress(let params):
             return .requestParameters(parameters: params.toJSON() ?? ["":""], encoding: JSONEncoding.default)

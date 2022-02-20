@@ -31,7 +31,7 @@ class ConfirmOrderViewModel: ObservableObject {
         createOrderReq.cartIdList = cartItems.map { $0.id }
         createOrderReq.userAddrId = userAddr.id
 
-        LblProvider.request(.createOrder(params: createOrderReq)) { result in
+        LblProvider.request(.createFromCart(params: createOrderReq)) { result in
             if case let .success(response) = result {
                 let data = try? response.mapJSON()
                 let json = JSON(data!)
