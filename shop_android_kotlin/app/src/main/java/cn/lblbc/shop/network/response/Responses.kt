@@ -12,6 +12,7 @@ class Goods {
     var price: Long = 0
     var longPic: String? = null
     var squarePic: String? = null
+    var descPic: String? = null
 }
 
 class CartItem {

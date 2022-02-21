@@ -81,7 +81,7 @@
 
             <TextView
                 android:id="@+id/gotoCreateOrderTv"
-                android:layout_width="160dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:background="@drawable/shape_btn_grey_bg"

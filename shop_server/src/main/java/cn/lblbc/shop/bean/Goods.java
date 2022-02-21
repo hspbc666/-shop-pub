@@ -15,4 +15,5 @@ public class Goods {
     private long price ;
     private String longPic;
     private String squarePic;
+    private String descPic;
 }

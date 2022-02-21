@@ -34,13 +34,14 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
 
     override fun initView() {
         initToolbar()
-        mViewModel.goods.observe(this, {
+        mViewModel.goods.observe(this) {
             goods = it
             price = getString(R.string.price, getMoneyByYuan(it.price))
             goodsNameTv.text = it.name
             goodsPriceTv.text = price
             it.squarePic?.let { loadImage(goodsIv, it) }
-        })
+            it.descPic?.let { loadImage(descIv, it) }
+        }
     }
 
     override fun initData() {
@@ -72,10 +73,10 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
         }
     }
 
-    private fun loadImage(goodsIv: ImageView, url: String) {
+    private fun loadImage(imageView: ImageView, url: String) {
         Glide.with(this)
             .load(url)
-            .into(goodsIv)
+            .into(imageView)
     }
 
     private fun initToolbar() {
