@@ -16,6 +16,7 @@ struct shopApp: App {
 
 struct TabbarView: View {
     @State var selectedTab = Tab.home
+    @StateObject var sharedViewModel = SharedViewModel()
     
     enum Tab: Int {
         case home, category, cart, mine
@@ -45,10 +46,13 @@ struct TabbarView: View {
                     self.tabbarItem(text: "我的", image: "person")
                 }.tag(Tab.mine)
             }
-        }.environmentObject(SharedViewModel())
+        }.environmentObject(sharedViewModel)
     }
 }
 
 class SharedViewModel: ObservableObject {
-    @Published var userAddr = UserAddr()
+    
+    @Published var addrId = ""
+    @Published var address = ""
+    @Published var name = ""
 }

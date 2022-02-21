@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d163cb4-7ff6-4256-81ec-9f72599d13a7" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/shop_android_kotlin/app/src/main/java/cn/lblbc/shop/module/goods_detail/GoodsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/shop_android_kotlin/app/src/main/java/cn/lblbc/shop/module/goods_detail/GoodsActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop_android_kotlin/app/src/main/java/cn/lblbc/shop/network/response/Responses.kt" beforeDir="false" afterPath="$PROJECT_DIR$/shop_android_kotlin/app/src/main/java/cn/lblbc/shop/network/response/Responses.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop_android_kotlin/app/src/main/res/layout/activity_goods.xml" beforeDir="false" afterPath="$PROJECT_DIR$/shop_android_kotlin/app/src/main/res/layout/activity_goods.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop_android_kotlin/app/src/main/res/layout/fragment_cart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/shop_android_kotlin/app/src/main/res/layout/fragment_cart.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shop_iOS_swiftUI/shop.xcworkspace/xcuserdata/jerry.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop.xcworkspace/xcuserdata/jerry.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shop_iOS_swiftUI/shop.xcworkspace/xcuserdata/jerry.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" beforeDir="false" afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop.xcworkspace/xcuserdata/jerry.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop_server/src/main/java/cn/lblbc/shop/bean/Goods.java" beforeDir="false" afterPath="$PROJECT_DIR$/shop_server/src/main/java/cn/lblbc/shop/bean/Goods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop_server/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/shop_server/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/addr/SelectAddrView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/addr/SelectAddrView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/order/ConfirmOrderFromCartView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/shop_iOS_swiftUI/shop/module/order/ConfirmOrderFromCartView.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -22,19 +22,25 @@ struct ConfirmOrderFromCartView: View {
             Spacer()
             buildBottomView()
         }.background(Color(hex: 0xF4F4F4))
+            .onAppear(perform: {
+//                viewModel.queryData(){
+//                    sharedViewModel.addrId = $0.id
+//                    sharedViewModel.name = $0.name
+//                    sharedViewModel.address = $0.address
+//                }
+            })
     }
     
     func buildAddrInfoView() -> some View{
-        let userAddr = sharedViewModel.userAddr
-        return NavigationLink(destination: SelectAddrView(selectedUserAddr: $viewModel.userAddr))
+        return NavigationLink(destination: SelectAddrView())
         {
             HStack{
-                if !userAddr.id.isEmpty {
+                if !sharedViewModel.addrId.isEmpty {
                     HStack{
                         Image(systemName: "location.circle.fill")
                         VStack{
-                            Text(userAddr.name)
-                            Text(userAddr.address)
+                            Text(sharedViewModel.name)
+                            Text(sharedViewModel.address)
                         }
                         Spacer()
                         Image(systemName: "chevron.right").foregroundColor(Color(hex: 0x595D63))
@@ -48,7 +54,7 @@ struct ConfirmOrderFromCartView: View {
                 Spacer()
             }.frame(maxWidth:.infinity)
                 .padding().background(.white).clipShape(RoundedRectangle(cornerRadius: 5)).padding()
-        }
+        }.environmentObject(self.sharedViewModel)
     }
     
     func buildGoodsInfoView() -> some View{

@@ -6,8 +6,13 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
+class SimpleUserAddr: ObservableObject{
+    @Published var id: String = ""
+    @Published var name: String = ""
+    @Published var address: String = ""
+}
+
 struct SelectAddrView: View {
-    @Binding var selectedUserAddr: UserAddr
     @StateObject private var viewModel = AddrViewModel()
     @StateObject private var refreshViewModel = RefreshViewModel()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -17,7 +22,6 @@ struct SelectAddrView: View {
             List {
                 ForEach(viewModel.dataList.indices , id: \.self){ i in
                     SelectAddrItemView(presentationMode: presentationMode,
-                                       selectedUserAddr: $selectedUserAddr,
                                        viewModel: viewModel,
                                        refreshViewModel: refreshViewModel,
                                        userAddr: viewModel.dataList[i])
@@ -40,16 +44,16 @@ struct SelectAddrView: View {
 
 struct SelectAddrItemView: View {
     @Binding var presentationMode: PresentationMode
-    @Binding var selectedUserAddr: UserAddr
     var viewModel: AddrViewModel
     var refreshViewModel: RefreshViewModel
     var userAddr: UserAddr
+    var xxID = ""
     @State private var isShowingDetailView = false
     @EnvironmentObject var sharedViewModel: SharedViewModel
 
     var body: some View {
         HStack{
-            SimpleRadioButton(id: userAddr.id, selectedID: selectedUserAddr.id, callBack: self.radioButtonCallBack)
+            SimpleRadioButton(id: userAddr.id, selectedID: sharedViewModel.addrId, callBack: self.radioButtonCallBack)
             VStack{
                 HStack{
                     Text(userAddr.name)
@@ -72,8 +76,10 @@ struct SelectAddrItemView: View {
     }
     
     private func radioButtonCallBack(id: String) {
-        self.selectedUserAddr = self.userAddr
-        sharedViewModel.userAddr = self.userAddr
+        sharedViewModel.addrId = self.userAddr.id
+        sharedViewModel.address = self.userAddr.address
+        sharedViewModel.name = self.userAddr.name
+        print(sharedViewModel.addrId)
         goBack()
     }
     
