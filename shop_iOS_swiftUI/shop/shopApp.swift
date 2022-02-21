@@ -53,5 +53,5 @@ struct TabbarView: View {
 class SharedViewModel: ObservableObject {
     @Published var addrId = ""
     @Published var address = ""
-    @Published var name = ""
+    @Published var addrName = ""
 }

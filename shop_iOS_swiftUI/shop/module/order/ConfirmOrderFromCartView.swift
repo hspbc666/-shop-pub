@@ -22,13 +22,6 @@ struct ConfirmOrderFromCartView: View {
             Spacer()
             buildBottomView()
         }.background(Color(hex: 0xF4F4F4))
-            .onAppear(perform: {
-//                viewModel.queryData(){
-//                    sharedViewModel.addrId = $0.id
-//                    sharedViewModel.name = $0.name
-//                    sharedViewModel.address = $0.address
-//                }
-            })
     }
     
     func buildAddrInfoView() -> some View{
@@ -39,7 +32,7 @@ struct ConfirmOrderFromCartView: View {
                     HStack{
                         Image(systemName: "location.circle.fill")
                         VStack{
-                            Text(sharedViewModel.name)
+                            Text(sharedViewModel.addrName)
                             Text(sharedViewModel.address)
                         }
                         Spacer()

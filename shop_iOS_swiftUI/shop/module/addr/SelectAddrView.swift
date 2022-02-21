@@ -72,7 +72,7 @@ struct SelectAddrItemView: View {
     
     private func radioButtonCallBack(id: String) {
         sharedViewModel.addrId = self.userAddr.id
-        sharedViewModel.name = self.userAddr.name
+        sharedViewModel.addrName = self.userAddr.name
         sharedViewModel.address = self.userAddr.address
         goBack()
     }
