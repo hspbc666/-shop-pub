@@ -6,11 +6,6 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-class SimpleUserAddr: ObservableObject{
-    @Published var id: String = ""
-    @Published var name: String = ""
-    @Published var address: String = ""
-}
 
 struct SelectAddrView: View {
     @StateObject private var viewModel = AddrViewModel()
@@ -77,9 +72,8 @@ struct SelectAddrItemView: View {
     
     private func radioButtonCallBack(id: String) {
         sharedViewModel.addrId = self.userAddr.id
-        sharedViewModel.address = self.userAddr.address
         sharedViewModel.name = self.userAddr.name
-        print(sharedViewModel.addrId)
+        sharedViewModel.address = self.userAddr.address
         goBack()
     }
     
