@@ -63,14 +63,18 @@
                         tools:text="已完成" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/ordersDetailContainer"
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/ordersDetailContainer"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginEnd="10dp"-->
+<!--                    android:orientation="vertical" />-->
+                <cn.lblbc.shop.ui.view.OrderListView
+                    android:id="@+id/orderListView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:orientation="vertical" />
+                    android:layout_height="wrap_content"/>
 
                 <View
                     android:id="@+id/bottomSplitView"

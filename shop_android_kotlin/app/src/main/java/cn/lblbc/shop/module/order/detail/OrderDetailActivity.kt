@@ -47,7 +47,8 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
                 orderDetailSumTv.text = getString(R.string.price, sum)
                 realPaidTv.text = getString(R.string.real_paid, sum)
                 orderCreateTimeTv.text = formatTime(it.createTime)
-                createOrderDetailItems(it.list, ordersDetailContainer)
+//                createOrderDetailItems(it.list, ordersDetailContainer)
+                orderListView.setData(it.list)
             }
         }
     }
