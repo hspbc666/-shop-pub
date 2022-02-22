@@ -52,9 +52,8 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
     override fun initListeners() {
         addToCartTv.setOnClickListener {
             if (LoginManager.isLoggedIn()) {
-                mViewModel.addToCart(goodsId, onSuccess = {
-                    toast("已加入购物车")
-                })
+                mViewModel.addToCart(goodsId,
+                    onSuccess = { toast("已加入购物车") })
             } else {
                 startActivity(Intent(this@GoodsActivity, LoginActivity::class.java))
             }
@@ -74,9 +73,7 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
     }
 
     private fun loadImage(imageView: ImageView, url: String) {
-        Glide.with(this)
-            .load(url)
-            .into(imageView)
+        Glide.with(this).load(url).into(imageView)
     }
 
     private fun initToolbar() {

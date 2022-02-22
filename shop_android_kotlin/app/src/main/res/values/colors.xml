@@ -7,8 +7,6 @@
     <color name="common_bg">#F4F4F4</color>
     <color name="white">#FFFFFF</color>
     <color name="color_common">#EF3965</color>
-    <color name="color_focused">@color/color_common</color>
-    <color name="color_un_focused">#222222</color>
-    <color name="price_color">#AAEF3965</color>
+    <color name="color_text">#222222</color>
 
 </resources>

@@ -6,11 +6,6 @@
 
     <include layout="@layout/part_search_top" />
 
-    <cn.lblbc.shop.module.search.his.SearchHisView
-        android:id="@+id/searchHisView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <GridView
         android:id="@+id/goodsGridView"
         android:layout_width="match_parent"

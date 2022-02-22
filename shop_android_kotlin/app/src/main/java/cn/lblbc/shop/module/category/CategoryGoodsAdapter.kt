@@ -11,7 +11,7 @@ import cn.lblbc.shop.R
 import cn.lblbc.shop.network.response.Goods
 import cn.lblbc.shop.utils.getMoneyByYuan
 import com.bumptech.glide.Glide
-import java.util.*
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -20,8 +20,7 @@ import java.util.*
  */
 class CategoryGoodsAdapter(private val mContext: Context) : BaseAdapter() {
     private var mDataList = ArrayList<Goods>()
-    private val mInflater =
-        mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private val mInflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     fun setData(goodsList: List<Goods>) {
         mDataList.clear()
@@ -46,7 +45,7 @@ class CategoryGoodsAdapter(private val mContext: Context) : BaseAdapter() {
     }
 
     override fun getView(position: Int, _convertView: View?, parent: ViewGroup): View {
-        var convertView: View
+        val convertView: View
         val holder: ViewHolder
         if (_convertView == null) {
             holder = ViewHolder()
@@ -67,10 +66,8 @@ class CategoryGoodsAdapter(private val mContext: Context) : BaseAdapter() {
         return convertView
     }
 
-    private fun loadImage(goodsIv: ImageView, url: String) {
-        Glide.with(mContext)
-            .load(url)
-            .into(goodsIv)
+    private fun loadImage(imageView: ImageView, url: String) {
+        Glide.with(mContext).load(url).into(imageView)
     }
 
     private class ViewHolder {

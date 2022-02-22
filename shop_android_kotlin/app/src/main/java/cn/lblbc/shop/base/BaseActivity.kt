@@ -2,6 +2,7 @@ package cn.lblbc.shop.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -22,6 +23,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
         initListeners()
     }
+
     protected abstract fun layoutResId(): Int
 
     open fun initView() {
@@ -31,6 +33,7 @@ abstract class BaseActivity : AppCompatActivity() {
     open fun initData() {
         // Override if need
     }
+
     open fun initListeners() {
         // Override if need
     }

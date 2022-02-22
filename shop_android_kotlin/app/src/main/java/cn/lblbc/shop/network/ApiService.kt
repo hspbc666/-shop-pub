@@ -1,8 +1,12 @@
 package cn.lblbc.shop.network
 
-import cn.lblbc.shop.network.request.*
+import cn.lblbc.shop.network.request.CreateOrderFromCartReq
+import cn.lblbc.shop.network.request.CreateOrderReq
+import cn.lblbc.shop.network.request.LoginReq
+import cn.lblbc.shop.network.request.RegisterReq
 import cn.lblbc.shop.network.response.*
 import retrofit2.http.*
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634

@@ -9,6 +9,7 @@ import cn.lblbc.shop.base.BaseVmFragment
 import cn.lblbc.shop.module.goods_detail.GoodsActivity
 import cn.lblbc.shop.network.response.Goods
 import cn.lblbc.shop.utils.Constants
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -31,11 +32,7 @@ class CategoryGoodsFragment(var categoryId: String) : BaseVmFragment<CategoryGoo
 
     override fun initListeners() {
         goodsGridView.setOnItemClickListener { _, _, position, _ ->
-            onItemClick(
-                goodsAdapter.getData(
-                    position
-                )
-            )
+            onItemClick(goodsAdapter.getData(position))
         }
         goodsListSrl.setOnRefreshListener { initData() }
     }
@@ -48,18 +45,13 @@ class CategoryGoodsFragment(var categoryId: String) : BaseVmFragment<CategoryGoo
     }
 
     override fun observe() {
-        mViewModel.goodsList.observe(this, { goodsAdapter.setData(it) })
+        mViewModel.goodsList.observe(this) { goodsAdapter.setData(it) }
     }
 
     private fun onItemClick(goods: Goods) {
         val intent = Intent(context, GoodsActivity::class.java)
         intent.putExtra(Constants.EXTRA_KEY_GOODS_ID, goods.id)
         startActivity(intent)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        initData()
     }
 
     companion object {

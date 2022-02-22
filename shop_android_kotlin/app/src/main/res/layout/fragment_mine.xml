@@ -42,8 +42,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="尊贵会员"
-                android:textColor="#262626"
-                android:textSize="20sp" />
+                android:textColor="@color/color_text"
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -55,7 +55,6 @@
                 android:paddingEnd="10dp"
                 android:paddingBottom="5dp"
                 android:text="级别：白银"
-                android:textColor="#252525"
                 android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
@@ -82,8 +81,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="我的订单"
-                android:textColor="#222222"
-                android:textSize="18sp"
+                android:textColor="@color/color_text"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -91,8 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_arrow_right"
-                android:text="全部订单"
-                android:textColor="#595D63" />
+                android:text="全部订单" />
         </LinearLayout>
 
         <LinearLayout

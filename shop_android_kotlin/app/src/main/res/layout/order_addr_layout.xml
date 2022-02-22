@@ -38,14 +38,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="X先生"
-                android:textColor="#333333" />
+                android:textColor="@color/color_text" />
 
             <TextView
                 android:id="@+id/addressTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="北京市丰台区XX街道XX小区XX栋XXX室"
-                android:textColor="#717171" />
+                android:text="北京市丰台区XX街道XX小区XX栋XXX室" />
         </LinearLayout>
 
         <ImageView
@@ -64,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="+"
-            android:textColor="#575C65"
+            android:textColor="@color/color_text"
             android:textSize="20sp" />
 
         <TextView
@@ -72,7 +71,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="添加收货地址"
-            android:textColor="#575D65"
             android:textSize="15sp" />
     </LinearLayout>
 </LinearLayout>

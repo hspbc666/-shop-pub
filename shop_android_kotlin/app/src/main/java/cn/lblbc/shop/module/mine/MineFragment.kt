@@ -61,10 +61,10 @@ class MineFragment : BaseFragment() {
             userInfoLayout.setOnClickListener { }
             allOrderTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_ALL) }
             toPayTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_PAY) }
-            toDeliverTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_DELIVER)}
-            toReceiveTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_RECEIVE)}
-            toCommentTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_COMMENT)}
-            toReturnTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_RETURN)}
+            toDeliverTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_DELIVER) }
+            toReceiveTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_RECEIVE) }
+            toCommentTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_COMMENT) }
+            toReturnTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_RETURN) }
         } else {
             userInfoLayout.setOnClickListener { gotoLoginPage() }
             allOrderTv.setOnClickListener { gotoLoginPage() }

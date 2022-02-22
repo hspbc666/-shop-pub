@@ -27,7 +27,7 @@ class SelectAddressActivity : BaseVmActivity<SelectAddressViewModel>() {
     override fun initView() {
         initToolbar()
         selectedUserAddrId = intent.getStringExtra(EXTRA_KEY_USER_ADDR_ID)
-        adapter = SelectAddressAdapter(mViewModel, selectedUserAddrId)
+        adapter = SelectAddressAdapter(selectedUserAddrId)
         addrListRv.adapter = adapter
     }
 
@@ -42,12 +42,7 @@ class SelectAddressActivity : BaseVmActivity<SelectAddressViewModel>() {
     override fun initListeners() {
         adapter.setOnItemClick(this::onItemClick)
         modifyAddrTv.setOnClickListener {
-            startActivity(
-                Intent(
-                    this,
-                    AddAddressActivity::class.java
-                )
-            )
+            startActivity(Intent(this, AddAddressActivity::class.java))
         }
     }
 
@@ -59,13 +54,8 @@ class SelectAddressActivity : BaseVmActivity<SelectAddressViewModel>() {
     }
 
     override fun observe() {
-        mViewModel.userAddrList.observe(this, {
+        mViewModel.userAddrList.observe(this) {
             adapter.setData(it)
-        })
-    }
-
-    override fun onResume() {
-        super.onResume()
-        initData()
+        }
     }
 }

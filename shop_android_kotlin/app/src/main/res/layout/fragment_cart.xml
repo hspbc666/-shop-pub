@@ -17,7 +17,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:title="购物车"
-            app:titleTextColor="#FFFFFF" />
+            app:titleTextColor="@color/white" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/goodsListSrl"
@@ -89,7 +89,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="结算"
-                android:textColor="#FFFFFF" />
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <LinearLayout
@@ -119,7 +119,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="立即登录"
-                android:textColor="#FFFFFF" />
+                android:textColor="@color/white" />
         </LinearLayout>
 
     </LinearLayout>

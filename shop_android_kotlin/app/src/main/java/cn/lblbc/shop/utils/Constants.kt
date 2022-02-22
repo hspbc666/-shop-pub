@@ -7,7 +7,7 @@ package cn.lblbc.shop.utils
  * 公众号：蓝不蓝编程
  */
 object Constants {
-//        const val BASE_URL = "http://10.206.50.51:8080/"
+//    const val BASE_URL = "http://10.206.50.51:8080/"
     const val BASE_URL = "http://192.168.31.10:8080/"
 
     //    const val BASE_URL = "http://192.168.1.105:8080/"

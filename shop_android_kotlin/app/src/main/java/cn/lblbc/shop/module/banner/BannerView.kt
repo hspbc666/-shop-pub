@@ -4,13 +4,12 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import androidx.viewpager2.widget.ViewPager2
 import cn.lblbc.shop.R
 import cn.lblbc.shop.network.response.Goods
 import com.zhpan.bannerview.BannerViewPager
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -38,11 +37,6 @@ class BannerView(mContext: Context, attrs: AttributeSet?) : LinearLayout(mContex
 
     private fun setupViewPager() {
         mBanner.apply {
-            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    Log.v("MainActivity", "当前页面:$position")
-                }
-            })
             setOnPageClickListener { _, position ->
                 mCallback?.invoke(mBannerBeanList[position])
             }

@@ -8,12 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="MyTheme" parent="AppTheme">
-        <item name="windowNoTitle">false</item>
-    </style>
+
     <style name="common_dialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowNoTitle" >true</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
     <!--从下到上动画效果-->
     <style name="dialogAnimBottomUp" mce_bogus="1" parent="android:Animation">

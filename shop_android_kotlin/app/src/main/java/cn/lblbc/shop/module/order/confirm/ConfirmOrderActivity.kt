@@ -10,6 +10,7 @@ import cn.lblbc.shop.module.addr.AddAddressActivity
 import cn.lblbc.shop.module.addr.select.SelectAddressActivity
 import cn.lblbc.shop.module.order.detail.OrderDetailActivity
 import cn.lblbc.shop.network.request.SimpleOrderInfo
+import cn.lblbc.shop.network.response.CartItem
 import cn.lblbc.shop.network.response.UserAddr
 import cn.lblbc.shop.utils.Constants
 import cn.lblbc.shop.utils.Constants.EXTRA_KEY_COST_SUM
@@ -82,21 +83,7 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
 
     private fun createOrder(goodsId: String) {
         mViewModel.createOrder(goodsId, userAddr?.id ?: "",
-            onSuccess = { showPayDialog(it) })
-    }
-
-    private fun showPayDialog(orderId: String) {
-        val message = "现在支付么？"
-        val alertDialog = AlertDialog.Builder(this).setMessage(message).setCancelable(false)
-            .setPositiveButton(R.string.pay)
-            { _, _ ->
-                pay(orderId)
-            }
-            .setNegativeButton(R.string.cancel) { _, _ ->
-                closeAndGotoOrderDetailPage(orderId)
-            }
-            .create()
-        alertDialog.show()
+            onSuccess = { closeAndGotoOrderDetailPage(it) })
     }
 
     private fun closeAndGotoOrderDetailPage(orderId: String) {
@@ -104,12 +91,6 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
         intent.putExtra(Constants.EXTRA_KEY_ORDER_ID, orderId)
         startActivity(intent)
         finish()
-    }
-
-    private fun pay(orderId: String) {
-        mViewModel.payForOrder(orderId, onSuccess = {
-            closeAndGotoOrderDetailPage(orderId)
-        })
     }
 
     private fun initToolbar() {

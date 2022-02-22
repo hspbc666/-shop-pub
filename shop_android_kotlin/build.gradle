@@ -33,7 +33,7 @@ buildscript {
         okhttpVersion = '3.9.1'
         loggingInterceptorVersion = '3.11.0'
         kotlinUtilsVersion = '1.0.12'
-        recyclerViewAdapterVersion='2.9.50'
+        recyclerViewAdapterVersion = '2.9.50'
     }
     repositories {
         google()

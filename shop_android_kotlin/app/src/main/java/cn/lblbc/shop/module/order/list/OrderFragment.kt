@@ -9,7 +9,7 @@ import cn.lblbc.shop.base.BaseVmFragment
 import cn.lblbc.shop.module.order.detail.OrderDetailActivity
 import cn.lblbc.shop.network.response.OrderInfo
 import cn.lblbc.shop.utils.Constants
-import cn.lblbc.shop.utils.JsonUtil
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634

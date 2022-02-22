@@ -9,7 +9,7 @@ import cn.lblbc.shop.module.category.CategoryFragment
 import cn.lblbc.shop.module.home.HomeFragment
 import cn.lblbc.shop.module.mine.MineFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634

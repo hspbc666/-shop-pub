@@ -10,6 +10,7 @@ import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmFragment
 import cn.lblbc.shop.module.search.SearchActivity
 import cn.lblbc.shop.network.response.CategoryInfo
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -37,9 +38,9 @@ class CategoryFragment : BaseVmFragment<CategoryViewModel>() {
     }
 
     override fun observe() {
-        mViewModel.categoryInfoList.observe(this, {
+        mViewModel.categoryInfoList.observe(this) {
             viewPager.adapter = CategoryPagerAdapter(activity!!.supportFragmentManager, it)
-        })
+        }
     }
 
     private inner class CategoryPagerAdapter(fm: FragmentManager, var tabList: List<CategoryInfo>) :

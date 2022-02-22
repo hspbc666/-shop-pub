@@ -8,8 +8,8 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
-import cn.lblbc.shop.module.goods_detail.GoodsActivity
 import cn.lblbc.shop.module.category.CategoryGoodsAdapter
+import cn.lblbc.shop.module.goods_detail.GoodsActivity
 import cn.lblbc.shop.network.response.Goods
 import cn.lblbc.shop.utils.Constants
 import cn.lblbc.shop.utils.hideSoftKeyboard
@@ -24,8 +24,6 @@ import kotlinx.android.synthetic.main.part_search_top.*
  */
 class SearchActivity : BaseVmActivity<SearchViewModel>() {
     private lateinit var goodsAdapter: CategoryGoodsAdapter
-
-
     override fun viewModelClass() = SearchViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_search
     override fun initView() {
@@ -47,7 +45,6 @@ class SearchActivity : BaseVmActivity<SearchViewModel>() {
         searchEt.setOnClickListener {
             noDataLayout.visibility = GONE
             goodsGridView.visibility = GONE
-            searchHisView.visibility = VISIBLE
         }
         searchEt.setOnEditorActionListener { _, keyCode, _ ->
             if (keyCode == EditorInfo.IME_ACTION_SEARCH) {
@@ -56,32 +53,25 @@ class SearchActivity : BaseVmActivity<SearchViewModel>() {
             true
         }
         searchTv.setOnClickListener { search() }
-        searchHisView.setCallback {
-            searchEt.setText(it)
-            search()
-        }
     }
 
     private fun search() {
         val keyword = searchEt.text.toString()
         mViewModel.queryGoods(keyword)
-        searchHisView.addKeyword(keyword)
         hideSoftKeyboard(this)
     }
 
     override fun observe() {
-        mViewModel.goodsList.observe(this, {
+        mViewModel.goodsList.observe(this) {
             if (it.isEmpty()) {
                 noDataLayout.visibility = VISIBLE
                 goodsGridView.visibility = GONE
-                searchHisView.visibility = GONE
             } else {
                 noDataLayout.visibility = GONE
                 goodsGridView.visibility = VISIBLE
-                searchHisView.visibility = GONE
                 goodsAdapter.setData(it)
             }
-        })
+        }
     }
 
     private fun onItemClick(goods: Goods) {

@@ -30,6 +30,4 @@ class SearchViewModel : BaseViewModel() {
             { onComplete?.invoke() })
     }
 
-
-
 }

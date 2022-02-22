@@ -21,7 +21,7 @@ class ConfirmOrderViewModel : BaseViewModel() {
 
     fun createOrderFromCart(
         cartItemList: List<CartItem>,
-        userAddrId:String,
+        userAddrId: String,
         onSuccess: ((orderId: String) -> Unit)? = null,
         onFailure: ((msg: String) -> Unit)? = null,
         onComplete: (() -> Unit)? = null
@@ -29,7 +29,7 @@ class ConfirmOrderViewModel : BaseViewModel() {
         launch(
             {
                 val cartIdList = cartItemList.map { it.id }
-                val createOrderResp = repo.createOrderFromCart(CreateOrderFromCartReq(cartIdList,userAddrId))
+                val createOrderResp = repo.createOrderFromCart(CreateOrderFromCartReq(cartIdList, userAddrId))
                 onSuccess?.invoke(createOrderResp?.data?.orderId!!)
             },
             { onFailure?.invoke(it.message ?: "") },
@@ -88,7 +88,7 @@ class ConfirmOrderViewModel : BaseViewModel() {
     ) {
         launch(
             {
-                repo.queryDefaultAddress()?.data?.let { defaultAddress.value =it }
+                repo.queryDefaultAddress()?.data?.let { defaultAddress.value = it }
                 onSuccess?.invoke()
             },
             { onFailure?.invoke(it.message ?: "") },

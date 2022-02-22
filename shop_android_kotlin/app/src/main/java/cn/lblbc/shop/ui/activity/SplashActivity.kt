@@ -6,7 +6,11 @@ import cn.lblbc.shop.base.BaseActivity
 import cn.lblbc.shop.module.login.LoginActivity
 import cn.lblbc.shop.utils.Constants
 import cn.lblbc.shop.utils.SpUtil
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634

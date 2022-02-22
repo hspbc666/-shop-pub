@@ -21,8 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_arrow_right"
-            android:text="X商自营"
-            android:textColor="#222222" />
+            android:text="蓝不蓝自营"
+            android:textColor="@color/color_text" />
 
         <TextView
             android:id="@+id/orderStatusTv"
@@ -30,7 +30,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:textColor="#97999e"
             tools:text="已完成" />
     </LinearLayout>
 
@@ -60,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:textColor="#222222"
+            android:textColor="@color/color_text"
             tools:text="实付￥999" />
     </LinearLayout>
 
@@ -78,6 +77,7 @@
         android:gravity="end">
 
         <TextView
+            android:id="@+id/deleteOrderTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/capsule_btn_stroke_bg"
@@ -85,20 +85,8 @@
             android:paddingTop="5dp"
             android:paddingEnd="10dp"
             android:paddingBottom="5dp"
-            android:text="发票详情"
-            android:textColor="#575e64" />
+            android:text="删除订单" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/capsule_btn_stroke_bg"
-            android:paddingStart="10dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="5dp"
-            android:text="申请售后"
-            android:textColor="#575e64" />
     </LinearLayout>
 
 </LinearLayout>

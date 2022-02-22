@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#3b3b3b"
+            android:textColor="@color/color_text"
             android:textSize="16sp"
             tools:text="商品名称" />
 
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:lines="1"
-            android:textColor="@color/price_color"
+            android:textColor="@color/color_common"
             tools:text="￥333333" />
     </LinearLayout>
 

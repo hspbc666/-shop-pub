@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">X商城</string>
+    <string name="app_name">蓝不蓝商城</string>
     <string name="price">￥%1$s</string>
     <string name="selected_count">已选(%1$d)</string>
     <string name="pay">支付</string>

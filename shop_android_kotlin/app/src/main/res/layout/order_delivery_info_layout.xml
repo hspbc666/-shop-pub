@@ -19,8 +19,7 @@
         android:layout_height="wrap_content"
         android:text="配送"
         android:layout_marginStart="10dp"
-        android:textSize="15sp"
-        android:textColor="#595D65" />
+        android:textSize="15sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -34,13 +33,12 @@
             android:layout_height="wrap_content"
             android:text="顺丰速运"
             android:textStyle="bold"
-            android:textColor="#333333" />
+            android:textColor="@color/color_text" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1个包裹，预计明天送达"
-            android:textColor="#717171" />
+            android:text="1个包裹，预计明天送达" />
     </LinearLayout>
 
     <ImageView

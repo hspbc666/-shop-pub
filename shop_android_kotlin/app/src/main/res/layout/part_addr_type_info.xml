@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="地址类型"
-            android:textColor="#222222" />
+            android:textColor="@color/color_text" />
 
         <RadioGroup
             android:id="@+id/addrTypeRadioGroup"
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="设为默认地址"
-            android:textColor="#222222" />
+            android:textColor="@color/color_text" />
 
         <Switch
             android:id="@+id/defaultAddrSwitch"

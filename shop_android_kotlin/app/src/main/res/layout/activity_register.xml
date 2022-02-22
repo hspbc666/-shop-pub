@@ -34,6 +34,6 @@
             android:layout_marginStart="20dp"
             android:background="@drawable/shape_btn_bg"
             android:text="注册"
-            android:textColor="#fff" />
+            android:textColor="@color/white" />
     </LinearLayout>
 </LinearLayout>

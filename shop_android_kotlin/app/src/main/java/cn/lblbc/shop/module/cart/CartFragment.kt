@@ -17,6 +17,7 @@ import cn.lblbc.shop.network.response.CartItem
 import cn.lblbc.shop.utils.Constants
 import cn.lblbc.shop.utils.JsonUtil
 import cn.lblbc.shop.utils.getMoneyByYuan
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -85,7 +86,7 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
 
     override fun observe() {
         mViewModel.dataList.observe(this, { adapter.setData(it) })
-        mViewModel.selectionChangeCount.observe(this, {
+        mViewModel.selectionChangeCount.observe(this) {
             var sum = 0L
             mViewModel.selectionItemList.forEach { sum += it.price * it.quantity }
             selectedCountTv.text =
@@ -98,7 +99,7 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
                 gotoCreateOrderTv.isEnabled = true
                 gotoCreateOrderTv.setBackgroundResource(R.drawable.shape_btn_bg)
             }
-        })
+        }
     }
 
     private fun onItemClick(cartItem: CartItem) {

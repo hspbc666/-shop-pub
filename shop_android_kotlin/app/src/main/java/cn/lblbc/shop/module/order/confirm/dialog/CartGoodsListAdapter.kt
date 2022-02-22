@@ -36,8 +36,8 @@ class CartGoodsListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         data.squarePic?.let { loadImage(holder.itemView.goodsIv, it) }
     }
 
-    private fun loadImage(goodsIv: ImageView, url: String) {
-        Glide.with(mContext).load(url).into(goodsIv)
+    private fun loadImage(imageView: ImageView, url: String) {
+        Glide.with(mContext).load(url).into(imageView)
     }
 
     override fun getItemCount(): Int = dataList.size

@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="收货人"
-            android:textColor="#222222" />
+            android:textColor="@color/color_text" />
 
         <EditText
             android:id="@+id/receiverNameEt"
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="手机号"
-            android:textColor="#222222" />
+            android:textColor="@color/color_text" />
 
         <EditText
             android:id="@+id/receiverPhoneEt"

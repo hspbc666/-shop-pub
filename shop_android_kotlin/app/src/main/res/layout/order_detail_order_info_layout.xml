@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="订单信息"
-            android:textColor="#222222"
+            android:textColor="@color/color_text"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -36,16 +36,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="收货信息"
-            android:textColor="#97999E" />
+            android:text="收货信息"/>
 
         <TextView
             android:id="@+id/receiverInfoTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="X先生，135****0000，北京市XX区XX小区"
-            android:textColor="#595D63" />
+            android:text="X先生，135****0000，北京市XX区XX小区" />
     </LinearLayout>
 
     <LinearLayout
@@ -56,16 +54,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="订单编号"
-            android:textColor="#97999E" />
+            android:text="订单编号"/>
 
         <TextView
             android:id="@+id/orderIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            tools:text="13131313"
-            android:textColor="#595D63" />
+            android:textSize="12sp"
+            tools:text="13131313" />
     </LinearLayout>
 
     <LinearLayout
@@ -76,15 +73,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="下单时间"
-            android:textColor="#97999E" />
+            android:text="下单时间"/>
 
         <TextView
             android:id="@+id/orderCreateTimeTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:textColor="#595D63"
             tools:text="2022-01-01 08:00" />
     </LinearLayout>
 

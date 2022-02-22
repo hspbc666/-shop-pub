@@ -2,7 +2,6 @@ package cn.lblbc.shop.module.order.confirm
 
 import android.content.Intent
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.addr.AddAddressActivity
@@ -87,24 +86,8 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
     }
 
     private fun createOrder(cartItemList: List<CartItem>) {
-        mViewModel.createOrderFromCart(cartItemList,userAddr?.id?:"",
-                onSuccess = {
-            showPayDialog(it)
-        })
-    }
-
-    private fun showPayDialog(orderId: String) {
-        val message = "现在支付么？"
-        val alertDialog = AlertDialog.Builder(this).setMessage(message).setCancelable(false)
-            .setPositiveButton(R.string.pay)
-            { _, _ ->
-                pay(orderId)
-            }
-            .setNegativeButton(R.string.cancel) { _, _ ->
-                closeAndGotoOrderDetailPage(orderId)
-            }
-            .create()
-        alertDialog.show()
+        mViewModel.createOrderFromCart(cartItemList, userAddr?.id ?: "",
+            onSuccess = { closeAndGotoOrderDetailPage(it) })
     }
 
     private fun closeAndGotoOrderDetailPage(orderId: String) {
@@ -114,21 +97,15 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
         finish()
     }
 
-    private fun pay(orderId: String) {
-        mViewModel.payForOrder(orderId, onSuccess = {
-            closeAndGotoOrderDetailPage(orderId)
-        })
-    }
-
     private fun initToolbar() {
         toolbar.setNavigationOnClickListener { finish() }
     }
 
     override fun observe() {
-        mViewModel.defaultAddress.observe(this, {
+        mViewModel.defaultAddress.observe(this) {
             userAddr = it
             updateUserAddr()
-        })
+        }
     }
 
     private fun updateUserAddr() {

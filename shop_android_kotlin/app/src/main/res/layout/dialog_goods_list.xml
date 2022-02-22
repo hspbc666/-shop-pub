@@ -21,15 +21,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="商品清单"
-                android:textColor="#222222"
+                android:textColor="@color/color_text"
                 android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/goodsAmountTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(共2件)"
-                android:textColor="#99999c" />
+                android:text="(共2件)"/>
 
         </LinearLayout>
 
@@ -60,16 +59,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="X商发货"
-            android:textColor="#222222"
+            android:text="蓝不蓝发货"
+            android:textColor="@color/color_text"
             android:textSize="15sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="免运费"
-            android:textColor="#99999c" />
+            android:text="免运费"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

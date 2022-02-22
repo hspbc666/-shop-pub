@@ -9,6 +9,7 @@ import cn.lblbc.shop.module.goods_detail.GoodsActivity
 import cn.lblbc.shop.module.search.SearchActivity
 import cn.lblbc.shop.network.response.Goods
 import cn.lblbc.shop.utils.Constants
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -65,15 +66,15 @@ class HomeFragment : BaseVmFragment<HomeViewModel>() {
     }
 
     override fun observe() {
-        mViewModel.dataList.observe(this, {
-            bannerView.setData(it.subList(0,3))
+        mViewModel.dataList.observe(this) {
+            bannerView.setData(it.subList(0, 3))
             goodsSquareView1.setData(it[3])
             goodsSquareView2.setData(it[4])
             goodsSquareView3.setData(it[5])
             goodsSquareView4.setData(it[6])
             goodsSquareView5.setData(it[7])
             goodsSquareView6.setData(it[8])
-        })
+        }
     }
 
     override fun onResume() {

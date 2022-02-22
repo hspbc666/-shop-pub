@@ -21,8 +21,11 @@
             app:title="确认订单" />
 
         <include layout="@layout/order_addr_layout" />
+
         <include layout="@layout/order_goods_info_layout" />
+
         <include layout="@layout/order_delivery_info_layout" />
+
         <include layout="@layout/order_fee_layout" />
     </LinearLayout>
 

@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/shape_btn_bg"
             android:text="登录"
-            android:textColor="#fff" />
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/registerBtn"
@@ -42,6 +42,6 @@
             android:layout_marginStart="20dp"
             android:background="@drawable/shape_btn_bg"
             android:text="注册"
-            android:textColor="#fff" />
+            android:textColor="@color/white" />
     </LinearLayout>
 </LinearLayout>

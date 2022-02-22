@@ -45,5 +45,5 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:text="确定"
-        android:textColor="#FFFFFF" />
+        android:textColor="@color/white" />
 </RelativeLayout>

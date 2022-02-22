@@ -35,13 +35,8 @@ class AddressListActivity : BaseVmActivity<AddressViewModel>() {
     }
 
     override fun observe() {
-        mViewModel.userAddrList.observe(this, {
+        mViewModel.userAddrList.observe(this) {
             adapter.setData(it)
-        })
-    }
-
-    override fun onResume() {
-        super.onResume()
-        initData()
+        }
     }
 }

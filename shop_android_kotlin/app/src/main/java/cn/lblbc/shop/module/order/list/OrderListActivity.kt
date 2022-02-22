@@ -55,7 +55,7 @@ class OrderListActivity : BaseVmActivity<OrderListViewModel>() {
             return OrderFragment.newInstance(tabList[position].tabId)
         }
 
-        override fun getPageTitle(position: Int): CharSequence? {
+        override fun getPageTitle(position: Int): String {
             return tabList[position].name
         }
 
