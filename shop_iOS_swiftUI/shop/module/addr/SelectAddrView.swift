@@ -7,7 +7,15 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 
+class SharedViewModel: ObservableObject {
+    @Published var addrId = ""
+    @Published var address = ""
+    @Published var addrName = ""
+}
+
+
 struct SelectAddrView: View {
+    @ObservedObject var sharedViewModel : SharedViewModel
     @StateObject private var viewModel = AddrViewModel()
     @StateObject private var refreshViewModel = RefreshViewModel()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -19,7 +27,8 @@ struct SelectAddrView: View {
                     SelectAddrItemView(presentationMode: presentationMode,
                                        viewModel: viewModel,
                                        refreshViewModel: refreshViewModel,
-                                       userAddr: viewModel.dataList[i])
+                                       userAddr: viewModel.dataList[i],
+                                       sharedViewModel: sharedViewModel)
                 }
             }
             NavigationLink(destination: AddAddrView(viewModel: viewModel, refreshViewModel: refreshViewModel)){
@@ -33,6 +42,7 @@ struct SelectAddrView: View {
             
         }.onAppear(perform: {
             viewModel.queryData()
+            sharedViewModel.addrName = "3333"
         })
     }
 }
@@ -44,8 +54,7 @@ struct SelectAddrItemView: View {
     var userAddr: UserAddr
     var xxID = ""
     @State private var isShowingDetailView = false
-    @EnvironmentObject var sharedViewModel: SharedViewModel
-
+    @ObservedObject var sharedViewModel : SharedViewModel
     var body: some View {
         HStack{
             SimpleRadioButton(id: userAddr.id, selectedID: sharedViewModel.addrId, callBack: self.radioButtonCallBack)
