@@ -109,21 +109,16 @@ struct OrderPageView: View {
                     VStack(alignment: .leading){
                         Text(orderDetail.name).padding(EdgeInsets.init(top: 0, leading: 0, bottom: 5, trailing: 0))
                         HStack{
-                            Text("7天无理由退货")
-                                .font(.system(size:12))
-                                .foregroundColor(Color(hex: 0x677DA5))
-                                .padding(EdgeInsets.init(top: 5, leading: 5, bottom: 5, trailing: 5))
-                                .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color(hex: 0xEAF3FF)))
-                            Text("不支持换货")
-                                .font(.system(size:12))
-                                .foregroundColor(Color(hex: 0x97999E))
-                                .padding(EdgeInsets.init(top: 5, leading: 5, bottom: 5, trailing: 5))
-                                .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color(hex: 0xF2F5F5)))
+                            Text("￥" + String(orderDetail.price/100))
+                            Spacer()
+                            Text("×" + String(orderDetail.quantity))
                         }
-                    }
-                    VStack{
-                        Text("￥" + String(orderDetail.price/100))
-                        Text("×" + String(orderDetail.quantity))
+                        Text("7天无理由退货")
+                            .font(.system(size:12))
+                            .foregroundColor(Color(hex: 0x677DA5))
+                            .padding(EdgeInsets.init(top: 5, leading: 5, bottom: 5, trailing: 5))
+                            .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color(hex: 0xEAF3FF)))
+
                     }
                 }
             }
