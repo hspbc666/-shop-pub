@@ -6,36 +6,41 @@
     android:background="@color/common_bg"
     android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
+        android:layout_above="@+id/confirmOrderBottomLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/cartBottomLayout"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
-            app:navigationIcon="@drawable/ic_back_grey"
-            app:title="确认订单" />
+            android:layout_height="match_parent"
+            android:layout_above="@+id/cartBottomLayout"
+            android:orientation="vertical">
 
-        <include layout="@layout/order_addr_layout" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                app:navigationIcon="@drawable/ic_back_grey"
+                app:title="确认订单" />
 
-        <cn.lblbc.shop.ui.view.OrderListView
-            android:id="@+id/orderListView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/shape_round_rect_white"
-            android:paddingTop="10dp" />
+            <include layout="@layout/order_addr_layout" />
 
-        <include layout="@layout/order_delivery_info_layout" />
+            <cn.lblbc.shop.ui.view.OrderListView
+                android:id="@+id/orderListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/shape_round_rect_white"
+                android:paddingTop="10dp" />
 
-        <include layout="@layout/order_fee_layout" />
-    </LinearLayout>
+            <include layout="@layout/order_delivery_info_layout" />
+
+            <include layout="@layout/order_fee_layout" />
+        </LinearLayout>
+    </ScrollView>
 
     <include layout="@layout/order_bottom_layout" />
 </RelativeLayout>
