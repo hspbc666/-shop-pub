@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.item_cart_goods.view.*
  * 公众号：蓝不蓝编程
  */
 class CartAdapter(var mViewModel: CartViewModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private lateinit var onItemClick: (cartItem: CartItem) -> Unit
     private var dataList = mutableListOf<CartItem>()
     private lateinit var mContext: Context
     fun setData(cartItemList: List<CartItem>) {
@@ -41,7 +40,6 @@ class CartAdapter(var mViewModel: CartViewModel) : RecyclerView.Adapter<Recycler
             data.quantity = it
             mViewModel.modifyCart(data, isChecked = holder.itemView.cartItemCheckBox.isChecked)
         }
-        holder.itemView.setOnClickListener { onItemClick(data) }
         holder.itemView.cartItemCheckBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 mViewModel.selectItem(data)
@@ -61,10 +59,6 @@ class CartAdapter(var mViewModel: CartViewModel) : RecyclerView.Adapter<Recycler
         mContext = parent.context
         val view = LayoutInflater.from(mContext).inflate(R.layout.item_cart_goods, parent, false)
         return ViewHolder(view)
-    }
-
-    infix fun setOnItemClick(onClick: (CartItem: CartItem) -> Unit) {
-        this.onItemClick = onClick
     }
 
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!)

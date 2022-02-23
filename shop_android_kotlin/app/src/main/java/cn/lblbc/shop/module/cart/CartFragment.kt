@@ -51,7 +51,6 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
     }
 
     override fun initListeners() {
-        adapter.setOnItemClick(this::onItemClick)
         goodsListSrl.setOnRefreshListener { refreshPage() }
         cartLoginTv.setOnClickListener {
             startActivity(Intent(context, LoginActivity::class.java))
@@ -100,12 +99,6 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
                 gotoCreateOrderTv.setBackgroundResource(R.drawable.shape_btn_bg)
             }
         }
-    }
-
-    private fun onItemClick(cartItem: CartItem) {
-        val intent = Intent(context, GoodsActivity::class.java)
-        intent.putExtra(Constants.EXTRA_KEY_GOODS_ID, cartItem.goodsId)
-        startActivity(intent)
     }
 
     override fun onResume() {
