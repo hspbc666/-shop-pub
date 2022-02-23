@@ -14,7 +14,7 @@ import java.nio.charset.UnsupportedCharsetException
  * 公众号：蓝不蓝编程
  */
 class HttpLogInterceptor : BaseInterceptor() {
-    private val TAG = HttpLogInterceptor::class.java.simpleName
+    private val tag = HttpLogInterceptor::class.java.simpleName
     private val UTF8 = Charset.forName("UTF-8")
 
     override fun interceptMe(chain: Interceptor.Chain): Response {
@@ -33,7 +33,7 @@ class HttpLogInterceptor : BaseInterceptor() {
         }
 
         Log.d(
-            TAG,
+            tag,
             "发送请求: method：" + request.method()
                     + "\nurl：" + request.url()
                     + "\n请求头：" + request.headers()
@@ -56,13 +56,13 @@ class HttpLogInterceptor : BaseInterceptor() {
             try {
                 charset = contentType.charset(UTF8)
             } catch (e: UnsupportedCharsetException) {
-                Log.e(TAG, e.message ?: "未知错误")
+                Log.e(tag, e.message ?: "未知错误")
             }
         }
         rBody = buffer.clone().readString(charset!!)
 
         Log.d(
-            TAG,
+            tag,
             "收到响应: code:" + response.code()
                     + "\n请求url：" + response.request().url()
                     + "\n请求body：" + body
