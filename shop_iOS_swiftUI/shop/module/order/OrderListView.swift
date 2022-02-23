@@ -87,10 +87,7 @@ struct OrderPageView: View {
             
             HStack{
                 Spacer()
-                Text("发票详情").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
-                    .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
-                    .foregroundColor(Color(hex: 0x141414))
-                Text("申请售后").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                Text("删除订单").padding(EdgeInsets.init(top: 5, leading: 10, bottom: 5, trailing: 10))
                     .background(RoundedRectangle(cornerRadius: 50).strokeBorder(Color.gray,lineWidth: 1))
                     .foregroundColor(Color(hex: 0x141414))
             }
