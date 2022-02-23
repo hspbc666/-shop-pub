@@ -22,7 +22,15 @@
 
         <include layout="@layout/order_addr_layout" />
 
-        <include layout="@layout/order_goods_info_layout" />
+        <cn.lblbc.shop.ui.view.OrderListView
+            android:id="@+id/orderListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/shape_round_rect_white"
+            android:paddingTop="10dp" />
 
         <include layout="@layout/order_delivery_info_layout" />
 

@@ -60,12 +60,14 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
         }
         buyTv.setOnClickListener {
             if (LoginManager.isLoggedIn()) {
-                val intent = Intent(this, ConfirmOrderActivity::class.java)
-                val simpleOrderInfo = SimpleOrderInfo(goodsId, 1, goods?.squarePic)
-                val orderInJson = JsonUtil.toJson(simpleOrderInfo)
-                intent.putExtra(Constants.EXTRA_KEY_SIMPLE_ORDER, orderInJson)
-                intent.putExtra(Constants.EXTRA_KEY_COST_SUM, price)
-                startActivity(intent)
+                goods?.let {
+                    val intent = Intent(this, ConfirmOrderActivity::class.java)
+                    val simpleOrderInfo = SimpleOrderInfo(goodsId, it.name, 1, it.price, it.squarePic)
+                    val orderInJson = JsonUtil.toJson(simpleOrderInfo)
+                    intent.putExtra(Constants.EXTRA_KEY_SIMPLE_ORDER, orderInJson)
+                    intent.putExtra(Constants.EXTRA_KEY_COST_SUM, price)
+                    startActivity(intent)
+                }
             } else {
                 startActivity(Intent(this@GoodsActivity, LoginActivity::class.java))
             }

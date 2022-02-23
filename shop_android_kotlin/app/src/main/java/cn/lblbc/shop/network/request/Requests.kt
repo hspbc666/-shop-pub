@@ -21,7 +21,9 @@ class CreateOrderFromCartReq(val cartIdList: List<String>, val userAddrId: Strin
 class CreateOrderReq(val goodsId: String, val userAddrId: String)
 
 class SimpleOrderInfo(
-    val goodsId: String?,
-    val quantity: Int,
+    var goodsId: String = "",
+    var goodsName: String = "",
+    var quantity: Int = 0,
+    var price: Long = 0,
     var squarePic: String? = null
 )

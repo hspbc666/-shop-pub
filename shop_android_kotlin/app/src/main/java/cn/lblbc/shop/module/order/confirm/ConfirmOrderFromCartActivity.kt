@@ -15,11 +15,10 @@ import cn.lblbc.shop.utils.Constants.EXTRA_KEY_CART_ITEMS
 import cn.lblbc.shop.utils.Constants.EXTRA_KEY_COST_SUM
 import cn.lblbc.shop.utils.JsonUtil
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_goods.*
 import kotlinx.android.synthetic.main.order_addr_layout.*
 import kotlinx.android.synthetic.main.order_bottom_layout.*
 import kotlinx.android.synthetic.main.order_fee_layout.*
-import kotlinx.android.synthetic.main.order_goods_info_layout.*
+import kotlinx.android.synthetic.main.activity_confirm_order.*
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -45,11 +44,7 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
         sumTv.text = sum
         mViewModel.queryDefaultAddress()
         cartItemList?.let {
-            if (it.isNotEmpty()) {
-                val picUrl = it.first().squarePic
-                Glide.with(this).load(picUrl).into(orderGoodsIv)
-            }
-            packagesTv.text = getString(R.string.package_count, it.size)
+            orderListView.setDataByCartItems(it)
         }
     }
 
@@ -68,9 +63,6 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
                 intent.putExtra(Constants.EXTRA_KEY_USER_ADDR_ID, it.id)
                 startActivityForResult(intent, requestCodeForSelectAddr)
             }
-        }
-        orderGoodsLayout.setOnClickListener {
-            cartItemList?.let { CartGoodsListDialog(this, it).show() }
         }
     }
 
