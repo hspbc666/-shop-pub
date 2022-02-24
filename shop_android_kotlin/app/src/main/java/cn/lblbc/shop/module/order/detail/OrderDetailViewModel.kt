@@ -12,36 +12,18 @@ import cn.lblbc.shop.network.response.OrderInfo
  * 公众号：蓝不蓝编程
  */
 class OrderDetailViewModel : BaseViewModel() {
-    private val repo by lazy { ShopRepo() }
     val orderInfo: MutableLiveData<OrderInfo> = MutableLiveData()
 
-    fun deleteOrder(
-        orderId: String,
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                repo.deleteOrder(orderId)
-                onSuccess?.invoke()
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
+    fun deleteOrder(orderId: String, onSuccess: (() -> Unit)? = null) {
+        launch({
+            ShopRepo.deleteOrder(orderId)
+            onSuccess?.invoke()
+        })
     }
 
-    fun queryOrder(
-        orderId: String,
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                orderInfo.value = repo.queryOrder(orderId)?.data
-                onSuccess?.invoke()
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
+    fun queryOrder(orderId: String) {
+        launch({
+            orderInfo.value = ShopRepo.queryOrder(orderId)?.data
+        })
     }
 }

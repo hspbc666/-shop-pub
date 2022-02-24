@@ -47,15 +47,15 @@ class OrderInfo {
 }
 
 class OrderDetail {
-    var goodsId: String? = null
-    var name: String? = null
-    var price: Long = 0
-    var longPic: String? = null
-    var squarePic: String? = null
-    var quantity = 0
+    val goodsId: String? = null
+    val name: String? = null
+    val price: Long = 0
+    val longPic: String? = null
+    val squarePic: String? = null
+    val quantity = 0
 }
 
-class UserAddr {
+class Address {
     var id = ""
     var name: String? = null
     var phone: String? = null

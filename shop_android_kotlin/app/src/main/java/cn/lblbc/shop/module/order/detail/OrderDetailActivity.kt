@@ -1,9 +1,5 @@
 package cn.lblbc.shop.module.order.detail
 
-import android.content.Context
-import android.view.LayoutInflater
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
@@ -11,7 +7,6 @@ import cn.lblbc.shop.network.response.OrderDetail
 import cn.lblbc.shop.utils.Constants.EXTRA_KEY_ORDER_ID
 import cn.lblbc.shop.utils.formatTime
 import cn.lblbc.shop.utils.getMoneyByYuan
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_goods.toolbar
 import kotlinx.android.synthetic.main.activity_order_detail.*
 import kotlinx.android.synthetic.main.order_detail_bottom_layout.*
@@ -42,7 +37,7 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
         mViewModel.orderInfo.observe(this) { orderInfo ->
             orderInfo?.let {
                 orderIdTv.text = it.orderId
-                receiverInfoTv.text = it.userAddr?.toSimpleInfo()
+                receiverInfoTv.text = it.address?.toSimpleInfo()
                 val sum = calcSum(it.list)
                 orderDetailSumTv.text = getString(R.string.price, sum)
                 realPaidTv.text = getString(R.string.real_paid, sum)
@@ -50,30 +45,6 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
                 orderListView.setData(it.list)
             }
         }
-    }
-
-    private fun createOrderDetailItems(list: List<OrderDetail>?, ordersContainer: LinearLayout) {
-        ordersContainer.removeAllViews()
-        list?.forEach {
-            createOrderDetailItem(this, it, ordersContainer)
-        }
-    }
-
-    private fun createOrderDetailItem(
-        context: Context,
-        orderDetail: OrderDetail,
-        ordersContainer: LinearLayout
-    ) {
-        val view =
-            LayoutInflater.from(context).inflate(R.layout.item_order_detail, ordersContainer, false)
-        val imageUrl = orderDetail.squarePic
-        Glide.with(context).load(imageUrl).into(view.findViewById(R.id.orderDetailGoodsIv))
-        view.findViewById<TextView>(R.id.orderDetailGoodsNameTv).text = orderDetail.name
-        view.findViewById<TextView>(R.id.orderDetailPrice).text =
-            context.getString(R.string.price, getMoneyByYuan(orderDetail.price))
-        view.findViewById<TextView>(R.id.orderDetailQuantity).text =
-            context.getString(R.string.amount_with_prefix, orderDetail.quantity)
-        ordersContainer.addView(view)
     }
 
     override fun initListeners() {

@@ -2,7 +2,7 @@ package cn.lblbc.shop.module.addr
 
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
-import cn.lblbc.shop.network.response.UserAddr
+import cn.lblbc.shop.network.response.Address
 import cn.lblbc.shop.utils.Constants
 import cn.lblbc.shop.utils.JsonUtil
 import kotlinx.android.synthetic.main.activity_modify_address.*
@@ -18,14 +18,14 @@ import kotlinx.android.synthetic.main.part_addr_type_info.*
  */
 class EditAddressActivity : BaseVmActivity<AddressViewModel>() {
     private var addType = 0
-    private var userAddr: UserAddr? = null
+    private var address: Address? = null
     override fun layoutResId(): Int = R.layout.activity_modify_address
     override fun viewModelClass() = AddressViewModel::class.java
     override fun initView() {
         initToolbar()
-        val addrInfoInJson = intent.getStringExtra(Constants.EXTRA_KEY_ADDR_INFO)
-        userAddr = JsonUtil.fromJson(addrInfoInJson!!)
-        userAddr?.let {
+        val addrInfoInJson = intent.getStringExtra(Constants.EXTRA_KEY_ADDR_INFO) ?: ""
+        address = JsonUtil.fromJson(addrInfoInJson)
+        address?.let {
             receiverNameEt.setText(it.name)
             receiverPhoneEt.setText(it.phone)
             regionEt.setText(it.region)
@@ -52,7 +52,7 @@ class EditAddressActivity : BaseVmActivity<AddressViewModel>() {
             }
         }
         modifyAddrTv.setOnClickListener {
-            userAddr?.let {
+            address?.let {
                 it.name = receiverNameEt.text.toString()
                 it.phone = receiverPhoneEt.text.toString()
                 it.region = regionEt.text.toString()

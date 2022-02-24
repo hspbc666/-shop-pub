@@ -6,19 +6,17 @@ import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.addr.AddAddressActivity
 import cn.lblbc.shop.module.addr.select.SelectAddressActivity
-import cn.lblbc.shop.module.order.confirm.dialog.CartGoodsListDialog
 import cn.lblbc.shop.module.order.detail.OrderDetailActivity
 import cn.lblbc.shop.network.response.CartItem
-import cn.lblbc.shop.network.response.UserAddr
+import cn.lblbc.shop.network.response.Address
 import cn.lblbc.shop.utils.Constants
 import cn.lblbc.shop.utils.Constants.EXTRA_KEY_CART_ITEMS
 import cn.lblbc.shop.utils.Constants.EXTRA_KEY_COST_SUM
 import cn.lblbc.shop.utils.JsonUtil
-import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.activity_confirm_order.*
 import kotlinx.android.synthetic.main.order_addr_layout.*
 import kotlinx.android.synthetic.main.order_bottom_layout.*
 import kotlinx.android.synthetic.main.order_fee_layout.*
-import kotlinx.android.synthetic.main.activity_confirm_order.*
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -28,7 +26,7 @@ import kotlinx.android.synthetic.main.activity_confirm_order.*
  */
 open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>() {
     private var cartItemList: List<CartItem>? = null
-    private var userAddr: UserAddr? = null
+    private var address: Address? = null
     override fun viewModelClass() = ConfirmOrderViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_confirm_order
 
@@ -58,7 +56,7 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
             startActivityForResult(intent, requestCodeForAddAddr)
         }
         addrLayout.setOnClickListener {
-            userAddr?.let {
+            address?.let {
                 val intent = Intent(this, SelectAddressActivity::class.java)
                 intent.putExtra(Constants.EXTRA_KEY_USER_ADDR_ID, it.id)
                 startActivityForResult(intent, requestCodeForSelectAddr)
@@ -71,14 +69,14 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
         if (requestCode == requestCodeForSelectAddr || requestCode == requestCodeForAddAddr) {
             data?.let {
                 val userAddrJson = it.getStringExtra(Constants.EXTRA_KEY_USER_ADDR)
-                userAddr = JsonUtil.fromJson(userAddrJson ?: "")
+                address = JsonUtil.fromJson(userAddrJson ?: "")
                 updateUserAddr()
             }
         }
     }
 
     private fun createOrder(cartItemList: List<CartItem>) {
-        mViewModel.createOrderFromCart(cartItemList, userAddr?.id ?: "",
+        mViewModel.createOrderFromCart(cartItemList, address?.id ?: "",
             onSuccess = { closeAndGotoOrderDetailPage(it) })
     }
 
@@ -95,13 +93,13 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
 
     override fun observe() {
         mViewModel.defaultAddress.observe(this) {
-            userAddr = it
+            address = it
             updateUserAddr()
         }
     }
 
     private fun updateUserAddr() {
-        userAddr?.let {
+        address?.let {
             addrLayout.visibility = View.VISIBLE
             addAddrLayout.visibility = View.GONE
             receiverNameTv.text = it.name

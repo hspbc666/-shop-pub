@@ -50,10 +50,8 @@ class MineFragment : BaseFragment() {
 
     private fun refreshPage() {
         if (LoginManager.isLoggedIn()) {
-            userLogoIv.setImageResource(R.drawable.ic_user_loggedin)
             userNameTv.text = "尊贵会员"
         } else {
-            userLogoIv.setImageResource(R.drawable.ic_user_default)
             userNameTv.text = "登录/注册 >"
         }
 

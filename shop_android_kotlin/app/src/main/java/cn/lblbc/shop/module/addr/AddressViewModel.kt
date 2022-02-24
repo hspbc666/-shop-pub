@@ -3,7 +3,7 @@ package cn.lblbc.shop.module.addr
 import androidx.lifecycle.MutableLiveData
 import cn.lblbc.shop.base.BaseViewModel
 import cn.lblbc.shop.network.ShopRepo
-import cn.lblbc.shop.network.response.UserAddr
+import cn.lblbc.shop.network.response.Address
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -12,67 +12,33 @@ import cn.lblbc.shop.network.response.UserAddr
  * 公众号：蓝不蓝编程
  */
 class AddressViewModel : BaseViewModel() {
-    private val repo by lazy { ShopRepo() }
-    val userAddrList: MutableLiveData<List<UserAddr>> = MutableLiveData()
+    val addressList: MutableLiveData<List<Address>> = MutableLiveData()
 
-    fun query(
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                userAddrList.value = repo.queryAddress()?.data
-                onSuccess?.invoke()
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
+    fun query() {
+        launch({
+            addressList.value = ShopRepo.queryAddress()?.data
+        })
     }
 
-    fun addAddress(
-        userAddr: UserAddr,
-        onSuccess: ((userAddr: UserAddr) -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                val userAddrId = repo.addAddress(userAddr)?.data
-                userAddr.id = userAddrId ?: ""
-                onSuccess?.invoke(userAddr)
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
+    fun addAddress(address: Address, onSuccess: ((address: Address) -> Unit)? = null) {
+        launch({
+            val addressId = ShopRepo.addAddress(address)?.data
+            address.id = addressId ?: ""
+            onSuccess?.invoke(address)
+        })
     }
 
-    fun modifyAddress(
-        userAddr: UserAddr,
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                repo.modifyAddress(userAddr)
-                onSuccess?.invoke()
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
+    fun modifyAddress(address: Address, onSuccess: (() -> Unit)? = null) {
+        launch({
+            ShopRepo.modifyAddress(address)
+            onSuccess?.invoke()
+        })
     }
 
-    fun deleteAddress(
-        userAddrId: String,
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                repo.deleteAddress(userAddrId)
-                onSuccess?.invoke()
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
+    fun deleteAddress(addressId: String, onSuccess: (() -> Unit)? = null) {
+        launch({
+            ShopRepo.deleteAddress(addressId)
+            onSuccess?.invoke()
+        })
     }
-
 }

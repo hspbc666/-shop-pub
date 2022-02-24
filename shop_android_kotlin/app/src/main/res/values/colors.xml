@@ -8,5 +8,6 @@
     <color name="white">#FFFFFF</color>
     <color name="color_common">#EF3965</color>
     <color name="color_text">#222222</color>
+    <color name="color_gray">#CBCCD2</color>
 
 </resources>

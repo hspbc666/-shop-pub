@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
-        app:navigationIcon="@drawable/ic_back_grey"
+        app:navigationIcon="@drawable/ic_back_gray"
         app:title="新增地址" />
 
     <ScrollView

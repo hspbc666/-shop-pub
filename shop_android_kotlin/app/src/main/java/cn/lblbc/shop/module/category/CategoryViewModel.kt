@@ -12,20 +12,11 @@ import cn.lblbc.shop.network.response.CategoryInfo
  * 公众号：蓝不蓝编程
  */
 class CategoryViewModel : BaseViewModel() {
-    private val repo by lazy { ShopRepo() }
     val categoryInfoList: MutableLiveData<List<CategoryInfo>> = MutableLiveData()
 
-    fun queryCategory(
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                categoryInfoList.value = repo.queryCategory()?.data
-                onSuccess?.invoke()
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
+    fun queryCategory() {
+        launch({
+            categoryInfoList.value = ShopRepo.queryCategory()?.data
+        })
     }
 }

@@ -19,7 +19,6 @@ import cn.lblbc.shop.utils.Constants
 class CategoryGoodsFragment(var categoryId: String) : BaseVmFragment<CategoryGoodsViewModel>() {
     private lateinit var goodsAdapter: CategoryGoodsAdapter
     private lateinit var goodsGridView: GridView
-    private lateinit var goodsListSrl: SwipeRefreshLayout
     override fun viewModelClass() = CategoryGoodsViewModel::class.java
     override fun layoutResId(): Int = R.layout.fragment_category_goods
 
@@ -27,21 +26,16 @@ class CategoryGoodsFragment(var categoryId: String) : BaseVmFragment<CategoryGoo
         goodsAdapter = CategoryGoodsAdapter(context!!)
         goodsGridView = findViewById(R.id.goodsGridView)
         goodsGridView.adapter = goodsAdapter
-        goodsListSrl = findViewById(R.id.goodsListSrl)
     }
 
     override fun initListeners() {
         goodsGridView.setOnItemClickListener { _, _, position, _ ->
             onItemClick(goodsAdapter.getData(position))
         }
-        goodsListSrl.setOnRefreshListener { initData() }
     }
 
     override fun initData() {
-        mViewModel.queryGoods(categoryId,
-            onComplete = {
-                goodsListSrl.isRefreshing = false
-            })
+        mViewModel.queryGoods(categoryId)
     }
 
     override fun observe() {

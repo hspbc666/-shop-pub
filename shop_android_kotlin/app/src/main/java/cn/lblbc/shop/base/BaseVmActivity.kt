@@ -18,14 +18,9 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(layoutResId())
         initViewModel()
+        initData()
         initView()
         observe()
-        // 因为Activity恢复后savedInstanceState不为null，
-        // 重新恢复后会自动从ViewModel中的LiveData恢复数据，
-        // 不需要重新初始化数据。
-        if (savedInstanceState == null) {
-            initData()
-        }
         initListeners()
     }
 
@@ -36,19 +31,8 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
     protected abstract fun viewModelClass(): Class<VM>
     protected abstract fun layoutResId(): Int
 
-    open fun initView() {
-        // Override if need
-    }
-
-    open fun observe() {
-        // Override if need
-    }
-
-    open fun initData() {
-        // Override if need
-    }
-
-    open fun initListeners() {
-        // Override if need
-    }
+    open fun initData() {}
+    open fun initView() {}
+    open fun observe() {}
+    open fun initListeners() {}
 }

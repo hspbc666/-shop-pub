@@ -23,7 +23,7 @@ public class GoodsService {
     }
 
     public List<Goods> queryByName(String goodsName) {
-        return goodsMapper.queryByName(goodsName);
+        return goodsMapper.queryByName("%" + goodsName + "%");
     }
 
     public List<Goods> queryAll() {

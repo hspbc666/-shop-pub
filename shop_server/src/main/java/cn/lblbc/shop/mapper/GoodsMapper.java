@@ -23,7 +23,7 @@ public interface GoodsMapper {
     @Select(value = "select * from goods where id = #{goodsId}")
     Goods queryById(@Param("goodsId") String goodsId);
 
-    @Select(value = "select * from goods where name like \"%\"#{goodsName}\"%\"")
+    @Select(value = "select * from goods where name like #{goodsName}")
     List<Goods> queryByName(@Param("goodsName") String goodsName);
 
 }

@@ -5,7 +5,7 @@ import cn.lblbc.shop.network.request.CreateOrderFromCartReq
 import cn.lblbc.shop.network.request.CreateOrderReq
 import cn.lblbc.shop.network.request.LoginReq
 import cn.lblbc.shop.network.request.RegisterReq
-import cn.lblbc.shop.network.response.UserAddr
+import cn.lblbc.shop.network.response.Address
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -13,7 +13,7 @@ import cn.lblbc.shop.network.response.UserAddr
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：蓝不蓝编程
  */
-class ShopRepo : BaseRepository() {
+object ShopRepo : BaseRepository() {
     suspend fun queryCategory() = apiService.queryCategory()
     suspend fun queryGoodsByCategory(categoryId: String) = apiService.queryGoodsByCategory(categoryId)
     suspend fun queryGoods(goodsId: String) = apiService.queryGoods(goodsId)
@@ -25,15 +25,14 @@ class ShopRepo : BaseRepository() {
 
     suspend fun createOrder(req: CreateOrderReq) = apiService.createOrder(req)
     suspend fun createOrderFromCart(req: CreateOrderFromCartReq) = apiService.createOrderFromCart(req)
-    suspend fun payForOrder(orderId: String) = apiService.payForOrder(orderId)
     suspend fun queryOrderByStatus(orderStatus: Int) = apiService.queryOrderByStatus(orderStatus)
     suspend fun queryOrder(orderId: String) = apiService.queryOrder(orderId)
     suspend fun deleteOrder(orderId: String) = apiService.deleteOrder(orderId)
     suspend fun queryAddress() = apiService.queryAddress()
     suspend fun queryDefaultAddress() = apiService.queryDefaultAddress()
-    suspend fun addAddress(userAddr: UserAddr) = apiService.addAddress(userAddr)
-    suspend fun modifyAddress(userAddr: UserAddr) = apiService.modifyAddress(userAddr)
-    suspend fun deleteAddress(userAddrId: String) = apiService.deleteAddress(userAddrId)
+    suspend fun addAddress(address: Address) = apiService.addAddress(address)
+    suspend fun modifyAddress(address: Address) = apiService.modifyAddress(address)
+    suspend fun deleteAddress(addressId: String) = apiService.deleteAddress(addressId)
     suspend fun login(userName: String, password: String) =
         apiService.login(LoginReq(userName, password))
 

@@ -11,15 +11,12 @@ import cn.lblbc.shop.module.addr.select.SelectAddressActivity
 import cn.lblbc.shop.module.order.detail.OrderDetailActivity
 import cn.lblbc.shop.network.request.SimpleOrderInfo
 import cn.lblbc.shop.network.response.CartItem
-import cn.lblbc.shop.network.response.UserAddr
 import cn.lblbc.shop.utils.Constants
 import cn.lblbc.shop.utils.Constants.EXTRA_KEY_COST_SUM
 import cn.lblbc.shop.utils.Constants.EXTRA_KEY_SIMPLE_ORDER
 import cn.lblbc.shop.utils.JsonUtil
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_confirm_order.*
 import kotlinx.android.synthetic.main.activity_goods.*
-import kotlinx.android.synthetic.main.activity_goods.toolbar
 import kotlinx.android.synthetic.main.order_addr_layout.*
 import kotlinx.android.synthetic.main.order_bottom_layout.*
 import kotlinx.android.synthetic.main.order_fee_layout.*
@@ -32,12 +29,13 @@ import kotlinx.android.synthetic.main.order_fee_layout.*
  */
 open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
     private var orderInfo: SimpleOrderInfo? = null
-    private var userAddr: UserAddr? = null
+    private var userAddr: Address? = null
     override fun viewModelClass() = ConfirmOrderViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_confirm_order
 
     override fun initView() {
         initToolbar()
+        orderDetailsIv.visibility = GONE
     }
 
     override fun initData() {
@@ -47,7 +45,10 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
         goodsSumTv.text = sum
         sumTv.text = sum
         mViewModel.queryDefaultAddress()
-        orderInfo?.let { orderListView.setDataBySimpleOrderInfo(listOf(it)) }
+        orderInfo?.let {
+            val picUrl = it.squarePic
+            Glide.with(this).load(picUrl).into(orderGoodsIv)
+        }
     }
 
     override fun initListeners() {

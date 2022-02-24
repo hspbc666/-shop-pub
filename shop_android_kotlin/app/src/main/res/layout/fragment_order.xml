@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/orderListSrl"
+    android:id="@+id/orderListRv"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/orderListRv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="10dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    android:layout_height="match_parent"
+    android:paddingTop="10dp"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

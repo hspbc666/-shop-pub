@@ -53,9 +53,6 @@ interface ApiService {
     @POST("shop/order/create")
     suspend fun createOrder(@Body req: CreateOrderReq): Result<CreateOrderResp?>?
 
-    @GET("shop/order/pay/{orderId}")
-    suspend fun payForOrder(@Path("orderId") orderId: String): Result<String?>?
-
     @GET("shop/order/queryByStatus/{orderStatus}")
     suspend fun queryOrderByStatus(@Path("orderStatus") orderStatus: Int): Result<List<OrderInfo>?>?
 
@@ -66,18 +63,17 @@ interface ApiService {
     suspend fun deleteOrder(@Path("orderId") orderId: String): Result<String?>?
 
     @GET("shop/addr/query")
-    suspend fun queryAddress(): Result<List<UserAddr>?>?
+    suspend fun queryAddress(): Result<List<Address>?>?
 
     @GET("shop/addr/query_default")
-    suspend fun queryDefaultAddress(): Result<UserAddr?>?
+    suspend fun queryDefaultAddress(): Result<Address?>?
 
     @POST("shop/addr/add")
-    suspend fun addAddress(@Body req: UserAddr): Result<String?>?
+    suspend fun addAddress(@Body req: Address): Result<String?>?
 
     @POST("shop/addr/modify")
-    suspend fun modifyAddress(@Body req: UserAddr): Result<String?>?
+    suspend fun modifyAddress(@Body req: Address): Result<String?>?
 
-    @GET("shop/addr/del/{userAddrId}")
-    suspend fun deleteAddress(@Path("userAddrId") userAddrId: String): Result<String?>?
-
+    @GET("shop/addr/del/{addressId}")
+    suspend fun deleteAddress(@Path("addressId") addressId: String): Result<String?>?
 }

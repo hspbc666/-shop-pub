@@ -12,37 +12,18 @@ import cn.lblbc.shop.network.response.Goods
  * 公众号：蓝不蓝编程
  */
 class GoodsViewModel : BaseViewModel() {
-    private val repo by lazy { ShopRepo() }
     val goods: MutableLiveData<Goods> = MutableLiveData()
 
-    fun queryGoods(
-        goodsId: String,
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                goods.value = repo.queryGoods(goodsId)?.data
-                onSuccess?.invoke()
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
+    fun queryGoods(goodsId: String) {
+        launch({
+            goods.value = ShopRepo.queryGoods(goodsId)?.data
+        })
     }
 
-    fun addToCart(
-        goodsId: String,
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                repo.addToCart(goodsId)
-                onSuccess?.invoke()
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
+    fun addToCart(goodsId: String, onSuccess: (() -> Unit)? = null) {
+        launch({
+            ShopRepo.addToCart(goodsId)
+            onSuccess?.invoke()
+        })
     }
-
 }

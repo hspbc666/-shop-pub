@@ -12,24 +12,15 @@ import cn.lblbc.shop.network.response.CartItem
  * 公众号：蓝不蓝编程
  */
 class CartViewModel : BaseViewModel() {
-    private val repo by lazy { ShopRepo() }
     val dataList: MutableLiveData<List<CartItem>> = MutableLiveData()
     val selectionItemList = mutableListOf<CartItem>()
     val selectionChangeCount: MutableLiveData<Int> = MutableLiveData()
 
-    fun queryCart(
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                dataList.value = repo.queryCart()?.data
-                clearSelectionItems()
-                onSuccess?.invoke()
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
+    fun queryCart() {
+        launch({
+            dataList.value = ShopRepo.queryCart()?.data
+            clearSelectionItems()
+        })
     }
 
     private fun clearSelectionItems() {
@@ -37,27 +28,16 @@ class CartViewModel : BaseViewModel() {
         notifySelectionChanged()
     }
 
-    fun modifyCart(
-        cartItem: CartItem,
-        isChecked: Boolean,
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
+    fun modifyCart(cartItem: CartItem, isChecked: Boolean) {
         if (isChecked) {
             selectItem(cartItem)
         }
-        launch(
-            {
-                repo.modifyCart(cartItem.id, cartItem.quantity)
-                if (cartItem.quantity <= 0) {
-                    queryCart(onSuccess, onFailure, onComplete)
-                } else {
-                    onSuccess?.invoke()
-                }
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
+        launch({
+            ShopRepo.modifyCart(cartItem.id, cartItem.quantity)
+            if (cartItem.quantity <= 0) {
+                queryCart()
+            }
+        })
     }
 
     fun selectItem(cartItem: CartItem) {

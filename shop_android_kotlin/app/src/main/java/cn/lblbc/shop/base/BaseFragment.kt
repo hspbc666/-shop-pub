@@ -16,21 +16,12 @@ abstract class BaseFragment : Fragment() {
 
     private lateinit var mRootView: View
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(layoutResId(), container, false)
         mRootView = view
+        initData()
         initView()
         observe()
-        // 因为Activity恢复后savedInstanceState不为null，
-        // 重新恢复后会自动从ViewModel中的LiveData恢复数据，
-        // 不需要重新初始化数据。
-        if (savedInstanceState == null) {
-            initData()
-        }
         initListeners()
         return view
     }
@@ -41,19 +32,11 @@ abstract class BaseFragment : Fragment() {
 
     protected abstract fun layoutResId(): Int
 
-    open fun initView() {
-        // Override if need
-    }
+    open fun initView() {}
 
-    open fun observe() {
-        // Override if need
-    }
+    open fun observe() {}
 
-    open fun initData() {
-        // Override if need
-    }
+    open fun initData() {}
 
-    open fun initListeners() {
-        // Override if need
-    }
+    open fun initListeners() {}
 }

@@ -16,9 +16,9 @@ class RegisterReq(
     val password: String = ""
 )
 
-class CreateOrderFromCartReq(val cartIdList: List<String>, val userAddrId: String)
+class CreateOrderFromCartReq(val cartIdList: List<String>, val addressId: String)
 
-class CreateOrderReq(val goodsId: String, val userAddrId: String)
+class CreateOrderReq(val goodsId: String, val addressId: String)
 
 class SimpleOrderInfo(
     var goodsId: String = "",

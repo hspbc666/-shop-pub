@@ -13,17 +13,11 @@ import cn.lblbc.shop.utils.SpUtil
  * 公众号：蓝不蓝编程
  */
 class LoginViewModel : BaseViewModel() {
-    private val repo by lazy { ShopRepo() }
 
-    fun login(
-        userName: String, password: String,
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
+    fun login(userName: String, password: String, onSuccess: (() -> Unit)? = null, onFailure: ((msg: String) -> Unit)? = null) {
         launch(
             {
-                val resp = repo.login(userName, password)
+                val resp = ShopRepo.login(userName, password)
                 if (resp?.isSuccess() == true) {
                     SpUtil.put(SP_KEY_TOKEN, resp.data?.token ?: "")
                     SpUtil.put(SP_KEY_USER_ID, resp.data?.id ?: 0)
@@ -32,26 +26,23 @@ class LoginViewModel : BaseViewModel() {
                     onFailure?.invoke(resp?.msg ?: "")
                 }
             },
-            { onFailure?.invoke(it.message ?: "error") },
-            { onComplete?.invoke() })
+            { onFailure?.invoke(it.message ?: "error") })
     }
 
     fun register(
         userName: String, password: String,
         onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
+        onFailure: ((msg: String) -> Unit)? = null
     ) {
         launch(
             {
-                val resp = repo.register(userName, password)
+                val resp = ShopRepo.register(userName, password)
                 if (resp?.isSuccess() == true) {
                     onSuccess?.invoke()
                 } else {
                     onFailure?.invoke(resp?.msg ?: "")
                 }
             },
-            { onFailure?.invoke(it.message ?: "error") },
-            { onComplete?.invoke() })
+            { onFailure?.invoke(it.message ?: "error") })
     }
 }

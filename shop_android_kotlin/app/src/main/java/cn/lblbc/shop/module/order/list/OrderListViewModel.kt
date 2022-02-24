@@ -12,21 +12,11 @@ import cn.lblbc.shop.network.response.OrderInfo
  * 公众号：蓝不蓝编程
  */
 class OrderListViewModel : BaseViewModel() {
-    private val repo by lazy { ShopRepo() }
     val orders: MutableLiveData<List<OrderInfo>> = MutableLiveData()
 
-    fun queryOrder(
-        orderStatus: Int,
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null,
-        onComplete: (() -> Unit)? = null
-    ) {
-        launch(
-            {
-                orders.value = repo.queryOrderByStatus(orderStatus)?.data
-                onSuccess?.invoke()
-            },
-            { onFailure?.invoke(it.message ?: "") },
-            { onComplete?.invoke() })
+    fun queryOrder(orderStatus: Int) {
+        launch({
+            orders.value = ShopRepo.queryOrderByStatus(orderStatus)?.data
+        })
     }
 }

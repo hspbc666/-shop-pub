@@ -5,7 +5,7 @@ import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.addr.AddAddressActivity
 import cn.lblbc.shop.module.order.confirm.ConfirmOrderActivity.Companion.requestCodeForSelectAddr
-import cn.lblbc.shop.network.response.UserAddr
+import cn.lblbc.shop.network.response.Address
 import cn.lblbc.shop.utils.Constants
 import cn.lblbc.shop.utils.Constants.EXTRA_KEY_USER_ADDR_ID
 import cn.lblbc.shop.utils.JsonUtil
@@ -20,19 +20,19 @@ import kotlinx.android.synthetic.main.activity_goods.toolbar
  */
 class SelectAddressActivity : BaseVmActivity<SelectAddressViewModel>() {
     private lateinit var adapter: SelectAddressAdapter
-    private var selectedUserAddrId: String? = null
+    private var selectedaddressId: String? = null
     override fun viewModelClass() = SelectAddressViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_address_list
 
-    override fun initView() {
-        initToolbar()
-        selectedUserAddrId = intent.getStringExtra(EXTRA_KEY_USER_ADDR_ID)
-        adapter = SelectAddressAdapter(selectedUserAddrId)
-        addrListRv.adapter = adapter
-    }
-
     override fun initData() {
         mViewModel.query()
+    }
+
+    override fun initView() {
+        initToolbar()
+        selectedaddressId = intent.getStringExtra(EXTRA_KEY_USER_ADDR_ID)
+        adapter = SelectAddressAdapter(selectedaddressId)
+        addrListRv.adapter = adapter
     }
 
     private fun initToolbar() {
@@ -40,13 +40,13 @@ class SelectAddressActivity : BaseVmActivity<SelectAddressViewModel>() {
     }
 
     override fun initListeners() {
-        adapter.setOnItemClick(this::onItemClick)
+        adapter.onItemClick = this::onItemClick
         modifyAddrTv.setOnClickListener {
             startActivity(Intent(this, AddAddressActivity::class.java))
         }
     }
 
-    private fun onItemClick(data: UserAddr) {
+    private fun onItemClick(data: Address) {
         val intent = Intent()
         intent.putExtra(Constants.EXTRA_KEY_USER_ADDR, JsonUtil.toJson(data))
         setResult(requestCodeForSelectAddr, intent)
@@ -54,8 +54,13 @@ class SelectAddressActivity : BaseVmActivity<SelectAddressViewModel>() {
     }
 
     override fun observe() {
-        mViewModel.userAddrList.observe(this) {
+        mViewModel.addressList.observe(this) {
             adapter.setData(it)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mViewModel.query()
     }
 }

@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_above="@+id/cartBottomLayout"
         android:orientation="vertical">
 
@@ -19,19 +19,13 @@
             app:title="购物车"
             app:titleTextColor="@color/white" />
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/goodsListSrl"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/goodsListRv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/goodsListRv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="10dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -71,7 +65,7 @@
 
             <TextView
                 android:id="@+id/sumTv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="￥0"
@@ -84,7 +78,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/shape_btn_grey_bg"
+                android:background="@drawable/capsule_bg_gray"
                 android:gravity="center"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -104,7 +98,7 @@
             android:visibility="gone">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="登录后查看已加购商品" />
@@ -114,7 +108,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/shape_btn_bg"
+                android:background="@drawable/capsule_bg"
                 android:gravity="center"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"

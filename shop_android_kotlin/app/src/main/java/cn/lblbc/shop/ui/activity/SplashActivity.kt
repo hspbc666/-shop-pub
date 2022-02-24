@@ -3,9 +3,6 @@ package cn.lblbc.shop.ui.activity
 import android.content.Intent
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseActivity
-import cn.lblbc.shop.module.login.LoginActivity
-import cn.lblbc.shop.utils.Constants
-import cn.lblbc.shop.utils.SpUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -23,14 +20,8 @@ class SplashActivity : BaseActivity() {
     override fun initView() {
         GlobalScope.launch(Dispatchers.IO) {
             delay(500)
-            if (isLoggedIn()) {
-                startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
-            } else {
-                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-            }
+            startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
             finish()
         }
     }
-
-    private fun isLoggedIn() = !SpUtil.get(Constants.SP_KEY_TOKEN, "").isNullOrEmpty()
 }

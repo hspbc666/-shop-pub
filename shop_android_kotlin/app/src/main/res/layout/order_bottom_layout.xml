@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_weight="1"
-            android:background="@drawable/capsule_btn_bg"
+            android:background="@drawable/capsule_bg"
             android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"

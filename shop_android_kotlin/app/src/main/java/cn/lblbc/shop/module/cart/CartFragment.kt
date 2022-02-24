@@ -6,14 +6,11 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmFragment
-import cn.lblbc.shop.module.goods_detail.GoodsActivity
 import cn.lblbc.shop.module.login.LoginActivity
 import cn.lblbc.shop.module.login.LoginManager
 import cn.lblbc.shop.module.order.confirm.ConfirmOrderFromCartActivity
-import cn.lblbc.shop.network.response.CartItem
 import cn.lblbc.shop.utils.Constants
 import cn.lblbc.shop.utils.JsonUtil
 import cn.lblbc.shop.utils.getMoneyByYuan
@@ -27,7 +24,6 @@ import cn.lblbc.shop.utils.getMoneyByYuan
 class CartFragment : BaseVmFragment<CartViewModel>() {
     private lateinit var adapter: CartAdapter
     private lateinit var goodsListRv: RecyclerView
-    private lateinit var goodsListSrl: SwipeRefreshLayout
     private lateinit var selectedCountTv: TextView
     private lateinit var cartPayLayout: View
     private lateinit var cartLoginLayout: View
@@ -40,7 +36,6 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
     override fun initView() {
         adapter = CartAdapter(mViewModel)
         goodsListRv = findViewById(R.id.goodsListRv)
-        goodsListSrl = findViewById(R.id.goodsListSrl)
         selectedCountTv = findViewById(R.id.selectedCountTv)
         cartPayLayout = findViewById(R.id.cartPayLayout)
         cartLoginLayout = findViewById(R.id.cartLoginLayout)
@@ -51,7 +46,6 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
     }
 
     override fun initListeners() {
-        goodsListSrl.setOnRefreshListener { refreshPage() }
         cartLoginTv.setOnClickListener {
             startActivity(Intent(context, LoginActivity::class.java))
         }
@@ -77,14 +71,11 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
     }
 
     private fun queryData() {
-        mViewModel.queryCart(
-            onComplete = {
-                goodsListSrl.isRefreshing = false
-            })
+        mViewModel.queryCart()
     }
 
     override fun observe() {
-        mViewModel.dataList.observe(this, { adapter.setData(it) })
+        mViewModel.dataList.observe(this) { adapter.setData(it) }
         mViewModel.selectionChangeCount.observe(this) {
             var sum = 0L
             mViewModel.selectionItemList.forEach { sum += it.price * it.quantity }
@@ -93,10 +84,10 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
             sumTv.text = context?.getString(R.string.price, getMoneyByYuan(sum))
             if (mViewModel.selectionItemList.isEmpty()) {
                 gotoCreateOrderTv.isEnabled = false
-                gotoCreateOrderTv.setBackgroundResource(R.drawable.shape_btn_grey_bg)
+                gotoCreateOrderTv.setBackgroundResource(R.drawable.capsule_bg_gray)
             } else {
                 gotoCreateOrderTv.isEnabled = true
-                gotoCreateOrderTv.setBackgroundResource(R.drawable.shape_btn_bg)
+                gotoCreateOrderTv.setBackgroundResource(R.drawable.capsule_bg)
             }
         }
     }

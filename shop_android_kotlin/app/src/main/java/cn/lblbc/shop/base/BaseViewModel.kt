@@ -3,7 +3,9 @@ package cn.lblbc.shop.base
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cn.lblbc.shop.utils.toast
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 typealias Block<T> = suspend () -> T
 typealias Complete<T> = suspend () -> T
@@ -16,7 +18,6 @@ open class BaseViewModel : ViewModel() {
      * 创建并执行协程
      * @param block 协程中执行
      * @param error 错误时执行
-     * @return Job
      */
     protected fun launch(block: Block<Unit>, error: Error? = null, complete: Complete<Unit>? = null, cancel: Cancel? = null): Job {
         return viewModelScope.launch {
@@ -24,13 +25,8 @@ open class BaseViewModel : ViewModel() {
                 block.invoke()
             } catch (e: Exception) {
                 when (e) {
-                    is CancellationException -> {
-                        cancel?.invoke(e)
-                    }
-                    else -> {
-                        onError(e)
-                        error?.invoke(e)
-                    }
+                    is CancellationException -> cancel?.invoke(e)
+                    else -> error?.invoke(e)
                 }
                 if (e.message?.isNotEmpty() == true) {
                     toast(e.message!!)
@@ -39,32 +35,5 @@ open class BaseViewModel : ViewModel() {
                 complete?.invoke()
             }
         }
-    }
-
-    /**
-     * 创建并执行协程
-     * @param block 协程中执行
-     * @return Deferred<T>
-     */
-    protected fun <T> async(block: Block<T>): Deferred<T> {
-        return viewModelScope.async { block.invoke() }
-    }
-
-    /**
-     * 取消协程
-     * @param job 协程job
-     */
-    protected fun cancelJob(job: Job?) {
-        if (job != null && job.isActive && !job.isCompleted && !job.isCancelled) {
-            job.cancel()
-        }
-    }
-
-    /**
-     * 统一处理错误
-     * @param e 异常
-     */
-    private fun onError(e: Exception) {
-
     }
 }

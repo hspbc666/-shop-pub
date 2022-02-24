@@ -4,7 +4,7 @@ import android.content.Intent
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.order.confirm.ConfirmOrderActivity
-import cn.lblbc.shop.network.response.UserAddr
+import cn.lblbc.shop.network.response.Address
 import cn.lblbc.shop.utils.Constants
 import cn.lblbc.shop.utils.Constants.AddrType.Companion.ADDR_TYPE_COMPANY
 import cn.lblbc.shop.utils.Constants.AddrType.Companion.ADDR_TYPE_HOME
@@ -39,7 +39,7 @@ class AddAddressActivity : BaseVmActivity<AddressViewModel>() {
             }
         }
         addAddrTv.setOnClickListener {
-            val userAddr = UserAddr()
+            val userAddr = Address()
             userAddr.name = receiverNameEt.text.toString()
             userAddr.phone = receiverPhoneEt.text.toString()
             userAddr.region = regionEt.text.toString()
@@ -56,7 +56,7 @@ class AddAddressActivity : BaseVmActivity<AddressViewModel>() {
     /**
      * 确定订单页面需要返回数据
      */
-    private fun sendResultForConfirmOrder(it: UserAddr) {
+    private fun sendResultForConfirmOrder(it: Address) {
         val intent = Intent()
         intent.putExtra(Constants.EXTRA_KEY_USER_ADDR, JsonUtil.toJson(it))
         setResult(ConfirmOrderActivity.requestCodeForSelectAddr, intent)
