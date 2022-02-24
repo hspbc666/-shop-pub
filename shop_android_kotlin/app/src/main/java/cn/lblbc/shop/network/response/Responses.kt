@@ -43,16 +43,16 @@ class OrderInfo {
     val status: Int? = null
     val createTime: Long = 0
     val list: List<OrderDetail>? = null
-    val userAddr: UserAddr? = null
+    val address: Address? = null
 }
 
 class OrderDetail {
-    val goodsId: String? = null
-    val name: String? = null
-    val price: Long = 0
-    val longPic: String? = null
-    val squarePic: String? = null
-    val quantity = 0
+    var goodsId: String? = null
+    var name: String? = null
+    var price: Long = 0
+    var longPic: String? = null
+    var squarePic: String? = null
+    var quantity = 0
 }
 
 class Address {
