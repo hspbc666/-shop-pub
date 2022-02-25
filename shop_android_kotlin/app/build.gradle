@@ -38,12 +38,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion"
     implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
-
     implementation "com.github.bumptech.glide:glide:$glideVersion"
-
-    implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
-    implementation 'com.github.zhpanvip:bannerviewpager:3.5.5'
-//    implementation project(path: ':quantityView')
     implementation 'com.gitee.lblbc:quantity-view:v1.0.0'
 }
