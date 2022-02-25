@@ -1,7 +1,6 @@
 package cn.lblbc.shop.module.goods_detail
 
 import android.content.Intent
-import android.provider.SyncStateContract
 import android.widget.ImageView
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity

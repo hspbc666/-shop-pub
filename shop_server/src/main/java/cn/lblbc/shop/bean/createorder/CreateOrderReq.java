@@ -11,5 +11,5 @@ import lombok.Data;
 @Data
 public class CreateOrderReq {
     private String goodsId;
-    private String userAddrId;
+    private String addressId;
 }

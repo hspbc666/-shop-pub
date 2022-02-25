@@ -1,6 +1,6 @@
 package cn.lblbc.shop.bean.queryorder;
 
-import cn.lblbc.shop.bean.UserAddr;
+import cn.lblbc.shop.bean.Address;
 import lombok.Builder;
 import lombok.Data;
 
@@ -19,5 +19,5 @@ public class QueryOrderResp {
     private int status;
     private long createTime;
     private List<FullOrderInfo> list;
-    private UserAddr userAddr;
+    private Address address;
 }

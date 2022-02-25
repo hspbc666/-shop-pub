@@ -17,6 +17,10 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
     override fun viewModelClass() = LoginViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_login
 
+    override fun initView() {
+        toolbar.setNavigationOnClickListener { finish() }
+    }
+
     override fun initListeners() {
         loginBtn.setOnClickListener {
             mViewModel.login(
@@ -29,7 +33,14 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
                 onFailure = { toast(it) })
         }
         registerBtn.setOnClickListener {
-            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+            mViewModel.register(
+                userNameEt.text.toString(),
+                passwordEt.text.toString(),
+                onSuccess = {
+                    startActivity(Intent(this@LoginActivity, LblActivity::class.java))
+                    finish()
+                },
+                onFailure = { toast(it) })
         }
     }
 }

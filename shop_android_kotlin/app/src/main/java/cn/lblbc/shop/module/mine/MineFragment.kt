@@ -1,7 +1,6 @@
 package cn.lblbc.shop.module.mine
 
 import android.content.Intent
-import android.provider.SyncStateContract
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView

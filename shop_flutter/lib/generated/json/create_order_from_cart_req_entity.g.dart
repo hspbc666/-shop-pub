@@ -7,9 +7,9 @@ CreateOrderFromCartReqEntity $CreateOrderFromCartReqEntityFromJson(Map<String, d
   if (cartIdList != null) {
     createOrderFromCartReqEntity.cartIdList = cartIdList;
   }
-  final String? userAddrId = jsonConvert.convert<String>(json['userAddrId']);
-  if (userAddrId != null) {
-    createOrderFromCartReqEntity.userAddrId = userAddrId;
+  final String? addressId = jsonConvert.convert<String>(json['addressId']);
+  if (addressId != null) {
+    createOrderFromCartReqEntity.addressId = addressId;
   }
   return createOrderFromCartReqEntity;
 }
@@ -17,6 +17,6 @@ CreateOrderFromCartReqEntity $CreateOrderFromCartReqEntityFromJson(Map<String, d
 Map<String, dynamic> $CreateOrderFromCartReqEntityToJson(CreateOrderFromCartReqEntity entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
   data['cartIdList'] = entity.cartIdList;
-  data['userAddrId'] = entity.userAddrId;
+  data['addressId'] = entity.addressId;
   return data;
 }

@@ -1,6 +1,5 @@
 package cn.lblbc.shop.module.login
 
-import android.provider.SyncStateContract
 import cn.lblbc.shop.utils.SP_KEY_TOKEN
 import cn.lblbc.shop.utils.SpUtil
 

@@ -17,9 +17,7 @@ class LoginInterceptor : Interceptor {
         var request = chain.request()
         //请求头添加token
         val newRequest = checkIgnoreToken(request)
-        if (null != newRequest) {
-            request = newRequest
-        }
+        newRequest?.let { request = it }
         return chain.proceed(request)
     }
 

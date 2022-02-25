@@ -4,7 +4,6 @@ import cn.lblbc.shop.base.BaseRepository
 import cn.lblbc.shop.network.request.CreateOrderFromCartReq
 import cn.lblbc.shop.network.request.CreateOrderReq
 import cn.lblbc.shop.network.request.LoginReq
-import cn.lblbc.shop.network.request.RegisterReq
 import cn.lblbc.shop.network.response.Address
 
 /**
@@ -33,9 +32,6 @@ object ShopRepo : BaseRepository() {
     suspend fun addAddress(address: Address) = apiService.addAddress(address)
     suspend fun modifyAddress(address: Address) = apiService.modifyAddress(address)
     suspend fun deleteAddress(addressId: String) = apiService.deleteAddress(addressId)
-    suspend fun login(userName: String, password: String) =
-        apiService.login(LoginReq(userName, password))
-
-    suspend fun register(userName: String, password: String) =
-        apiService.register(RegisterReq(userName, password))
+    suspend fun login(userName: String, password: String) = apiService.login(LoginReq(userName, password))
+    suspend fun register(userName: String, password: String) = apiService.register(LoginReq(userName, password))
 }

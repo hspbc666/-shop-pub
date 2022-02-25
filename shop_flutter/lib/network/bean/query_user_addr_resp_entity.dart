@@ -4,16 +4,16 @@ import 'package:shop_flutter/generated/json/base/json_field.dart';
 import 'package:shop_flutter/generated/json/query_user_addr_resp_entity.g.dart';
 
 @JsonSerializable()
-class QueryUserAddrRespEntity {
+class QueryAddressRespEntity {
   late int code;
   late dynamic msg;
-  late QueryUserAddrRespData data;
+  late QueryAddressRespData data;
 
-  QueryUserAddrRespEntity();
+  QueryAddressRespEntity();
 
-  factory QueryUserAddrRespEntity.fromJson(Map<String, dynamic> json) => $QueryUserAddrRespEntityFromJson(json);
+  factory QueryAddressRespEntity.fromJson(Map<String, dynamic> json) => $QueryAddressRespEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => $QueryUserAddrRespEntityToJson(this);
+  Map<String, dynamic> toJson() => $QueryAddressRespEntityToJson(this);
 
   @override
   String toString() {
@@ -22,7 +22,7 @@ class QueryUserAddrRespEntity {
 }
 
 @JsonSerializable()
-class QueryUserAddrRespData {
+class QueryAddressRespData {
   late String id;
   late int userId;
   late String name;
@@ -32,11 +32,11 @@ class QueryUserAddrRespData {
   late bool defaultAddress;
   late int addrType;
 
-  QueryUserAddrRespData();
+  QueryAddressRespData();
 
-  factory QueryUserAddrRespData.fromJson(Map<String, dynamic> json) => $QueryUserAddrRespDataFromJson(json);
+  factory QueryAddressRespData.fromJson(Map<String, dynamic> json) => $QueryAddressRespDataFromJson(json);
 
-  Map<String, dynamic> toJson() => $QueryUserAddrRespDataToJson(this);
+  Map<String, dynamic> toJson() => $QueryAddressRespDataToJson(this);
 
   @override
   String toString() {

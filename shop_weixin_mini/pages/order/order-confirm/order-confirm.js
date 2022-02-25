@@ -45,7 +45,7 @@ Page({
 
     var params = {
       goodsId: this.data.goods.id,
-      userAddrId: this.data.addr.id
+      addressId: this.data.addr.id
     }
     http.post('shop/order/create', params,
       function (resp) {

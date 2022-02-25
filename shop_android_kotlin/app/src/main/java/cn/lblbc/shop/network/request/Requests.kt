@@ -8,8 +8,6 @@ package cn.lblbc.shop.network.request
  */
 class LoginReq(var name: String = "", var password: String = "")
 
-class RegisterReq(var name: String = "", var password: String = "")
-
 class CreateOrderFromCartReq(var cartIdList: List<String>, var addressId: String)
 
 class CreateOrderReq(var goodsId: String, var addressId: String)

@@ -13,21 +13,21 @@ import 'package:shop_flutter/pages/login/login_manager.dart';
 /// 公众号：蓝不蓝编程
 
 class SelectAddrListPage extends StatefulWidget {
-  final String userAddrId;
+  final String addressId;
 
-  const SelectAddrListPage({Key? key, required this.userAddrId}) : super(key: key);
+  const SelectAddrListPage({Key? key, required this.addressId}) : super(key: key);
 
   @override
   createState() => _SelectAddrListState();
 }
 
 class _SelectAddrListState extends State<SelectAddrListPage> {
-  List<QueryUserAddrListRespData> _dataList = [];
+  List<QueryAddressListRespData> _dataList = [];
   var _selectedAddrId = "";
   @override
   void initState() {
     super.initState();
-    _selectedAddrId = widget.userAddrId;
+    _selectedAddrId = widget.addressId;
     _queryData();
   }
 
@@ -58,13 +58,13 @@ class _SelectAddrListState extends State<SelectAddrListPage> {
     }
   }
 
-  getItem(QueryUserAddrListRespData userAddrData) {
+  getItem(QueryAddressListRespData addressData) {
     var row = Container(
       margin: const EdgeInsets.all(4.0),
       child: InkWell(
-        child: buildRow(userAddrData),
+        child: buildRow(addressData),
         onTap: () {
-          selectAddr(userAddrData);
+          selectAddr(addressData);
         },
       ),
     );
@@ -73,7 +73,7 @@ class _SelectAddrListState extends State<SelectAddrListPage> {
     );
   }
 
-  Row buildRow(QueryUserAddrListRespData userAddrData) {
+  Row buildRow(QueryAddressListRespData addressData) {
     return Row(
       children: <Widget>[
         Expanded(
@@ -85,7 +85,7 @@ class _SelectAddrListState extends State<SelectAddrListPage> {
               Expanded(
                   child: Container(
                 margin: const EdgeInsets.only(left: 10),
-                child: buildAddrInfoCol(userAddrData),
+                child: buildAddrInfoCol(addressData),
               ))
             ],
           ),
@@ -94,23 +94,23 @@ class _SelectAddrListState extends State<SelectAddrListPage> {
     );
   }
 
-  buildAddrInfoCol(QueryUserAddrListRespData userAddrData) {
+  buildAddrInfoCol(QueryAddressListRespData addressData) {
     return Row(
       children: [
-        buildAddrTypeRadio(userAddrData.id),
+        buildAddrTypeRadio(addressData.id),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            buildUserInfoRow(userAddrData),
+            buildUserInfoRow(addressData),
             lblColumnSpacer(10),
-            Text(userAddrData.address),
+            Text(addressData.address),
           ],
         ),
         Spacer(),
         OutlinedButton(
           child: const Text('编辑', style: TextStyle(color: Color(0xFF575E64))),
           onPressed: () {
-            gotoEditAddrPage(userAddrData.id);
+            gotoEditAddrPage(addressData.id);
           },
         )
       ],
@@ -129,21 +129,21 @@ class _SelectAddrListState extends State<SelectAddrListPage> {
         });
   }
 
-  Row buildUserInfoRow(QueryUserAddrListRespData userAddrData) {
-    if (userAddrData.defaultAddress) {
-      return buildDefaultUserInfoRow(userAddrData);
+  Row buildUserInfoRow(QueryAddressListRespData addressData) {
+    if (addressData.defaultAddress) {
+      return buildDefaultUserInfoRow(addressData);
     } else {
-      return buildNonDefaultUserInfoRow(userAddrData);
+      return buildNonDefaultUserInfoRow(addressData);
     }
   }
 
-  Row buildDefaultUserInfoRow(QueryUserAddrListRespData userAddrData) {
+  Row buildDefaultUserInfoRow(QueryAddressListRespData addressData) {
     return Row(
       children: [
-        Text(userAddrData.name),
+        Text(addressData.name),
         lblRowSpacer(10),
         Text(
-          userAddrData.phone,
+          addressData.phone,
           style: const TextStyle(color: Color(0xFF999999)),
         ),
         lblRowSpacer(10),
@@ -152,13 +152,13 @@ class _SelectAddrListState extends State<SelectAddrListPage> {
     );
   }
 
-  Row buildNonDefaultUserInfoRow(QueryUserAddrListRespData userAddrData) {
+  Row buildNonDefaultUserInfoRow(QueryAddressListRespData addressData) {
     return Row(
       children: [
-        Text(userAddrData.name),
+        Text(addressData.name),
         lblRowSpacer(10),
         Text(
-          userAddrData.phone,
+          addressData.phone,
           style: const TextStyle(color: Color(0xFF999999)),
         ),
         lblRowSpacer(10),
@@ -197,17 +197,17 @@ class _SelectAddrListState extends State<SelectAddrListPage> {
         .then((value) => {_queryData()});
   }
 
-  void gotoEditAddrPage(String userAddrId) {
+  void gotoEditAddrPage(String addressId) {
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => EditAddrPage(
-                  userAddrId: userAddrId,
+                  addressId: addressId,
                 ))).then((value) => {_queryData()});
   }
 
-  void deleteAddress(String userAddrId) {
-    String url = "shop/addr/del/" + userAddrId;
+  void deleteAddress(String addressId) {
+    String url = "shop/addr/del/" + addressId;
     HttpManager.getInstance().get(url).then((resp) {
       _queryData();
     });
@@ -218,7 +218,7 @@ class _SelectAddrListState extends State<SelectAddrListPage> {
       if (value) {
         String url = "shop/addr/query";
         HttpManager.getInstance().get(url).then((resp) {
-          var result = QueryUserAddrListRespEntity.fromJson(resp);
+          var result = QueryAddressListRespEntity.fromJson(resp);
           setState(() {
             _dataList = result.data;
           });
@@ -227,7 +227,7 @@ class _SelectAddrListState extends State<SelectAddrListPage> {
     });
   }
 
-  void selectAddr(QueryUserAddrListRespData userAddrData) {
-    Navigator.pop(context, userAddrData);
+  void selectAddr(QueryAddressListRespData addressData) {
+    Navigator.pop(context, addressData);
   }
 }

@@ -3,7 +3,6 @@ package cn.lblbc.shop.network
 import cn.lblbc.shop.network.request.CreateOrderFromCartReq
 import cn.lblbc.shop.network.request.CreateOrderReq
 import cn.lblbc.shop.network.request.LoginReq
-import cn.lblbc.shop.network.request.RegisterReq
 import cn.lblbc.shop.network.response.*
 import retrofit2.http.*
 
@@ -21,7 +20,7 @@ interface ApiService {
 
     @POST("user/register")
     @Headers("ignoreToken:true")
-    suspend fun register(@Body req: RegisterReq): Result<RegisterResp?>?
+    suspend fun register(@Body req: LoginReq): Result<LoginResp?>?
 
     @GET("shop/category")
     suspend fun queryCategory(): Result<List<CategoryInfo>?>?

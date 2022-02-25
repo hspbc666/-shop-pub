@@ -151,17 +151,17 @@ class JsonConvert {
     if (type == (QueryOrderListRespDataList).toString()) {
       return QueryOrderListRespDataList.fromJson(json) as M;
     }
-    if (type == (QueryUserAddrListRespEntity).toString()) {
-      return QueryUserAddrListRespEntity.fromJson(json) as M;
+    if (type == (QueryAddressListRespEntity).toString()) {
+      return QueryAddressListRespEntity.fromJson(json) as M;
     }
-    if (type == (QueryUserAddrListRespData).toString()) {
-      return QueryUserAddrListRespData.fromJson(json) as M;
+    if (type == (QueryAddressListRespData).toString()) {
+      return QueryAddressListRespData.fromJson(json) as M;
     }
-    if (type == (QueryUserAddrRespEntity).toString()) {
-      return QueryUserAddrRespEntity.fromJson(json) as M;
+    if (type == (QueryAddressRespEntity).toString()) {
+      return QueryAddressRespEntity.fromJson(json) as M;
     }
-    if (type == (QueryUserAddrRespData).toString()) {
-      return QueryUserAddrRespData.fromJson(json) as M;
+    if (type == (QueryAddressRespData).toString()) {
+      return QueryAddressRespData.fromJson(json) as M;
     }
     if (type == (SearchRespEntity).toString()) {
       return SearchRespEntity.fromJson(json) as M;
@@ -271,22 +271,22 @@ class JsonConvert {
           .map<QueryOrderListRespDataList>((Map<String, dynamic> e) => QueryOrderListRespDataList.fromJson(e))
           .toList() as M;
     }
-    if (<QueryUserAddrListRespEntity>[] is M) {
+    if (<QueryAddressListRespEntity>[] is M) {
       return data
-          .map<QueryUserAddrListRespEntity>((Map<String, dynamic> e) => QueryUserAddrListRespEntity.fromJson(e))
+          .map<QueryAddressListRespEntity>((Map<String, dynamic> e) => QueryAddressListRespEntity.fromJson(e))
           .toList() as M;
     }
-    if (<QueryUserAddrListRespData>[] is M) {
+    if (<QueryAddressListRespData>[] is M) {
       return data
-          .map<QueryUserAddrListRespData>((Map<String, dynamic> e) => QueryUserAddrListRespData.fromJson(e))
+          .map<QueryAddressListRespData>((Map<String, dynamic> e) => QueryAddressListRespData.fromJson(e))
           .toList() as M;
     }
-    if (<QueryUserAddrRespEntity>[] is M) {
-      return data.map<QueryUserAddrRespEntity>((Map<String, dynamic> e) => QueryUserAddrRespEntity.fromJson(e)).toList()
+    if (<QueryAddressRespEntity>[] is M) {
+      return data.map<QueryAddressRespEntity>((Map<String, dynamic> e) => QueryAddressRespEntity.fromJson(e)).toList()
           as M;
     }
-    if (<QueryUserAddrRespData>[] is M) {
-      return data.map<QueryUserAddrRespData>((Map<String, dynamic> e) => QueryUserAddrRespData.fromJson(e)).toList()
+    if (<QueryAddressRespData>[] is M) {
+      return data.map<QueryAddressRespData>((Map<String, dynamic> e) => QueryAddressRespData.fromJson(e)).toList()
           as M;
     }
     if (<SearchRespEntity>[] is M) {

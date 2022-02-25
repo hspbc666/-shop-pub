@@ -24,8 +24,8 @@ public interface UserOrderMapper {
     @Select(value = "select * from user_order where user_id = #{userId} AND status = #{status} order by create_time desc")
     List<UserOrder> queryByUserIdAndStatus(@Param("userId") int userId,@Param("status") int status);
 
-    @Insert(value = "insert into user_order(id,user_id,status,create_time,user_addr_id) values (#{orderId}, #{userId}, #{status}, #{createTime}, #{userAddrId})")
-    void add(@Param("orderId") String orderId, @Param("userId") int userId, @Param("status") int status, @Param("createTime") long createTime,@Param("userAddrId") String userAddrId);
+    @Insert(value = "insert into user_order(id,user_id,status,create_time,user_addr_id) values (#{orderId}, #{userId}, #{status}, #{createTime}, #{addressId})")
+    void add(@Param("orderId") String orderId, @Param("userId") int userId, @Param("status") int status, @Param("createTime") long createTime,@Param("addressId") String addressId);
 
     @Update(value = "update user_order set status=#{status} where id = #{orderId}")
     void modify(@Param("orderId") String orderId, @Param("status") int status);

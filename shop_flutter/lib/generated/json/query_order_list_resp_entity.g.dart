@@ -45,9 +45,9 @@ QueryOrderListRespData $QueryOrderListRespDataFromJson(Map<String, dynamic> json
   if (list != null) {
     queryOrderListRespData.list = list;
   }
-  final dynamic? userAddr = jsonConvert.convert<dynamic>(json['userAddr']);
-  if (userAddr != null) {
-    queryOrderListRespData.userAddr = userAddr;
+  final dynamic? address = jsonConvert.convert<dynamic>(json['address']);
+  if (address != null) {
+    queryOrderListRespData.address = address;
   }
   return queryOrderListRespData;
 }
@@ -58,7 +58,7 @@ Map<String, dynamic> $QueryOrderListRespDataToJson(QueryOrderListRespData entity
   data['status'] = entity.status;
   data['createTime'] = entity.createTime;
   data['list'] = entity.list.map((v) => v.toJson()).toList();
-  data['userAddr'] = entity.userAddr;
+  data['address'] = entity.address;
   return data;
 }
 

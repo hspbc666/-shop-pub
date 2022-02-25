@@ -6,7 +6,7 @@ import 'package:shop_flutter/generated/json/create_order_from_cart_req_entity.g.
 @JsonSerializable()
 class CreateOrderFromCartReqEntity {
   late List<String> cartIdList;
-  late String userAddrId;
+  late String addressId;
 
   CreateOrderFromCartReqEntity();
 

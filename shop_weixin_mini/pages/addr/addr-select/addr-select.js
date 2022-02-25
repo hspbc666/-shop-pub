@@ -34,28 +34,28 @@ Page({
     })
   },
   gotoEditAddr(e) {
-    let userAddrId = e.currentTarget.dataset['id'];
+    let addressId = e.currentTarget.dataset['id'];
     wx.navigateTo({
-      url: '/pages/addr/addr-edit/addr-edit?id=' + userAddrId
+      url: '/pages/addr/addr-edit/addr-edit?id=' + addressId
     })
   },
   deleteAddr(e) {
-    let userAddrId = e.currentTarget.dataset['id'];
+    let addressId = e.currentTarget.dataset['id'];
     let _this = this
-    http.get('shop/addr/del/' + userAddrId, '',
+    http.get('shop/addr/del/' + addressId, '',
       function (resp) {
         _this.queryData()
       },
       function (err) { })
   },
   selectAddr(e) {
-    let userAddr = e.currentTarget.dataset['addr'];
+    let address = e.currentTarget.dataset['addr'];
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2];  //上一个页面
 
     //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
     prevPage.setData({
-      addr: userAddr
+      addr: address
     })
     wx.navigateBack();
   }

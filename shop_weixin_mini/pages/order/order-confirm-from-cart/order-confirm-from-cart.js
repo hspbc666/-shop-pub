@@ -57,7 +57,7 @@ Page({
 
       var params = {
         cartIdList: cartIds,
-        userAddrId: this.data.addr.id
+        addressId: this.data.addr.id
       }
       http.post('shop/order/createFromCart', params,
         function (resp) {

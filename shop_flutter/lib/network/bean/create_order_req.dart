@@ -4,19 +4,19 @@
 /// 公众号：蓝不蓝编程
 class CreateOrderReq {
   String goodsId = "";
-  String userAddrId = "";
+  String addressId = "";
 
-  CreateOrderReq({required this.goodsId, required this.userAddrId});
+  CreateOrderReq({required this.goodsId, required this.addressId});
 
   CreateOrderReq.fromJson(Map<String, dynamic> json) {
     goodsId = json['id'];
-    userAddrId = json['name'];
+    addressId = json['name'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['goodsId'] = goodsId;
-    data['userAddrId'] = userAddrId;
+    data['addressId'] = addressId;
     return data;
   }
 }

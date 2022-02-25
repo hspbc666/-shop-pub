@@ -1,7 +1,6 @@
 package cn.lblbc.shop.module.addr.select
 
 import android.content.Intent
-import android.provider.SyncStateContract
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.addr.AddAddressActivity

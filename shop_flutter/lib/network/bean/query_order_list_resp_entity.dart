@@ -27,7 +27,7 @@ class QueryOrderListRespData {
   late int status;
   late int createTime;
   late List<QueryOrderListRespDataList> list;
-  late dynamic userAddr;
+  late dynamic address;
 
   QueryOrderListRespData();
 

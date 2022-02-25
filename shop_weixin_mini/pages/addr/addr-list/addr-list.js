@@ -32,15 +32,15 @@ Page({
     })
   },
   gotoEditAddr(e) {
-    let userAddrId = e.currentTarget.dataset['id'];
+    let addressId = e.currentTarget.dataset['id'];
     wx.navigateTo({
-      url: '/pages/addr/addr-edit/addr-edit?id=' + userAddrId
+      url: '/pages/addr/addr-edit/addr-edit?id=' + addressId
     })
   },
   deleteAddr(e) {
-    let userAddrId = e.currentTarget.dataset['id'];
+    let addressId = e.currentTarget.dataset['id'];
     let _this = this
-    http.get('shop/addr/del/' + userAddrId, '',
+    http.get('shop/addr/del/' + addressId, '',
       function (resp) {
         _this.queryData()
       },

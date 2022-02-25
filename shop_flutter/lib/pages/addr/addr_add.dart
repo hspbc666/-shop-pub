@@ -17,7 +17,7 @@ class AddAddrPage extends StatefulWidget {
 }
 
 class _AddAddrState extends State<AddAddrPage> {
-  QueryUserAddrListRespData userAddrData = QueryUserAddrListRespData();
+  QueryAddressListRespData addressData = QueryAddressListRespData();
   var _addrType = 0;
   var _defaultAddress = true;
   var nameController = TextEditingController();
@@ -129,15 +129,15 @@ class _AddAddrState extends State<AddAddrPage> {
 
   void addAddr() {
     String url = "shop/addr/add";
-    userAddrData.id = '';
-    userAddrData.userId = 0;
-    userAddrData.name = nameController.value.text;
-    userAddrData.phone = phoneController.value.text;
-    userAddrData.region = regionController.value.text;
-    userAddrData.address = addressController.value.text;
-    userAddrData.addrType = _addrType;
-    userAddrData.defaultAddress = _defaultAddress;
-    HttpManager.getInstance().post(url, data: userAddrData.toJson()).then((resp) {
+    addressData.id = '';
+    addressData.userId = 0;
+    addressData.name = nameController.value.text;
+    addressData.phone = phoneController.value.text;
+    addressData.region = regionController.value.text;
+    addressData.address = addressController.value.text;
+    addressData.addrType = _addrType;
+    addressData.defaultAddress = _defaultAddress;
+    HttpManager.getInstance().post(url, data: addressData.toJson()).then((resp) {
       Navigator.pop(context);
     });
   }

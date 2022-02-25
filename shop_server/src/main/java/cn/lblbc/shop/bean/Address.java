@@ -9,7 +9,7 @@ import lombok.Data;
  * 公众号：蓝不蓝编程
  */
 @Data
-public class UserAddr {
+public class Address {
     private String id;
     private int userId;
     private String name;

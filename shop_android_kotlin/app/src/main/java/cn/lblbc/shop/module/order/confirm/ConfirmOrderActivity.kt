@@ -1,7 +1,6 @@
 package cn.lblbc.shop.module.order.confirm
 
 import android.content.Intent
-import android.provider.SyncStateContract
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import cn.lblbc.shop.R

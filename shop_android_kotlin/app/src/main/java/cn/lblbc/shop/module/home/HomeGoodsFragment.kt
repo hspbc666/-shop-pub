@@ -1,7 +1,6 @@
 package cn.lblbc.shop.module.home
 
 import android.content.Intent
-import android.provider.SyncStateContract
 import android.widget.GridView
 import androidx.fragment.app.Fragment
 import cn.lblbc.shop.R

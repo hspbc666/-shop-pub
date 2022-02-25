@@ -263,7 +263,7 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
   void createOrder() {
     if (queryDefaultAddrRespData != null) {
       String url = "shop/order/create";
-      CreateOrderReq createOrderReq = CreateOrderReq(goodsId: widget.goodsId, userAddrId: queryDefaultAddrRespData!.id);
+      CreateOrderReq createOrderReq = CreateOrderReq(goodsId: widget.goodsId, addressId: queryDefaultAddrRespData!.id);
       HttpManager.getInstance().post(url, data: createOrderReq.toJson()).then((resp) {
         var result = CreateOrderRespEntity.fromJson(resp);
         gotoOrderDetailPage(result.data.orderId);
@@ -276,12 +276,12 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
     if (queryDefaultAddrRespData != null) {
       addrId = queryDefaultAddrRespData!.id;
     }
-    Navigator.push(context, MaterialPageRoute(builder: (context) => SelectAddrListPage(userAddrId: addrId)))
+    Navigator.push(context, MaterialPageRoute(builder: (context) => SelectAddrListPage(addressId: addrId)))
         .then((value) => {refreshBackFromAddrPage(value)});
   }
 
   refreshBackFromAddrPage(value) {
-    if (value is QueryUserAddrListRespData) {
+    if (value is QueryAddressListRespData) {
       queryDefaultAddrRespData = QueryDefaultAddrRespData();
       queryDefaultAddrRespData!.id = value.id;
       queryDefaultAddrRespData!.name = value.name;

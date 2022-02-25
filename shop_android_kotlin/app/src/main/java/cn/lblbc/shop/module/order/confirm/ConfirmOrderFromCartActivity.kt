@@ -1,7 +1,6 @@
 package cn.lblbc.shop.module.order.confirm
 
 import android.content.Intent
-import android.provider.SyncStateContract
 import android.view.View
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity

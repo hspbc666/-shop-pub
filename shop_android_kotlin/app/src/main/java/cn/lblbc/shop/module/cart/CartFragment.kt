@@ -1,7 +1,6 @@
 package cn.lblbc.shop.module.cart
 
 import android.content.Intent
-import android.provider.SyncStateContract
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE

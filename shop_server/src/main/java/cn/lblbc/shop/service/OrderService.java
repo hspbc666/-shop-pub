@@ -1,13 +1,13 @@
 package cn.lblbc.shop.service;
 
 import cn.lblbc.shop.bean.CartSimpleItem;
-import cn.lblbc.shop.bean.UserAddr;
+import cn.lblbc.shop.bean.Address;
 import cn.lblbc.shop.bean.UserOrder;
 import cn.lblbc.shop.bean.queryorder.FullOrderInfo;
 import cn.lblbc.shop.bean.queryorder.QueryOrderResp;
 import cn.lblbc.shop.mapper.CartMapper;
 import cn.lblbc.shop.mapper.OrderMapper;
-import cn.lblbc.shop.mapper.UserAddrMapper;
+import cn.lblbc.shop.mapper.AddressMapper;
 import cn.lblbc.shop.mapper.UserOrderMapper;
 import cn.lblbc.utils.LblIdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +37,12 @@ public class OrderService {
     private OrderMapper orderMapper;
 
     @Autowired
-    private UserAddrMapper userAddrMapper;
+    private AddressMapper AddressMapper;
 
     @Transactional
-    public String createOrderFromCart(int userId, List<String> cartIdList, String userAddrId) {
+    public String createOrderFromCart(int userId, List<String> cartIdList, String addressId) {
         String orderId = LblIdGenerator.generateId();
-        addUserOder(userId, orderId, userAddrId);
+        addUserOder(userId, orderId, addressId);
 
         for (String cartId : cartIdList) {
             if (cartId.isEmpty()) {
@@ -57,16 +57,16 @@ public class OrderService {
     }
 
     @Transactional
-    public String createOrder(int userId, String goodsId, String userAddrId) {
+    public String createOrder(int userId, String goodsId, String addressId) {
         String orderId = LblIdGenerator.generateId();
-        addUserOder(userId, orderId, userAddrId);
+        addUserOder(userId, orderId, addressId);
         String id = LblIdGenerator.generateId();
         orderMapper.add(id, orderId, goodsId, 1);
         return orderId;
     }
 
-    private void addUserOder(int userId, String orderId, String userAddrId) {
-        userOrderMapper.add(orderId, userId, TO_DELIVER, System.currentTimeMillis(), userAddrId);
+    private void addUserOder(int userId, String orderId, String addressId) {
+        userOrderMapper.add(orderId, userId, TO_DELIVER, System.currentTimeMillis(), addressId);
     }
 
     public void changeOrderStatus(String orderId, int status) {
@@ -92,10 +92,10 @@ public class OrderService {
         int status = userOrder.getStatus();
         long createTime = userOrder.getCreateTime();
         List<FullOrderInfo> fullOrderInfoList = orderMapper.queryByOrderId(orderId);
-        UserAddr userAddr = userAddrMapper.queryByOrderId(orderId);
+        Address address = AddressMapper.queryByOrderId(orderId);
         return QueryOrderResp.builder()
                 .orderId(orderId).status(status).createTime(createTime)
-                .userAddr(userAddr)
+                .address(address)
                 .list(fullOrderInfoList).build();
     }
 

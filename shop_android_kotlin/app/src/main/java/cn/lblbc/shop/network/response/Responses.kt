@@ -10,7 +10,6 @@ class Goods(
     var id: String = "",
     var name: String = "",
     var price: Long = 0,
-    var longPic: String = "",
     var squarePic: String = "",
     var descPic: String = ""
 )
@@ -20,7 +19,6 @@ class CartItem(
     var goodsId: String = "",
     var name: String = "",
     var price: Long = 0L,
-    var longPic: String = "",
     var squarePic: String = "",
     var quantity: Int = 0
 )
@@ -43,7 +41,6 @@ class OrderDetail(
     var goodsId: String = "",
     var name: String = "",
     var price: Long = 0,
-    var longPic: String = "",
     var squarePic: String = "",
     var quantity: Int = 0
 )

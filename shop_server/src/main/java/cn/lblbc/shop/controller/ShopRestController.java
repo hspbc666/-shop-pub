@@ -5,7 +5,7 @@ import cn.lblbc.login.utils.JwtUtils;
 import cn.lblbc.shop.bean.CartItem;
 import cn.lblbc.shop.bean.CategoryInfo;
 import cn.lblbc.shop.bean.Goods;
-import cn.lblbc.shop.bean.UserAddr;
+import cn.lblbc.shop.bean.Address;
 import cn.lblbc.shop.bean.createorder.CreateOrderFromCartReq;
 import cn.lblbc.shop.bean.createorder.CreateOrderReq;
 import cn.lblbc.shop.bean.createorder.CreateOrderResp;
@@ -40,7 +40,7 @@ public class ShopRestController {
     private OrderService orderService;
 
     @Autowired
-    private UserAddrService userAddrService;
+    private AddressService addressService;
 
     @Autowired
     private CategoryService categoryService;
@@ -114,7 +114,7 @@ public class ShopRestController {
     @PostMapping("order/createFromCart")
     public Resp<CreateOrderResp> createFromCart(@RequestBody CreateOrderFromCartReq req, @RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
-        String orderId = orderService.createOrderFromCart(userId, req.getCartIdList(),req.getUserAddrId());
+        String orderId = orderService.createOrderFromCart(userId, req.getCartIdList(), req.getAddressId());
         Resp<CreateOrderResp> resp = new Resp<>();
         resp.setData(CreateOrderResp.builder().orderId(orderId).build());
         return resp;
@@ -123,7 +123,7 @@ public class ShopRestController {
     @PostMapping("order/create")
     public Resp<CreateOrderResp> createOrder(@RequestBody CreateOrderReq req, @RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
-        String orderId = orderService.createOrder(userId, req.getGoodsId(),req.getUserAddrId());
+        String orderId = orderService.createOrder(userId, req.getGoodsId(), req.getAddressId());
         Resp<CreateOrderResp> resp = new Resp<>();
         resp.setData(CreateOrderResp.builder().orderId(orderId).build());
         return resp;
@@ -157,50 +157,50 @@ public class ShopRestController {
     }
 
     @GetMapping("addr/query")
-    public Resp<List<UserAddr>> queryAddr(@RequestHeader("Authorization") String authorization) {
+    public Resp<List<Address>> queryAddr(@RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
-        Resp<List<UserAddr>> resp = new Resp<>();
-        resp.setData(userAddrService.query(userId));
+        Resp<List<Address>> resp = new Resp<>();
+        resp.setData(addressService.query(userId));
         return resp;
     }
 
-    @GetMapping("addr/query/{userAddrId}")
-    public Resp<UserAddr> queryAddrById(@PathVariable String userAddrId) {
-        Resp<UserAddr> resp = new Resp<>();
-        resp.setData(userAddrService.queryById(userAddrId));
+    @GetMapping("addr/query/{addressId}")
+    public Resp<Address> queryAddrById(@PathVariable String addressId) {
+        Resp<Address> resp = new Resp<>();
+        resp.setData(addressService.queryById(addressId));
         return resp;
     }
 
     @GetMapping("addr/query_default")
-    public Resp<UserAddr> queryDefaultAddress(@RequestHeader("Authorization") String authorization) {
+    public Resp<Address> queryDefaultAddress(@RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
-        Resp<UserAddr> resp = new Resp<>();
-        resp.setData(userAddrService.queryDefaultAddress(userId));
+        Resp<Address> resp = new Resp<>();
+        resp.setData(addressService.queryDefaultAddress(userId));
         return resp;
     }
 
     @PostMapping("addr/add")
-    public Resp<String> addAddr(@RequestBody UserAddr userAddr, @RequestHeader("Authorization") String authorization) {
+    public Resp<String> addAddr(@RequestBody Address address, @RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
-        String userAddrId = LblIdGenerator.generateId();
-        userAddr.setId(userAddrId);
-        userAddr.setUserId(userId);
-        userAddrService.add(userId, userAddr);
+        String addressId = LblIdGenerator.generateId();
+        address.setId(addressId);
+        address.setUserId(userId);
+        addressService.add(userId, address);
         Resp<String> resp = new Resp<>();
-        resp.setData(userAddrId);
+        resp.setData(addressId);
         return new Resp<>();
     }
 
     @PostMapping("addr/modify")
-    public Resp<List<UserAddr>> modifyAddr(@RequestBody UserAddr userAddr, @RequestHeader("Authorization") String authorization) {
+    public Resp<List<Address>> modifyAddr(@RequestBody Address address, @RequestHeader("Authorization") String authorization) {
         int userId = getUserIdFromHeader(authorization);
-        userAddrService.modify(userId, userAddr);
+        addressService.modify(userId, address);
         return new Resp<>();
     }
 
-    @GetMapping("addr/del/{userAddrId}")
-    public Resp<String> deleteAddr(@PathVariable String userAddrId) {
-        userAddrService.delete(userAddrId);
+    @GetMapping("addr/del/{addressId}")
+    public Resp<String> deleteAddr(@PathVariable String addressId) {
+        addressService.delete(addressId);
         return new Resp<>();
     }
 
@@ -213,6 +213,4 @@ public class ShopRestController {
         }
         return userId;
     }
-
-
 }

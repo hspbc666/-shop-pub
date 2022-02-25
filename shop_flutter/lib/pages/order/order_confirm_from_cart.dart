@@ -275,7 +275,7 @@ class _OrderConfirmFromCartState extends State<OrderConfirmFromCartPage> {
     if (queryDefaultAddrRespData != null) {
       String url = "shop/order/createFromCart";
       CreateOrderFromCartReqEntity createOrderReq = CreateOrderFromCartReqEntity();
-      createOrderReq.userAddrId = queryDefaultAddrRespData!.id;
+      createOrderReq.addressId = queryDefaultAddrRespData!.id;
       createOrderReq.cartIdList = widget.cartIds.split(",");
       HttpManager.getInstance().post(url, data: createOrderReq.toJson()).then((resp) {
         var result = CreateOrderRespEntity.fromJson(resp);
@@ -289,12 +289,12 @@ class _OrderConfirmFromCartState extends State<OrderConfirmFromCartPage> {
     if (queryDefaultAddrRespData != null) {
       addrId = queryDefaultAddrRespData!.id;
     }
-    Navigator.push(context, MaterialPageRoute(builder: (context) => SelectAddrListPage(userAddrId: addrId)))
+    Navigator.push(context, MaterialPageRoute(builder: (context) => SelectAddrListPage(addressId: addrId)))
         .then((value) => {refreshBackFromAddrPage(value)});
   }
 
   refreshBackFromAddrPage(value) {
-    if (value is QueryUserAddrListRespData) {
+    if (value is QueryAddressListRespData) {
       queryDefaultAddrRespData = QueryDefaultAddrRespData();
       queryDefaultAddrRespData!.id = value.id;
       queryDefaultAddrRespData!.name = value.name;

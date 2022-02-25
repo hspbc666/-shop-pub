@@ -6,7 +6,7 @@ var http = require('../../../utils/httputils.js');
 
 Page({
   data: {
-    userAddrId: 0,
+    addressId: 0,
     name: "",
     phone: "",
     region: "",
@@ -19,12 +19,12 @@ Page({
   },
   methods: {
   },
-  queryData(userAddrId) {
+  queryData(addressId) {
     let _this = this
-    http.get('shop/addr/query/' + userAddrId, '',
+    http.get('shop/addr/query/' + addressId, '',
       function (resp) {
         _this.setData({
-          userAddrId: userAddrId,
+          addressId: addressId,
           name: resp.data.name,
           phone: resp.data.phone,
           region: resp.data.region,
@@ -37,7 +37,7 @@ Page({
   },
   onSubmit(e) {
     var params = {
-      id: this.data.userAddrId,
+      id: this.data.addressId,
       name: e.detail.value.name,
       phone: e.detail.value.phone,
       region: e.detail.value.region,

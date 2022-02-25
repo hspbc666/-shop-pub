@@ -34,6 +34,8 @@ class LoginViewModel : BaseViewModel() {
             {
                 val resp = ShopRepo.register(userName, password)
                 if (resp?.isSuccess() == true) {
+                    SpUtil.put(SP_KEY_TOKEN, resp.data?.token ?: "")
+                    SpUtil.put(SP_KEY_USER_ID, resp.data?.id ?: 0)
                     onSuccess.invoke()
                 } else {
                     onFailure.invoke(resp?.msg ?: "")

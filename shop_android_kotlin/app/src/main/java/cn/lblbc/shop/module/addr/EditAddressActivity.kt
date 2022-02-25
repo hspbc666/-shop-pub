@@ -1,6 +1,5 @@
 package cn.lblbc.shop.module.addr
 
-import android.provider.SyncStateContract
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.network.response.Address

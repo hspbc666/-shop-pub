@@ -1,7 +1,7 @@
 package cn.lblbc.shop.module.order.list
 
 import android.content.Intent
-import android.provider.SyncStateContract
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import cn.lblbc.shop.R
@@ -46,9 +46,16 @@ class OrderFragment(private var tabId: Int) : BaseVmFragment<OrderListViewModel>
     }
 
     private fun onDeleteBtnClick(orderId: String) {
-        mViewModel.deleteOrder(orderId) {
-            refreshPage()
-        }
+        showDeleteDialog(orderId)
+    }
+
+    private fun showDeleteDialog(orderId: String) {
+        val message = "确认删除当前订单么？"
+        val alertDialog = AlertDialog.Builder(context!!).setMessage(message).setCancelable(false)
+            .setPositiveButton(R.string.delete) { _, _ -> mViewModel.deleteOrder(orderId) { refreshPage() } }
+            .setNegativeButton(R.string.cancel) { _, _ -> }
+            .create()
+        alertDialog.show()
     }
 
     override fun observe() {

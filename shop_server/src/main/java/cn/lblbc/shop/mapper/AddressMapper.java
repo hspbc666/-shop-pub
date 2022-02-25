@@ -1,6 +1,6 @@
 package cn.lblbc.shop.mapper;
 
-import cn.lblbc.shop.bean.UserAddr;
+import cn.lblbc.shop.bean.Address;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -13,16 +13,16 @@ import java.util.List;
  * 公众号：蓝不蓝编程
  */
 @Repository
-public interface UserAddrMapper {
+public interface AddressMapper {
 
     @Select(value = "SELECT * FROM user_addr where user_id = #{userId} order by default_address desc")
-    List<UserAddr> query(int userId);
+    List<Address> query(int userId);
 
-    @Select(value = "SELECT * FROM user_addr where id = #{userAddrId}")
-    UserAddr queryById(@Param("userAddrId") String userAddrId);
+    @Select(value = "SELECT * FROM user_addr where id = #{addressId}")
+    Address queryById(@Param("addressId") String addressId);
 
     @Select(value = "SELECT ua.* FROM user_addr ua,user_order uo where uo.id = #{orderId} and uo.user_addr_id=ua.id ")
-    UserAddr queryByOrderId(@Param("orderId") String orderId);
+    Address queryByOrderId(@Param("orderId") String orderId);
 
     @Insert(value = "insert into user_addr(id,user_id,name,phone,region,address,default_address,addr_type) values (#{id},#{userId},#{name}, #{phone}, #{region}, #{address}, #{isDefault}, #{addrType})")
     void add(@Param("id") String id, @Param("userId") int userId, @Param("name") String name, @Param("phone") String phone, @Param("region") String region, @Param("address") String address, @Param("isDefault") boolean isDefault, @Param("addrType") int addrType);

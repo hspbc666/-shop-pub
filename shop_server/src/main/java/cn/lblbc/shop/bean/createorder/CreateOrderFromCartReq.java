@@ -13,5 +13,5 @@ import java.util.List;
 @Data
 public class CreateOrderFromCartReq {
     private List<String> cartIdList;
-    private String userAddrId;
+    private String addressId;
 }

@@ -10,16 +10,16 @@ import 'package:shop_flutter/network/http_manager.dart';
 /// 公众号：蓝不蓝编程
 
 class EditAddrPage extends StatefulWidget {
-  final String userAddrId;
+  final String addressId;
 
-  const EditAddrPage({Key? key, required this.userAddrId}) : super(key: key);
+  const EditAddrPage({Key? key, required this.addressId}) : super(key: key);
 
   @override
   createState() => _EditAddrState();
 }
 
 class _EditAddrState extends State<EditAddrPage> {
-  QueryUserAddrRespData? userAddrData;
+  QueryAddressRespData? addressData;
   var _addrType = 0;
   var _defaultAddress = true;
   var nameController = TextEditingController();
@@ -135,12 +135,12 @@ class _EditAddrState extends State<EditAddrPage> {
   }
 
   _queryData() async {
-    String url = "shop/addr/query/" + widget.userAddrId;
+    String url = "shop/addr/query/" + widget.addressId;
     HttpManager.getInstance().get(url).then((resp) {
-      var result = QueryUserAddrRespEntity.fromJson(resp);
+      var result = QueryAddressRespEntity.fromJson(resp);
       var addrData = result.data;
       setState(() {
-        userAddrData = addrData;
+        addressData = addrData;
         _addrType = addrData.addrType;
         _defaultAddress = addrData.defaultAddress;
       });
@@ -154,14 +154,14 @@ class _EditAddrState extends State<EditAddrPage> {
   void modifyAddr() {
     String url = "shop/addr/modify";
 
-    if (userAddrData != null) {
-      userAddrData!.name = nameController.value.text;
-      userAddrData!.phone = phoneController.value.text;
-      userAddrData!.region = regionController.value.text;
-      userAddrData!.address = addressController.value.text;
-      userAddrData!.addrType = _addrType;
-      userAddrData!.defaultAddress = _defaultAddress;
-      HttpManager.getInstance().post(url, data: userAddrData!.toJson()).then((resp) {
+    if (addressData != null) {
+      addressData!.name = nameController.value.text;
+      addressData!.phone = phoneController.value.text;
+      addressData!.region = regionController.value.text;
+      addressData!.address = addressController.value.text;
+      addressData!.addrType = _addrType;
+      addressData!.defaultAddress = _defaultAddress;
+      HttpManager.getInstance().post(url, data: addressData!.toJson()).then((resp) {
         Navigator.pop(context);
       });
     }
