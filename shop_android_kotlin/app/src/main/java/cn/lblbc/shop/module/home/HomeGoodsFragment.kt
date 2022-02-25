@@ -1,9 +1,8 @@
-package cn.lblbc.shop.module.category
+package cn.lblbc.shop.module.home
 
 import android.content.Intent
 import android.widget.GridView
 import androidx.fragment.app.Fragment
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmFragment
 import cn.lblbc.shop.module.goods_detail.GoodsActivity
@@ -16,14 +15,14 @@ import cn.lblbc.shop.utils.Constants
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：蓝不蓝编程
  */
-class CategoryGoodsFragment(var categoryId: String) : BaseVmFragment<CategoryGoodsViewModel>() {
-    private lateinit var goodsAdapter: CategoryGoodsAdapter
+class HomeGoodsFragment(private var categoryId: String) : BaseVmFragment<HomeGoodsViewModel>() {
+    private lateinit var goodsAdapter: HomeGoodsAdapter
     private lateinit var goodsGridView: GridView
-    override fun viewModelClass() = CategoryGoodsViewModel::class.java
-    override fun layoutResId(): Int = R.layout.fragment_category_goods
+    override fun viewModelClass() = HomeGoodsViewModel::class.java
+    override fun layoutResId(): Int = R.layout.fragment_home_goods
 
     override fun initView() {
-        goodsAdapter = CategoryGoodsAdapter(context!!)
+        goodsAdapter = HomeGoodsAdapter(context!!)
         goodsGridView = findViewById(R.id.goodsGridView)
         goodsGridView.adapter = goodsAdapter
     }
@@ -50,7 +49,7 @@ class CategoryGoodsFragment(var categoryId: String) : BaseVmFragment<CategoryGoo
 
     companion object {
         fun newInstance(categoryId: String): Fragment {
-            return CategoryGoodsFragment(categoryId)
+            return HomeGoodsFragment(categoryId)
         }
     }
 }

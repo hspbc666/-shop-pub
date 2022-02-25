@@ -39,8 +39,8 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
             price = getString(R.string.price, getMoneyByYuan(it.price))
             goodsNameTv.text = it.name
             goodsPriceTv.text = price
-            it.squarePic?.let { loadImage(goodsIv, it) }
-            it.descPic?.let { loadImage(descIv, it) }
+            loadImage(goodsIv, it.squarePic)
+            loadImage(descIv, it.descPic)
         }
     }
 
@@ -52,8 +52,7 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
     override fun initListeners() {
         addToCartTv.setOnClickListener {
             if (LoginManager.isLoggedIn()) {
-                mViewModel.addToCart(goodsId,
-                    onSuccess = { toast("已加入购物车") })
+                mViewModel.addToCart(goodsId) { toast("已加入购物车") }
             } else {
                 startActivity(Intent(this@GoodsActivity, LoginActivity::class.java))
             }

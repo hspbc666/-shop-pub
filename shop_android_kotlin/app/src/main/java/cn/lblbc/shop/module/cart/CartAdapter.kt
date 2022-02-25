@@ -25,7 +25,7 @@ class CartAdapter(var mViewModel: CartViewModel) : BaseAdapter<CartItem>() {
         holder.itemView.quantityView.setData(data.quantity)
         holder.itemView.goodsPriceTv.text =
             mContext.getString(R.string.price, getMoneyByYuan(data.price))
-        data.squarePic?.let { loadImage(holder.itemView.goodsIv, it) }
+        loadImage(holder.itemView.goodsIv, data.squarePic)
 
         holder.itemView.quantityView.setCallback {
             data.quantity = it

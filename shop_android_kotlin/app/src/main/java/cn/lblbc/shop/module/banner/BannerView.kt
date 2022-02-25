@@ -47,7 +47,7 @@ class BannerView(mContext: Context, attrs: AttributeSet?) : LinearLayout(mContex
             .create(mBannerBeanList)
     }
 
-    fun dp2px(dpValue: Float): Int {
+    private fun dp2px(dpValue: Float): Int {
         return (0.5f + dpValue * Resources.getSystem().displayMetrics.density).toInt()
     }
 }

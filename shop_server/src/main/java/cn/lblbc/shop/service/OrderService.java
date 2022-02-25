@@ -17,8 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cn.lblbc.utils.Constants.OrderStatus.ORDER_ALL;
-import static cn.lblbc.utils.Constants.OrderStatus.TO_PAY;
+import static cn.lblbc.utils.Constants.OrderStatus.*;
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -67,7 +66,7 @@ public class OrderService {
     }
 
     private void addUserOder(int userId, String orderId, String userAddrId) {
-        userOrderMapper.add(orderId, userId, TO_PAY, System.currentTimeMillis(), userAddrId);
+        userOrderMapper.add(orderId, userId, TO_DELIVER, System.currentTimeMillis(), userAddrId);
     }
 
     public void changeOrderStatus(String orderId, int status) {

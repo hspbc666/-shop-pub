@@ -59,9 +59,7 @@ class EditAddressActivity : BaseVmActivity<AddressViewModel>() {
                 it.address = detailedAddrEt.text.toString()
                 it.defaultAddress = defaultAddrSwitch.isChecked
                 it.addrType = addType
-                mViewModel.modifyAddress(it, onSuccess = {
-                    finish()
-                })
+                mViewModel.modifyAddress(it) { finish() }
             }
         }
     }

@@ -6,71 +6,60 @@ package cn.lblbc.shop.network.response
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：蓝不蓝编程
  */
-class Goods {
-    var id: String = ""
-    var name: String = ""
-    var price: Long = 0
-    var longPic: String? = null
-    var squarePic: String? = null
-    var descPic: String? = null
-}
+class Goods(
+    var id: String = "",
+    var name: String = "",
+    var price: Long = 0,
+    var longPic: String = "",
+    var squarePic: String = "",
+    var descPic: String = ""
+)
 
-class CartItem {
-    var id: String = ""
-    var goodsId: String = ""
-    var name: String = ""
-    var price: Long = 0
-    var longPic: String? = null
-    var squarePic: String? = null
-    var quantity = 0
-}
+class CartItem(
+    var id: String = "",
+    var goodsId: String = "",
+    var name: String = "",
+    var price: Long = 0L,
+    var longPic: String = "",
+    var squarePic: String = "",
+    var quantity: Int = 0
+)
 
-class LoginResp {
-    var id: Int = 0
-    var token: String = ""
-}
+class LoginResp(var id: Int = 0, var token: String = "")
 
-class RegisterResp {
-    var id: Int = 0
-}
+class RegisterResp(var id: Int = 0)
 
-class CreateOrderResp {
-    var orderId: String = ""
-}
+class CreateOrderResp(var orderId: String = "")
 
-class OrderInfo {
-    val orderId: String? = null
-    val status: Int? = null
-    val createTime: Long = 0
-    val list: List<OrderDetail>? = null
+class OrderInfo(
+    val orderId: String = "",
+    val status: Int = 0,
+    val createTime: Long = 0,
+    val list: List<OrderDetail> = listOf(),
     val address: Address? = null
-}
+)
 
-class OrderDetail {
-    var goodsId: String? = null
-    var name: String? = null
-    var price: Long = 0
-    var longPic: String? = null
-    var squarePic: String? = null
-    var quantity = 0
-}
+class OrderDetail(
+    var goodsId: String = "",
+    var name: String = "",
+    var price: Long = 0,
+    var longPic: String = "",
+    var squarePic: String = "",
+    var quantity: Int = 0
+)
 
-class Address {
-    var id = ""
-    var name: String? = null
-    var phone: String? = null
-    var region: String? = null
-    var address: String? = null
-    var defaultAddress = false
-    var addrType = 0
-
+class Address(
+    var id: String = "",
+    var name: String = "",
+    var phone: String = "",
+    var region: String = "",
+    var address: String = "",
+    var defaultAddress: Boolean = false,
+    var addrType: Int = 0
+) {
     fun toSimpleInfo(): String {
         return "$name，$phone，$address"
     }
 }
 
-class CategoryInfo {
-    val id: String = ""
-    val name: String = ""
-}
-
+class CategoryInfo(val id: String = "", val name: String = "")

@@ -17,36 +17,34 @@ class OrderListView(context: Context, attrs: AttributeSet?) : LinearLayout(conte
         orientation = VERTICAL
     }
 
-    fun setData(list: List<OrderDetail>?) {
-        list?.forEach {
+    fun setData(list: List<OrderDetail>) {
+        list.forEach {
             createOrderDetailItem(it)
         }
     }
 
-    fun setDataByCartItems(list: List<CartItem>?) {
-        list?.map { cartItem ->
+    fun setDataByCartItems(list: List<CartItem>) {
+        list.map { cartItem ->
             OrderDetail().apply {
-                goodsId =  cartItem.id
-                squarePic =  cartItem.squarePic
-                name =  cartItem.name
-                price =  cartItem.price
-                quantity =  cartItem.quantity
-        } }?.forEach {
+                goodsId = cartItem.id
+                squarePic = cartItem.squarePic
+                name = cartItem.name
+                price = cartItem.price
+                quantity = cartItem.quantity
+            }
+        }.forEach {
             createOrderDetailItem(it)
         }
     }
 
-    fun setDataBySimpleOrderInfo(list: List<SimpleOrderInfo>?) {
-        list?.map { orderInfo ->
-            OrderDetail().apply {
-                goodsId =  orderInfo.goodsId
-                squarePic =  orderInfo.squarePic
-                name =  orderInfo.goodsName
-                price =  orderInfo.price
-                quantity =  orderInfo.quantity
-            } }?.forEach {
-            createOrderDetailItem(it)
-        }
+    fun setDataBySimpleOrderInfo(orderInfo: SimpleOrderInfo) {
+        val orderDetail = OrderDetail()
+        orderDetail.goodsId = orderInfo.goodsId
+        orderDetail.squarePic = orderInfo.squarePic
+        orderDetail.name = orderInfo.goodsName
+        orderDetail.price = orderInfo.price
+        orderDetail.quantity = orderInfo.quantity
+        createOrderDetailItem(orderDetail)
     }
 
     private fun createOrderDetailItem(orderDetail: OrderDetail) {

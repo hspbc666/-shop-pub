@@ -27,7 +27,7 @@ import kotlinx.android.synthetic.main.order_fee_layout.*
  * 公众号：蓝不蓝编程
  */
 open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
-    private var orderInfo: SimpleOrderInfo? = null
+    private lateinit var orderInfo: SimpleOrderInfo
     private var address: Address? = null
     override fun viewModelClass() = ConfirmOrderViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_confirm_order
@@ -37,18 +37,18 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
     }
 
     override fun initData() {
-        val orderInJson = intent.getStringExtra(EXTRA_KEY_SIMPLE_ORDER)
-        orderInfo = JsonUtil.fromJson(orderInJson!!)
+        val orderInJson = intent.getStringExtra(EXTRA_KEY_SIMPLE_ORDER) ?: ""
+        orderInfo = JsonUtil.fromJson(orderInJson)
         val sum = intent.getStringExtra(EXTRA_KEY_COST_SUM)
         goodsSumTv.text = sum
         sumTv.text = sum
         mViewModel.queryDefaultAddress()
-        orderInfo?.let { orderListView.setDataBySimpleOrderInfo(listOf(it)) }
+        orderListView.setDataBySimpleOrderInfo(orderInfo)
     }
 
     override fun initListeners() {
         createOrderTv.setOnClickListener {
-            orderInfo?.goodsId?.let { createOrder(it) }
+            createOrder(orderInfo.goodsId)
         }
         addAddrLayout.setOnClickListener {
             val intent = Intent(this, AddAddressActivity::class.java)
@@ -67,16 +67,15 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == requestCodeForSelectAddr || requestCode == requestCodeForAddAddr) {
             data?.let {
-                val userAddrJson = it.getStringExtra(Constants.EXTRA_KEY_USER_ADDR)
-                address = JsonUtil.fromJson(userAddrJson ?: "")
-                updateUserAddr()
+                val addressJson = it.getStringExtra(Constants.EXTRA_KEY_USER_ADDR) ?: ""
+                address = JsonUtil.fromJson(addressJson)
+                updateAddress()
             }
         }
     }
 
     private fun createOrder(goodsId: String) {
-        mViewModel.createOrder(goodsId, address?.id ?: "",
-            onSuccess = { closeAndGotoOrderDetailPage(it) })
+        mViewModel.createOrder(goodsId, address?.id ?: "") { closeAndGotoOrderDetailPage(it) }
     }
 
     private fun closeAndGotoOrderDetailPage(orderId: String) {
@@ -93,11 +92,11 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
     override fun observe() {
         mViewModel.defaultAddress.observe(this) {
             address = it
-            updateUserAddr()
+            updateAddress()
         }
     }
 
-    private fun updateUserAddr() {
+    private fun updateAddress() {
         address?.let {
             addrLayout.visibility = VISIBLE
             addAddrLayout.visibility = GONE

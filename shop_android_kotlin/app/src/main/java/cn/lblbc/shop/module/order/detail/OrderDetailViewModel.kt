@@ -14,16 +14,16 @@ import cn.lblbc.shop.network.response.OrderInfo
 class OrderDetailViewModel : BaseViewModel() {
     val orderInfo: MutableLiveData<OrderInfo> = MutableLiveData()
 
-    fun deleteOrder(orderId: String, onSuccess: (() -> Unit)? = null) {
-        launch({
-            ShopRepo.deleteOrder(orderId)
-            onSuccess?.invoke()
-        })
-    }
-
     fun queryOrder(orderId: String) {
         launch({
             orderInfo.value = ShopRepo.queryOrder(orderId)?.data
+        })
+    }
+
+    fun deleteOrder(orderId: String, onSuccess: () -> Unit) {
+        launch({
+            ShopRepo.deleteOrder(orderId)
+            onSuccess.invoke()
         })
     }
 }

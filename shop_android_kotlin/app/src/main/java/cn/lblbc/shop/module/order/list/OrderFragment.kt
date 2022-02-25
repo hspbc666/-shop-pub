@@ -15,7 +15,7 @@ import cn.lblbc.shop.utils.Constants
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：蓝不蓝编程
  */
-class OrderFragment(var tabId: Int) : BaseVmFragment<OrderListViewModel>() {
+class OrderFragment(private var tabId: Int) : BaseVmFragment<OrderListViewModel>() {
     private lateinit var adapter: OrderAdapter
     private lateinit var orderListRv: RecyclerView
 
@@ -35,12 +35,19 @@ class OrderFragment(var tabId: Int) : BaseVmFragment<OrderListViewModel>() {
 
     override fun initListeners() {
         adapter.onItemClick = this::onItemClick
+        adapter.onDeleteBtnClick = this::onDeleteBtnClick
     }
 
-    private fun onItemClick(resp: OrderInfo) {
+    private fun onItemClick(orderInfo: OrderInfo) {
         val intent = Intent(context, OrderDetailActivity::class.java)
-        intent.putExtra(Constants.EXTRA_KEY_ORDER_ID, resp.orderId)
+        intent.putExtra(Constants.EXTRA_KEY_ORDER_ID, orderInfo.orderId)
         startActivity(intent)
+    }
+
+    private fun onDeleteBtnClick(orderId: String) {
+        mViewModel.deleteOrder(orderId) {
+            refreshPage()
+        }
     }
 
     override fun observe() {

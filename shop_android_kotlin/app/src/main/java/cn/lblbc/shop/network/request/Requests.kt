@@ -6,24 +6,18 @@ package cn.lblbc.shop.network.request
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：蓝不蓝编程
  */
-class LoginReq(
-    val name: String = "",
-    val password: String = ""
-)
+class LoginReq(var name: String = "", var password: String = "")
 
-class RegisterReq(
-    val name: String = "",
-    val password: String = ""
-)
+class RegisterReq(var name: String = "", var password: String = "")
 
-class CreateOrderFromCartReq(val cartIdList: List<String>, val addressId: String)
+class CreateOrderFromCartReq(var cartIdList: List<String>, var addressId: String)
 
-class CreateOrderReq(val goodsId: String, val addressId: String)
+class CreateOrderReq(var goodsId: String, var addressId: String)
 
 class SimpleOrderInfo(
     var goodsId: String = "",
     var goodsName: String = "",
     var quantity: Int = 0,
     var price: Long = 0,
-    var squarePic: String? = null
+    var squarePic: String = ""
 )

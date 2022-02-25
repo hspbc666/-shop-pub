@@ -20,7 +20,7 @@ class SplashActivity : BaseActivity() {
     override fun initView() {
         GlobalScope.launch(Dispatchers.IO) {
             delay(500)
-            startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
+            startActivity(Intent(this@SplashActivity, LblActivity::class.java))
             finish()
         }
     }

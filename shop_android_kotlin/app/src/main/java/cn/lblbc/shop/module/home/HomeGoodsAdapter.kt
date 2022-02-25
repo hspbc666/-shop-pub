@@ -1,4 +1,4 @@
-package cn.lblbc.shop.module.category
+package cn.lblbc.shop.module.home
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -18,7 +18,7 @@ import com.bumptech.glide.Glide
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：蓝不蓝编程
  */
-class CategoryGoodsAdapter(private val mContext: Context) : BaseAdapter() {
+class HomeGoodsAdapter(private val mContext: Context) : BaseAdapter() {
     private var mDataList = ArrayList<Goods>()
     private val mInflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -60,9 +60,9 @@ class CategoryGoodsAdapter(private val mContext: Context) : BaseAdapter() {
         }
 
         val data = mDataList[position]
-        holder.goodsNameTv?.text = data.name
-        holder.goodsPriceTv?.text = mContext.getString(R.string.price, getMoneyByYuan(data.price))
-        data.squarePic?.let { loadImage(holder.goodsIv!!, it) }
+        holder.goodsNameTv.text = data.name
+        holder.goodsPriceTv.text = mContext.getString(R.string.price, getMoneyByYuan(data.price))
+        loadImage(holder.goodsIv, data.squarePic)
         return convertView
     }
 
@@ -71,8 +71,8 @@ class CategoryGoodsAdapter(private val mContext: Context) : BaseAdapter() {
     }
 
     private class ViewHolder {
-        var goodsNameTv: TextView? = null
-        var goodsPriceTv: TextView? = null
-        var goodsIv: ImageView? = null
+        lateinit var goodsNameTv: TextView
+        lateinit var goodsPriceTv: TextView
+        lateinit var goodsIv: ImageView
     }
 }

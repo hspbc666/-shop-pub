@@ -20,25 +20,25 @@ class AddressViewModel : BaseViewModel() {
         })
     }
 
-    fun addAddress(address: Address, onSuccess: ((address: Address) -> Unit)? = null) {
+    fun addAddress(address: Address, onSuccess: (address: Address) -> Unit) {
         launch({
             val addressId = ShopRepo.addAddress(address)?.data
             address.id = addressId ?: ""
-            onSuccess?.invoke(address)
+            onSuccess.invoke(address)
         })
     }
 
-    fun modifyAddress(address: Address, onSuccess: (() -> Unit)? = null) {
+    fun modifyAddress(address: Address, onSuccess: () -> Unit) {
         launch({
             ShopRepo.modifyAddress(address)
-            onSuccess?.invoke()
+            onSuccess.invoke()
         })
     }
 
-    fun deleteAddress(addressId: String, onSuccess: (() -> Unit)? = null) {
+    fun deleteAddress(addressId: String, onSuccess: () -> Unit) {
         launch({
             ShopRepo.deleteAddress(addressId)
-            onSuccess?.invoke()
+            onSuccess.invoke()
         })
     }
 }

@@ -19,4 +19,11 @@ class OrderListViewModel : BaseViewModel() {
             orders.value = ShopRepo.queryOrderByStatus(orderStatus)?.data
         })
     }
+
+    fun deleteOrder(orderId: String, onSuccess: () -> Unit) {
+        launch({
+            ShopRepo.deleteOrder(orderId)
+            onSuccess.invoke()
+        })
+    }
 }

@@ -25,9 +25,7 @@ class RegisterActivity : BaseVmActivity<LoginViewModel>() {
                     startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                     finish()
                 },
-                onFailure = {
-                    toast(it)
-                })
+                onFailure = { toast(it) })
         }
     }
 }

@@ -1,4 +1,4 @@
-package cn.lblbc.shop.module.category
+package cn.lblbc.shop.module.home
 
 import androidx.lifecycle.MutableLiveData
 import cn.lblbc.shop.base.BaseViewModel
@@ -11,7 +11,7 @@ import cn.lblbc.shop.network.response.Goods
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：蓝不蓝编程
  */
-class CategoryGoodsViewModel : BaseViewModel() {
+class HomeGoodsViewModel : BaseViewModel() {
     val goodsList: MutableLiveData<List<Goods>> = MutableLiveData()
 
     fun queryGoods(categoryId: String) {

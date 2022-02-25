@@ -15,7 +15,7 @@ import java.nio.charset.UnsupportedCharsetException
  */
 class HttpLogInterceptor : BaseInterceptor() {
     private val tag = HttpLogInterceptor::class.java.simpleName
-    private val UTF8 = Charset.forName("UTF-8")
+    private val utf8 = Charset.forName("UTF-8")
 
     override fun interceptMe(chain: Interceptor.Chain): Response {
         val request = chain.request()
@@ -24,12 +24,12 @@ class HttpLogInterceptor : BaseInterceptor() {
         requestBody?.let {
             val buffer = Buffer()
             requestBody.writeTo(buffer)
-            var charset: Charset? = UTF8
+            var charset = utf8
             val contentType = requestBody.contentType()
             contentType?.let {
-                charset = contentType.charset(UTF8)
+                charset = contentType.charset(utf8)
             }
-            body = buffer.readString(charset!!)
+            body = buffer.readString(charset)
         }
 
         Log.d(
@@ -40,7 +40,6 @@ class HttpLogInterceptor : BaseInterceptor() {
                     + "\n请求参数: " + body
         )
 
-        val startNs = System.nanoTime()
         val response = chain.proceed(request)
 
         val responseBody = response.body()
@@ -50,16 +49,16 @@ class HttpLogInterceptor : BaseInterceptor() {
         source.request(java.lang.Long.MAX_VALUE)
         val buffer = source.buffer()
 
-        var charset: Charset? = UTF8
+        var charset = utf8
         val contentType = responseBody.contentType()
         contentType?.let {
             try {
-                charset = contentType.charset(UTF8)
+                charset = contentType.charset(utf8)
             } catch (e: UnsupportedCharsetException) {
                 Log.e(tag, e.message ?: "未知错误")
             }
         }
-        rBody = buffer.clone().readString(charset!!)
+        rBody = buffer.clone().readString(charset)
 
         Log.d(
             tag,

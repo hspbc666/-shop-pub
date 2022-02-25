@@ -8,7 +8,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
-import cn.lblbc.shop.module.category.CategoryGoodsAdapter
+import cn.lblbc.shop.module.home.HomeGoodsAdapter
 import cn.lblbc.shop.module.goods_detail.GoodsActivity
 import cn.lblbc.shop.network.response.Goods
 import cn.lblbc.shop.utils.Constants
@@ -23,11 +23,11 @@ import kotlinx.android.synthetic.main.part_search_top.*
  * 公众号：蓝不蓝编程
  */
 class SearchActivity : BaseVmActivity<SearchViewModel>() {
-    private lateinit var goodsAdapter: CategoryGoodsAdapter
+    private lateinit var goodsAdapter: HomeGoodsAdapter
     override fun viewModelClass() = SearchViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_search
     override fun initView() {
-        goodsAdapter = CategoryGoodsAdapter(this)
+        goodsAdapter = HomeGoodsAdapter(this)
         goodsGridView.adapter = goodsAdapter
         goodsGridView.setOnItemClickListener { _, _, position, _ -> onItemClick(goodsAdapter.getData(position)) }
         showSoftInputFromWindow(searchEt)

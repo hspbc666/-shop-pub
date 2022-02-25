@@ -50,8 +50,6 @@ class AddressAdapter(var mViewModel: AddressViewModel) : BaseAdapter<Address>() 
     }
 
     private fun deleteAddress(addressId: String) {
-        mViewModel.deleteAddress(addressId, onSuccess = {
-            mViewModel.query()
-        })
+        mViewModel.deleteAddress(addressId) { mViewModel.query() }
     }
 }

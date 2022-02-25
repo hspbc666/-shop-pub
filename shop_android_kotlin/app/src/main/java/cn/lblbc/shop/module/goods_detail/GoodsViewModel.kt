@@ -20,10 +20,10 @@ class GoodsViewModel : BaseViewModel() {
         })
     }
 
-    fun addToCart(goodsId: String, onSuccess: (() -> Unit)? = null) {
+    fun addToCart(goodsId: String, onSuccess: () -> Unit) {
         launch({
             ShopRepo.addToCart(goodsId)
-            onSuccess?.invoke()
+            onSuccess.invoke()
         })
     }
 }

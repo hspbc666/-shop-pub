@@ -14,35 +14,31 @@ import cn.lblbc.shop.utils.SpUtil
  */
 class LoginViewModel : BaseViewModel() {
 
-    fun login(userName: String, password: String, onSuccess: (() -> Unit)? = null, onFailure: ((msg: String) -> Unit)? = null) {
+    fun login(userName: String, password: String, onSuccess: () -> Unit, onFailure: (msg: String) -> Unit) {
         launch(
             {
                 val resp = ShopRepo.login(userName, password)
                 if (resp?.isSuccess() == true) {
                     SpUtil.put(SP_KEY_TOKEN, resp.data?.token ?: "")
                     SpUtil.put(SP_KEY_USER_ID, resp.data?.id ?: 0)
-                    onSuccess?.invoke()
+                    onSuccess.invoke()
                 } else {
-                    onFailure?.invoke(resp?.msg ?: "")
+                    onFailure.invoke(resp?.msg ?: "")
                 }
             },
-            { onFailure?.invoke(it.message ?: "error") })
+            { onFailure.invoke(it.message ?: "error") })
     }
 
-    fun register(
-        userName: String, password: String,
-        onSuccess: (() -> Unit)? = null,
-        onFailure: ((msg: String) -> Unit)? = null
-    ) {
+    fun register(userName: String, password: String, onSuccess: () -> Unit, onFailure: (msg: String) -> Unit) {
         launch(
             {
                 val resp = ShopRepo.register(userName, password)
                 if (resp?.isSuccess() == true) {
-                    onSuccess?.invoke()
+                    onSuccess.invoke()
                 } else {
-                    onFailure?.invoke(resp?.msg ?: "")
+                    onFailure.invoke(resp?.msg ?: "")
                 }
             },
-            { onFailure?.invoke(it.message ?: "error") })
+            { onFailure.invoke(it.message ?: "error") })
     }
 }

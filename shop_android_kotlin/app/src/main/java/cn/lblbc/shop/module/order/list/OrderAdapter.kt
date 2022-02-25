@@ -20,19 +20,21 @@ import kotlinx.android.synthetic.main.item_order.view.*
  * 公众号：蓝不蓝编程
  */
 class OrderAdapter : BaseAdapter<OrderInfo>() {
+    lateinit var onDeleteBtnClick: (orderId: String) -> Unit
     override fun layoutResId() = R.layout.item_order
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val data = getItem(position)
-        holder.itemView.orderStatusTv.text = getOrderStatus(data.status ?: 0)
+        holder.itemView.orderStatusTv.text = getOrderStatus(data.status)
         holder.itemView.goodsCountTv.text =
-            mContext.getString(R.string.goods_count, data.list?.size)
+            mContext.getString(R.string.goods_count, data.list.size)
         holder.itemView.sumTv.text = calcSum(data.list)
         holder.itemView.orderListView.setData(data.list)
+        holder.itemView.deleteOrderTv.setOnClickListener { onDeleteBtnClick(data.orderId) }
         holder.itemView.setOnClickListener { onItemClick(data) }
     }
 
-    private fun calcSum(data: List<OrderDetail>?): CharSequence {
-        val sum = data?.sumOf { it.price * it.quantity } ?: 0L
+    private fun calcSum(data: List<OrderDetail>): CharSequence {
+        val sum = data.sumOf { it.price * it.quantity }
         return mContext.getString(R.string.price, getMoneyByYuan(sum))
     }
 

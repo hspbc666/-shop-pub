@@ -25,6 +25,7 @@ import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_RETUR
  * 公众号：蓝不蓝编程
  */
 class MineFragment : BaseFragment() {
+    private lateinit var settingsIv: ImageView
     private lateinit var userLogoIv: ImageView
     private lateinit var userNameTv: TextView
     private lateinit var userInfoLayout: View
@@ -37,6 +38,7 @@ class MineFragment : BaseFragment() {
     override fun layoutResId() = R.layout.fragment_mine
 
     override fun initView() {
+        settingsIv = findViewById(R.id.settingsIv)
         userLogoIv = findViewById(R.id.userLogoIv)
         userNameTv = findViewById(R.id.userNameTv)
         userInfoLayout = findViewById(R.id.userInfoLayout)
@@ -56,6 +58,7 @@ class MineFragment : BaseFragment() {
         }
 
         if (LoginManager.isLoggedIn()) {
+            settingsIv.setOnClickListener { gotoSettingsPage() }
             userInfoLayout.setOnClickListener { }
             allOrderTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_ALL) }
             toPayTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_PAY) }
@@ -64,6 +67,7 @@ class MineFragment : BaseFragment() {
             toCommentTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_COMMENT) }
             toReturnTv.setOnClickListener { gotoOrderPage(ORDER_STATUS_TO_RETURN) }
         } else {
+            settingsIv.setOnClickListener { gotoLoginPage() }
             userInfoLayout.setOnClickListener { gotoLoginPage() }
             allOrderTv.setOnClickListener { gotoLoginPage() }
             toPayTv.setOnClickListener { gotoLoginPage() }
@@ -74,16 +78,14 @@ class MineFragment : BaseFragment() {
         }
     }
 
+    private fun gotoSettingsPage() {
+        startActivity(Intent(context, SettingsActivity::class.java))
+    }
+
     private fun gotoOrderPage(tabIndex: Int) {
         val intent = Intent(context, OrderListActivity::class.java)
         intent.putExtra(Constants.EXTRA_KEY_TAB_INDEX, tabIndex)
         startActivity(intent)
-    }
-
-    override fun initListeners() {
-        findViewById<View>(R.id.settingsIv).setOnClickListener {
-            startActivity(Intent(context, SettingsActivity::class.java))
-        }
     }
 
     private fun gotoLoginPage() {

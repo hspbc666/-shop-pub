@@ -23,7 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.HomeActivity" />
+        <activity
+            android:name=".ui.activity.LblActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".module.login.LoginActivity" />
         <activity android:name=".module.goods_detail.GoodsActivity" />
         <activity android:name=".module.login.RegisterActivity" />

@@ -7,8 +7,8 @@ import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.addr.AddAddressActivity
 import cn.lblbc.shop.module.addr.select.SelectAddressActivity
 import cn.lblbc.shop.module.order.detail.OrderDetailActivity
-import cn.lblbc.shop.network.response.CartItem
 import cn.lblbc.shop.network.response.Address
+import cn.lblbc.shop.network.response.CartItem
 import cn.lblbc.shop.utils.Constants
 import cn.lblbc.shop.utils.Constants.EXTRA_KEY_CART_ITEMS
 import cn.lblbc.shop.utils.Constants.EXTRA_KEY_COST_SUM
@@ -35,8 +35,8 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
     }
 
     override fun initData() {
-        val cartItemsInJson = intent.getStringExtra(EXTRA_KEY_CART_ITEMS)
-        cartItemList = JsonUtil.fromJsonList(cartItemsInJson!!)
+        val cartItemsInJson = intent.getStringExtra(EXTRA_KEY_CART_ITEMS) ?: ""
+        cartItemList = JsonUtil.fromJsonList(cartItemsInJson)
         val sum = intent.getStringExtra(EXTRA_KEY_COST_SUM)
         goodsSumTv.text = sum
         sumTv.text = sum
@@ -68,16 +68,15 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == requestCodeForSelectAddr || requestCode == requestCodeForAddAddr) {
             data?.let {
-                val userAddrJson = it.getStringExtra(Constants.EXTRA_KEY_USER_ADDR)
-                address = JsonUtil.fromJson(userAddrJson ?: "")
-                updateUserAddr()
+                val addressJson = it.getStringExtra(Constants.EXTRA_KEY_USER_ADDR) ?: ""
+                address = JsonUtil.fromJson(addressJson)
+                updateAddress()
             }
         }
     }
 
     private fun createOrder(cartItemList: List<CartItem>) {
-        mViewModel.createOrderFromCart(cartItemList, address?.id ?: "",
-            onSuccess = { closeAndGotoOrderDetailPage(it) })
+        mViewModel.createOrderFromCart(cartItemList, address?.id ?: "") { closeAndGotoOrderDetailPage(it) }
     }
 
     private fun closeAndGotoOrderDetailPage(orderId: String) {
@@ -94,11 +93,11 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
     override fun observe() {
         mViewModel.defaultAddress.observe(this) {
             address = it
-            updateUserAddr()
+            updateAddress()
         }
     }
 
-    private fun updateUserAddr() {
+    private fun updateAddress() {
         address?.let {
             addrLayout.visibility = View.VISIBLE
             addAddrLayout.visibility = View.GONE

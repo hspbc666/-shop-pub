@@ -1,6 +1,5 @@
 package cn.lblbc.shop.module.order.detail
 
-import androidx.appcompat.app.AlertDialog
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.network.response.OrderDetail
@@ -20,7 +19,7 @@ import kotlinx.android.synthetic.main.order_detail_order_info_layout.*
  * 公众号：蓝不蓝编程
  */
 open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
-    private var orderId: String? = null
+    private var orderId = ""
     override fun viewModelClass() = OrderDetailViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_order_detail
 
@@ -29,8 +28,8 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
     }
 
     override fun initData() {
-        orderId = intent.getStringExtra(EXTRA_KEY_ORDER_ID)
-        orderId?.let { mViewModel.queryOrder(it) }
+        orderId = intent.getStringExtra(EXTRA_KEY_ORDER_ID) ?: ""
+        mViewModel.queryOrder(orderId)
     }
 
     override fun observe() {
@@ -49,31 +48,22 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
 
     override fun initListeners() {
         deleteOrderTv.setOnClickListener {
-            orderId?.let { showDeleteDialog(it) }
+            deleteOrder(orderId)
         }
     }
 
-    private fun showDeleteDialog(orderId: String) {
-        val message = "确认删除当前订单么？"
-        val alertDialog = AlertDialog.Builder(this).setMessage(message).setCancelable(false)
-            .setPositiveButton(R.string.delete) { _, _ -> deleteOrder(orderId) }
-            .setNegativeButton(R.string.cancel) { _, _ -> }
-            .create()
-        alertDialog.show()
-    }
-
     private fun deleteOrder(orderId: String) {
-        mViewModel.deleteOrder(orderId, onSuccess = {
+        mViewModel.deleteOrder(orderId) {
             finish()
-        })
+        }
     }
 
     private fun initToolbar() {
         toolbar.setNavigationOnClickListener { finish() }
     }
 
-    private fun calcSum(data: List<OrderDetail>?): CharSequence {
-        val sum = data?.sumOf { it.price * it.quantity } ?: 0L
+    private fun calcSum(data: List<OrderDetail>): CharSequence {
+        val sum = data.sumOf { it.price * it.quantity }
         return getMoneyByYuan(sum)
     }
 }

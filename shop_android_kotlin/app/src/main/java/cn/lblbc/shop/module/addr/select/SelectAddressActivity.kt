@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_goods.toolbar
  */
 class SelectAddressActivity : BaseVmActivity<SelectAddressViewModel>() {
     private lateinit var adapter: SelectAddressAdapter
-    private var selectedaddressId: String? = null
+    private var selectedAddressId: String? = null
     override fun viewModelClass() = SelectAddressViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_address_list
 
@@ -30,8 +30,8 @@ class SelectAddressActivity : BaseVmActivity<SelectAddressViewModel>() {
 
     override fun initView() {
         initToolbar()
-        selectedaddressId = intent.getStringExtra(EXTRA_KEY_USER_ADDR_ID)
-        adapter = SelectAddressAdapter(selectedaddressId)
+        selectedAddressId = intent.getStringExtra(EXTRA_KEY_USER_ADDR_ID)
+        adapter = SelectAddressAdapter(selectedAddressId)
         addrListRv.adapter = adapter
     }
 

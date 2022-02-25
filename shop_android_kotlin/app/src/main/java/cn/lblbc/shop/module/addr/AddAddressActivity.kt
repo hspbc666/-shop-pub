@@ -39,17 +39,17 @@ class AddAddressActivity : BaseVmActivity<AddressViewModel>() {
             }
         }
         addAddrTv.setOnClickListener {
-            val userAddr = Address()
-            userAddr.name = receiverNameEt.text.toString()
-            userAddr.phone = receiverPhoneEt.text.toString()
-            userAddr.region = regionEt.text.toString()
-            userAddr.address = detailedAddrEt.text.toString()
-            userAddr.defaultAddress = defaultAddrSwitch.isChecked
-            userAddr.addrType = addType
-            mViewModel.addAddress(userAddr, onSuccess = {
+            val address = Address()
+            address.name = receiverNameEt.text.toString()
+            address.phone = receiverPhoneEt.text.toString()
+            address.region = regionEt.text.toString()
+            address.address = detailedAddrEt.text.toString()
+            address.defaultAddress = defaultAddrSwitch.isChecked
+            address.addrType = addType
+            mViewModel.addAddress(address) {
                 sendResultForConfirmOrder(it)
                 finish()
-            })
+            }
         }
     }
 
