@@ -1,9 +1,13 @@
 package cn.lblbc.shop.module.addr
 
+import android.provider.SyncStateContract
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.network.response.Address
-import cn.lblbc.shop.utils.Constants
+import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_COMPANY
+import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_HOME
+import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_OTHER
+import cn.lblbc.shop.utils.EXTRA_KEY_ADDR_INFO
 import cn.lblbc.shop.utils.JsonUtil
 import kotlinx.android.synthetic.main.activity_modify_address.*
 import kotlinx.android.synthetic.main.part_addr_detail.*
@@ -23,7 +27,7 @@ class EditAddressActivity : BaseVmActivity<AddressViewModel>() {
     override fun viewModelClass() = AddressViewModel::class.java
     override fun initView() {
         initToolbar()
-        val addrInfoInJson = intent.getStringExtra(Constants.EXTRA_KEY_ADDR_INFO) ?: ""
+        val addrInfoInJson = intent.getStringExtra(EXTRA_KEY_ADDR_INFO) ?: ""
         address = JsonUtil.fromJson(addrInfoInJson)
         address?.let {
             receiverNameEt.setText(it.name)
@@ -37,18 +41,18 @@ class EditAddressActivity : BaseVmActivity<AddressViewModel>() {
 
     private fun selectAddrRadioButton(addrType: Int) {
         when (addrType) {
-            Constants.AddrType.ADDR_TYPE_HOME -> addrTypeHomeRb.isChecked = true
-            Constants.AddrType.ADDR_TYPE_COMPANY -> addrTypeCompanyRb.isChecked = true
-            Constants.AddrType.ADDR_TYPE_OTHER -> addrTypeOtherRb.isChecked = true
+            ADDR_TYPE_HOME -> addrTypeHomeRb.isChecked = true
+            ADDR_TYPE_COMPANY -> addrTypeCompanyRb.isChecked = true
+            ADDR_TYPE_OTHER -> addrTypeOtherRb.isChecked = true
         }
     }
 
     override fun initListeners() {
         addrTypeRadioGroup.setOnCheckedChangeListener { _, checkedButton ->
             when (checkedButton) {
-                R.id.addrTypeHomeRb -> addType = Constants.AddrType.ADDR_TYPE_HOME
-                R.id.addrTypeCompanyRb -> addType = Constants.AddrType.ADDR_TYPE_COMPANY
-                R.id.addrTypeOtherRb -> addType = Constants.AddrType.ADDR_TYPE_OTHER
+                R.id.addrTypeHomeRb -> addType = ADDR_TYPE_HOME
+                R.id.addrTypeCompanyRb -> addType = ADDR_TYPE_COMPANY
+                R.id.addrTypeOtherRb -> addType = ADDR_TYPE_OTHER
             }
         }
         modifyAddrTv.setOnClickListener {

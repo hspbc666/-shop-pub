@@ -1,6 +1,7 @@
 package cn.lblbc.shop.module.order.confirm
 
 import android.content.Intent
+import android.provider.SyncStateContract
 import android.view.View
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
@@ -9,10 +10,7 @@ import cn.lblbc.shop.module.addr.select.SelectAddressActivity
 import cn.lblbc.shop.module.order.detail.OrderDetailActivity
 import cn.lblbc.shop.network.response.Address
 import cn.lblbc.shop.network.response.CartItem
-import cn.lblbc.shop.utils.Constants
-import cn.lblbc.shop.utils.Constants.EXTRA_KEY_CART_ITEMS
-import cn.lblbc.shop.utils.Constants.EXTRA_KEY_COST_SUM
-import cn.lblbc.shop.utils.JsonUtil
+import cn.lblbc.shop.utils.*
 import kotlinx.android.synthetic.main.activity_confirm_order.*
 import kotlinx.android.synthetic.main.order_addr_layout.*
 import kotlinx.android.synthetic.main.order_bottom_layout.*
@@ -58,7 +56,7 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
         addrLayout.setOnClickListener {
             address?.let {
                 val intent = Intent(this, SelectAddressActivity::class.java)
-                intent.putExtra(Constants.EXTRA_KEY_USER_ADDR_ID, it.id)
+                intent.putExtra(EXTRA_KEY_USER_ADDR_ID, it.id)
                 startActivityForResult(intent, requestCodeForSelectAddr)
             }
         }
@@ -68,7 +66,7 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == requestCodeForSelectAddr || requestCode == requestCodeForAddAddr) {
             data?.let {
-                val addressJson = it.getStringExtra(Constants.EXTRA_KEY_USER_ADDR) ?: ""
+                val addressJson = it.getStringExtra(EXTRA_KEY_USER_ADDR) ?: ""
                 address = JsonUtil.fromJson(addressJson)
                 updateAddress()
             }
@@ -81,7 +79,7 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
 
     private fun closeAndGotoOrderDetailPage(orderId: String) {
         val intent = Intent(this, OrderDetailActivity::class.java)
-        intent.putExtra(Constants.EXTRA_KEY_ORDER_ID, orderId)
+        intent.putExtra(EXTRA_KEY_ORDER_ID, orderId)
         startActivity(intent)
         finish()
     }

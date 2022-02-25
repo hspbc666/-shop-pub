@@ -1,6 +1,7 @@
 package cn.lblbc.shop.module.mine
 
 import android.content.Intent
+import android.provider.SyncStateContract
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,13 +11,13 @@ import cn.lblbc.shop.module.login.LoginActivity
 import cn.lblbc.shop.module.login.LoginManager
 import cn.lblbc.shop.module.order.list.OrderListActivity
 import cn.lblbc.shop.module.settings.SettingsActivity
-import cn.lblbc.shop.utils.Constants
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_ALL
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_COMMENT
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_DELIVER
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_PAY
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_RECEIVE
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_RETURN
+import cn.lblbc.shop.utils.EXTRA_KEY_TAB_INDEX
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_ALL
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_COMMENT
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_DELIVER
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_PAY
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_RECEIVE
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_RETURN
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -84,7 +85,7 @@ class MineFragment : BaseFragment() {
 
     private fun gotoOrderPage(tabIndex: Int) {
         val intent = Intent(context, OrderListActivity::class.java)
-        intent.putExtra(Constants.EXTRA_KEY_TAB_INDEX, tabIndex)
+        intent.putExtra(EXTRA_KEY_TAB_INDEX, tabIndex)
         startActivity(intent)
     }
 

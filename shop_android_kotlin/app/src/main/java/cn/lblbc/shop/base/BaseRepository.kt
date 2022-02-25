@@ -2,7 +2,7 @@ package cn.lblbc.shop.base
 
 import cn.lblbc.shop.network.ApiService
 import cn.lblbc.shop.network.OkHttpClientUtil
-import cn.lblbc.shop.utils.Constants.BASE_URL
+import cn.lblbc.shop.utils.BASE_URL
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

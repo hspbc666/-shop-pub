@@ -1,6 +1,7 @@
 package cn.lblbc.shop.module.search
 
 import android.content.Intent
+import android.provider.SyncStateContract
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.WindowManager
@@ -11,7 +12,7 @@ import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.home.HomeGoodsAdapter
 import cn.lblbc.shop.module.goods_detail.GoodsActivity
 import cn.lblbc.shop.network.response.Goods
-import cn.lblbc.shop.utils.Constants
+import cn.lblbc.shop.utils.EXTRA_KEY_GOODS_ID
 import cn.lblbc.shop.utils.hideSoftKeyboard
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.part_search_top.*
@@ -76,7 +77,7 @@ class SearchActivity : BaseVmActivity<SearchViewModel>() {
 
     private fun onItemClick(goods: Goods) {
         val intent = Intent(this, GoodsActivity::class.java)
-        intent.putExtra(Constants.EXTRA_KEY_GOODS_ID, goods.id)
+        intent.putExtra(EXTRA_KEY_GOODS_ID, goods.id)
         startActivity(intent)
     }
 }

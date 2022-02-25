@@ -1,6 +1,7 @@
 package cn.lblbc.shop.module.cart
 
 import android.content.Intent
+import android.provider.SyncStateContract
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -11,7 +12,8 @@ import cn.lblbc.shop.base.BaseVmFragment
 import cn.lblbc.shop.module.login.LoginActivity
 import cn.lblbc.shop.module.login.LoginManager
 import cn.lblbc.shop.module.order.confirm.ConfirmOrderFromCartActivity
-import cn.lblbc.shop.utils.Constants
+import cn.lblbc.shop.utils.EXTRA_KEY_CART_ITEMS
+import cn.lblbc.shop.utils.EXTRA_KEY_COST_SUM
 import cn.lblbc.shop.utils.JsonUtil
 import cn.lblbc.shop.utils.getMoneyByYuan
 
@@ -53,8 +55,8 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
             val intent = Intent(context, ConfirmOrderFromCartActivity::class.java)
             val cartItems = mViewModel.selectionItemList
             val cartItemsInJson = JsonUtil.toJson(cartItems)
-            intent.putExtra(Constants.EXTRA_KEY_CART_ITEMS, cartItemsInJson)
-            intent.putExtra(Constants.EXTRA_KEY_COST_SUM, sumTv.text)
+            intent.putExtra(EXTRA_KEY_CART_ITEMS, cartItemsInJson)
+            intent.putExtra(EXTRA_KEY_COST_SUM, sumTv.text)
             startActivity(intent)
         }
     }

@@ -1,13 +1,14 @@
 package cn.lblbc.shop.module.order.list
 
 import android.content.Intent
+import android.provider.SyncStateContract
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmFragment
 import cn.lblbc.shop.module.order.detail.OrderDetailActivity
 import cn.lblbc.shop.network.response.OrderInfo
-import cn.lblbc.shop.utils.Constants
+import cn.lblbc.shop.utils.EXTRA_KEY_ORDER_ID
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -40,7 +41,7 @@ class OrderFragment(private var tabId: Int) : BaseVmFragment<OrderListViewModel>
 
     private fun onItemClick(orderInfo: OrderInfo) {
         val intent = Intent(context, OrderDetailActivity::class.java)
-        intent.putExtra(Constants.EXTRA_KEY_ORDER_ID, orderInfo.orderId)
+        intent.putExtra(EXTRA_KEY_ORDER_ID, orderInfo.orderId)
         startActivity(intent)
     }
 

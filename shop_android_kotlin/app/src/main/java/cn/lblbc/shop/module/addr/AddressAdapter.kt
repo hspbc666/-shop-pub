@@ -1,6 +1,7 @@
 package cn.lblbc.shop.module.addr
 
 import android.content.Intent
+import android.provider.SyncStateContract
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AlertDialog
@@ -8,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cn.lblbc.shop.R
 import cn.lblbc.shop.network.response.Address
 import cn.lblbc.shop.ui.view.BaseAdapter
-import cn.lblbc.shop.utils.Constants
+import cn.lblbc.shop.utils.EXTRA_KEY_ADDR_INFO
 import cn.lblbc.shop.utils.JsonUtil
 import kotlinx.android.synthetic.main.item_addr.view.*
 
@@ -45,7 +46,7 @@ class AddressAdapter(var mViewModel: AddressViewModel) : BaseAdapter<Address>() 
 
     private fun gotoEditAddressPage(data: Address) {
         val intent = Intent(mContext, EditAddressActivity::class.java)
-        intent.putExtra(Constants.EXTRA_KEY_ADDR_INFO, JsonUtil.toJson(data))
+        intent.putExtra(EXTRA_KEY_ADDR_INFO, JsonUtil.toJson(data))
         mContext.startActivity(intent)
     }
 

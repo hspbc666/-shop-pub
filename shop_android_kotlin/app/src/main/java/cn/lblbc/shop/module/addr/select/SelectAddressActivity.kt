@@ -1,13 +1,14 @@
 package cn.lblbc.shop.module.addr.select
 
 import android.content.Intent
+import android.provider.SyncStateContract
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.addr.AddAddressActivity
 import cn.lblbc.shop.module.order.confirm.ConfirmOrderActivity.Companion.requestCodeForSelectAddr
 import cn.lblbc.shop.network.response.Address
-import cn.lblbc.shop.utils.Constants
-import cn.lblbc.shop.utils.Constants.EXTRA_KEY_USER_ADDR_ID
+import cn.lblbc.shop.utils.EXTRA_KEY_USER_ADDR
+import cn.lblbc.shop.utils.EXTRA_KEY_USER_ADDR_ID
 import cn.lblbc.shop.utils.JsonUtil
 import kotlinx.android.synthetic.main.activity_address_list.*
 import kotlinx.android.synthetic.main.activity_goods.toolbar
@@ -48,7 +49,7 @@ class SelectAddressActivity : BaseVmActivity<SelectAddressViewModel>() {
 
     private fun onItemClick(data: Address) {
         val intent = Intent()
-        intent.putExtra(Constants.EXTRA_KEY_USER_ADDR, JsonUtil.toJson(data))
+        intent.putExtra(EXTRA_KEY_USER_ADDR, JsonUtil.toJson(data))
         setResult(requestCodeForSelectAddr, intent)
         finish()
     }

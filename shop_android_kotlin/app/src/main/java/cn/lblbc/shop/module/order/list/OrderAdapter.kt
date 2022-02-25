@@ -5,11 +5,11 @@ import cn.lblbc.shop.R
 import cn.lblbc.shop.network.response.OrderDetail
 import cn.lblbc.shop.network.response.OrderInfo
 import cn.lblbc.shop.ui.view.BaseAdapter
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_COMMENT
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_DELIVER
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_PAY
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_RECEIVE
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_RETURN
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_COMMENT
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_DELIVER
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_PAY
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_RECEIVE
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_RETURN
 import cn.lblbc.shop.utils.getMoneyByYuan
 import kotlinx.android.synthetic.main.item_order.view.*
 

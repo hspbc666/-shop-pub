@@ -1,6 +1,7 @@
 package cn.lblbc.shop.module.login
 
-import cn.lblbc.shop.utils.Constants
+import android.provider.SyncStateContract
+import cn.lblbc.shop.utils.SP_KEY_TOKEN
 import cn.lblbc.shop.utils.SpUtil
 
 /**
@@ -10,6 +11,6 @@ import cn.lblbc.shop.utils.SpUtil
  * 公众号：蓝不蓝编程
  */
 object LoginManager {
-    fun isLoggedIn() = !SpUtil.get(Constants.SP_KEY_TOKEN, "").isNullOrEmpty()
-    fun quitLogin() = SpUtil.remove(Constants.SP_KEY_TOKEN)
+    fun isLoggedIn() = !SpUtil.get(SP_KEY_TOKEN, "").isNullOrEmpty()
+    fun quitLogin() = SpUtil.remove(SP_KEY_TOKEN)
 }

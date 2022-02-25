@@ -1,6 +1,6 @@
 package cn.lblbc.shop.network.interceptor
 
-import cn.lblbc.shop.utils.Constants.LOGIN_URL
+import cn.lblbc.shop.utils.LOGIN_URL
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response

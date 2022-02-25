@@ -1,14 +1,15 @@
 package cn.lblbc.shop.module.addr
 
 import android.content.Intent
+import android.provider.SyncStateContract
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.order.confirm.ConfirmOrderActivity
 import cn.lblbc.shop.network.response.Address
-import cn.lblbc.shop.utils.Constants
-import cn.lblbc.shop.utils.Constants.AddrType.Companion.ADDR_TYPE_COMPANY
-import cn.lblbc.shop.utils.Constants.AddrType.Companion.ADDR_TYPE_HOME
-import cn.lblbc.shop.utils.Constants.AddrType.Companion.ADDR_TYPE_OTHER
+import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_COMPANY
+import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_HOME
+import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_OTHER
+import cn.lblbc.shop.utils.EXTRA_KEY_USER_ADDR
 import cn.lblbc.shop.utils.JsonUtil
 import kotlinx.android.synthetic.main.activity_add_address.*
 import kotlinx.android.synthetic.main.activity_goods.toolbar
@@ -58,7 +59,7 @@ class AddAddressActivity : BaseVmActivity<AddressViewModel>() {
      */
     private fun sendResultForConfirmOrder(it: Address) {
         val intent = Intent()
-        intent.putExtra(Constants.EXTRA_KEY_USER_ADDR, JsonUtil.toJson(it))
+        intent.putExtra(EXTRA_KEY_USER_ADDR, JsonUtil.toJson(it))
         setResult(ConfirmOrderActivity.requestCodeForSelectAddr, intent)
     }
 

@@ -1,6 +1,6 @@
 package cn.lblbc.shop.network.interceptor
 
-import cn.lblbc.shop.utils.Constants.SP_KEY_TOKEN
+import cn.lblbc.shop.utils.SP_KEY_TOKEN
 import cn.lblbc.shop.utils.SpUtil
 import okhttp3.Interceptor
 import okhttp3.Request

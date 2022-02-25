@@ -1,17 +1,18 @@
 package cn.lblbc.shop.module.order.list
 
+import android.provider.SyncStateContract
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
-import cn.lblbc.shop.utils.Constants
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_ALL
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_COMMENT
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_DELIVER
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_PAY
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_RECEIVE
-import cn.lblbc.shop.utils.Constants.OrderStatus.Companion.ORDER_STATUS_TO_RETURN
+import cn.lblbc.shop.utils.EXTRA_KEY_TAB_INDEX
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_ALL
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_COMMENT
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_DELIVER
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_PAY
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_RECEIVE
+import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_RETURN
 import kotlinx.android.synthetic.main.activity_goods.toolbar
 import kotlinx.android.synthetic.main.activity_order_list.*
 
@@ -27,7 +28,7 @@ class OrderListActivity : BaseVmActivity<OrderListViewModel>() {
     override fun layoutResId(): Int = R.layout.activity_order_list
 
     override fun initView() {
-        val tabIndex = intent.getIntExtra(Constants.EXTRA_KEY_TAB_INDEX, ORDER_STATUS_ALL)
+        val tabIndex = intent.getIntExtra(EXTRA_KEY_TAB_INDEX, ORDER_STATUS_ALL)
         initTabs()
         initToolbar()
         viewPager.adapter = OrderPagerAdapter(supportFragmentManager)

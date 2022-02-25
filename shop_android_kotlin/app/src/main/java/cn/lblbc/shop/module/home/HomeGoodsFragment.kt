@@ -1,13 +1,14 @@
 package cn.lblbc.shop.module.home
 
 import android.content.Intent
+import android.provider.SyncStateContract
 import android.widget.GridView
 import androidx.fragment.app.Fragment
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmFragment
 import cn.lblbc.shop.module.goods_detail.GoodsActivity
 import cn.lblbc.shop.network.response.Goods
-import cn.lblbc.shop.utils.Constants
+import cn.lblbc.shop.utils.EXTRA_KEY_GOODS_ID
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -43,7 +44,7 @@ class HomeGoodsFragment(private var categoryId: String) : BaseVmFragment<HomeGoo
 
     private fun onItemClick(goods: Goods) {
         val intent = Intent(context, GoodsActivity::class.java)
-        intent.putExtra(Constants.EXTRA_KEY_GOODS_ID, goods.id)
+        intent.putExtra(EXTRA_KEY_GOODS_ID, goods.id)
         startActivity(intent)
     }
 

@@ -3,7 +3,7 @@ package cn.lblbc.shop.module.order.detail
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.network.response.OrderDetail
-import cn.lblbc.shop.utils.Constants.EXTRA_KEY_ORDER_ID
+import cn.lblbc.shop.utils.EXTRA_KEY_ORDER_ID
 import cn.lblbc.shop.utils.formatTime
 import cn.lblbc.shop.utils.getMoneyByYuan
 import kotlinx.android.synthetic.main.activity_goods.toolbar

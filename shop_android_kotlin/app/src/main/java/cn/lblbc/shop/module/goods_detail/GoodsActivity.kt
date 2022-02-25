@@ -1,6 +1,7 @@
 package cn.lblbc.shop.module.goods_detail
 
 import android.content.Intent
+import android.provider.SyncStateContract
 import android.widget.ImageView
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
@@ -9,11 +10,7 @@ import cn.lblbc.shop.module.login.LoginManager
 import cn.lblbc.shop.module.order.confirm.ConfirmOrderActivity
 import cn.lblbc.shop.network.request.SimpleOrderInfo
 import cn.lblbc.shop.network.response.Goods
-import cn.lblbc.shop.utils.Constants
-import cn.lblbc.shop.utils.Constants.EXTRA_KEY_GOODS_ID
-import cn.lblbc.shop.utils.JsonUtil
-import cn.lblbc.shop.utils.getMoneyByYuan
-import cn.lblbc.shop.utils.toast
+import cn.lblbc.shop.utils.*
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_goods.*
 import kotlinx.android.synthetic.main.part_goods_bottom.*
@@ -63,8 +60,8 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
                     val intent = Intent(this, ConfirmOrderActivity::class.java)
                     val simpleOrderInfo = SimpleOrderInfo(goodsId, it.name, 1, it.price, it.squarePic)
                     val orderInJson = JsonUtil.toJson(simpleOrderInfo)
-                    intent.putExtra(Constants.EXTRA_KEY_SIMPLE_ORDER, orderInJson)
-                    intent.putExtra(Constants.EXTRA_KEY_COST_SUM, price)
+                    intent.putExtra(EXTRA_KEY_SIMPLE_ORDER, orderInJson)
+                    intent.putExtra(EXTRA_KEY_COST_SUM, price)
                     startActivity(intent)
                 }
             } else {
