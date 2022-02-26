@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_address_list.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.17395833333333333" />
+        <entry key="app/src/main/res/layout/item_cart_goods.xml" value="0.17395833333333333" />
+        <entry key="app/src/main/res/menu/main_bottom_navigation.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.16598569969356486" />
       </map>
     </option>
