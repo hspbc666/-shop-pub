@@ -38,20 +38,12 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
 
-    //recyclerview库
-    implementation "androidx.recyclerview:recyclerview:1.2.0-alpha01"
-    //包含了viewModel等
-    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-rc03"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc03"
-    //协程coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
-    //retrofit网络库
+
     implementation "com.squareup.retrofit2:retrofit:2.6.0"
     implementation "com.squareup.retrofit2:converter-gson:2.6.0"
     implementation "com.squareup.okhttp3:logging-interceptor:3.11.0"
-    implementation "com.squareup.okhttp3:okhttp:3.9.1"
+
     implementation "com.github.bumptech.glide:glide:4.9.0"
-    implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'com.gitee.lblbc:quantity-view:v1.0.0'
 }
