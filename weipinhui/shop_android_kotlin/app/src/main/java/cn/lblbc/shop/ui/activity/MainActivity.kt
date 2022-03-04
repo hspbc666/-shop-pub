@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import cn.lblbc.shop.R
 import cn.lblbc.shop.module.cart.CartFragment
 import cn.lblbc.shop.module.category.CategoryFragment
+import cn.lblbc.shop.module.home.HomeFragment
 import cn.lblbc.shop.module.mine.MineFragment
 import kotlinx.android.synthetic.main.activity_lbl.*
 
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initData() {
         mFragments = ArrayList()
+        mFragments.add(HomeFragment())
         mFragments.add(CategoryFragment())
         mFragments.add(CartFragment())
         mFragments.add(MineFragment())
@@ -37,8 +39,9 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_home -> setFragmentPosition(0)
-                R.id.menu_cart -> setFragmentPosition(1)
-                R.id.menu_mine -> setFragmentPosition(2)
+                R.id.menu_category -> setFragmentPosition(1)
+                R.id.menu_cart -> setFragmentPosition(2)
+                R.id.menu_mine -> setFragmentPosition(3)
             }
             true
         }
