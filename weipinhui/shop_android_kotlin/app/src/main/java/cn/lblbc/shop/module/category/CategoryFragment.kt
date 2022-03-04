@@ -1,4 +1,4 @@
-package cn.lblbc.shop.module.home
+package cn.lblbc.shop.module.category
 
 import android.content.Intent
 import android.view.View
@@ -17,12 +17,12 @@ import cn.lblbc.shop.network.response.CategoryInfo
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：蓝不蓝编程
  */
-class HomeFragment : BaseVmFragment<HomeViewModel>() {
+class CategoryFragment : BaseVmFragment<CategoryViewModel>() {
     private lateinit var topSearchLayout: View
     private lateinit var viewPager: ViewPager
 
-    override fun viewModelClass() = HomeViewModel::class.java
-    override fun layoutResId() = R.layout.fragment_home
+    override fun viewModelClass() = CategoryViewModel::class.java
+    override fun layoutResId() = R.layout.fragment_category
 
     override fun initView() {
         topSearchLayout = findViewById(R.id.topSearchLayout)
@@ -46,7 +46,7 @@ class HomeFragment : BaseVmFragment<HomeViewModel>() {
     private inner class CategoryPagerAdapter(fm: FragmentManager, var tabList: List<CategoryInfo>) :
         FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(position: Int): Fragment {
-            return HomeGoodsFragment.newInstance(tabList[position].id)
+            return CategoryGoodsFragment.newInstance(tabList[position].id)
         }
 
         override fun getPageTitle(position: Int): CharSequence {

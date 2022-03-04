@@ -43,9 +43,9 @@ class SearchHisView(
     private fun updateView() {
         searchHisContainer.removeAllViews()
         if (searchHisBean.keyWordList.isEmpty()) {
-            homeSearchLayout.visibility = GONE
+            searchHisLayout.visibility = GONE
         } else {
-            homeSearchLayout.visibility = VISIBLE
+            searchHisLayout.visibility = VISIBLE
             searchHisBean.keyWordList.forEach {
                 searchHisContainer.addView(getItemView(it))
             }

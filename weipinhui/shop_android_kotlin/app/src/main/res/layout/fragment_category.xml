@@ -6,7 +6,7 @@
     android:background="@color/common_bg"
     android:orientation="vertical">
 
-    <include layout="@layout/part_home_search" />
+    <include layout="@layout/part_top_search" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
