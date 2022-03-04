@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_lbl.*
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：蓝不蓝编程
  */
-class LblActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private var lastIndex = 0
     private var mFragments = mutableListOf<Fragment>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +34,7 @@ class LblActivity : AppCompatActivity() {
     }
 
     private fun initBottomNavigation() {
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+        bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_home -> setFragmentPosition(0)
                 R.id.menu_cart -> setFragmentPosition(1)

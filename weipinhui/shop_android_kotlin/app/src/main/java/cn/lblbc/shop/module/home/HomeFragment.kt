@@ -18,19 +18,19 @@ import cn.lblbc.shop.network.response.CategoryInfo
  * 公众号：蓝不蓝编程
  */
 class HomeFragment : BaseVmFragment<HomeViewModel>() {
-    private lateinit var homeSearchLayout: View
+    private lateinit var topSearchLayout: View
     private lateinit var viewPager: ViewPager
 
     override fun viewModelClass() = HomeViewModel::class.java
     override fun layoutResId() = R.layout.fragment_home
 
     override fun initView() {
-        homeSearchLayout = findViewById(R.id.homeSearchLayout)
+        topSearchLayout = findViewById(R.id.topSearchLayout)
         viewPager = findViewById(R.id.viewPager)
     }
 
     override fun initListeners() {
-        homeSearchLayout.setOnClickListener { startActivity(Intent(context, SearchActivity::class.java)) }
+        topSearchLayout.setOnClickListener { startActivity(Intent(context, SearchActivity::class.java)) }
     }
 
     override fun initData() {
@@ -39,7 +39,7 @@ class HomeFragment : BaseVmFragment<HomeViewModel>() {
 
     override fun observe() {
         mViewModel.categoryInfoList.observe(this) {
-            viewPager.adapter = CategoryPagerAdapter(activity!!.supportFragmentManager, it)
+            viewPager.adapter = CategoryPagerAdapter(requireActivity().supportFragmentManager, it)
         }
     }
 

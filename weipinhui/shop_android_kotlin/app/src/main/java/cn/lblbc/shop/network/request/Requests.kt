@@ -7,11 +7,6 @@ package cn.lblbc.shop.network.request
  * 公众号：蓝不蓝编程
  */
 class LoginReq(var name: String = "", var password: String = "")
-
-class CreateOrderFromCartReq(var cartIdList: List<String>, var addressId: String)
-
-class CreateOrderReq(var goodsId: String, var addressId: String)
-
 class SimpleOrderInfo(
     var goodsId: String = "",
     var goodsName: String = "",
@@ -19,3 +14,8 @@ class SimpleOrderInfo(
     var price: Long = 0,
     var squarePic: String = ""
 )
+
+class CreateOrderReq(var goodsId: String, var addressId: String)
+
+class CreateOrderFromCartReq(var cartIdList: List<String>, var addressId: String)
+

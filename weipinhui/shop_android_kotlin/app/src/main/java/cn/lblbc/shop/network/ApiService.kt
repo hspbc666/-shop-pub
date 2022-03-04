@@ -38,19 +38,16 @@ interface ApiService {
     suspend fun addToCart(@Path("goodsId") goodsId: String): Result<String?>?
 
     @GET("shop/cart/modify/{cartId}/{quantity}")
-    suspend fun modifyCart(
-        @Path("cartId") cartId: String,
-        @Path("quantity") quantity: Int
-    ): Result<String?>?
+    suspend fun modifyCart(@Path("cartId") cartId: String, @Path("quantity") quantity: Int): Result<String?>?
 
     @GET("shop/cart/list")
     suspend fun queryCart(): Result<List<CartItem>?>?
 
-    @POST("shop/order/createFromCart")
-    suspend fun createOrderFromCart(@Body req: CreateOrderFromCartReq): Result<CreateOrderResp?>?
-
     @POST("shop/order/create")
     suspend fun createOrder(@Body req: CreateOrderReq): Result<CreateOrderResp?>?
+
+    @POST("shop/order/createFromCart")
+    suspend fun createOrderFromCart(@Body req: CreateOrderFromCartReq): Result<CreateOrderResp?>?
 
     @GET("shop/order/queryByStatus/{orderStatus}")
     suspend fun queryOrderByStatus(@Path("orderStatus") orderStatus: Int): Result<List<OrderInfo>?>?

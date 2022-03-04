@@ -51,7 +51,7 @@ class OrderFragment(private var tabId: Int) : BaseVmFragment<OrderListViewModel>
 
     private fun showDeleteDialog(orderId: String) {
         val message = "确认删除当前订单么？"
-        val alertDialog = AlertDialog.Builder(context!!).setMessage(message).setCancelable(false)
+        val alertDialog = AlertDialog.Builder(requireContext()).setMessage(message).setCancelable(false)
             .setPositiveButton(R.string.delete) { _, _ -> mViewModel.deleteOrder(orderId) { refreshPage() } }
             .setNegativeButton(R.string.cancel) { _, _ -> }
             .create()

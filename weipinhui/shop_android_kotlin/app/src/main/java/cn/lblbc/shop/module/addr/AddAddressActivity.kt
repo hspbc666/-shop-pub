@@ -8,7 +8,7 @@ import cn.lblbc.shop.network.response.Address
 import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_COMPANY
 import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_HOME
 import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_OTHER
-import cn.lblbc.shop.utils.EXTRA_KEY_USER_ADDR
+import cn.lblbc.shop.utils.EXTRA_KEY_ADDRESS
 import cn.lblbc.shop.utils.JsonUtil
 import kotlinx.android.synthetic.main.activity_add_address.*
 import kotlinx.android.synthetic.main.activity_goods.toolbar
@@ -58,7 +58,7 @@ class AddAddressActivity : BaseVmActivity<AddressViewModel>() {
      */
     private fun sendResultForConfirmOrder(it: Address) {
         val intent = Intent()
-        intent.putExtra(EXTRA_KEY_USER_ADDR, JsonUtil.toJson(it))
+        intent.putExtra(EXTRA_KEY_ADDRESS, JsonUtil.toJson(it))
         setResult(ConfirmOrderActivity.requestCodeForSelectAddr, intent)
     }
 

@@ -48,7 +48,7 @@ class OrderListView(context: Context, attrs: AttributeSet?) : LinearLayout(conte
     }
 
     private fun createOrderDetailItem(orderDetail: OrderDetail) {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_order_detail, this, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.view_order_list, this, false)
         val imageUrl = orderDetail.squarePic
         Glide.with(context).load(imageUrl).into(view.findViewById(R.id.orderDetailGoodsIv))
         view.findViewById<TextView>(R.id.orderDetailGoodsNameTv).text = orderDetail.name

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmFragment
 import cn.lblbc.shop.module.goods_detail.GoodsActivity
+import cn.lblbc.shop.module.goods_detail.GoodsAdapter
 import cn.lblbc.shop.network.response.Goods
 import cn.lblbc.shop.utils.EXTRA_KEY_GOODS_ID
 
@@ -16,13 +17,13 @@ import cn.lblbc.shop.utils.EXTRA_KEY_GOODS_ID
  * 公众号：蓝不蓝编程
  */
 class HomeGoodsFragment(private var categoryId: String) : BaseVmFragment<HomeGoodsViewModel>() {
-    private lateinit var goodsAdapter: HomeGoodsAdapter
+    private lateinit var goodsAdapter: GoodsAdapter
     private lateinit var goodsGridView: GridView
     override fun viewModelClass() = HomeGoodsViewModel::class.java
     override fun layoutResId(): Int = R.layout.fragment_home_goods
 
     override fun initView() {
-        goodsAdapter = HomeGoodsAdapter(context!!)
+        goodsAdapter = GoodsAdapter(requireContext())
         goodsGridView = findViewById(R.id.goodsGridView)
         goodsGridView.adapter = goodsAdapter
     }

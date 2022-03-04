@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginStart="10dp"
     android:layout_marginTop="10dp"
     android:layout_marginEnd="10dp"
@@ -73,28 +74,28 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_secure"
+            app:drawableStartCompat="@drawable/ic_secure"
             android:text="100%正品"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:drawableStart="@drawable/ic_mark_good"
+            app:drawableStartCompat="@drawable/ic_mark_good"
             android:text="满88免邮" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:drawableStart="@drawable/ic_mark_good"
+            app:drawableStartCompat="@drawable/ic_mark_good"
             android:text="7天可退" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:drawableStart="@drawable/ic_mark_good"
+            app:drawableStartCompat="@drawable/ic_mark_good"
             android:text="上门退货"/>
     </LinearLayout>
 </LinearLayout>

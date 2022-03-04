@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/homeSearchLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/topSearchLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
+    android:background="@color/color_common"
     android:paddingStart="20dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
@@ -22,7 +23,7 @@
         android:layout_marginEnd="20dp"
         android:layout_weight="1"
         android:background="@drawable/capsule_bg_white"
-        android:drawableStart="@drawable/ic_search"
+        app:drawableStartCompat="@drawable/ic_search"
         android:drawablePadding="2dp"
         android:gravity="center_vertical"
         android:paddingStart="10dp"

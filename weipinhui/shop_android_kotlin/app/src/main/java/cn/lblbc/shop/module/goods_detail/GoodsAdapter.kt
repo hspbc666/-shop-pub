@@ -1,4 +1,4 @@
-package cn.lblbc.shop.module.home
+package cn.lblbc.shop.module.goods_detail
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -18,7 +18,7 @@ import com.bumptech.glide.Glide
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：蓝不蓝编程
  */
-class HomeGoodsAdapter(private val mContext: Context) : BaseAdapter() {
+class GoodsAdapter(private val mContext: Context) : BaseAdapter() {
     private var mDataList = ArrayList<Goods>()
     private val mInflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 

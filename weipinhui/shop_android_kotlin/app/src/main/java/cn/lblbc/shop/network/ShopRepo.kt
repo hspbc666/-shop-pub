@@ -13,25 +13,23 @@ import cn.lblbc.shop.network.response.Address
  * 公众号：蓝不蓝编程
  */
 object ShopRepo : BaseRepository() {
-    suspend fun queryCategory() = apiService.queryCategory()
     suspend fun queryGoodsByCategory(categoryId: String) = apiService.queryGoodsByCategory(categoryId)
-    suspend fun queryGoods(goodsId: String) = apiService.queryGoods(goodsId)
     suspend fun searchGoods(keyword: String) = apiService.searchGoods(keyword)
-    suspend fun queryCart() = apiService.queryCart()
-    suspend fun addToCart(goodsId: String) = apiService.addToCart(goodsId)
-    suspend fun modifyCart(cartId: String, quantity: Int) =
-        apiService.modifyCart(cartId, quantity)
-
-    suspend fun createOrder(req: CreateOrderReq) = apiService.createOrder(req)
-    suspend fun createOrderFromCart(req: CreateOrderFromCartReq) = apiService.createOrderFromCart(req)
-    suspend fun queryOrderByStatus(orderStatus: Int) = apiService.queryOrderByStatus(orderStatus)
-    suspend fun queryOrder(orderId: String) = apiService.queryOrder(orderId)
-    suspend fun deleteOrder(orderId: String) = apiService.deleteOrder(orderId)
+    suspend fun queryGoods(goodsId: String) = apiService.queryGoods(goodsId)
+    suspend fun login(userName: String, password: String) = apiService.login(LoginReq(userName, password))
+    suspend fun register(userName: String, password: String) = apiService.register(LoginReq(userName, password))
     suspend fun queryAddress() = apiService.queryAddress()
     suspend fun queryDefaultAddress() = apiService.queryDefaultAddress()
     suspend fun addAddress(address: Address) = apiService.addAddress(address)
     suspend fun modifyAddress(address: Address) = apiService.modifyAddress(address)
     suspend fun deleteAddress(addressId: String) = apiService.deleteAddress(addressId)
-    suspend fun login(userName: String, password: String) = apiService.login(LoginReq(userName, password))
-    suspend fun register(userName: String, password: String) = apiService.register(LoginReq(userName, password))
+    suspend fun queryCategory() = apiService.queryCategory()
+    suspend fun queryCart() = apiService.queryCart()
+    suspend fun modifyCart(cartId: String, quantity: Int) = apiService.modifyCart(cartId, quantity)
+    suspend fun createOrder(req: CreateOrderReq) = apiService.createOrder(req)
+    suspend fun createOrderFromCart(req: CreateOrderFromCartReq) = apiService.createOrderFromCart(req)
+    suspend fun addToCart(goodsId: String) = apiService.addToCart(goodsId)
+    suspend fun queryOrderByStatus(orderStatus: Int) = apiService.queryOrderByStatus(orderStatus)
+    suspend fun queryOrder(orderId: String) = apiService.queryOrder(orderId)
+    suspend fun deleteOrder(orderId: String) = apiService.deleteOrder(orderId)
 }

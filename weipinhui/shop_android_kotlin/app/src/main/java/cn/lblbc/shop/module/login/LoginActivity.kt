@@ -3,7 +3,7 @@ package cn.lblbc.shop.module.login
 import android.content.Intent
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
-import cn.lblbc.shop.ui.activity.LblActivity
+import cn.lblbc.shop.ui.activity.MainActivity
 import cn.lblbc.shop.utils.toast
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -27,7 +27,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
                 userNameEt.text.toString(),
                 passwordEt.text.toString(),
                 onSuccess = {
-                    startActivity(Intent(this@LoginActivity, LblActivity::class.java))
+                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     finish()
                 },
                 onFailure = { toast(it) })
@@ -37,7 +37,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
                 userNameEt.text.toString(),
                 passwordEt.text.toString(),
                 onSuccess = {
-                    startActivity(Intent(this@LoginActivity, LblActivity::class.java))
+                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     finish()
                 },
                 onFailure = { toast(it) })

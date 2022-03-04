@@ -17,17 +17,17 @@ import cn.lblbc.shop.network.response.CartItem
 class ConfirmOrderViewModel : BaseViewModel() {
     val defaultAddress: MutableLiveData<Address> = MutableLiveData()
 
-    fun createOrderFromCart(cartItemList: List<CartItem>, addressId: String, onSuccess: (orderId: String) -> Unit) {
+    fun createOrder(goodsId: String, addressId: String, onSuccess: (orderId: String) -> Unit) {
         launch({
-            val cartIdList = cartItemList.map { it.id }
-            val createOrderResp = ShopRepo.createOrderFromCart(CreateOrderFromCartReq(cartIdList, addressId))
+            val createOrderResp = ShopRepo.createOrder(CreateOrderReq(goodsId, addressId))
             createOrderResp?.data?.orderId?.let { onSuccess.invoke(it) }
         })
     }
 
-    fun createOrder(goodsId: String, addressId: String, onSuccess: (orderId: String) -> Unit) {
+    fun createOrderFromCart(cartItemList: List<CartItem>, addressId: String, onSuccess: (orderId: String) -> Unit) {
         launch({
-            val createOrderResp = ShopRepo.createOrder(CreateOrderReq(goodsId, addressId))
+            val cartIdList = cartItemList.map { it.id }
+            val createOrderResp = ShopRepo.createOrderFromCart(CreateOrderFromCartReq(cartIdList, addressId))
             createOrderResp?.data?.orderId?.let { onSuccess.invoke(it) }
         })
     }

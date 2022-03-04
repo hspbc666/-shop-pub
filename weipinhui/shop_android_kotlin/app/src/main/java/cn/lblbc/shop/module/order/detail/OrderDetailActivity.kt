@@ -5,13 +5,14 @@ import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.network.response.OrderDetail
 import cn.lblbc.shop.utils.EXTRA_KEY_ORDER_ID
-import cn.lblbc.shop.utils.formatTime
 import cn.lblbc.shop.utils.getMoneyByYuan
 import kotlinx.android.synthetic.main.activity_goods.toolbar
 import kotlinx.android.synthetic.main.activity_order_detail.*
 import kotlinx.android.synthetic.main.order_detail_bottom_layout.*
 import kotlinx.android.synthetic.main.order_detail_fee_layout.*
 import kotlinx.android.synthetic.main.order_detail_order_info_layout.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -75,5 +76,10 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
     private fun calcSum(data: List<OrderDetail>): CharSequence {
         val sum = data.sumOf { it.price * it.quantity }
         return getMoneyByYuan(sum)
+    }
+
+    private fun formatTime(time: Long): String {
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm")
+        return sdf.format(Date(time))
     }
 }

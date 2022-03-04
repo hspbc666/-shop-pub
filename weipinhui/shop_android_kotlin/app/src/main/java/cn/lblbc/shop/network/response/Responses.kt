@@ -25,8 +25,6 @@ class CartItem(
 
 class LoginResp(var id: Int = 0, var token: String = "")
 
-class RegisterResp(var id: Int = 0)
-
 class CreateOrderResp(var orderId: String = "")
 
 class OrderInfo(

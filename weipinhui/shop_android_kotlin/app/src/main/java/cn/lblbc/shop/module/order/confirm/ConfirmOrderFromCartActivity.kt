@@ -55,7 +55,7 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
         addrLayout.setOnClickListener {
             address?.let {
                 val intent = Intent(this, SelectAddressActivity::class.java)
-                intent.putExtra(EXTRA_KEY_USER_ADDR_ID, it.id)
+                intent.putExtra(EXTRA_KEY_ADDRESS_ID, it.id)
                 startActivityForResult(intent, requestCodeForSelectAddr)
             }
         }
@@ -65,7 +65,7 @@ open class ConfirmOrderFromCartActivity : BaseVmActivity<ConfirmOrderViewModel>(
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == requestCodeForSelectAddr || requestCode == requestCodeForAddAddr) {
             data?.let {
-                val addressJson = it.getStringExtra(EXTRA_KEY_USER_ADDR) ?: ""
+                val addressJson = it.getStringExtra(EXTRA_KEY_ADDRESS) ?: ""
                 address = JsonUtil.fromJson(addressJson)
                 updateAddress()
             }
