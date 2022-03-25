@@ -180,22 +180,20 @@ CREATE TABLE `user_addr` (
   `user_id` int NOT NULL DEFAULT '0',
   `name` varchar(50) NOT NULL DEFAULT '',
   `phone` varchar(50) NOT NULL DEFAULT '0',
-  `region` varchar(100) ,
   `address` varchar(100) NOT NULL DEFAULT '',
   `default_address` tinyint NOT NULL,
-  `addr_type` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
-INSERT INTO `user_addr` (`id`, `user_id`, `name`, `phone`, `region`, `address`, `default_address`, `addr_type`)
+INSERT INTO `user_addr` (`id`, `user_id`, `name`, `phone`, `address`, `default_address`)
 VALUES
-	('3153c41434a34d8c8fe7f51d94312b1c',0,'咕咕咕','56655525','Ghhhhh','Bhjjjjfjkhfdddsdgvgggfff',1,0),
-	('566fa0c9b492465294cb5929bbd7bc10',2,'','56662','','',0,0),
-	('c02aa4a7a0b9423a8fe3b8e86ed0dac2',2,'会','2354666','不好好','发广告',1,2),
-	('c05fb972b09840bd805dc5e46086d4b2',1,'uuuu55','135999990000','','',0,0),
-	('d4c5a113d2fb40dfb8ff16438bd0ea51',1,'009','9999','','',0,0),
-	('lbl97b05845deda4cecbae25af5412b7ed0',5,'33','44','55','666',1,0),
-	('lbla687ec8d55d54de7aba1d7562ca422f8',0,'4444','555','','',0,0);
+	('3153c41434a34d8c8fe7f51d94312b1c',0,'咕咕咕','Ghhhhh','Bhjjjjfjkhfdddsdgvgggfff',1),
+	('566fa0c9b492465294cb5929bbd7bc10',2,'','','',0),
+	('c02aa4a7a0b9423a8fe3b8e86ed0dac2',2,'会','不好好','发广告',1),
+	('c05fb972b09840bd805dc5e46086d4b2',1,'135999990000','','',0),
+	('d4c5a113d2fb40dfb8ff16438bd0ea51',1,'9999','','',0),
+	('lbl97b05845deda4cecbae25af5412b7ed0',5,'44','55','666',1),
+	('lbla687ec8d55d54de7aba1d7562ca422f8',0,'555','','',0);
 
 
 CREATE TABLE `user_order` (

@@ -14,8 +14,6 @@ public class Address {
     private int userId;
     private String name;
     private String phone;
-    private String region;//地区
     private String address;
     private boolean defaultAddress;
-    private int addrType;//地址类型：1：家庭，2：公司，3：其他
 }

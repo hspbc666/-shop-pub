@@ -45,14 +45,14 @@ public class AddressService {
         if (address.isDefaultAddress()) {
             addressMapper.modifyAsUnDefault(userId);
         }
-        addressMapper.add(address.getId(), userId, address.getName(), address.getPhone(), address.getRegion(), address.getAddress(), address.isDefaultAddress(), address.getAddrType());
+        addressMapper.add(address.getId(), userId, address.getName(), address.getPhone(), address.getAddress(), address.isDefaultAddress());
     }
 
     public void modify(int userId, Address address) {
         if (address.isDefaultAddress()) {
             addressMapper.modifyAsUnDefault(userId);
         }
-        addressMapper.modify(address.getId(), address.getName(), address.getPhone(), address.getRegion(), address.getAddress(), address.isDefaultAddress(), address.getAddrType());
+        addressMapper.modify(address.getId(), address.getName(), address.getPhone(), address.getAddress(), address.isDefaultAddress());
     }
 
     public void delete(String id) {
