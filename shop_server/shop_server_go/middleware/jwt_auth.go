@@ -1,13 +1,13 @@
 package middleware
 
 import (
-	"log"
-	"net/http"
-
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/helper"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/services"
+	"log"
+	"net/http"
+	"strings"
 )
 
 //AuthorizeJWT validates the token user given, return 401 if not valid
@@ -19,7 +19,8 @@ func AuthorizeJWT(jwtService services.JWTService) gin.HandlerFunc {
 			c.AbortWithStatusJSON(http.StatusBadRequest, response)
 			return
 		}
-		token, err := jwtService.ValidateToken(authHeader) // Validate the token
+		tokenInHeader := strings.Split(authHeader, " ")[1]
+		token, err := jwtService.ValidateToken(tokenInHeader) // Validate the token
 		if token.Valid {
 			claims := token.Claims.(jwt.MapClaims)             // Get the claims of the token
 			log.Println("Claim[user_id]: ", claims["user_id"]) // output the user_id

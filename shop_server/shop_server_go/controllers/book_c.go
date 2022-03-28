@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
@@ -120,8 +121,9 @@ func (c *bookController) CreateMyBook(ctx *gin.Context) {
 	// Get Authorization from header
 	authHeader := ctx.GetHeader("Authorization")
 
+	tokenInHeader := strings.Split(authHeader, " ")[1]
 	// Get token from Authorization
-	userID := c.getUserIDByToken(authHeader)
+	userID := c.getUserIDByToken(tokenInHeader)
 
 	// Create Book variable for binding data from bookCreateDTO variable to Book
 	id, err := strconv.ParseUint(userID, 10, 64)
@@ -161,8 +163,10 @@ func (c *bookController) UpdateMyBook(ctx *gin.Context) {
 	// Get Authorization from header
 	authHeader := ctx.GetHeader("Authorization")
 
+	tokenInHeader := strings.Split(authHeader, " ")[1]
+
 	// Get token from Authorization
-	token, errToken := c.jwtService.ValidateToken(authHeader)
+	token, errToken := c.jwtService.ValidateToken(tokenInHeader)
 
 	// Check error from jwtService.ValidateToken
 	if errToken != nil {
@@ -224,8 +228,9 @@ func (c *bookController) DeleteMyBook(ctx *gin.Context) {
 	// Get Authorization from header
 	authHeader := ctx.GetHeader("Authorization")
 
+	tokenInHeader := strings.Split(authHeader, " ")[1]
 	// Get token from Authorization
-	token, errToken := c.jwtService.ValidateToken(authHeader)
+	token, errToken := c.jwtService.ValidateToken(tokenInHeader)
 
 	// Check error from jwtService.ValidateToken
 	if errToken != nil {
