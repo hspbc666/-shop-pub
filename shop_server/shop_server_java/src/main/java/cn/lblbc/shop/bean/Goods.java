@@ -16,4 +16,5 @@ public class Goods {
     private String longPic;
     private String squarePic;
     private String descPic;
+    private String originalLink;
 }
