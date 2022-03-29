@@ -7,7 +7,6 @@ import (
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/services"
 	"log"
 	"net/http"
-	"strings"
 )
 
 //AuthorizeJWT validates the token user given, return 401 if not valid
@@ -19,8 +18,7 @@ func AuthorizeJWT(jwtService services.JWTService) gin.HandlerFunc {
 			c.AbortWithStatusJSON(http.StatusBadRequest, response)
 			return
 		}
-		tokenInHeader := strings.Split(authHeader, " ")[1]
-		token, err := jwtService.ValidateToken(tokenInHeader) // Validate the token
+		token, err := jwtService.ValidateToken(authHeader) // Validate the token
 		if token.Valid {
 			claims := token.Claims.(jwt.MapClaims)             // Get the claims of the token
 			log.Println("Claim[user_id]: ", claims["user_id"]) // output the user_id

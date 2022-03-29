@@ -192,11 +192,9 @@ public class ShopRestController {
     }
 
     private int getUserIdFromHeader(String authorization) {
-        final String authTokenPrefix = "Bearer ";
         int userId = 0;
-        if (authorization != null && authorization.startsWith(authTokenPrefix)) {
-            String token = authorization.substring(authTokenPrefix.length());
-            userId = jwtUtils.getUserIdFromToken(token);
+        if (authorization != null) {
+            userId = jwtUtils.getUserIdFromToken(authorization);
         }
         return userId;
     }

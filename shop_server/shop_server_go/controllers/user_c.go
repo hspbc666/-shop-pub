@@ -1,15 +1,13 @@
 package controllers
 
 import (
-	"net/http"
-	"strconv"
-	"strings"
-
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/dto"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/helper"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/services"
+	"net/http"
+	"strconv"
 )
 
 // UserController is a struct for user controller
@@ -54,10 +52,8 @@ func (c *userController) UpdateUser(ctx *gin.Context) {
 
 	// Get the token from the header of the request
 	authHeader := ctx.GetHeader("Authorization")
-
-	tokenInHeader := strings.Split(authHeader, " ")[1]
 	// Validate the token
-	token, errToken := c.jwtService.ValidateToken(tokenInHeader)
+	token, errToken := c.jwtService.ValidateToken(authHeader)
 
 	// Check if there is any error in validating token
 	if errToken != nil {
@@ -93,9 +89,8 @@ func (c *userController) GetUser(ctx *gin.Context) {
 	// Get the token from the header of the request
 	authHeader := ctx.GetHeader("Authorization")
 
-	tokenInHeader := strings.Split(authHeader, " ")[1]
 	// Validate the token
-	token, errToken := c.jwtService.ValidateToken(tokenInHeader)
+	token, errToken := c.jwtService.ValidateToken(authHeader)
 
 	// Check if there is any error in validating token
 	if errToken != nil {

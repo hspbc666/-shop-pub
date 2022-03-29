@@ -2,16 +2,14 @@ package controllers
 
 import (
 	"fmt"
-	"net/http"
-	"strconv"
-	"strings"
-
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/dto"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/entity"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/helper"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/services"
+	"net/http"
+	"strconv"
 )
 
 // Create BookController interface for BookController
@@ -121,9 +119,8 @@ func (c *bookController) CreateMyBook(ctx *gin.Context) {
 	// Get Authorization from header
 	authHeader := ctx.GetHeader("Authorization")
 
-	tokenInHeader := strings.Split(authHeader, " ")[1]
 	// Get token from Authorization
-	userID := c.getUserIDByToken(tokenInHeader)
+	userID := c.getUserIDByToken(authHeader)
 
 	// Create Book variable for binding data from bookCreateDTO variable to Book
 	id, err := strconv.ParseUint(userID, 10, 64)
@@ -163,10 +160,8 @@ func (c *bookController) UpdateMyBook(ctx *gin.Context) {
 	// Get Authorization from header
 	authHeader := ctx.GetHeader("Authorization")
 
-	tokenInHeader := strings.Split(authHeader, " ")[1]
-
 	// Get token from Authorization
-	token, errToken := c.jwtService.ValidateToken(tokenInHeader)
+	token, errToken := c.jwtService.ValidateToken(authHeader)
 
 	// Check error from jwtService.ValidateToken
 	if errToken != nil {
@@ -228,9 +223,8 @@ func (c *bookController) DeleteMyBook(ctx *gin.Context) {
 	// Get Authorization from header
 	authHeader := ctx.GetHeader("Authorization")
 
-	tokenInHeader := strings.Split(authHeader, " ")[1]
 	// Get token from Authorization
-	token, errToken := c.jwtService.ValidateToken(tokenInHeader)
+	token, errToken := c.jwtService.ValidateToken(authHeader)
 
 	// Check error from jwtService.ValidateToken
 	if errToken != nil {
