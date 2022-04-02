@@ -27,7 +27,7 @@ func NewAuthController(authService services.AuthService, jwtService services.JWT
 }
 
 func (c *authController) Login(ctx *gin.Context) {
-	var loginDTO dto.LoginDTORequest // create new instance of LoginDTORequest
+	var loginDTO dto.LoginRequest // create new instance of LoginRequest
 	errDTO := ctx.ShouldBind(&loginDTO)
 	if errDTO != nil {
 		response := helper.ErrorsResponse(http.StatusBadRequest, "Failed to process request", errDTO.Error(), helper.EmptyObject{})
@@ -52,8 +52,8 @@ func (c *authController) Login(ctx *gin.Context) {
 // Register is a function for register
 func (c *authController) Register(ctx *gin.Context) {
 
-	// create new instance of RegisterDTORequest
-	var registerDTO dto.RegisterDTORequest
+	// create new instance of RegisterRequest
+	var registerDTO dto.RegisterRequest
 
 	// bind the registerDTO with the request body
 	errDTO := ctx.ShouldBind(&registerDTO)

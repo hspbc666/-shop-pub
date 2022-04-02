@@ -15,7 +15,7 @@ type AuthService interface {
 	//VerifyCredential is verify user credential
 	VerifyCredential(name string, password string) interface{}
 	//CreateUser is insert user to db and return user entity to caller function
-	CreateUser(user dto.RegisterDTORequest) entity.User
+	CreateUser(user dto.RegisterRequest) entity.User
 	FindByName(name string) entity.User
 	IsDuplicateName(name string) bool
 }
@@ -52,7 +52,7 @@ func (s *authService) VerifyCredential(name string, password string) interface{}
 }
 
 // CreateUser is insert user to db and return user entity to caller function
-func (s *authService) CreateUser(user dto.RegisterDTORequest) entity.User {
+func (s *authService) CreateUser(user dto.RegisterRequest) entity.User {
 
 	userToCreate := entity.User{} // create user entity
 
