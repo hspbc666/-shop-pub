@@ -20,8 +20,8 @@ import java.util.*;
 public class JwtUtils {
     private static final String CLAIM_KEY_USER_ID = "user_id";
     private static final String CLAIM_KEY_AUTHORITIES = "scope";
-    private static final String secret = "mySecret";
-    private static final Long tokenExpiration = 86400L;//token有效期一天
+    private static final String secret = "lblbc";
+    private static final Long tokenExpiration = 864000L;//token有效期：10天
     private final SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS256;
 
     public int getUserIdFromToken(String token) {

@@ -25,16 +25,10 @@ func main() {
 	defer config.CloseDatabaseConnection(db)
 	r := gin.Default()
 
-	authRoutes := r.Group("/api/auth")
+	authRoutes := r.Group("/user")
 	{
 		authRoutes.POST("/login", authController.Login)
 		authRoutes.POST("/register", authController.Register)
-	}
-
-	userRoutes := r.Group("/api/user", middleware.AuthorizeJWT(jwtService))
-	{
-		userRoutes.GET("/profile", bizController.GetUser)
-		userRoutes.PUT("/profile", bizController.UpdateUser)
 	}
 
 	bookRoutes := r.Group("api/books", middleware.AuthorizeJWT(jwtService))
