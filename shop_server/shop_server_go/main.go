@@ -18,8 +18,7 @@ var (
 	bookService    = services.NewBookService(bookRepository)
 	authService    = services.NewAuthService(userRepository)
 	authController = controllers.NewAuthController(authService, jwtService)
-	userController = controllers.NewUserController(userService, jwtService)
-	bookController = controllers.NewBookController(bookService, jwtService)
+	bizController  = controllers.NewBizController(userService, bookService, jwtService)
 )
 
 func main() {
@@ -34,23 +33,23 @@ func main() {
 
 	userRoutes := r.Group("/api/user", middleware.AuthorizeJWT(jwtService))
 	{
-		userRoutes.GET("/profile", userController.GetUser)
-		userRoutes.PUT("/profile", userController.UpdateUser)
+		userRoutes.GET("/profile", bizController.GetUser)
+		userRoutes.PUT("/profile", bizController.UpdateUser)
 	}
 
 	bookRoutes := r.Group("api/books", middleware.AuthorizeJWT(jwtService))
 	{
-		bookRoutes.GET("/", bookController.GetAllMyBook)
-		bookRoutes.GET("/:id", bookController.GetByID)
-		bookRoutes.POST("/", bookController.CreateMyBook)
-		bookRoutes.PUT("/:id", bookController.UpdateMyBook)
-		bookRoutes.DELETE("/:id", bookController.DeleteMyBook)
+		bookRoutes.GET("/", bizController.GetAllMyBook)
+		bookRoutes.GET("/:id", bizController.GetByID)
+		bookRoutes.POST("/", bizController.CreateMyBook)
+		bookRoutes.PUT("/:id", bizController.UpdateMyBook)
+		bookRoutes.DELETE("/:id", bizController.DeleteMyBook)
 	}
 
 	publicBookRoute := r.Group("/api/public/books")
 	{
-		publicBookRoute.GET("/", bookController.GetAll)
-		publicBookRoute.GET("/:id", bookController.GetByID)
+		publicBookRoute.GET("/", bizController.GetAll)
+		publicBookRoute.GET("/:id", bizController.GetByID)
 	}
 
 	r.Run(":8080")

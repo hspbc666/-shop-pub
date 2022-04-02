@@ -12,8 +12,10 @@ import (
 	"strconv"
 )
 
-// Create BookController interface for BookController
-type BookController interface {
+// UserController is a struct for user controller
+type BizController interface {
+	UpdateUser(c *gin.Context)   // UpdateUser is a function for update user
+	GetUser(c *gin.Context)      // GetUser is a function for get user
 	GetAll(c *gin.Context)       // Get All Data Book
 	GetByID(c *gin.Context)      // Get Data Book By ID
 	GetAllMyBook(c *gin.Context) // Get All Data Book By User
@@ -22,24 +24,115 @@ type BookController interface {
 	DeleteMyBook(c *gin.Context) // Delete Data Book By User
 }
 
-/*
-Create bookController struct for BookController interface with
-BookService and JWTService
-*/
-type bookController struct {
+// userController is a struct for user controller
+type bizController struct {
+	// userService is a new instance of UserService
+	userService services.UserService
 	bookService services.BookService // BookService for CRUD Book
-	jwtService  services.JWTService  // JWTService for validate token
+	// jwtService is a new instance of JWTService
+	jwtService services.JWTService
 }
 
-/*
-Create New BookController with BookService and JWTService dependency injection for BookController interface
-*/
-func NewBookController(bookServ services.BookService, jwtServ services.JWTService) BookController {
-	return &bookController{bookService: bookServ, jwtService: jwtServ}
+// NewUserController is a function for create new instance of UserController
+func NewBizController(userService services.UserService, bookService services.BookService, jwtService services.JWTService) BizController {
+	return &bizController{
+		// userService is a new instance of UserService
+		userService: userService,
+		bookService: bookService,
+		// jwtService is a new instance of JWTService
+		jwtService: jwtService,
+	}
 }
 
-// GetAll function for get all data book
-func (c *bookController) GetAll(ctx *gin.Context) {
+// UpdateUser is a function for update user
+func (c *bizController) UpdateUser(ctx *gin.Context) {
+
+	// userUpdateDTO is a new instance of UserUpdateDTORequest
+	var userUpdateDTO dto.UserUpdateDTORequest
+
+	// Bind the userUpdateDTO with the request body
+	errDTO := ctx.ShouldBind(&userUpdateDTO)
+
+	// Check if there is any error in binding
+	if errDTO != nil {
+		response := helper.ErrorsResponse(http.StatusBadRequest, "Failed to process request", errDTO.Error(), helper.EmptyObject{})
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
+		return
+	}
+
+	// Get the token from the header of the request
+	authHeader := ctx.GetHeader("Authorization")
+	// Validate the token
+	token, errToken := c.jwtService.ValidateToken(authHeader)
+
+	// Check if there is any error in validating token
+	if errToken != nil {
+		response := helper.ErrorsResponse(http.StatusUnauthorized, "Failed to process request", errToken.Error(), helper.EmptyObject{})
+		ctx.AbortWithStatusJSON(http.StatusUnauthorized, response)
+		return
+	}
+
+	claims := token.Claims.(jwt.MapClaims) // Get the claims of the token
+
+	// Get the user id from the claims
+	userId, err := strconv.ParseUint(claims["user_id"].(string), 10, 64)
+
+	// Check if there is any error in parsing user id
+	if err != nil {
+		response := helper.ErrorsResponse(http.StatusBadRequest, "Failed to process request", err.Error(), helper.EmptyObject{})
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
+		return
+	}
+
+	userUpdateDTO.ID = userId // Get the user from the database
+
+	user := c.userService.UpdateUser(userUpdateDTO) // Update the user
+
+	response := helper.SuccessResponse(http.StatusOK, "Update User Success", user) // Create the response for the user
+
+	ctx.JSON(http.StatusOK, response) // Return the response
+}
+
+// GetUser is a function for get user
+func (c *bizController) GetUser(ctx *gin.Context) {
+
+	// Get the token from the header of the request
+	authHeader := ctx.GetHeader("Authorization")
+
+	// Validate the token
+	token, errToken := c.jwtService.ValidateToken(authHeader)
+
+	// Check if there is any error in validating token
+	if errToken != nil {
+		response := helper.ErrorsResponse(http.StatusUnauthorized, "Failed to process request", errToken.Error(), helper.EmptyObject{})
+		ctx.AbortWithStatusJSON(http.StatusUnauthorized, response)
+		return
+	}
+
+	// Get the claims of the token
+	claims := token.Claims.(jwt.MapClaims)
+
+	// Get the user id from the claims
+	userId, err := strconv.ParseUint(claims["user_id"].(string), 10, 64)
+
+	// Check if there is any error in parsing user id
+	if err != nil {
+		response := helper.ErrorsResponse(http.StatusBadRequest, "Failed to process request", err.Error(), helper.EmptyObject{})
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
+		return
+	}
+
+	// Get the user from the database with the user id
+	user := c.userService.GetUser(int64(userId))
+
+	// Create the response for the user
+	response := helper.SuccessResponse(http.StatusOK, "Get User Success", user)
+
+	// Return the response
+	ctx.JSON(http.StatusOK, response)
+}
+
+func (c *bizController) GetAll(ctx *gin.Context) {
 	/*
 		Get All Data Book from BookService and assign to books variable for get all data book
 	*/
@@ -52,7 +145,7 @@ func (c *bookController) GetAll(ctx *gin.Context) {
 }
 
 // GetByID function for get data book by id
-func (c *bookController) GetByID(ctx *gin.Context) {
+func (c *bizController) GetByID(ctx *gin.Context) {
 
 	// Get id from url parameter with key id
 	bookID, err := strconv.ParseUint(ctx.Param("id"), 10, 64)
@@ -88,7 +181,7 @@ func (c *bookController) GetByID(ctx *gin.Context) {
 }
 
 // GetAllMyBook function for get all data book by user
-func (c *bookController) GetAllMyBook(ctx *gin.Context) {
+func (c *bizController) GetAllMyBook(ctx *gin.Context) {
 
 	//Get All Data Book By User from BookService and assign to books variable
 	var book []entity.Book = c.bookService.GetAllMyBook()
@@ -101,7 +194,7 @@ func (c *bookController) GetAllMyBook(ctx *gin.Context) {
 }
 
 // CreateMyBook function for create data book by user
-func (c *bookController) CreateMyBook(ctx *gin.Context) {
+func (c *bizController) CreateMyBook(ctx *gin.Context) {
 
 	// Create bookCreateDTO variable for binding data from request body
 	var bookCreateDTO dto.BookCreateDTORequest
@@ -142,7 +235,7 @@ func (c *bookController) CreateMyBook(ctx *gin.Context) {
 }
 
 // UpdateMyBook function for update data book by user
-func (c *bookController) UpdateMyBook(ctx *gin.Context) {
+func (c *bizController) UpdateMyBook(ctx *gin.Context) {
 
 	// Create bookUpdateDTO variable for binding data from request body
 	var bookUpdateDTO dto.BookUpdateDTORequest
@@ -204,7 +297,7 @@ func (c *bookController) UpdateMyBook(ctx *gin.Context) {
 }
 
 // DeleteMyBook function for delete data book by user
-func (c *bookController) DeleteMyBook(ctx *gin.Context) {
+func (c *bizController) DeleteMyBook(ctx *gin.Context) {
 
 	var book entity.Book // Create Book variable from entity.Book
 
@@ -258,7 +351,7 @@ func (c *bookController) DeleteMyBook(ctx *gin.Context) {
 }
 
 // GetMyBookByID function for get data book by user
-func (c *bookController) getUserIDByToken(token string) string {
+func (c *bizController) getUserIDByToken(token string) string {
 
 	// Get token from Authorization
 	myToken, err := c.jwtService.ValidateToken(token)
