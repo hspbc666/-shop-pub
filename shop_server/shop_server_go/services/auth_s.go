@@ -13,13 +13,11 @@ import (
 // AuthService is a contract about some auth service can do
 type AuthService interface {
 	//VerifyCredential is verify user credential
-	VerifyCredential(email string, password string) interface{}
+	VerifyCredential(name string, password string) interface{}
 	//CreateUser is insert user to db and return user entity to caller function
 	CreateUser(user dto.RegisterDTORequest) entity.User
-	//FindByEmail is find user by email
-	FindByEmail(email string) entity.User
-	//IsDuplicateEmail is check duplicate email
-	IsDuplicateEmail(email string) bool
+	FindByName(name string) entity.User
+	IsDuplicateName(name string) bool
 }
 
 // Create a new authService with the given userRepository.
@@ -33,9 +31,9 @@ func NewAuthService(userRepository repository.UserRepository) AuthService {
 }
 
 // VerifyCredential is verify user credential and return user entity to caller function
-func (s *authService) VerifyCredential(email string, password string) interface{} {
+func (s *authService) VerifyCredential(name string, password string) interface{} {
 	//verify user credential and return user entity to caller function
-	res := s.userRepository.VerifyCredential(email, password)
+	res := s.userRepository.VerifyCredential(name, password)
 
 	//if res is user entity then return user entity to caller function
 	if v, ok := res.(entity.User); ok {
@@ -43,14 +41,10 @@ func (s *authService) VerifyCredential(email string, password string) interface{
 			compare password with hashed password and return true if password is matched or return false if password is not matched
 		*/
 		comparedPassword := comparePassword(v.Password, []byte(password))
-		/*
-			if email is matched and password is matched then return user entity to caller function
-		*/
-		if v.Email == email && comparedPassword {
+		if v.Name == name && comparedPassword {
 			return res //return user entity to caller function
 		}
 
-		//return false if email is not matched or password is not matched
 		return false
 	}
 	return false //return false if res is not user entity
@@ -76,26 +70,13 @@ func (s *authService) CreateUser(user dto.RegisterDTORequest) entity.User {
 
 }
 
-// FindByEmail is find user by email and return user entity to caller function
-func (s *authService) FindByEmail(email string) entity.User {
-
-	//find user by email and return user entity to caller function
-	return s.userRepository.FindByEmail(email)
-
+func (s *authService) FindByName(name string) entity.User {
+	return s.userRepository.FindByName(name)
 }
 
-/*
-IsDuplicateEmail is check duplicate email and return true if duplicate email is found or return false if duplicate email is not found
-*/
-func (s *authService) IsDuplicateEmail(email string) bool {
-	/*
-		check duplicate email and return true if duplicate email is found or return false if duplicate email is not found
-	*/
-	res := s.userRepository.IsDuplicateEmail(email)
-
-	//if error is not nil then duplicate email is found
+func (s *authService) IsDuplicateName(name string) bool {
+	res := s.userRepository.IsDuplicateName(name)
 	return !(res.Error == nil)
-
 }
 
 /*

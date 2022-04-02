@@ -17,13 +17,11 @@ type UserRepository interface {
 	UpdateUser(user entity.User) entity.User
 
 	//VerifyCredential is verify user credential
-	VerifyCredential(email string, password string) interface{}
+	VerifyCredential(name string, password string) interface{}
 
-	//IsDuplicateEmail is check duplicate email
-	IsDuplicateEmail(email string) (tx *gorm.DB)
+	IsDuplicateName(name string) (tx *gorm.DB)
 
-	//FindByEmail is find user by email
-	FindByEmail(email string) entity.User
+	FindByName(name string) entity.User
 
 	//ProfileUser is find user by id
 	ProfileUser(userID int64) entity.User
@@ -64,39 +62,25 @@ func (db *userConnection) UpdateUser(user entity.User) entity.User {
 }
 
 // VerifyCredential is verify user credential and return user entity to caller function if credential is correct or return nil if credential is incorrect
-func (db *userConnection) VerifyCredential(email string, password string) interface{} {
+func (db *userConnection) VerifyCredential(name string, password string) interface{} {
 	var user entity.User
-	res := db.connection.Where("email = ?", email).Take(&user)
+	res := db.connection.Where("name = ?", name).Take(&user)
 	if res.Error == nil {
 		return user
 	}
 	return nil
 }
 
-// func (db *userConnection) VerifyCredential(email string, password string) interface{} {
-// 	var user entity.User
-// 	db.connection.Where("email = ?", email).Take(&user)
-// 	if user.Id == 0 {
-// 		return nil
-// 	}
-// 	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
-// 	if err != nil {
-// 		return nil
-// 	}
-// 	return user
-// }
-
-//IsDuplicateEmail is check duplicate email and return transaction to caller function
-func (db *userConnection) IsDuplicateEmail(email string) (tx *gorm.DB) {
-	var user entity.User                                       //get user from db
-	return db.connection.Where("email = ?", email).Take(&user) //find user by email
+func (db *userConnection) IsDuplicateName(name string) (tx *gorm.DB) {
+	var user entity.User                                     //get user from db
+	return db.connection.Where("name = ?", name).Take(&user) //find user by email
 }
 
-// FindByEmail is find user by email and return user entity to caller function
-func (db *userConnection) FindByEmail(email string) entity.User {
-	var user entity.User                                //get user from db
-	db.connection.Where("email = ?", email).Take(&user) //find user by email
-	return user                                         //return user
+// FindByName is find user by email and return user entity to caller function
+func (db *userConnection) FindByName(name string) entity.User {
+	var user entity.User                              //get user from db
+	db.connection.Where("name = ?", name).Take(&user) //find user by email
+	return user                                       //return user
 }
 
 // ProfileUser is find user by id and return user entity to caller function

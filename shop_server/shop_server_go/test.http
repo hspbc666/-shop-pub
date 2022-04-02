@@ -8,7 +8,6 @@ Content-Type: application/json
 
 {
     "name": "Danu",
-    "email": "danu@anakdesa.id",
     "password": "12345678"
 }
 
@@ -21,7 +20,7 @@ Content-Type: application/json
 
 
 {
-    "email": "danu@anakdesa.id",
+    "name": "danu@anakdesa.id",
     "password": "12345678"
 }
 
@@ -34,19 +33,6 @@ Content-Type: application/json
 GET {{baseUrl}}/user/profile HTTP/1.1
 Accept: application/json
 Authorization: {{authToken}}
-
-###
-PUT {{baseUrl}}/user/profile HTTP/1.1
-Accept: application/json
-Content-Type: application/json
-Authorization: {{authToken}}
-
-
-{
-    "name": "Danu Update",
-    "email": "danu@anakdesa.id",
-    "password": "12345678"
-}
 
 ###
 # @name createBook
@@ -143,7 +129,6 @@ Content-Type: application/json
 
 {
     "name": "Budi",
-    "email": "budi@anakdesa.id",
     "password": "11111111"
 }
 
@@ -156,7 +141,7 @@ Content-Type: application/json
 
 
 {
-    "email": "budi@anakdesa.id",
+    "name": "budi@anakdesa.id",
     "password": "11111111"
 }
 
@@ -168,18 +153,6 @@ Content-Type: application/json
 GET {{baseUrl}}/user/profile HTTP/1.1
 Accept: application/json
 Authorization: {{authTokenNew}}
-
-###
-PUT {{baseUrl}}/user/profile HTTP/1.1
-Accept: application/json
-Content-Type: application/json
-Authorization: {{authTokenNew}}
-
-
-{
-    "name": "Budi Update",
-    "email": "budi@anakdesa.id"
-}
 
 ###
 # @name createNewBook
@@ -237,7 +210,6 @@ Content-Type: application/json
 
 {
     "name": "Otong",
-    "email": "otong@anakdesa.id",
     "password": "22222222"
 }
 
@@ -250,7 +222,7 @@ Content-Type: application/json
 
 
 {
-    "email": "otong@anakdesa.id",
+    "name": "otong@anakdesa.id",
     "password": "22222222"
 }
 

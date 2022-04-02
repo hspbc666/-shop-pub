@@ -1,14 +1,12 @@
 package controllers
 
 import (
-	"net/http"
-	"strconv"
-
 	"github.com/gin-gonic/gin"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/dto"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/entity"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/helper"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/services"
+	"net/http"
 )
 
 // Auth Controller interface is a contract for all auth controller
@@ -47,19 +45,16 @@ func (c *authController) Login(ctx *gin.Context) {
 		return
 	}
 
-	// Check if the email and password is valid
-	authResult := c.authService.VerifyCredential(loginDTO.Email, loginDTO.Password)
+	authResult := c.authService.VerifyCredential(loginDTO.Name, loginDTO.Password)
 
-	// Check if the email and password is valid
 	if v, ok := authResult.(entity.User); ok {
-		generatedToken := c.jwtService.GenerateToken(strconv.Itoa(int(v.ID)))
-		v.Token = generatedToken
+		//generatedToken := c.jwtService.GenerateToken(strconv.Itoa(int(v.ID)))
+		//v.Token = generatedToken
 		response := helper.SuccessResponse(http.StatusOK, "Login Success", v)
 		ctx.JSON(http.StatusOK, response)
 		return
 	}
 
-	// If the email and password is not valid
 	response := helper.ErrorsResponse(http.StatusBadRequest, "Failed to process request", "Invalid Credential", helper.EmptyObject{})
 	ctx.AbortWithStatusJSON(http.StatusUnauthorized, response)
 }
@@ -80,22 +75,18 @@ func (c *authController) Register(ctx *gin.Context) {
 		return
 	}
 
-	// Check if the email is valid and unique in the database
-	if !c.authService.IsDuplicateEmail(registerDTO.Email) {
-		response := helper.ErrorsResponse(http.StatusConflict, "Failed to process request", "Email already registered", helper.EmptyObject{})
+	if !c.authService.IsDuplicateName(registerDTO.Name) {
+		response := helper.ErrorsResponse(http.StatusConflict, "Failed to process request", "user already registered", helper.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusConflict, response)
 		return
 	} else {
-		/*
-			if the email is valid and unique in the database then register the user
-		*/
 		createdUser := c.authService.CreateUser(registerDTO) // create new user
 
 		// generate token
-		token := c.jwtService.GenerateToken(strconv.Itoa(int(createdUser.ID)))
+		//token := c.jwtService.GenerateToken(strconv.Itoa(int(createdUser.ID)))
 
-		// set token to the user
-		createdUser.Token = token
+		//// set token to the user
+		//createdUser.Token = token
 
 		// response with the user data and token
 		response := helper.SuccessResponse(http.StatusCreated, "Register Success", createdUser)
