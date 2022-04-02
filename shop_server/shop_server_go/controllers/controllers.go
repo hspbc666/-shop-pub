@@ -21,54 +21,34 @@ type BizController interface {
 	DeleteMyBook(c *gin.Context) // Delete Data Book By User
 }
 
-// userController is a struct for user controller
 type bizController struct {
-	// userService is a new instance of UserService
 	userService services.UserService
 	bookService services.BookService // BookService for CRUD Book
-	// jwtService is a new instance of JWTService
-	jwtService services.JWTService
+	jwtService  services.JWTService
 }
 
-// NewUserController is a function for create new instance of UserController
 func NewBizController(userService services.UserService, bookService services.BookService, jwtService services.JWTService) BizController {
 	return &bizController{
-		// userService is a new instance of UserService
 		userService: userService,
 		bookService: bookService,
-		// jwtService is a new instance of JWTService
-		jwtService: jwtService,
+		jwtService:  jwtService,
 	}
 }
 
 func (c *bizController) GetAll(ctx *gin.Context) {
-	/*
-		Get All Data Book from BookService and assign to books variable for get all data book
-	*/
 	var books []entity.Book = c.bookService.GetAll()
-
-	// Return success response with status code 200 and data books
 	result := helper.SuccessResponse(http.StatusOK, "Get All Data Book", books)
-
 	ctx.JSON(http.StatusOK, result) // Return Response
 }
 
-// GetByID function for get data book by id
 func (c *bizController) GetByID(ctx *gin.Context) {
-
-	// Get id from url parameter with key id
 	bookID, err := strconv.ParseUint(ctx.Param("id"), 10, 64)
-
-	// Check error from strconv.ParseUint
 	if err != nil {
 		response := helper.ErrorsResponse(http.StatusBadRequest, "Book Not Found", err.Error(), helper.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
 		return
 	}
 
-	/*
-		Get data book by id from BookService and assign to book variable for get data book by id from BookService and assign to book variable
-	*/
 	var book entity.Book = c.bookService.GetByID(bookID)
 
 	if book == (entity.Book{}) { // Check book is empty or not

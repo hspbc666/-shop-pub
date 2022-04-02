@@ -9,21 +9,16 @@ import (
 	"net/http"
 )
 
-// Auth Controller interface is a contract for all auth controller
 type AuthController interface {
 	Login(c *gin.Context)    // Login
 	Register(c *gin.Context) // Register
 }
 
-// Auth Controller struct to implement AuthController interface
 type authController struct {
 	authService services.AuthService // inject auth service
 	jwtService  services.JWTService  // inject jwt service
 }
 
-/*
-Create a new instance of Auth Controller with auth service and jwt service injected as dependency
-*/
 func NewAuthController(authService services.AuthService, jwtService services.JWTService) AuthController {
 	return &authController{
 		authService: authService, // inject auth service
@@ -31,14 +26,9 @@ func NewAuthController(authService services.AuthService, jwtService services.JWT
 	}
 }
 
-// Login is a function for login
 func (c *authController) Login(ctx *gin.Context) {
 	var loginDTO dto.LoginDTORequest // create new instance of LoginDTORequest
-
-	// bind the loginDTO with the request body
 	errDTO := ctx.ShouldBind(&loginDTO)
-
-	// Check if there is any error in binding
 	if errDTO != nil {
 		response := helper.ErrorsResponse(http.StatusBadRequest, "Failed to process request", errDTO.Error(), helper.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
