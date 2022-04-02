@@ -7,3 +7,7 @@ type User struct {
 	Password string `gorm:"->;<-;not null" json:"-"`              // TablesPassword field with json tag password for json marshalling
 	//Books    *[]Book `json:"books,omitempty"`
 }
+
+func (User) TableName() string {
+	return "sys_user"
+}
