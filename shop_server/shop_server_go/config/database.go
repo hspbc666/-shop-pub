@@ -2,12 +2,12 @@ package config
 
 import (
 	"fmt"
+	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/beans"
 	"log"
 	"os"
 	"time"
 
 	"github.com/joho/godotenv"
-	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/entity"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -50,7 +50,7 @@ func SetupDatabase() *gorm.DB {
 	sqlDB.SetConnMaxLifetime(10 * time.Hour)
 
 	// Migrate the schema
-	db.AutoMigrate(&entity.User{}, &entity.Book{})
+	db.AutoMigrate(&beans.User{}, &beans.Book{})
 
 	return db
 

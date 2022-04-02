@@ -1,4 +1,4 @@
-package entity
+package beans
 
 // Create Book struct representing the book table in the database
 type Book struct {

@@ -2,21 +2,20 @@ package services
 
 import (
 	"fmt"
+	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/beans"
 	"log"
 
 	"github.com/mashingan/smapping"
-	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/dto"
-	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/entity"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/repository"
 )
 
 type BookService interface {
-	CreateMyBook(b dto.BookCreateDTORequest) entity.Book   // Create a new book
-	UpdateMyBook(b dto.BookUpdateDTORequest) entity.Book   // Update a book
-	DeleteMyBook(b entity.Book)                            // Delete a book
-	GetAll() []entity.Book                                 // Get all book
-	GetByID(bookID uint64) entity.Book                     // Get a book by bookID
-	GetAllMyBook() []entity.Book                           // Get all book by userID
+	CreateMyBook(b beans.BookCreateDTORequest) beans.Book  // Create a new book
+	UpdateMyBook(b beans.BookUpdateDTORequest) beans.Book  // Update a book
+	DeleteMyBook(b beans.Book)                             // Delete a book
+	GetAll() []beans.Book                                  // Get all book
+	GetByID(bookID uint64) beans.Book                      // Get a book by bookID
+	GetAllMyBook() []beans.Book                            // Get all book by userID
 	IsAllowedActionBook(userID string, bookID uint64) bool // Check userID is allowed to access bookID
 }
 
@@ -31,23 +30,23 @@ func NewBookService(bookRepo repository.BookRepository) BookService {
 }
 
 // GetAll method is used to get all book
-func (s *bookService) GetAll() []entity.Book {
+func (s *bookService) GetAll() []beans.Book {
 	return s.bookRepository.GetAll()
 }
 
 // GetByID method is used to get a book by bookID
-func (s *bookService) GetByID(bookID uint64) entity.Book {
+func (s *bookService) GetByID(bookID uint64) beans.Book {
 	return s.bookRepository.GetByID(bookID)
 }
 
 // GetAllMyBook method is used to get all book by userID
-func (s *bookService) GetAllMyBook() []entity.Book {
+func (s *bookService) GetAllMyBook() []beans.Book {
 	return s.bookRepository.GetAllMyBook()
 }
 
 // CreateMyBook method is used to create a book by userID
-func (s *bookService) CreateMyBook(b dto.BookCreateDTORequest) entity.Book {
-	book := entity.Book{}                                     // book is a new instance of Book
+func (s *bookService) CreateMyBook(b beans.BookCreateDTORequest) beans.Book {
+	book := beans.Book{}                                      // book is a new instance of Book
 	err := smapping.FillStruct(&book, smapping.MapFields(&b)) // Fill the book with the book data
 	if err != nil {
 		log.Fatalf("Failed to map fields %v: ", err)
@@ -57,8 +56,8 @@ func (s *bookService) CreateMyBook(b dto.BookCreateDTORequest) entity.Book {
 }
 
 // UpdateMyBook method is used to update a book by userID
-func (s *bookService) UpdateMyBook(b dto.BookUpdateDTORequest) entity.Book {
-	book := entity.Book{}                                     // book is a new instance of Book
+func (s *bookService) UpdateMyBook(b beans.BookUpdateDTORequest) beans.Book {
+	book := beans.Book{}                                      // book is a new instance of Book
 	err := smapping.FillStruct(&book, smapping.MapFields(&b)) // Fill the book with the book data
 	if err != nil {
 		log.Fatalf("Failed to map fields %v: ", err)
@@ -68,7 +67,7 @@ func (s *bookService) UpdateMyBook(b dto.BookUpdateDTORequest) entity.Book {
 }
 
 // DeleteMyBook method is used to delete a book by userID
-func (s *bookService) DeleteMyBook(b entity.Book) {
+func (s *bookService) DeleteMyBook(b beans.Book) {
 	s.bookRepository.DeleteMyBook(b) // delete book
 }
 

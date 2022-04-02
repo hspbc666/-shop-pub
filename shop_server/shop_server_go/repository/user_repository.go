@@ -1,9 +1,9 @@
 package repository
 
 import (
+	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/beans"
 	"log"
 
-	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/entity"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
@@ -11,20 +11,20 @@ import (
 //UserRepository is contract what userRepository can do to db
 type UserRepository interface {
 	//InsertUser is insert user to db
-	InsertUser(user entity.User) entity.User
+	InsertUser(user beans.User) beans.User
 
 	//UpdateUser is update user to db
-	UpdateUser(user entity.User) entity.User
+	UpdateUser(user beans.User) beans.User
 
 	//VerifyCredential is verify user credential
 	VerifyCredential(name string, password string) interface{}
 
 	IsDuplicateName(name string) (tx *gorm.DB)
 
-	FindByName(name string) entity.User
+	FindByName(name string) beans.User
 
 	//ProfileUser is find user by id
-	ProfileUser(userID int64) entity.User
+	ProfileUser(userID int64) beans.User
 }
 
 //userConnection is a struct that implements connection to db with gorm
@@ -42,18 +42,18 @@ func NewUserRepository(db *gorm.DB) UserRepository {
 }
 
 // CreateUser is insert user to db and return user entity to caller function
-func (db *userConnection) InsertUser(user entity.User) entity.User {
+func (db *userConnection) InsertUser(user beans.User) beans.User {
 	user.Password = hashAndSalt([]byte(user.Password)) //hash password
 	db.connection.Save(&user)                          //save user to db
 	return user
 }
 
 // UpdateUser is update user to db and return user entity to caller function
-func (db *userConnection) UpdateUser(user entity.User) entity.User {
+func (db *userConnection) UpdateUser(user beans.User) beans.User {
 	if user.Password != "" {
 		user.Password = hashAndSalt([]byte(user.Password)) //hash password
 	} else {
-		var tempUser entity.User               //get user from db
+		var tempUser beans.User                //get user from db
 		db.connection.Find(&tempUser, user.ID) //find user by id
 		user.Password = tempUser.Password      //set password to user
 	}
@@ -63,7 +63,7 @@ func (db *userConnection) UpdateUser(user entity.User) entity.User {
 
 // VerifyCredential is verify user credential and return user entity to caller function if credential is correct or return nil if credential is incorrect
 func (db *userConnection) VerifyCredential(name string, password string) interface{} {
-	var user entity.User
+	var user beans.User
 	res := db.connection.Where("name = ?", name).Take(&user)
 	if res.Error == nil {
 		return user
@@ -72,20 +72,20 @@ func (db *userConnection) VerifyCredential(name string, password string) interfa
 }
 
 func (db *userConnection) IsDuplicateName(name string) (tx *gorm.DB) {
-	var user entity.User                                     //get user from db
+	var user beans.User                                      //get user from db
 	return db.connection.Where("name = ?", name).Take(&user) //find user by email
 }
 
 // FindByName is find user by email and return user entity to caller function
-func (db *userConnection) FindByName(name string) entity.User {
-	var user entity.User                              //get user from db
+func (db *userConnection) FindByName(name string) beans.User {
+	var user beans.User                               //get user from db
 	db.connection.Where("name = ?", name).Take(&user) //find user by email
 	return user                                       //return user
 }
 
 // ProfileUser is find user by id and return user entity to caller function
-func (db *userConnection) ProfileUser(userID int64) entity.User {
-	var user entity.User                                                     // get user from db
+func (db *userConnection) ProfileUser(userID int64) beans.User {
+	var user beans.User                                                      // get user from db
 	db.connection.Preload("Books").Preload("Books.User").Find(&user, userID) //find user by id and preload books and user
 	return user                                                              //return user
 }

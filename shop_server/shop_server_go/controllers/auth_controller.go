@@ -3,8 +3,6 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/beans"
-	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/entity"
-	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/helper"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/services"
 	"net/http"
 )
@@ -30,22 +28,22 @@ func (c *authController) Login(ctx *gin.Context) {
 	var loginDTO beans.LoginRequest // create new instance of LoginRequest
 	errDTO := ctx.ShouldBind(&loginDTO)
 	if errDTO != nil {
-		response := helper.ErrorsResponse(http.StatusBadRequest, "Failed to process request", errDTO.Error(), helper.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusBadRequest, "Failed to process request", errDTO.Error(), beans.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
 		return
 	}
 
 	authResult := c.authService.VerifyCredential(loginDTO.Name, loginDTO.Password)
 
-	if v, ok := authResult.(entity.User); ok {
+	if v, ok := authResult.(beans.User); ok {
 		//generatedToken := c.jwtService.GenerateToken(strconv.Itoa(int(v.ID)))
 		//v.Token = generatedToken
-		response := helper.SuccessResponse(http.StatusOK, "Login Success", v)
+		response := beans.SuccessResponse(http.StatusOK, "Login Success", v)
 		ctx.JSON(http.StatusOK, response)
 		return
 	}
 
-	response := helper.ErrorsResponse(http.StatusBadRequest, "Failed to process request", "Invalid Credential", helper.EmptyObject{})
+	response := beans.ErrorsResponse(http.StatusBadRequest, "Failed to process request", "Invalid Credential", beans.EmptyObject{})
 	ctx.AbortWithStatusJSON(http.StatusUnauthorized, response)
 }
 
@@ -60,13 +58,13 @@ func (c *authController) Register(ctx *gin.Context) {
 
 	// Check if there is any error in binding
 	if errDTO != nil {
-		response := helper.ErrorsResponse(http.StatusBadRequest, "Failed to process request", errDTO.Error(), helper.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusBadRequest, "Failed to process request", errDTO.Error(), beans.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
 		return
 	}
 
 	if !c.authService.IsDuplicateName(request.Name) {
-		response := helper.ErrorsResponse(http.StatusConflict, "Failed to process request", "user already registered", helper.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusConflict, "Failed to process request", "user already registered", beans.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusConflict, response)
 		return
 	} else {
@@ -79,7 +77,7 @@ func (c *authController) Register(ctx *gin.Context) {
 		//createdUser.Token = token
 
 		// response with the user data and token
-		response := helper.SuccessResponse(http.StatusCreated, "Register Success", createdUser)
+		response := beans.SuccessResponse(http.StatusCreated, "Register Success", createdUser)
 
 		// return the response
 		ctx.JSON(http.StatusCreated, response)

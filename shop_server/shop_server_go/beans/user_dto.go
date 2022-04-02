@@ -1,4 +1,4 @@
-package dto
+package beans
 
 // Create User Update DTO Request Struct when user update profile
 type UserUpdateDTORequest struct {

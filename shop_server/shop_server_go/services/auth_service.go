@@ -5,7 +5,6 @@ import (
 	"log"
 
 	"github.com/mashingan/smapping"
-	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/entity"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/repository"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -15,8 +14,8 @@ type AuthService interface {
 	//VerifyCredential is verify user credential
 	VerifyCredential(name string, password string) interface{}
 	//CreateUser is insert user to db and return user entity to caller function
-	CreateUser(user beans.RegisterRequest) entity.User
-	FindByName(name string) entity.User
+	CreateUser(user beans.RegisterRequest) beans.User
+	FindByName(name string) beans.User
 	IsDuplicateName(name string) bool
 }
 
@@ -36,7 +35,7 @@ func (s *authService) VerifyCredential(name string, password string) interface{}
 	res := s.userRepository.VerifyCredential(name, password)
 
 	//if res is user entity then return user entity to caller function
-	if v, ok := res.(entity.User); ok {
+	if v, ok := res.(beans.User); ok {
 		/*
 			compare password with hashed password and return true if password is matched or return false if password is not matched
 		*/
@@ -52,9 +51,9 @@ func (s *authService) VerifyCredential(name string, password string) interface{}
 }
 
 // CreateUser is insert user to db and return user entity to caller function
-func (s *authService) CreateUser(user beans.RegisterRequest) entity.User {
+func (s *authService) CreateUser(user beans.RegisterRequest) beans.User {
 
-	userToCreate := entity.User{} // create user entity
+	userToCreate := beans.User{} // create user entity
 
 	/*
 		fill user entity with data from dto request entity and return error if any error occur during mapping process or return nil if no error occur during mapping process and return user entity to caller function to use it
@@ -70,7 +69,7 @@ func (s *authService) CreateUser(user beans.RegisterRequest) entity.User {
 
 }
 
-func (s *authService) FindByName(name string) entity.User {
+func (s *authService) FindByName(name string) beans.User {
 	return s.userRepository.FindByName(name)
 }
 

@@ -1,4 +1,4 @@
-package entity
+package beans
 
 // Create User struct representing the user table in the database
 type User struct {

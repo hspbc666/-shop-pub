@@ -4,9 +4,7 @@ import (
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/dto"
-	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/entity"
-	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/helper"
+	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/beans"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/services"
 	"net/http"
 	"strconv"
@@ -36,24 +34,24 @@ func NewBizController(userService services.UserService, bookService services.Boo
 }
 
 func (c *bizController) GetAll(ctx *gin.Context) {
-	var books []entity.Book = c.bookService.GetAll()
-	result := helper.SuccessResponse(http.StatusOK, "Get All Data Book", books)
+	var books []beans.Book = c.bookService.GetAll()
+	result := beans.SuccessResponse(http.StatusOK, "Get All Data Book", books)
 	ctx.JSON(http.StatusOK, result) // Return Response
 }
 
 func (c *bizController) GetByID(ctx *gin.Context) {
 	bookID, err := strconv.ParseUint(ctx.Param("id"), 10, 64)
 	if err != nil {
-		response := helper.ErrorsResponse(http.StatusBadRequest, "Book Not Found", err.Error(), helper.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusBadRequest, "Book Not Found", err.Error(), beans.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
 		return
 	}
 
-	var book entity.Book = c.bookService.GetByID(bookID)
+	var book beans.Book = c.bookService.GetByID(bookID)
 
-	if book == (entity.Book{}) { // Check book is empty or not
+	if book == (beans.Book{}) { // Check book is empty or not
 		// Return error response with status code 404 and message book not found
-		response := helper.ErrorsResponse(http.StatusNotFound, "Book Not Found", "", helper.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusNotFound, "Book Not Found", "", beans.EmptyObject{})
 
 		// Return response with status code 404 and message book not found
 		ctx.AbortWithStatusJSON(http.StatusNotFound, response)
@@ -62,7 +60,7 @@ func (c *bizController) GetByID(ctx *gin.Context) {
 	} else { // If book is not empty
 
 		// Return success response with status code 200 and data book
-		response := helper.SuccessResponse(http.StatusOK, "Get Data Book", book)
+		response := beans.SuccessResponse(http.StatusOK, "Get Data Book", book)
 
 		// Return Response
 		ctx.JSON(http.StatusOK, response)
@@ -73,10 +71,10 @@ func (c *bizController) GetByID(ctx *gin.Context) {
 func (c *bizController) GetAllMyBook(ctx *gin.Context) {
 
 	//Get All Data Book By User from BookService and assign to books variable
-	var book []entity.Book = c.bookService.GetAllMyBook()
+	var book []beans.Book = c.bookService.GetAllMyBook()
 
 	// Return success response with status code 200 and data books
-	response := helper.SuccessResponse(http.StatusOK, "Get All Data Book", book)
+	response := beans.SuccessResponse(http.StatusOK, "Get All Data Book", book)
 
 	// Return Response
 	ctx.JSON(http.StatusOK, response)
@@ -86,14 +84,14 @@ func (c *bizController) GetAllMyBook(ctx *gin.Context) {
 func (c *bizController) CreateMyBook(ctx *gin.Context) {
 
 	// Create bookCreateDTO variable for binding data from request body
-	var bookCreateDTO dto.BookCreateDTORequest
+	var bookCreateDTO beans.BookCreateDTORequest
 
 	// Bind data from request body to bookCreateDTO variable
 	errDTO := ctx.ShouldBind(&bookCreateDTO)
 
 	// Check error from ctx.ShouldBind
 	if errDTO != nil {
-		response := helper.ErrorsResponse(http.StatusBadRequest, "Invalid data", errDTO.Error(), helper.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusBadRequest, "Invalid data", errDTO.Error(), beans.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
 		return
 	}
@@ -116,7 +114,7 @@ func (c *bizController) CreateMyBook(ctx *gin.Context) {
 	result := c.bookService.CreateMyBook(bookCreateDTO)
 
 	// response variable for return response with status code and message
-	response := helper.SuccessResponse(http.StatusCreated, "Create Data Book", result)
+	response := beans.SuccessResponse(http.StatusCreated, "Create Data Book", result)
 
 	// Return Response
 	ctx.JSON(http.StatusCreated, response)
@@ -127,14 +125,14 @@ func (c *bizController) CreateMyBook(ctx *gin.Context) {
 func (c *bizController) UpdateMyBook(ctx *gin.Context) {
 
 	// Create bookUpdateDTO variable for binding data from request body
-	var bookUpdateDTO dto.BookUpdateDTORequest
+	var bookUpdateDTO beans.BookUpdateDTORequest
 
 	// Bind data from request body to bookUpdateDTO variable
 	errDTO := ctx.ShouldBind(&bookUpdateDTO)
 
 	// Check error from ctx.ShouldBind
 	if errDTO != nil {
-		result := helper.ErrorsResponse(http.StatusBadRequest, "Invalid data", errDTO.Error(), helper.EmptyObject{})
+		result := beans.ErrorsResponse(http.StatusBadRequest, "Invalid data", errDTO.Error(), beans.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, result)
 		return
 	}
@@ -170,7 +168,7 @@ func (c *bizController) UpdateMyBook(ctx *gin.Context) {
 		result := c.bookService.UpdateMyBook(bookUpdateDTO)
 
 		// response variable for return response with status code and message
-		response := helper.SuccessResponse(http.StatusOK, "Update Data Book", result)
+		response := beans.SuccessResponse(http.StatusOK, "Update Data Book", result)
 
 		// Return Response
 		ctx.JSON(http.StatusOK, response)
@@ -179,7 +177,7 @@ func (c *bizController) UpdateMyBook(ctx *gin.Context) {
 			If user is not allowed to update data book
 			Return error response with status code 403 and message user is not allowed to update data book
 		*/
-		response := helper.ErrorsResponse(http.StatusForbidden, "Forbidden", "You are not allowed to update this book", helper.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusForbidden, "Forbidden", "You are not allowed to update this book", beans.EmptyObject{})
 		// Return Response
 		ctx.AbortWithStatusJSON(http.StatusForbidden, response)
 	}
@@ -188,14 +186,14 @@ func (c *bizController) UpdateMyBook(ctx *gin.Context) {
 // DeleteMyBook function for delete data book by user
 func (c *bizController) DeleteMyBook(ctx *gin.Context) {
 
-	var book entity.Book // Create Book variable from entity.Book
+	var book beans.Book // Create Book variable from entity.Book
 
 	// Get id from url parameter with key id
 	id, err := strconv.ParseUint(ctx.Param("id"), 10, 64)
 
 	// Check error from strconv.ParseUint
 	if err != nil {
-		response := helper.ErrorsResponse(http.StatusBadRequest, "Book Not Found", err.Error(), helper.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusBadRequest, "Book Not Found", err.Error(), beans.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
 		return
 	}
@@ -225,14 +223,14 @@ func (c *bizController) DeleteMyBook(ctx *gin.Context) {
 		c.bookService.DeleteMyBook(book) // Delete data book by user
 
 		// response variable for return response with status code and message
-		response := helper.SuccessResponse(http.StatusOK, "Delete Data Book", book)
+		response := beans.SuccessResponse(http.StatusOK, "Delete Data Book", book)
 
 		// Return Response
 		ctx.JSON(http.StatusOK, response)
 	} else { // If user is not allowed to delete data book
 
 		// response variable for return response with status code and message
-		response := helper.ErrorsResponse(http.StatusForbidden, "Forbidden", "You are not allowed to delete this book", helper.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusForbidden, "Forbidden", "You are not allowed to delete this book", beans.EmptyObject{})
 
 		// Return Response
 		ctx.AbortWithStatusJSON(http.StatusForbidden, response)

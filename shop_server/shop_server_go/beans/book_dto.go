@@ -1,4 +1,4 @@
-package dto
+package beans
 
 // Create Book Update DTO Request when user update book
 type BookUpdateDTORequest struct {
