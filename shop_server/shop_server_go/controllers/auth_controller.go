@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/dto"
+	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/beans"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/entity"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/helper"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/services"
@@ -27,7 +27,7 @@ func NewAuthController(authService services.AuthService, jwtService services.JWT
 }
 
 func (c *authController) Login(ctx *gin.Context) {
-	var loginDTO dto.LoginRequest // create new instance of LoginRequest
+	var loginDTO beans.LoginRequest // create new instance of LoginRequest
 	errDTO := ctx.ShouldBind(&loginDTO)
 	if errDTO != nil {
 		response := helper.ErrorsResponse(http.StatusBadRequest, "Failed to process request", errDTO.Error(), helper.EmptyObject{})
@@ -53,10 +53,10 @@ func (c *authController) Login(ctx *gin.Context) {
 func (c *authController) Register(ctx *gin.Context) {
 
 	// create new instance of RegisterRequest
-	var registerDTO dto.RegisterRequest
+	var request beans.RegisterRequest
 
-	// bind the registerDTO with the request body
-	errDTO := ctx.ShouldBind(&registerDTO)
+	// bind the request with the request body
+	errDTO := ctx.ShouldBind(&request)
 
 	// Check if there is any error in binding
 	if errDTO != nil {
@@ -65,12 +65,12 @@ func (c *authController) Register(ctx *gin.Context) {
 		return
 	}
 
-	if !c.authService.IsDuplicateName(registerDTO.Name) {
+	if !c.authService.IsDuplicateName(request.Name) {
 		response := helper.ErrorsResponse(http.StatusConflict, "Failed to process request", "user already registered", helper.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusConflict, response)
 		return
 	} else {
-		createdUser := c.authService.CreateUser(registerDTO) // create new user
+		createdUser := c.authService.CreateUser(request) // create new user
 
 		// generate token
 		//token := c.jwtService.GenerateToken(strconv.Itoa(int(createdUser.ID)))

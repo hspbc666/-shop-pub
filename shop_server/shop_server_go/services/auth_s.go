@@ -1,10 +1,10 @@
 package services
 
 import (
+	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/beans"
 	"log"
 
 	"github.com/mashingan/smapping"
-	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/dto"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/entity"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/repository"
 	"golang.org/x/crypto/bcrypt"
@@ -15,7 +15,7 @@ type AuthService interface {
 	//VerifyCredential is verify user credential
 	VerifyCredential(name string, password string) interface{}
 	//CreateUser is insert user to db and return user entity to caller function
-	CreateUser(user dto.RegisterRequest) entity.User
+	CreateUser(user beans.RegisterRequest) entity.User
 	FindByName(name string) entity.User
 	IsDuplicateName(name string) bool
 }
@@ -52,7 +52,7 @@ func (s *authService) VerifyCredential(name string, password string) interface{}
 }
 
 // CreateUser is insert user to db and return user entity to caller function
-func (s *authService) CreateUser(user dto.RegisterRequest) entity.User {
+func (s *authService) CreateUser(user beans.RegisterRequest) entity.User {
 
 	userToCreate := entity.User{} // create user entity
 
