@@ -10,10 +10,11 @@ import (
 )
 
 type BookService interface {
-	CreateMyBook(b beans.BookCreateDTORequest) beans.Book  // Create a new book
-	UpdateMyBook(b beans.BookUpdateDTORequest) beans.Book  // Update a book
-	DeleteMyBook(b beans.Book)                             // Delete a book
-	GetAll() []beans.Book                                  // Get all book
+	CreateMyBook(b beans.BookCreateDTORequest) beans.Book // Create a new book
+	UpdateMyBook(b beans.BookUpdateDTORequest) beans.Book // Update a book
+	DeleteMyBook(b beans.Book)                            // Delete a book
+	GetAll() []beans.Book                                 // Get all book
+	Query() []beans.CategoryInfo
 	GetByID(bookID uint64) beans.Book                      // Get a book by bookID
 	GetAllMyBook() []beans.Book                            // Get all book by userID
 	IsAllowedActionBook(userID string, bookID uint64) bool // Check userID is allowed to access bookID
@@ -22,6 +23,10 @@ type BookService interface {
 // Create a bookService struct to implement BookService interface
 type bookService struct {
 	bookRepository repository.BookRepository
+}
+
+func (s *bookService) Query() []beans.CategoryInfo {
+	return s.bookRepository.Query()
 }
 
 // NewBookService method is used to create a new instance of bookService

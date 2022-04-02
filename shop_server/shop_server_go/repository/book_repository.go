@@ -9,6 +9,7 @@ type BookRepository interface {
 	GetAll() []beans.Book                 // get all book from database
 	GetByID(bookID uint64) beans.Book     // get book by bookID
 	GetAllMyBook() []beans.Book           // get all book by userID
+	Query() []beans.CategoryInfo          // get all book by userID
 	CreateMyBook(b beans.Book) beans.Book // create book by userID
 	UpdateMyBook(b beans.Book) beans.Book // update book by userID
 	DeleteMyBook(b beans.Book)            // delete book by userID
@@ -22,6 +23,13 @@ type bookConnection struct {
 // NewBookConnection method is used to create a new instance of bookConnection
 func NewBookRepository(connection *gorm.DB) BookRepository {
 	return &bookConnection{connection: connection}
+}
+
+// GetAll method is used to get all book from database
+func (db *bookConnection) Query() []beans.CategoryInfo {
+	var categoryInfos []beans.CategoryInfo                     // create variable categoryInfos to store all book
+	db.connection.Preload("CategoryInfo").Find(&categoryInfos) // get all book and preload user from book
+	return categoryInfos                                       // return all book
 }
 
 // GetAll method is used to get all book from database

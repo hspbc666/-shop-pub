@@ -14,6 +14,7 @@ type BizController interface {
 	GetAll(c *gin.Context)       // Get All Data Book
 	GetByID(c *gin.Context)      // Get Data Book By ID
 	GetAllMyBook(c *gin.Context) // Get All Data Book By User
+	QueryCategory(c *gin.Context)
 	CreateMyBook(c *gin.Context) // Create Data Book By User
 	UpdateMyBook(c *gin.Context) // Update Data Book By User
 	DeleteMyBook(c *gin.Context) // Delete Data Book By User
@@ -25,7 +26,7 @@ type bizController struct {
 	jwtService  services.JWTService
 }
 
-func NewBizController(userService services.UserService, bookService services.BookService, jwtService services.JWTService) BizController {
+func NewBizController(userService services.UserService, bookService services.BookService, jwtService services.JWTService) *bizController {
 	return &bizController{
 		userService: userService,
 		bookService: bookService,
@@ -67,16 +68,16 @@ func (c *bizController) GetByID(ctx *gin.Context) {
 	}
 }
 
+func (c *bizController) QueryCategory(ctx *gin.Context) {
+	var books = c.bookService.Query()
+	result := beans.SuccessResponse(http.StatusOK, "Get All Data Book", books)
+	ctx.JSON(http.StatusOK, result) // Return Response
+}
+
 // GetAllMyBook function for get all data book by user
 func (c *bizController) GetAllMyBook(ctx *gin.Context) {
-
-	//Get All Data Book By User from BookService and assign to books variable
 	var book []beans.Book = c.bookService.GetAllMyBook()
-
-	// Return success response with status code 200 and data books
 	response := beans.SuccessResponse(http.StatusOK, "Get All Data Book", book)
-
-	// Return Response
 	ctx.JSON(http.StatusOK, response)
 }
 
