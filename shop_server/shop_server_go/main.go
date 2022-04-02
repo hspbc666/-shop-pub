@@ -7,20 +7,19 @@ import (
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/middleware"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/repository"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/services"
-	"gorm.io/gorm"
 )
 
 var (
-	db             *gorm.DB                   = config.SetupDatabase()
-	userRepository repository.UserRepository  = repository.NewUserRepository(db)
-	bookRepository repository.BookRepository  = repository.NewBookRepository(db)
-	jwtService     services.JWTService        = services.NewJWTService()
-	userService    services.UserService       = services.NewUserService(userRepository)
-	bookService    services.BookService       = services.NewBookService(bookRepository)
-	authService    services.AuthService       = services.NewAuthService(userRepository)
-	authController                            = controllers.NewAuthController(authService, jwtService)
-	userController controllers.UserController = controllers.NewUserController(userService, jwtService)
-	bookController controllers.BookController = controllers.NewBookController(bookService, jwtService)
+	db             = config.SetupDatabase()
+	userRepository = repository.NewUserRepository(db)
+	bookRepository = repository.NewBookRepository(db)
+	jwtService     = services.NewJWTService()
+	userService    = services.NewUserService(userRepository)
+	bookService    = services.NewBookService(bookRepository)
+	authService    = services.NewAuthService(userRepository)
+	authController = controllers.NewAuthController(authService, jwtService)
+	userController = controllers.NewUserController(userService, jwtService)
+	bookController = controllers.NewBookController(bookService, jwtService)
 )
 
 func main() {
