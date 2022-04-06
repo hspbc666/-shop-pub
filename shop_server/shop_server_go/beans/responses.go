@@ -8,9 +8,13 @@ type CategoryInfo struct {
 func (CategoryInfo) TableName() string { return "category" }
 
 type Goods struct {
-	Id    string `json:"id"`
-	Name  string `json:"name"`
-	Price uint64 `json:"price"`
+	ID           string `gorm:"primary_key" json:"id"`
+	Name         string `gorm:"type:varchar(200)" json:"name"`
+	Price        int64  `gorm:"type:int(10)" json:"price"`
+	LongPic      string `gorm:"type:varchar(200)" json:"longPic"`
+	SquarePic    string `gorm:"type:varchar(200)" json:"squarePic"`
+	DescPic      string `gorm:"type:varchar(200)" json:"descPic"`
+	OriginalLink string `gorm:"type:varchar(200)" json:"originalLink"`
 }
 
 func (Goods) TableName() string { return "goods" }

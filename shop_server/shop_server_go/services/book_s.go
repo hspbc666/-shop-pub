@@ -26,8 +26,8 @@ type bookService struct {
 	bookRepository repository.BookRepository
 }
 
-func (s *bookService) Query() []beans.CategoryInfo {
-	return s.bookRepository.Query()
+func (s *bookService) QueryCategory() []beans.CategoryInfo {
+	return s.bookRepository.QueryCategory()
 }
 
 func (s *bookService) QueryGoods() []beans.Goods {

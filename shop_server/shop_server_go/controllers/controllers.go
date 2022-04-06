@@ -76,7 +76,7 @@ func (c *bizController) QueryCategory(ctx *gin.Context) {
 }
 
 func (c *bizController) QueryGoods(ctx *gin.Context) {
-	var books = c.bookService.QueryCategory()
+	var books = c.bookService.QueryGoods()
 	result := beans.SuccessResponse(http.StatusOK, "Get All Data Book", books)
 	ctx.JSON(http.StatusOK, result) // Return Response
 }
