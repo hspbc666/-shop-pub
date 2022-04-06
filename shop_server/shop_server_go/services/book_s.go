@@ -14,7 +14,8 @@ type BookService interface {
 	UpdateMyBook(b beans.BookUpdateDTORequest) beans.Book // Update a book
 	DeleteMyBook(b beans.Book)                            // Delete a book
 	GetAll() []beans.Book                                 // Get all book
-	Query() []beans.CategoryInfo
+	QueryCategory() []beans.CategoryInfo
+	QueryGoods() []beans.Goods
 	GetByID(bookID uint64) beans.Book                      // Get a book by bookID
 	GetAllMyBook() []beans.Book                            // Get all book by userID
 	IsAllowedActionBook(userID string, bookID uint64) bool // Check userID is allowed to access bookID
@@ -26,6 +27,10 @@ type bookService struct {
 }
 
 func (s *bookService) Query() []beans.CategoryInfo {
+	return s.bookRepository.Query()
+}
+
+func (s *bookService) QueryGoods() []beans.CategoryInfo {
 	return s.bookRepository.Query()
 }
 

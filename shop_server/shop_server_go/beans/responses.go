@@ -7,9 +7,15 @@ type CategoryInfo struct {
 	Name string `json:"name"`
 }
 
-func (CategoryInfo) TableName() string {
-	return "category"
+func (CategoryInfo) TableName() string { return "category" }
+
+type Goods struct {
+	Id    string `json:"id"`
+	Name  string `json:"name"`
+	Price uint64 `json:"price"`
 }
+
+func (Goods) TableName() string { return "goods" }
 
 type Response struct {
 	Code   int         `json:"code"`

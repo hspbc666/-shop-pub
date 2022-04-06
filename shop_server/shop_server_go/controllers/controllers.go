@@ -70,13 +70,13 @@ func (c *bizController) GetByID(ctx *gin.Context) {
 }
 
 func (c *bizController) QueryCategory(ctx *gin.Context) {
-	var books = c.bookService.Query()
+	var books = c.bookService.QueryCategory()
 	result := beans.SuccessResponse(http.StatusOK, "Get All Data Book", books)
 	ctx.JSON(http.StatusOK, result) // Return Response
 }
 
 func (c *bizController) QueryGoods(ctx *gin.Context) {
-	var books = c.bookService.Query()
+	var books = c.bookService.QueryCategory()
 	result := beans.SuccessResponse(http.StatusOK, "Get All Data Book", books)
 	ctx.JSON(http.StatusOK, result) // Return Response
 }
