@@ -30,8 +30,8 @@ func (s *bookService) Query() []beans.CategoryInfo {
 	return s.bookRepository.Query()
 }
 
-func (s *bookService) QueryGoods() []beans.CategoryInfo {
-	return s.bookRepository.Query()
+func (s *bookService) QueryGoods() []beans.Goods {
+	return s.bookRepository.QueryGoods()
 }
 
 // NewBookService method is used to create a new instance of bookService

@@ -10,6 +10,7 @@ type BookRepository interface {
 	GetByID(bookID uint64) beans.Book     // get book by bookID
 	GetAllMyBook() []beans.Book           // get all book by userID
 	Query() []beans.CategoryInfo          // get all book by userID
+	QueryGoods() []beans.Goods            // get all book by userID
 	CreateMyBook(b beans.Book) beans.Book // create book by userID
 	UpdateMyBook(b beans.Book) beans.Book // update book by userID
 	DeleteMyBook(b beans.Book)            // delete book by userID
@@ -30,6 +31,12 @@ func (db *bookConnection) Query() []beans.CategoryInfo {
 	var categoryInfos []beans.CategoryInfo                     // create variable categoryInfos to store all book
 	db.connection.Preload("CategoryInfo").Find(&categoryInfos) // get all book and preload user from book
 	return categoryInfos                                       // return all book
+}
+
+func (db *bookConnection) QueryGoods() []beans.Goods {
+	var categoryInfos []beans.Goods                     // create variable categoryInfos to store all book
+	db.connection.Preload("Goods").Find(&categoryInfos) // get all book and preload user from book
+	return categoryInfos                                // return all book
 }
 
 // GetAll method is used to get all book from database
