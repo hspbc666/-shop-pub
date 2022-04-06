@@ -28,7 +28,7 @@ func (c *authController) Login(ctx *gin.Context) {
 	var loginDTO beans.LoginRequest // create new instance of LoginRequest
 	errDTO := ctx.ShouldBind(&loginDTO)
 	if errDTO != nil {
-		response := beans.ErrorsResponse(http.StatusBadRequest, "Failed to process request", errDTO.Error(), beans.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusBadRequest, "Failed to process request", beans.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
 		return
 	}
@@ -43,7 +43,7 @@ func (c *authController) Login(ctx *gin.Context) {
 		return
 	}
 
-	response := beans.ErrorsResponse(http.StatusBadRequest, "Failed to process request", "Invalid Credential", beans.EmptyObject{})
+	response := beans.ErrorsResponse(http.StatusBadRequest, "Invalid Credential", beans.EmptyObject{})
 	ctx.AbortWithStatusJSON(http.StatusUnauthorized, response)
 }
 
@@ -58,13 +58,13 @@ func (c *authController) Register(ctx *gin.Context) {
 
 	// Check if there is any error in binding
 	if errDTO != nil {
-		response := beans.ErrorsResponse(http.StatusBadRequest, "Failed to process request", errDTO.Error(), beans.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusBadRequest, "Failed to process request", beans.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
 		return
 	}
 
 	if !c.authService.IsDuplicateName(request.Name) {
-		response := beans.ErrorsResponse(http.StatusConflict, "Failed to process request", "user already registered", beans.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusConflict, "user already registered", beans.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusConflict, response)
 		return
 	} else {

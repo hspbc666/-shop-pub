@@ -44,7 +44,7 @@ func (c *bizController) GetAll(ctx *gin.Context) {
 func (c *bizController) GetByID(ctx *gin.Context) {
 	bookID, err := strconv.ParseUint(ctx.Param("id"), 10, 64)
 	if err != nil {
-		response := beans.ErrorsResponse(http.StatusBadRequest, "Book Not Found", err.Error(), beans.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusBadRequest, "Book Not Found", beans.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
 		return
 	}
@@ -53,7 +53,7 @@ func (c *bizController) GetByID(ctx *gin.Context) {
 
 	if book == (beans.Book{}) { // Check book is empty or not
 		// Return error response with status code 404 and message book not found
-		response := beans.ErrorsResponse(http.StatusNotFound, "Book Not Found", "", beans.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusNotFound, "Book Not Found", beans.EmptyObject{})
 
 		// Return response with status code 404 and message book not found
 		ctx.AbortWithStatusJSON(http.StatusNotFound, response)
@@ -99,7 +99,7 @@ func (c *bizController) CreateMyBook(ctx *gin.Context) {
 
 	// Check error from ctx.ShouldBind
 	if errDTO != nil {
-		response := beans.ErrorsResponse(http.StatusBadRequest, "Invalid data", errDTO.Error(), beans.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusBadRequest, "Invalid data", beans.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
 		return
 	}
@@ -140,7 +140,7 @@ func (c *bizController) UpdateMyBook(ctx *gin.Context) {
 
 	// Check error from ctx.ShouldBind
 	if errDTO != nil {
-		result := beans.ErrorsResponse(http.StatusBadRequest, "Invalid data", errDTO.Error(), beans.EmptyObject{})
+		result := beans.ErrorsResponse(http.StatusBadRequest, "Invalid data", beans.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, result)
 		return
 	}
@@ -185,7 +185,7 @@ func (c *bizController) UpdateMyBook(ctx *gin.Context) {
 			If user is not allowed to update data book
 			Return error response with status code 403 and message user is not allowed to update data book
 		*/
-		response := beans.ErrorsResponse(http.StatusForbidden, "Forbidden", "You are not allowed to update this book", beans.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusForbidden, "You are not allowed to update this book", beans.EmptyObject{})
 		// Return Response
 		ctx.AbortWithStatusJSON(http.StatusForbidden, response)
 	}
@@ -201,7 +201,7 @@ func (c *bizController) DeleteMyBook(ctx *gin.Context) {
 
 	// Check error from strconv.ParseUint
 	if err != nil {
-		response := beans.ErrorsResponse(http.StatusBadRequest, "Book Not Found", err.Error(), beans.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusBadRequest, "Book Not Found", beans.EmptyObject{})
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response)
 		return
 	}
@@ -238,7 +238,7 @@ func (c *bizController) DeleteMyBook(ctx *gin.Context) {
 	} else { // If user is not allowed to delete data book
 
 		// response variable for return response with status code and message
-		response := beans.ErrorsResponse(http.StatusForbidden, "Forbidden", "You are not allowed to delete this book", beans.EmptyObject{})
+		response := beans.ErrorsResponse(http.StatusForbidden, "You are not allowed to delete this book", beans.EmptyObject{})
 
 		// Return Response
 		ctx.AbortWithStatusJSON(http.StatusForbidden, response)

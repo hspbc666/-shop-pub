@@ -1,7 +1,5 @@
 package beans
 
-import "strings"
-
 type CategoryInfo struct {
 	Id   string `json:"id"`
 	Name string `json:"name"`
@@ -18,10 +16,9 @@ type Goods struct {
 func (Goods) TableName() string { return "goods" }
 
 type Response struct {
-	Code   int         `json:"code"`
-	Msg    string      `json:"msg"`
-	Errors interface{} `json:"errors"`
-	Data   interface{} `json:"data"`
+	Code int         `json:"code"`
+	Msg  string      `json:"msg"`
+	Data interface{} `json:"data"`
 }
 
 type EmptyObject struct {
@@ -29,19 +26,16 @@ type EmptyObject struct {
 
 func SuccessResponse(code int, message string, data interface{}) Response {
 	return Response{
-		Code:   code,
-		Msg:    message,
-		Errors: nil,
-		Data:   data,
+		Code: code,
+		Msg:  message,
+		Data: data,
 	}
 }
 
-func ErrorsResponse(code int, message string, err string, data interface{}) Response {
-	splittedError := strings.Split(err, "\n")
+func ErrorsResponse(code int, message string, data interface{}) Response {
 	return Response{
-		Code:   code,
-		Msg:    message,
-		Errors: splittedError,
-		Data:   data,
+		Code: code,
+		Msg:  message,
+		Data: data,
 	}
 }
