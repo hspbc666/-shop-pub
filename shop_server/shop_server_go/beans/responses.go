@@ -7,8 +7,17 @@ type CategoryInfo struct {
 
 func (CategoryInfo) TableName() string { return "category" }
 
+type GoodsCategory struct {
+	ID         string `gorm:"primary_key" json:"id"`
+	CategoryId string `gorm:"type:varchar(200)" json:"categoryId"`
+	GoodsId    string `gorm:"type:varchar(200)" json:"goodsId"`
+	Goods      *Goods `gorm:"foreignkey:GoodsId;references:Id;constraint:onUpdate:CASCADE,onDelete:CASCADE"`
+}
+
+func (GoodsCategory) TableName() string { return "goods_category" }
+
 type Goods struct {
-	ID           string `gorm:"primary_key" json:"id"`
+	Id           string `gorm:"primary_key" json:"id"`
 	Name         string `gorm:"type:varchar(200)" json:"name"`
 	Price        int64  `gorm:"type:int(10)" json:"price"`
 	LongPic      string `gorm:"type:varchar(200)" json:"longPic"`

@@ -15,7 +15,7 @@ type BookService interface {
 	DeleteMyBook(b beans.Book)                            // Delete a book
 	GetAll() []beans.Book                                 // Get all book
 	QueryCategory() []beans.CategoryInfo
-	QueryGoodsByCategory() []beans.Goods
+	QueryGoodsByCategory(categoryId string) []beans.Goods
 	QueryGoods(goodsId string) beans.Goods
 	GetByID(bookID uint64) beans.Book                      // Get a book by bookID
 	GetAllMyBook() []beans.Book                            // Get all book by userID
@@ -31,8 +31,8 @@ func (s *bookService) QueryCategory() []beans.CategoryInfo {
 	return s.bookRepository.QueryCategory()
 }
 
-func (s *bookService) QueryGoodsByCategory() []beans.Goods {
-	return s.bookRepository.QueryGoodsByCategory()
+func (s *bookService) QueryGoodsByCategory(categoryId string) []beans.Goods {
+	return s.bookRepository.QueryGoodsByCategory(categoryId)
 }
 
 func (s *bookService) QueryGoods(goodsId string) beans.Goods {

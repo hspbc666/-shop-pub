@@ -36,7 +36,7 @@ func (c *authController) Login(ctx *gin.Context) {
 	authResult := c.authService.VerifyCredential(loginDTO.Name, loginDTO.Password)
 
 	if v, ok := authResult.(beans.User); ok {
-		//generatedToken := c.jwtService.GenerateToken(strconv.Itoa(int(v.ID)))
+		//generatedToken := c.jwtService.GenerateToken(strconv.Itoa(int(v.Id)))
 		//v.Token = generatedToken
 		response := beans.SuccessResponse(http.StatusOK, v)
 		ctx.JSON(http.StatusOK, response)
@@ -71,7 +71,7 @@ func (c *authController) Register(ctx *gin.Context) {
 		createdUser := c.authService.CreateUser(request) // create new user
 
 		// generate token
-		//token := c.jwtService.GenerateToken(strconv.Itoa(int(createdUser.ID)))
+		//token := c.jwtService.GenerateToken(strconv.Itoa(int(createdUser.Id)))
 
 		//// set token to the user
 		//createdUser.Token = token

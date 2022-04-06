@@ -9,5 +9,5 @@ type Book struct {
 	Description string `gorm:"type:varchar(255)" json:"description"` // Data type varchar with json tag name for json marshalling
 	UserID      uint64 `gorm:"not_null" json:"-"`
 	// Create a foreign key to user table with json tag user for json marshalling
-	//User *User `gorm:"foreignkey:UserID;references:ID;constraint:onUpdate:CASCADE,onDelete:CASCADE" json:"user"`
+	//User *User `gorm:"foreignkey:UserID;references:Id;constraint:onUpdate:CASCADE,onDelete:CASCADE" json:"user"`
 }

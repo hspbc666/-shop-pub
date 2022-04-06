@@ -12,7 +12,7 @@ import (
 
 type BizController interface {
 	GetAll(c *gin.Context)       // Get All Data Book
-	GetByID(c *gin.Context)      // Get Data Book By ID
+	GetByID(c *gin.Context)      // Get Data Book By Id
 	GetAllMyBook(c *gin.Context) // Get All Data Book By User
 	QueryCategory(c *gin.Context)
 	queryGoodsByCategory(c *gin.Context)
@@ -77,7 +77,8 @@ func (c *bizController) QueryCategory(ctx *gin.Context) {
 }
 
 func (c *bizController) QueryGoodsByCategory(ctx *gin.Context) {
-	var books = c.bookService.QueryGoodsByCategory()
+	categoryId := ctx.Query("categoryId")
+	var books = c.bookService.QueryGoodsByCategory(categoryId)
 	result := beans.SuccessResponse(http.StatusOK, books)
 	ctx.JSON(http.StatusOK, result) // Return Response
 }
@@ -214,7 +215,7 @@ func (c *bizController) DeleteMyBook(ctx *gin.Context) {
 		return
 	}
 
-	book.ID = id // Assign id to Book.ID
+	book.ID = id // Assign id to Book.Id
 
 	// Get Authorization from header
 	authHeader := ctx.GetHeader("Authorization")
