@@ -33,11 +33,11 @@ type userConnection struct {
 }
 
 /*
-NewUserRepository is creates a new instance of UserRepository with gorm connection instance as parameter and return UserRepository interface instance to use
+NewUserRepository is creates a new instance of UserRepository with gorm conn instance as parameter and return UserRepository interface instance to use
 */
 func NewUserRepository(db *gorm.DB) UserRepository {
 	return &userConnection{
-		connection: db, //set connection to db
+		connection: db, //set conn to db
 	}
 }
 
