@@ -34,6 +34,7 @@ func main() {
 	shopRoutes := r.Group("shop")
 	{
 		shopRoutes.GET("/categories", bizController.QueryCategory)
+		shopRoutes.GET("/goods", bizController.QueryGoodsByCategory)
 		shopRoutes.GET("/goods/:goodsId", bizController.QueryGoods)
 	}
 

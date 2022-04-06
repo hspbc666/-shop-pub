@@ -28,10 +28,10 @@ type Response struct {
 type EmptyObject struct {
 }
 
-func SuccessResponse(code int, message string, data interface{}) Response {
+func SuccessResponse(code int, data interface{}) Response {
 	return Response{
 		Code: code,
-		Msg:  message,
+		Msg:  "",
 		Data: data,
 	}
 }

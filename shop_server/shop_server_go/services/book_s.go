@@ -15,7 +15,8 @@ type BookService interface {
 	DeleteMyBook(b beans.Book)                            // Delete a book
 	GetAll() []beans.Book                                 // Get all book
 	QueryCategory() []beans.CategoryInfo
-	QueryGoods() []beans.Goods
+	QueryGoodsByCategory() []beans.Goods
+	QueryGoods(goodsId string) beans.Goods
 	GetByID(bookID uint64) beans.Book                      // Get a book by bookID
 	GetAllMyBook() []beans.Book                            // Get all book by userID
 	IsAllowedActionBook(userID string, bookID uint64) bool // Check userID is allowed to access bookID
@@ -30,8 +31,12 @@ func (s *bookService) QueryCategory() []beans.CategoryInfo {
 	return s.bookRepository.QueryCategory()
 }
 
-func (s *bookService) QueryGoods() []beans.Goods {
-	return s.bookRepository.QueryGoods()
+func (s *bookService) QueryGoodsByCategory() []beans.Goods {
+	return s.bookRepository.QueryGoodsByCategory()
+}
+
+func (s *bookService) QueryGoods(goodsId string) beans.Goods {
+	return s.bookRepository.QueryGoods(goodsId)
 }
 
 // NewBookService method is used to create a new instance of bookService

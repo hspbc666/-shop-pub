@@ -38,7 +38,7 @@ func (c *authController) Login(ctx *gin.Context) {
 	if v, ok := authResult.(beans.User); ok {
 		//generatedToken := c.jwtService.GenerateToken(strconv.Itoa(int(v.ID)))
 		//v.Token = generatedToken
-		response := beans.SuccessResponse(http.StatusOK, "Login Success", v)
+		response := beans.SuccessResponse(http.StatusOK, v)
 		ctx.JSON(http.StatusOK, response)
 		return
 	}
@@ -77,7 +77,7 @@ func (c *authController) Register(ctx *gin.Context) {
 		//createdUser.Token = token
 
 		// response with the user data and token
-		response := beans.SuccessResponse(http.StatusCreated, "Register Success", createdUser)
+		response := beans.SuccessResponse(http.StatusCreated, createdUser)
 
 		// return the response
 		ctx.JSON(http.StatusCreated, response)

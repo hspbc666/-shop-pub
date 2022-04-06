@@ -6,37 +6,41 @@ import (
 )
 
 type BookRepository interface {
-	GetAll() []beans.Book                 // get all book from database
-	GetByID(bookID uint64) beans.Book     // get book by bookID
-	GetAllMyBook() []beans.Book           // get all book by userID
-	QueryCategory() []beans.CategoryInfo  // get all book by userID
-	QueryGoods() []beans.Goods            // get all book by userID
-	CreateMyBook(b beans.Book) beans.Book // create book by userID
-	UpdateMyBook(b beans.Book) beans.Book // update book by userID
-	DeleteMyBook(b beans.Book)            // delete book by userID
+	GetAll() []beans.Book                  // get all book from database
+	GetByID(bookID uint64) beans.Book      // get book by bookID
+	GetAllMyBook() []beans.Book            // get all book by userID
+	QueryCategory() []beans.CategoryInfo   // get all book by userID
+	QueryGoods(goodsId string) beans.Goods // get all book by userID
+	QueryGoodsByCategory() []beans.Goods   // get all book by userID
+	CreateMyBook(b beans.Book) beans.Book  // create book by userID
+	UpdateMyBook(b beans.Book) beans.Book  // update book by userID
+	DeleteMyBook(b beans.Book)             // delete book by userID
 }
 
-// Create bookConnection struct to implement connection to database
 type bookConnection struct {
 	connection *gorm.DB // connection to database
 }
 
-// NewBookConnection method is used to create a new instance of bookConnection
 func NewBookRepository(connection *gorm.DB) BookRepository {
 	return &bookConnection{connection: connection}
 }
 
-// GetAll method is used to get all book from database
 func (db *bookConnection) QueryCategory() []beans.CategoryInfo {
-	var categoryInfos []beans.CategoryInfo                     // create variable categoryInfos to store all book
-	db.connection.Preload("CategoryInfo").Find(&categoryInfos) // get all book and preload user from book
-	return categoryInfos                                       // return all book
+	var categoryInfos []beans.CategoryInfo
+	db.connection.Preload("CategoryInfo").Find(&categoryInfos)
+	return categoryInfos
 }
 
-func (db *bookConnection) QueryGoods() []beans.Goods {
-	var categoryInfos []beans.Goods                     // create variable categoryInfos to store all book
-	db.connection.Preload("Goods").Find(&categoryInfos) // get all book and preload user from book
-	return categoryInfos                                // return all book
+func (db *bookConnection) QueryGoodsByCategory() []beans.Goods {
+	var goodsList []beans.Goods
+	db.connection.Preload("Goods").Find(&goodsList)
+	return goodsList
+}
+
+func (db *bookConnection) QueryGoods(goodsId string) beans.Goods {
+	var goods beans.Goods
+	db.connection.Preload("Goods").Find(&goods, goodsId)
+	return goods
 }
 
 // GetAll method is used to get all book from database
