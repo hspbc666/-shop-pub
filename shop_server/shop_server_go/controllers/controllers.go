@@ -38,7 +38,7 @@ func NewBizController(userService services.UserService, bookService services.Boo
 
 func (c *bizController) GetAll(ctx *gin.Context) {
 	var books []beans.Book = c.bookService.GetAll()
-	result := beans.SuccessResponse(http.StatusOK, books)
+	result := beans.SuccessResponse(0, books)
 	ctx.JSON(http.StatusOK, result) // Return Response
 }
 
@@ -63,7 +63,7 @@ func (c *bizController) GetByID(ctx *gin.Context) {
 	} else { // If book is not empty
 
 		// Return success response with status code 200 and data book
-		response := beans.SuccessResponse(http.StatusOK, book)
+		response := beans.SuccessResponse(0, book)
 
 		// Return Response
 		ctx.JSON(http.StatusOK, response)
@@ -72,28 +72,28 @@ func (c *bizController) GetByID(ctx *gin.Context) {
 
 func (c *bizController) QueryCategory(ctx *gin.Context) {
 	var books = c.bookService.QueryCategory()
-	result := beans.SuccessResponse(http.StatusOK, books)
+	result := beans.SuccessResponse(0, books)
 	ctx.JSON(http.StatusOK, result) // Return Response
 }
 
 func (c *bizController) QueryGoodsByCategory(ctx *gin.Context) {
 	categoryId := ctx.Query("categoryId")
 	var books = c.bookService.QueryGoodsByCategory(categoryId)
-	result := beans.SuccessResponse(http.StatusOK, books)
+	result := beans.SuccessResponse(0, books)
 	ctx.JSON(http.StatusOK, result) // Return Response
 }
 
 func (c *bizController) QueryGoods(ctx *gin.Context) {
 	goodsId := ctx.Param("goodsId")
 	var books = c.bookService.QueryGoods(goodsId)
-	result := beans.SuccessResponse(http.StatusOK, books)
+	result := beans.SuccessResponse(0, books)
 	ctx.JSON(http.StatusOK, result) // Return Response
 }
 
 // GetAllMyBook function for get all data book by user
 func (c *bizController) GetAllMyBook(ctx *gin.Context) {
 	var book []beans.Book = c.bookService.GetAllMyBook()
-	response := beans.SuccessResponse(http.StatusOK, book)
+	response := beans.SuccessResponse(0, book)
 	ctx.JSON(http.StatusOK, response)
 }
 
@@ -185,7 +185,7 @@ func (c *bizController) UpdateMyBook(ctx *gin.Context) {
 		result := c.bookService.UpdateMyBook(bookUpdateDTO)
 
 		// response variable for return response with status code and message
-		response := beans.SuccessResponse(http.StatusOK, result)
+		response := beans.SuccessResponse(0, result)
 
 		// Return Response
 		ctx.JSON(http.StatusOK, response)
@@ -240,7 +240,7 @@ func (c *bizController) DeleteMyBook(ctx *gin.Context) {
 		c.bookService.DeleteMyBook(book) // Delete data book by user
 
 		// response variable for return response with status code and message
-		response := beans.SuccessResponse(http.StatusOK, book)
+		response := beans.SuccessResponse(0, book)
 
 		// Return Response
 		ctx.JSON(http.StatusOK, response)

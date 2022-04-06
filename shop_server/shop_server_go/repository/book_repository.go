@@ -33,13 +33,13 @@ func (db *bookConnection) QueryCategory() []beans.CategoryInfo {
 
 func (db *bookConnection) QueryGoodsByCategory(categoryId string) []beans.Goods {
 	var goodsList []beans.Goods
-	db.connection.Table("GoodsCategory").Find(&goodsList, "CategoryId = ?", categoryId)
+	db.connection.Joins("left join goods_category on goods_category.goods_id=goods.id").Where("goods_category.category_id=" + categoryId).Find(&goodsList)
 	return goodsList
 }
 
 func (db *bookConnection) QueryGoods(goodsId string) beans.Goods {
 	var goods beans.Goods
-	db.connection.Table("Goods").Find(&goods, goodsId)
+	db.connection.Table("goods").Find(&goods, goodsId)
 	return goods
 }
 
