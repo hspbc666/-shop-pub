@@ -31,9 +31,10 @@ func main() {
 		authRoutes.POST("/register", authController.Register)
 	}
 
-	shopRoutes := r.Group("shop/categories")
+	shopRoutes := r.Group("shop")
 	{
-		shopRoutes.GET("/", bizController.QueryCategory)
+		shopRoutes.GET("/categories", bizController.QueryCategory)
+		shopRoutes.GET("/goods/:goodsId", bizController.QueryGoods)
 	}
 
 	bookRoutes := r.Group("api/books", middleware.AuthorizeJWT(jwtService))

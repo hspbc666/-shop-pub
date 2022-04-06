@@ -15,6 +15,7 @@ type BizController interface {
 	GetByID(c *gin.Context)      // Get Data Book By ID
 	GetAllMyBook(c *gin.Context) // Get All Data Book By User
 	QueryCategory(c *gin.Context)
+	QueryGoods(c *gin.Context)
 	CreateMyBook(c *gin.Context) // Create Data Book By User
 	UpdateMyBook(c *gin.Context) // Update Data Book By User
 	DeleteMyBook(c *gin.Context) // Delete Data Book By User
@@ -69,6 +70,12 @@ func (c *bizController) GetByID(ctx *gin.Context) {
 }
 
 func (c *bizController) QueryCategory(ctx *gin.Context) {
+	var books = c.bookService.Query()
+	result := beans.SuccessResponse(http.StatusOK, "Get All Data Book", books)
+	ctx.JSON(http.StatusOK, result) // Return Response
+}
+
+func (c *bizController) QueryGoods(ctx *gin.Context) {
 	var books = c.bookService.Query()
 	result := beans.SuccessResponse(http.StatusOK, "Get All Data Book", books)
 	ctx.JSON(http.StatusOK, result) // Return Response
