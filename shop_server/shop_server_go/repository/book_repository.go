@@ -27,7 +27,7 @@ func NewBookRepository(connection *gorm.DB) BookRepository {
 
 func (db *bookConnection) QueryCategory() []beans.CategoryInfo {
 	var categoryInfos []beans.CategoryInfo
-	db.conn.Table("CategoryInfo").Find(&categoryInfos)
+	db.conn.Table("category").Find(&categoryInfos)
 	return categoryInfos
 }
 

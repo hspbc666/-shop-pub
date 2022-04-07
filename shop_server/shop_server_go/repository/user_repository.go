@@ -54,7 +54,7 @@ func (db *userConnection) UpdateUser(user beans.User) beans.User {
 		user.Password = hashAndSalt([]byte(user.Password)) //hash password
 	} else {
 		var tempUser beans.User                //get user from db
-		db.connection.Find(&tempUser, user.ID) //find user by id
+		db.connection.Find(&tempUser, user.Id) //find user by id
 		user.Password = tempUser.Password      //set password to user
 	}
 	db.connection.Save(&user) //save user to db

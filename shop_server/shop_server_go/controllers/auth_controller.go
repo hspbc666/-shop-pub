@@ -5,6 +5,7 @@ import (
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/beans"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/services"
 	"net/http"
+	"strconv"
 )
 
 type AuthController interface {
@@ -36,9 +37,9 @@ func (c *authController) Login(ctx *gin.Context) {
 	authResult := c.authService.VerifyCredential(loginDTO.Name, loginDTO.Password)
 
 	if v, ok := authResult.(beans.User); ok {
-		//generatedToken := c.jwtService.GenerateToken(strconv.Itoa(int(v.Id)))
-		//v.Token = generatedToken
-		response := beans.SuccessResponse(http.StatusOK, v)
+		token := c.jwtService.GenerateToken(strconv.Itoa(int(v.Id)))
+		loginResp := beans.LoginResp{Id: v.Id, Token: token}
+		response := beans.SuccessResponse(0, loginResp)
 		ctx.JSON(http.StatusOK, response)
 		return
 	}
@@ -71,13 +72,13 @@ func (c *authController) Register(ctx *gin.Context) {
 		createdUser := c.authService.CreateUser(request) // create new user
 
 		// generate token
-		//token := c.jwtService.GenerateToken(strconv.Itoa(int(createdUser.Id)))
-
+		token := c.jwtService.GenerateToken(strconv.Itoa(int(createdUser.Id)))
+		loginResp := beans.LoginResp{Id: createdUser.Id, Token: token}
 		//// set token to the user
 		//createdUser.Token = token
 
 		// response with the user data and token
-		response := beans.SuccessResponse(http.StatusCreated, createdUser)
+		response := beans.SuccessResponse(0, loginResp)
 
 		// return the response
 		ctx.JSON(http.StatusCreated, response)
