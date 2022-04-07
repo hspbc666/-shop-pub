@@ -3,6 +3,8 @@ package config
 import (
 	"fmt"
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/beans"
+	"gorm.io/gorm/logger"
+	"gorm.io/gorm/schema"
 	"log"
 	"os"
 	"time"
@@ -29,7 +31,12 @@ func SetupDatabase() *gorm.DB {
 	dbURI := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", dbUser, dbPassword, dbHost, dbPort, dbName)
 
 	// Open connection to the database
-	db, err := gorm.Open(mysql.Open(dbURI), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(dbURI), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Info),
+		NamingStrategy: schema.NamingStrategy{
+			SingularTable: true,
+		},
+	})
 
 	if err != nil {
 		log.Fatal(err)

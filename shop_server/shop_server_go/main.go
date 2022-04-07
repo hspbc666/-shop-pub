@@ -38,6 +38,11 @@ func main() {
 		shopRoutes.GET("/goods/:goodsId", bizController.QueryGoods)
 	}
 
+	shopRoutes2 := r.Group("shop", middleware.AuthorizeJWT(jwtService))
+	{
+		shopRoutes2.GET("/cart", bizController.QueryCart)
+	}
+
 	bookRoutes := r.Group("api/books", middleware.AuthorizeJWT(jwtService))
 	{
 		bookRoutes.GET("/", bizController.GetAllMyBook)

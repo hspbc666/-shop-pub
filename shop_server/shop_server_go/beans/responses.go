@@ -16,6 +16,18 @@ type GoodsCategory struct {
 
 func (GoodsCategory) TableName() string { return "goods_category" }
 
+type CartItem struct {
+	Id        string `gorm:"primary_key" json:"id"`
+	GoodsId   string `gorm:"type:varchar(200)" json:"goodsId"`
+	Name      string `gorm:"type:varchar(200)" json:"name"`
+	Price     int64  `gorm:"type:int(10)" json:"price"`
+	LongPic   string `gorm:"type:varchar(200)" json:"longPic"`
+	SquarePic string `gorm:"type:varchar(200)" json:"squarePic"`
+	Quantity  int16  `gorm:"type:int(10)" json:"quantity"`
+}
+
+func (CartItem) TableName() string { return "cart" }
+
 type Goods struct {
 	Id           string `gorm:"primary_key" json:"id"`
 	Name         string `gorm:"type:varchar(200)" json:"name"`

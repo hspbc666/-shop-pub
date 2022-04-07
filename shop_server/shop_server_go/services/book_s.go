@@ -17,6 +17,7 @@ type BookService interface {
 	QueryCategory() []beans.CategoryInfo
 	QueryGoodsByCategory(categoryId string) []beans.Goods
 	QueryGoods(goodsId string) beans.Goods
+	QueryCart(userId uint64) []beans.CartItem
 	GetByID(bookID uint64) beans.Book                      // Get a book by bookID
 	GetAllMyBook() []beans.Book                            // Get all book by userID
 	IsAllowedActionBook(userID string, bookID uint64) bool // Check userID is allowed to access bookID
@@ -37,6 +38,10 @@ func (s *bookService) QueryGoodsByCategory(categoryId string) []beans.Goods {
 
 func (s *bookService) QueryGoods(goodsId string) beans.Goods {
 	return s.bookRepository.QueryGoods(goodsId)
+}
+
+func (s *bookService) QueryCart(userId uint64) []beans.CartItem {
+	return s.bookRepository.QueryCart(userId)
 }
 
 // NewBookService method is used to create a new instance of bookService

@@ -90,6 +90,15 @@ func (c *bizController) QueryGoods(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, result) // Return Response
 }
 
+func (c *bizController) QueryCart(ctx *gin.Context) {
+	authHeader := ctx.GetHeader("Authorization")
+	userIdStr := c.getUserIDByToken(authHeader)
+	userId, _ := strconv.ParseUint(userIdStr, 10, 64)
+	var resp = c.bookService.QueryCart(userId)
+	result := beans.SuccessResponse(0, resp)
+	ctx.JSON(http.StatusOK, result)
+}
+
 // GetAllMyBook function for get all data book by user
 func (c *bizController) GetAllMyBook(ctx *gin.Context) {
 	var book []beans.Book = c.bookService.GetAllMyBook()

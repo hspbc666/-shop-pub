@@ -3,6 +3,7 @@ package repository
 import (
 	"github.com/sumitroajiprabowo/gin-gorm-jwt-mysql/beans"
 	"gorm.io/gorm"
+	"strconv"
 )
 
 type BookRepository interface {
@@ -10,6 +11,7 @@ type BookRepository interface {
 	GetByID(bookID uint64) beans.Book                     // get book by bookID
 	GetAllMyBook() []beans.Book                           // get all book by userID
 	QueryCategory() []beans.CategoryInfo                  // get all book by userID
+	QueryCart(userId uint64) []beans.CartItem             // get all book by userID
 	QueryGoods(goodsId string) beans.Goods                // get all book by userID
 	QueryGoodsByCategory(categoryId string) []beans.Goods // get all book by userID
 	CreateMyBook(b beans.Book) beans.Book                 // create book by userID
@@ -41,6 +43,12 @@ func (db *bookConnection) QueryGoods(goodsId string) beans.Goods {
 	var goods beans.Goods
 	db.conn.Table("goods").Find(&goods, goodsId)
 	return goods
+}
+
+func (db *bookConnection) QueryCart(userId uint64) []beans.CartItem {
+	var cartItemList []beans.CartItem
+	db.conn.Select("goods.id as goods_id,goods.name,goods.price,cart.quantity,cart.id").Joins("left join goods on cart.goods_id=goods.id").Where("cart.user_id=" + strconv.FormatUint(userId, 10)).Find(&cartItemList)
+	return cartItemList
 }
 
 // GetAll method is used to get all book from database
