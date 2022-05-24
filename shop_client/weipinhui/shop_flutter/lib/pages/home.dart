@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:shop_flutter/lblbc_ui_kit.dart';
+import 'package:shop_flutter/network/bean/query_category_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_goods_by_category_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/goods.dart';
@@ -19,104 +20,91 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomeState extends State<HomePage> {
-  List<QueryGoodsByCategoryRespData> _goodsList = [];
+  List<QueryCategoryRespData> _categoryList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _queryCategory();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('X商城'), actions: [
-        IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              gotoSearchPage();
-            })
-      ]),
-      body: SingleChildScrollView(
-        child: _buildBody(),
+    return DefaultTabController(
+      length: _categoryList.length,
+      child: Scaffold(
+        appBar: AppBar(
+            title: const Text('X商城'),
+            bottom: TabBar(
+              isScrollable: true,
+              tabs: _categoryList.map((QueryCategoryRespData queryCategoryRespData) {
+                return Tab(
+                  text: queryCategoryRespData.name,
+                );
+              }).toList(),
+            ),
+            actions: [
+              IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () {
+                    gotoSearchPage();
+                  })
+            ]),
+        body: TabBarView(
+          children: _categoryList.map((QueryCategoryRespData queryCategoryRespData) {
+            return Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: OrderListWidget(queryCategoryRespData.id),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
 
-  _buildBody() {
-    if (_goodsList.isEmpty) {
-      return emptyContainer();
-    } else {
-      return Column(
-        children: [
-          _buildBanner(),
-          // buildItem(_goodsList[3]),
-          // buildItem(_goodsList[4]),
-          GoodsStyle1(
-            goods: _goodsList[3],
-          ),
-          GoodsStyle1(
-            goods: _goodsList[4],
-          ),
-          GoodsStyle2(
-            goods: _goodsList[5],
-          ),
-          GoodsStyle2(
-            goods: _goodsList[6],
-          ),
-        ],
-      );
-    }
-  }
-
-  _buildBanner() {
-    return SizedBox(
-        height: 200,
-        child: Swiper(
-          itemCount: 3,
-          itemBuilder: (BuildContext context, int index) {
-            return Image.network(
-              _goodsList[index].longPic,
-              fit: BoxFit.cover,
-            );
-          },
-          pagination: const SwiperPagination(),
-          onTap: (index) {
-            onItemClick(_goodsList[index]);
-          },
-        ));
-  }
-
-  onItemClick(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => GoodsPage(queryGoodsByCategoryRespData.id)));
+  _queryCategory() async {
+    String url = "shop/categories";
+    HttpManager.getInstance().get(url).then((resp) {
+      var result = QueryCategoryRespEntity.fromJson(resp);
+      setState(() {
+        _categoryList = result.data;
+      });
+    });
   }
 
   void gotoSearchPage() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
   }
+}
+
+class OrderListWidget extends StatefulWidget {
+  final String categoryId;
+
+  const OrderListWidget(this.categoryId, {Key? key}) : super(key: key);
 
   @override
-  void initState() {
-    super.initState();
-    _queryData();
-  }
-
-  _queryData() async {
-    String url = "shop/goods/category/0";
-    HttpManager.getInstance().get(url).then((resp) {
-      var result = QueryGoodsByCategoryRespEntity.fromJson(resp);
-      setState(() {
-        _goodsList = result.data;
-      });
-    });
+  _OrderListWidgetState createState() {
+    return _OrderListWidgetState();
   }
 }
 
-class GoodsStyle1 extends StatelessWidget {
-  final QueryGoodsByCategoryRespData goods;
-  late BuildContext _context;
+class _OrderListWidgetState extends State<OrderListWidget> {
+  List<QueryGoodsByCategoryRespData> _goodsList = [];
 
-  GoodsStyle1({Key? key, required this.goods}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    _context = context;
-    return buildItem(goods);
+    if (_goodsList.isNotEmpty) {
+      return ListView.builder(
+          itemCount: _goodsList.length,
+          itemBuilder: (BuildContext context, int position) {
+            return Container(
+              margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+              child: buildItem(_goodsList[position]),
+            );
+          });
+    } else {
+      return emptyContainer();
+    }
   }
 
   buildItem(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
@@ -133,7 +121,7 @@ class GoodsStyle1 extends StatelessWidget {
     );
   }
 
-  buildRow(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
+  Row buildRow(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
     return Row(
       children: <Widget>[
         Expanded(
@@ -183,61 +171,22 @@ class GoodsStyle1 extends StatelessWidget {
   }
 
   onItemClick(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
-    Navigator.push(_context, MaterialPageRoute(builder: (context) => GoodsPage(queryGoodsByCategoryRespData.id)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => GoodsPage(queryGoodsByCategoryRespData.id)));
   }
-}
 
-class GoodsStyle2 extends StatelessWidget {
-  final QueryGoodsByCategoryRespData goods;
-  late BuildContext _context;
-
-  GoodsStyle2({Key? key, required this.goods}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    _context = context;
-    return buildItem(goods);
+  void initState() {
+    super.initState();
+    _queryData();
   }
 
-  buildItem(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
-    return Card(
-      child: Container(
-        margin: const EdgeInsets.all(10.0),
-        child: InkWell(
-          onTap: () {
-            onItemClick(queryGoodsByCategoryRespData);
-          },
-          child: buildRow(queryGoodsByCategoryRespData),
-        ),
-      ),
-    );
-  }
-
-  buildRow(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Image(
-          image: NetworkImage(queryGoodsByCategoryRespData.longPic),
-          height: 200,
-        ),
-        Text(queryGoodsByCategoryRespData.name,
-            style: const TextStyle(
-              fontSize: 18.0,
-            ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis),
-        Text(
-          "￥" + (queryGoodsByCategoryRespData.price / 100).toString(),
-          style: const TextStyle(fontSize: 16.0, color: Color(0xFFEF3965)),
-          maxLines: 1,
-        ),
-      ],
-    );
-  }
-
-  onItemClick(QueryGoodsByCategoryRespData queryGoodsByCategoryRespData) {
-    Navigator.push(_context, MaterialPageRoute(builder: (context) => GoodsPage(queryGoodsByCategoryRespData.id)));
+  _queryData() async {
+    String url = "shop/goods?categoryId=" + widget.categoryId;
+    HttpManager.getInstance().get(url).then((resp) {
+      var result = QueryGoodsByCategoryRespEntity.fromJson(resp);
+      setState(() {
+        _goodsList = result.data;
+      });
+    });
   }
 }
