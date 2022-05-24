@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_flutter/lblbc_constants.dart';
 import 'package:shop_flutter/lblbc_ui_kit.dart';
-import 'package:shop_flutter/network/bean/create_order_req.dart';
+import 'package:shop_flutter/network/bean/create_order_req_entity.dart';
 import 'package:shop_flutter/network/bean/create_order_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_default_addr_resp_entity.dart';
 import 'package:shop_flutter/network/bean/query_goods_detail_resp_entity.dart';
@@ -241,7 +241,7 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
   }
 
   _queryGoods() async {
-    String url = "shop/goods/query/" + widget.goodsId;
+    String url = "shop/goods/" + widget.goodsId;
     HttpManager.getInstance().get(url).then((resp) {
       var result = QueryGoodsDetailRespEntity.fromJson(resp);
       setState(() {
@@ -251,7 +251,7 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
   }
 
   _queryDefaultAddr() async {
-    String url = "shop/addr/query_default";
+    String url = "shop/addr_default";
     HttpManager.getInstance().get(url).then((resp) {
       var result = QueryDefaultAddrRespEntity.fromJson(resp);
       setState(() {
@@ -262,8 +262,16 @@ class _OrderConfirmState extends State<OrderConfirmPage> {
 
   void createOrder() {
     if (queryDefaultAddrRespData != null) {
-      String url = "shop/order/create";
-      CreateOrderReq createOrderReq = CreateOrderReq(goodsId: widget.goodsId, addressId: queryDefaultAddrRespData!.id);
+      String url = "shop/orders";
+      CreateOrderReqSimpleCartItemList createOrderReqSimpleCartItem = CreateOrderReqSimpleCartItemList();
+      createOrderReqSimpleCartItem.goodsId = widget.goodsId;
+      createOrderReqSimpleCartItem.quantity = 1;
+      List<CreateOrderReqSimpleCartItemList> simpleCartItemList = List.filled(1, createOrderReqSimpleCartItem);
+
+      CreateOrderReqEntity createOrderReq = CreateOrderReqEntity();
+      createOrderReq.simpleCartItemList = simpleCartItemList;
+      createOrderReq.addressId = queryDefaultAddrRespData!.id;
+
       HttpManager.getInstance().post(url, data: createOrderReq.toJson()).then((resp) {
         var result = CreateOrderRespEntity.fromJson(resp);
         gotoOrderDetailPage(result.data.orderId);
