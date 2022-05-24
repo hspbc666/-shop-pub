@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shop_flutter/lblbc_constants.dart';
 import 'package:shop_flutter/lblbc_ui_kit.dart';
 import 'package:shop_flutter/network/bean/query_goods_detail_resp_entity.dart';
+import 'package:shop_flutter/network/bean/add_to_cart_req_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/login/login.dart';
 import 'package:shop_flutter/pages/login/login_manager.dart';
@@ -195,7 +196,7 @@ class _GoodsState extends State<GoodsPage> {
   }
 
   _queryData() async {
-    String url = "shop/goods/query/" + widget.goodsId;
+    String url = "shop/goods/" + widget.goodsId;
     HttpManager.getInstance().get(url).then((resp) {
       var result = QueryGoodsDetailRespEntity.fromJson(resp);
       setState(() {
@@ -207,12 +208,15 @@ class _GoodsState extends State<GoodsPage> {
   void addToCart() {
     LoginManager.isLoggedIn().then((value) {
       if (value) {
-        String url = "shop/cart/add/" + widget.goodsId;
-        HttpManager.getInstance().get(url).then((resp) {
+        String url = "shop/cart";
+        AddToCartReqEntity request = AddToCartReqEntity();
+        request.goodsId = widget.goodsId;
+        HttpManager.getInstance().post(url, data: request.toJson()).then((resp) {
           Fluttertoast.showToast(
             msg: "已加入购物车",
           );
         });
+
       } else {
         Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
       }
