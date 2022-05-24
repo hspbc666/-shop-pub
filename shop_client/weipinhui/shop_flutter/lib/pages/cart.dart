@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_flutter/lblbc_constants.dart';
 import 'package:shop_flutter/lblbc_ui_kit.dart';
+import 'package:shop_flutter/network/bean/modify_cart_req_entity.dart';
 import 'package:shop_flutter/network/bean/query_cart_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/goods.dart';
@@ -164,8 +165,7 @@ class _CartState extends State<CartPage> {
                     thickness: 1,
                     color: Color(0XFFEBEBEB),
                   ),
-                  Container(
-                      padding: const EdgeInsets.only(left: 10, right: 10), child: Text(cartItem.quantity.toString())),
+                  Container(padding: const EdgeInsets.only(left: 10, right: 10), child: Text(cartItem.quantity.toString())),
                   const VerticalDivider(
                     width: 1,
                     thickness: 1,
@@ -250,8 +250,7 @@ class _CartState extends State<CartPage> {
   }
 
   onRowClick(QueryCartRespData cartItem) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => GoodsPage(cartItem.goodsId)))
-        .then((value) => {_refreshPage()});
+    Navigator.push(context, MaterialPageRoute(builder: (context) => GoodsPage(cartItem.goodsId))).then((value) => {_refreshPage()});
   }
 
   void decreaseQuantity(QueryCartRespData cartItem) {
@@ -263,8 +262,7 @@ class _CartState extends State<CartPage> {
     setState(() {
       _dataList = _dataList;
     });
-    String url = "shop/cart/modify/" + cartItem.id + "/" + quantity.toString();
-    HttpManager.getInstance().get(url).then((resp) {});
+    changeQuantity(cartItem, quantity);
   }
 
   void increaseQuantity(QueryCartRespData cartItem) {
@@ -273,8 +271,14 @@ class _CartState extends State<CartPage> {
     setState(() {
       _dataList = _dataList;
     });
-    String url = "shop/cart/modify/" + cartItem.id + "/" + quantity.toString();
-    HttpManager.getInstance().get(url).then((resp) {});
+    changeQuantity(cartItem, quantity);
+  }
+
+  void changeQuantity(QueryCartRespData cartItem, int quantity) {
+    String url = "shop/cart/modify/" + cartItem.id;
+    ModifyCartReqEntity request = ModifyCartReqEntity();
+    request.quantity = quantity;
+    HttpManager.getInstance().put(url, data: request.toJson()).then((resp) {});
   }
 
   _refreshPage() {
@@ -288,7 +292,7 @@ class _CartState extends State<CartPage> {
   _queryData() async {
     LoginManager.isLoggedIn().then((value) {
       if (value) {
-        String url = "shop/cart/list";
+        String url = "shop/cart";
         HttpManager.getInstance().get(url).then((resp) {
           var result = QueryCartRespEntity.fromJson(resp);
           setState(() {
