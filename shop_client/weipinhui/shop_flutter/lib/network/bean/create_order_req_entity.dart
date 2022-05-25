@@ -1,22 +1,39 @@
-/// 厦门大学计算机专业 | 前华为工程师
-/// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
-/// 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
-/// 公众号：蓝不蓝编程
-class CreateOrderReq {
-  String goodsId = "";
-  String addressId = "";
+import 'dart:convert';
+import 'package:shop_flutter/generated/json/base/json_field.dart';
+import 'package:shop_flutter/generated/json/create_order_req_entity.g.dart';
 
-  CreateOrderReq({required this.goodsId, required this.addressId});
+@JsonSerializable()
+class CreateOrderReqEntity {
 
-  CreateOrderReq.fromJson(Map<String, dynamic> json) {
-    goodsId = json['id'];
-    addressId = json['name'];
+	late String addressId;
+	late List<CreateOrderReqSimpleCartItemList> simpleCartItemList;
+  
+  CreateOrderReqEntity();
+
+  factory CreateOrderReqEntity.fromJson(Map<String, dynamic> json) => $CreateOrderReqEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => $CreateOrderReqEntityToJson(this);
+
+  @override
+  String toString() {
+    return jsonEncode(this);
   }
+}
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['goodsId'] = goodsId;
-    data['addressId'] = addressId;
-    return data;
+@JsonSerializable()
+class CreateOrderReqSimpleCartItemList {
+
+	late String goodsId;
+	late int quantity;
+  
+  CreateOrderReqSimpleCartItemList();
+
+  factory CreateOrderReqSimpleCartItemList.fromJson(Map<String, dynamic> json) => $CreateOrderReqSimpleCartItemListFromJson(json);
+
+  Map<String, dynamic> toJson() => $CreateOrderReqSimpleCartItemListToJson(this);
+
+  @override
+  String toString() {
+    return jsonEncode(this);
   }
 }
