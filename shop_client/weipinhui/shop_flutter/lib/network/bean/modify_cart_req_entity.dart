@@ -1,19 +1,17 @@
 import 'dart:convert';
-
 import 'package:shop_flutter/generated/json/base/json_field.dart';
-import 'package:shop_flutter/generated/json/create_order_from_cart_req_entity.g.dart';
+import 'package:shop_flutter/generated/json/modify_cart_req_entity.g.dart';
 
 @JsonSerializable()
-class CreateOrderFromCartReqEntity {
-  late List<String> cartIdList;
-  late String addressId;
+class ModifyCartReqEntity {
 
-  CreateOrderFromCartReqEntity();
+	late int quantity;
+  
+  ModifyCartReqEntity();
 
-  factory CreateOrderFromCartReqEntity.fromJson(Map<String, dynamic> json) =>
-      $CreateOrderFromCartReqEntityFromJson(json);
+  factory ModifyCartReqEntity.fromJson(Map<String, dynamic> json) => $ModifyCartReqEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => $CreateOrderFromCartReqEntityToJson(this);
+  Map<String, dynamic> toJson() => $ModifyCartReqEntityToJson(this);
 
   @override
   String toString() {
