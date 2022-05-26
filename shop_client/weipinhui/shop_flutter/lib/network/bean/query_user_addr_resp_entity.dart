@@ -30,7 +30,6 @@ class QueryAddressRespData {
   late String region;
   late String address;
   late bool defaultAddress;
-  late int addrType;
 
   QueryAddressRespData();
 

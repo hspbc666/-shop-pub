@@ -26,7 +26,6 @@ class SearchRespData {
   late String id;
   late String name;
   late int price;
-  late String longPic;
   late String squarePic;
 
   SearchRespData();

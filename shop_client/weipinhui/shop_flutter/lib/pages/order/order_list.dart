@@ -162,7 +162,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
   }
 
   _queryData() async {
-    String url = "shop/order/queryByStatus/" + widget.status.toString();
+    String url = "shop/orders?orderStatus=" + widget.status.toString();
     HttpManager.getInstance().get(url).then((resp) {
       var result = QueryOrderListRespEntity.fromJson(resp);
       setState(() {

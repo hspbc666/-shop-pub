@@ -56,10 +56,6 @@ QueryAddressListRespData $QueryAddressListRespDataFromJson(Map<String, dynamic> 
   if (defaultAddress != null) {
     queryAddressListRespData.defaultAddress = defaultAddress;
   }
-  final int? addrType = jsonConvert.convert<int>(json['addrType']);
-  if (addrType != null) {
-    queryAddressListRespData.addrType = addrType;
-  }
   return queryAddressListRespData;
 }
 
@@ -72,6 +68,5 @@ Map<String, dynamic> $QueryAddressListRespDataToJson(QueryAddressListRespData en
   data['region'] = entity.region;
   data['address'] = entity.address;
   data['defaultAddress'] = entity.defaultAddress;
-  data['addrType'] = entity.addrType;
   return data;
 }

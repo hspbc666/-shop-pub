@@ -10,7 +10,6 @@ class Constants {
   static const String spKeyToken = "token";
   static const String spKeyUserId = "user_id";
   static const String httpHeaderAuth = "Authorization";
-  static const String httpHeaderTokenPrefix = "Bearer ";
 }
 
 class OrderStatus {

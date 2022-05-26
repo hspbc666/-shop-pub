@@ -41,10 +41,6 @@ QueryGoodsByCategoryRespData $QueryGoodsByCategoryRespDataFromJson(Map<String, d
   if (price != null) {
     queryGoodsByCategoryRespData.price = price;
   }
-  final String? longPic = jsonConvert.convert<String>(json['longPic']);
-  if (longPic != null) {
-    queryGoodsByCategoryRespData.longPic = longPic;
-  }
   final String? squarePic = jsonConvert.convert<String>(json['squarePic']);
   if (squarePic != null) {
     queryGoodsByCategoryRespData.squarePic = squarePic;
@@ -57,7 +53,6 @@ Map<String, dynamic> $QueryGoodsByCategoryRespDataToJson(QueryGoodsByCategoryRes
   data['id'] = entity.id;
   data['name'] = entity.name;
   data['price'] = entity.price;
-  data['longPic'] = entity.longPic;
   data['squarePic'] = entity.squarePic;
   return data;
 }

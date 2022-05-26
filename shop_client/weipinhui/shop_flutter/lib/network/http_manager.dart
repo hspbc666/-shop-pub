@@ -49,6 +49,30 @@ class HttpManager {
       throw HttpDioError.handleError(e);
     }
   }
+
+  Future put(String url, {dynamic data}) async {
+    try {
+      Response response;
+      if (data == null) {
+        response = await _dio.put(url);
+      } else {
+        response = await _dio.put(url, data: data);
+      }
+      return response.data;
+    } on DioError catch (e) {
+      throw HttpDioError.handleError(e);
+    }
+  }
+
+  Future delete(String url, {Map<String, dynamic>? params}) async {
+    try {
+      Response response;
+      response = await _dio.delete(url, queryParameters: params);
+      return response.data;
+    } on DioError catch (e) {
+      throw HttpDioError.handleError(e);
+    }
+  }
 }
 
 class HttpDioError {

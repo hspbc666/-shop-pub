@@ -97,7 +97,6 @@ class _SelectAddrListState extends State<SelectAddrListPage> {
   buildAddrInfoCol(QueryAddressListRespData addressData) {
     return Row(
       children: [
-        buildAddrTypeRadio(addressData.id),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -115,18 +114,6 @@ class _SelectAddrListState extends State<SelectAddrListPage> {
         )
       ],
     );
-  }
-
-  buildAddrTypeRadio(String value) {
-    return Radio(
-        value: value,
-        groupValue: _selectedAddrId,
-        activeColor: Colors.blue,
-        onChanged: (v) {
-          setState(() {
-            _selectedAddrId = v as String;
-          });
-        });
   }
 
   Row buildUserInfoRow(QueryAddressListRespData addressData) {
@@ -216,7 +203,7 @@ class _SelectAddrListState extends State<SelectAddrListPage> {
   _queryData() async {
     LoginManager.isLoggedIn().then((value) {
       if (value) {
-        String url = "shop/addr/query";
+        String url = "shop/addrs";
         HttpManager.getInstance().get(url).then((resp) {
           var result = QueryAddressListRespEntity.fromJson(resp);
           setState(() {

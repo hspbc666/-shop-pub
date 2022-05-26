@@ -44,10 +44,6 @@ QueryCartRespData $QueryCartRespDataFromJson(Map<String, dynamic> json) {
   if (price != null) {
     queryCartRespData.price = price;
   }
-  final String? longPic = jsonConvert.convert<String>(json['longPic']);
-  if (longPic != null) {
-    queryCartRespData.longPic = longPic;
-  }
   final String? squarePic = jsonConvert.convert<String>(json['squarePic']);
   if (squarePic != null) {
     queryCartRespData.squarePic = squarePic;
@@ -65,7 +61,6 @@ Map<String, dynamic> $QueryCartRespDataToJson(QueryCartRespData entity) {
   data['goodsId'] = entity.goodsId;
   data['name'] = entity.name;
   data['price'] = entity.price;
-  data['longPic'] = entity.longPic;
   data['squarePic'] = entity.squarePic;
   data['quantity'] = entity.quantity;
   return data;

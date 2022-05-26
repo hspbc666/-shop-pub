@@ -40,10 +40,6 @@ SearchRespData $SearchRespDataFromJson(Map<String, dynamic> json) {
   if (price != null) {
     searchRespData.price = price;
   }
-  final String? longPic = jsonConvert.convert<String>(json['longPic']);
-  if (longPic != null) {
-    searchRespData.longPic = longPic;
-  }
   final String? squarePic = jsonConvert.convert<String>(json['squarePic']);
   if (squarePic != null) {
     searchRespData.squarePic = squarePic;
@@ -56,7 +52,6 @@ Map<String, dynamic> $SearchRespDataToJson(SearchRespData entity) {
   data['id'] = entity.id;
   data['name'] = entity.name;
   data['price'] = entity.price;
-  data['longPic'] = entity.longPic;
   data['squarePic'] = entity.squarePic;
   return data;
 }

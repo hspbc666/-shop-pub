@@ -27,7 +27,6 @@ class QueryCartGoodsRespData {
   late String goodsId;
   late String name;
   late int price;
-  late String longPic;
   late String squarePic;
   late int quantity;
 

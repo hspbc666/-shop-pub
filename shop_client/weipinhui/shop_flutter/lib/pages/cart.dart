@@ -7,7 +7,8 @@ import 'package:shop_flutter/network/bean/query_cart_resp_entity.dart';
 import 'package:shop_flutter/network/http_manager.dart';
 import 'package:shop_flutter/pages/goods.dart';
 import 'package:shop_flutter/pages/login/login_manager.dart';
-import 'package:shop_flutter/pages/order/order_confirm_from_cart.dart';
+
+import 'order/order_confirm.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -78,7 +79,7 @@ class _CartState extends State<CartPage> {
       for (var item in _selectedCartIndexes) {
         cartIds += _dataList.elementAt(item).id + ",";
       }
-      Navigator.push(context, MaterialPageRoute(builder: (context) => OrderConfirmFromCartPage(cartIds)));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => OrderConfirmPage(cartIds)));
     }
   }
 
@@ -165,7 +166,8 @@ class _CartState extends State<CartPage> {
                     thickness: 1,
                     color: Color(0XFFEBEBEB),
                   ),
-                  Container(padding: const EdgeInsets.only(left: 10, right: 10), child: Text(cartItem.quantity.toString())),
+                  Container(
+                      padding: const EdgeInsets.only(left: 10, right: 10), child: Text(cartItem.quantity.toString())),
                   const VerticalDivider(
                     width: 1,
                     thickness: 1,
@@ -250,7 +252,8 @@ class _CartState extends State<CartPage> {
   }
 
   onRowClick(QueryCartRespData cartItem) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => GoodsPage(cartItem.goodsId))).then((value) => {_refreshPage()});
+    Navigator.push(context, MaterialPageRoute(builder: (context) => GoodsPage(cartItem.goodsId)))
+        .then((value) => {_refreshPage()});
   }
 
   void decreaseQuantity(QueryCartRespData cartItem) {

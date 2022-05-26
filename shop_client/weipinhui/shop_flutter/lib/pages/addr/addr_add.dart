@@ -18,7 +18,6 @@ class AddAddrPage extends StatefulWidget {
 
 class _AddAddrState extends State<AddAddrPage> {
   QueryAddressListRespData addressData = QueryAddressListRespData();
-  var _addrType = 0;
   var _defaultAddress = true;
   var nameController = TextEditingController();
   var phoneController = TextEditingController();
@@ -64,36 +63,12 @@ class _AddAddrState extends State<AddAddrPage> {
                   controller: addressController,
                 ),
                 Row(
-                  children: [
-                    Text("地址类型"),
-                    buildAddrTypeRadio(1),
-                    const Text("家庭"),
-                    buildAddrTypeRadio(2),
-                    Text("公司"),
-                    buildAddrTypeRadio(3),
-                    const Text("其他")
-                  ],
-                ),
-                Row(
                   children: [Text("设为默认地址"), Spacer(), _newSwitch()],
                 )
               ],
             ),
           )),
     );
-  }
-
-  buildAddrTypeRadio(int value) {
-    return Radio(
-        value: value,
-        groupValue: _addrType,
-        activeColor: Colors.blue,
-        onChanged: (v) {
-          setState(() {
-            _addrType = v as int;
-            print(_addrType);
-          });
-        });
   }
 
   _newSwitch() {
@@ -128,14 +103,13 @@ class _AddAddrState extends State<AddAddrPage> {
   }
 
   void addAddr() {
-    String url = "shop/addr/add";
+    String url = "shop/addrs";
     addressData.id = '';
     addressData.userId = 0;
     addressData.name = nameController.value.text;
     addressData.phone = phoneController.value.text;
     addressData.region = regionController.value.text;
     addressData.address = addressController.value.text;
-    addressData.addrType = _addrType;
     addressData.defaultAddress = _defaultAddress;
     HttpManager.getInstance().post(url, data: addressData.toJson()).then((resp) {
       Navigator.pop(context);

@@ -13,7 +13,7 @@ class TokenInterceptor extends Interceptor {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? token = sharedPreferences.getString(Constants.spKeyToken);
     if (token != null) {
-      options.headers[Constants.httpHeaderAuth] = Constants.httpHeaderTokenPrefix + token;
+      options.headers[Constants.httpHeaderAuth] = token;
     }
     handler.next(options);
   }

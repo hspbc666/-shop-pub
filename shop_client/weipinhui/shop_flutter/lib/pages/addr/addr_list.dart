@@ -204,7 +204,7 @@ class _AddrListState extends State<AddrListPage> {
   _queryData() async {
     LoginManager.isLoggedIn().then((value) {
       if (value) {
-        String url = "shop/addr/query";
+        String url = "shop/addrs";
         HttpManager.getInstance().get(url).then((resp) {
           var result = QueryAddressListRespEntity.fromJson(resp);
           setState(() {

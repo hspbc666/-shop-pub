@@ -124,7 +124,7 @@ class _OrderDetailState extends State<OrderDetailPage> {
   }
 
   _queryData() async {
-    String url = "shop/order/query/" + widget.orderId;
+    String url = "shop/orders/" + widget.orderId;
     HttpManager.getInstance().get(url).then((resp) {
       var result = QueryOrderDetailRespEntity.fromJson(resp);
       setState(() {
@@ -134,8 +134,8 @@ class _OrderDetailState extends State<OrderDetailPage> {
   }
 
   _deleteOrder() async {
-    String url = "shop/order/del/" + widget.orderId;
-    HttpManager.getInstance().get(url).then((resp) {
+    String url = "shop/orders/" + widget.orderId;
+    HttpManager.getInstance().delete(url).then((resp) {
       Navigator.pop(context);
     });
   }
