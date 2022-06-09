@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
     android:layout_marginEnd="10dp"
-    android:layout_marginBottom="10dp"
     android:background="@drawable/shape_round_rect_white"
     android:padding="10dp">
 
@@ -32,8 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:textColor="@color/color_text"
-            android:textSize="16sp"
+            android:textColor="#222222"
             tools:text="商品名称" />
 
         <LinearLayout
@@ -49,10 +48,10 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:lines="1"
-                android:textColor="@color/color_common"
+                android:textColor="#EF3965"
                 tools:text="￥333333" />
 
-            <cn.lblbc.quantityview.QuantityView
+            <cn.lblbc.lib.view.QuantityView
                 android:id="@+id/quantityView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

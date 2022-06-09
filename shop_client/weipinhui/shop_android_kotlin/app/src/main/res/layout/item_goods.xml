@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
     android:background="@drawable/shape_round_rect_white"
     android:orientation="vertical">
 
@@ -25,8 +26,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/color_text"
-            android:textSize="16sp"
+            android:textColor="#222222"
             tools:text="商品名称" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:lines="1"
-            android:textColor="@color/color_common"
+            android:textColor="#EF3965"
             tools:text="￥333333" />
     </LinearLayout>
 

@@ -3,39 +3,36 @@
     package="cn.lblbc.shop">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:name=".App"
+        android:name="cn.lblbc.lib.LblApplication"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Shop"
-        android:allowBackup="false">
-
+        android:theme="@style/Theme.Shop">
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activity.MainActivity"
-            android:launchMode="singleTask" />
         <activity android:name=".module.login.LoginActivity" />
         <activity android:name=".module.goods_detail.GoodsActivity" />
+        <activity android:name=".module.search.SearchActivity" />
         <activity android:name=".module.settings.SettingsActivity" />
-        <activity android:name=".module.order.confirm.ConfirmOrderFromCartActivity" />
-        <activity android:name=".module.order.list.OrderListActivity" />
+        <activity android:name=".module.addr.AddAddressActivity" />
+        <activity android:name=".module.addr.AddressListActivity" />
+        <activity android:name=".module.addr.EditAddressActivity" />
+        <activity android:name=".module.addr.SelectAddressActivity" />
         <activity android:name=".module.order.confirm.ConfirmOrderActivity" />
         <activity android:name=".module.order.detail.OrderDetailActivity" />
-        <activity android:name=".module.addr.AddressListActivity" />
-        <activity android:name=".module.search.SearchActivity" />
-        <activity android:name=".module.addr.AddAddressActivity" />
-        <activity android:name=".module.addr.EditAddressActivity" />
-        <activity android:name=".module.addr.select.SelectAddressActivity" />
+        <activity android:name=".module.order.list.OrderListActivity" />
     </application>
 
 </manifest>

@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/color_common</color>
-    <color name="colorPrimaryDark">@color/color_common</color>
-    <color name="colorAccent">@color/color_common</color>
-
-    <color name="common_bg">#F4F4F4</color>
-    <color name="white">#FFFFFF</color>
-    <color name="color_common">#EF3965</color>
-    <color name="color_text">#222222</color>
-    <color name="color_gray">#CBCCD2</color>
-
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
 </resources>

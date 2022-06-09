@@ -1,9 +1,5 @@
 package cn.lblbc.shop.network
 
-import cn.lblbc.shop.network.request.CreateOrderFromCartReq
-import cn.lblbc.shop.network.request.CreateOrderReq
-import cn.lblbc.shop.network.request.LoginReq
-import cn.lblbc.shop.network.response.*
 import retrofit2.http.*
 
 /**
@@ -13,63 +9,57 @@ import retrofit2.http.*
  * 公众号：蓝不蓝编程
  */
 interface ApiService {
-
     @POST("user/login")
-    @Headers("ignoreToken:true")
-    suspend fun login(@Body req: LoginReq): Result<LoginResp?>?
+    suspend fun login(@Body request: LoginRequest): LoginResp?
 
     @POST("user/register")
-    @Headers("ignoreToken:true")
-    suspend fun register(@Body req: LoginReq): Result<LoginResp?>?
+    suspend fun register(@Body request: LoginRequest): LoginResp?
 
-    @GET("shop/category")
-    suspend fun queryCategory(): Result<List<CategoryInfo>?>?
+    @GET("shop/goods")
+    suspend fun queryGoodsByCategory(@Query("categoryId") categoryId: String): QueryGoodsByCategoryResp?
 
-    @GET("shop/goods/category/{categoryId}")
-    suspend fun queryGoodsByCategory(@Path("categoryId") categoryId: String): Result<List<Goods>?>?
+    @GET("shop/categories")
+    suspend fun queryCategory(): QueryCategoryResp?
 
-    @GET("shop/goods/query/{goodsId}")
-    suspend fun queryGoods(@Path("goodsId") goodsId: String): Result<Goods?>?
+    @GET("shop/goods/{goodsId}")
+    suspend fun queryGoods(@Path("goodsId") goodsId: String): QueryGoodsResp?
 
-    @GET("shop/goods/search/{keyword}")
-    suspend fun searchGoods(@Path("keyword") keyword: String): Result<List<Goods>?>?
+    @GET("shop/cart")
+    suspend fun queryCart(): QueryCartResp?
 
-    @GET("shop/cart/add/{goodsId}")
-    suspend fun addToCart(@Path("goodsId") goodsId: String): Result<String?>?
+    @POST("shop/cart")
+    suspend fun addToCart(@Body request: AddToCartRequest): DefaultResp?
 
-    @GET("shop/cart/modify/{cartId}/{quantity}")
-    suspend fun modifyCart(@Path("cartId") cartId: String, @Path("quantity") quantity: Int): Result<String?>?
+    @PUT("shop/cart/{cartId}")
+    suspend fun modifyCart(@Path("cartId") cartId: String, @Body request: ModifyCartRequest): DefaultResp?
 
-    @GET("shop/cart/list")
-    suspend fun queryCart(): Result<List<CartItem>?>?
+    @GET("shop/goodsBySearch")
+    suspend fun searchGoods(@Query("keyword") keyword: String): SearchGoodsResp?
 
-    @POST("shop/order/create")
-    suspend fun createOrder(@Body req: CreateOrderReq): Result<CreateOrderResp?>?
+    @GET("shop/addrs")
+    suspend fun queryAddress(): QueryAddressResp?
 
-    @POST("shop/order/createFromCart")
-    suspend fun createOrderFromCart(@Body req: CreateOrderFromCartReq): Result<CreateOrderResp?>?
+    @GET("shop/addr_default")
+    suspend fun queryDefaultAddress(): QueryDefaultAddressResp?
 
-    @GET("shop/order/queryByStatus/{orderStatus}")
-    suspend fun queryOrderByStatus(@Path("orderStatus") orderStatus: Int): Result<List<OrderInfo>?>?
+    @POST("shop/addrs")
+    suspend fun addAddress(@Body address: Address): DefaultResp?
 
-    @GET("shop/order/query/{orderId}")
-    suspend fun queryOrder(@Path("orderId") orderId: String): Result<OrderInfo?>?
+    @PUT("shop/addrs")
+    suspend fun modifyAddress(@Body address: Address): DefaultResp?
 
-    @GET("shop/order/del/{orderId}")
-    suspend fun deleteOrder(@Path("orderId") orderId: String): Result<String?>?
+    @DELETE("shop/addrs/{addressId}")
+    suspend fun deleteAddress(@Path("addressId") addressId: String): DefaultResp?
 
-    @GET("shop/addr/query")
-    suspend fun queryAddress(): Result<List<Address>?>?
+    @POST("shop/orders")
+    suspend fun createOrder(@Body request: CreateOrderRequest): CreateOrderResp?
 
-    @GET("shop/addr/query_default")
-    suspend fun queryDefaultAddress(): Result<Address?>?
+    @DELETE("shop/orders/{orderId}")
+    suspend fun deleteOrder(@Path("orderId") orderId: String): DefaultResp?
 
-    @POST("shop/addr/add")
-    suspend fun addAddress(@Body req: Address): Result<String?>?
+    @GET("shop/orders/{orderId}")
+    suspend fun queryOrder(@Path("orderId") orderId: String): QueryOrderResp?
 
-    @POST("shop/addr/modify")
-    suspend fun modifyAddress(@Body req: Address): Result<String?>?
-
-    @GET("shop/addr/del/{addressId}")
-    suspend fun deleteAddress(@Path("addressId") addressId: String): Result<String?>?
+    @GET("shop/orders")
+    suspend fun queryOrderByStatus(@Query("orderStatus") orderStatus: String): QueryOrderByStatusResp?
 }

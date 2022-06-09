@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/common_bg"
+    android:background="#F4F4F4"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         app:navigationIcon="@drawable/ic_back_gray"
         app:title="订单详情" />
 
@@ -52,7 +52,7 @@
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_arrow_right"
                         android:text="蓝不蓝自营"
-                        android:textColor="@color/color_text" />
+                        android:textColor="#222222" />
 
                     <TextView
                         android:id="@+id/orderStatusTv"
@@ -63,13 +63,12 @@
                         tools:text="已完成" />
                 </LinearLayout>
 
-                <cn.lblbc.shop.ui.view.OrderListView
+                <cn.lblbc.shop.module.order.list.OrderListView
                     android:id="@+id/orderListView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
                 <View
-                    android:id="@+id/bottomSplitView"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="10dp"
@@ -84,7 +83,5 @@
     </ScrollView>
 
     <include layout="@layout/order_detail_bottom_layout" />
-
-    <include layout="@layout/order_detail_service_icon" />
 
 </RelativeLayout>
