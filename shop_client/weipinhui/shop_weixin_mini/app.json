@@ -32,12 +32,6 @@
         "selectedIconPath": "images/home_selected.png"
       },
       {
-        "pagePath": "pages/category/category",
-        "text": "分类",
-        "iconPath": "images/category.png",
-        "selectedIconPath": "images/category_selected.png"
-      },
-      {
         "pagePath": "pages/cart/cart",
         "text": "购物车",
         "iconPath": "images/cart.png",

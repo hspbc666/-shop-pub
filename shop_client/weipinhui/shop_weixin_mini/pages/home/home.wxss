@@ -39,73 +39,61 @@ page {
   margin-left: 20rpx;
 }
 
-.swiper-item-images{
+
+.tab-row {
+  padding-top: 30rpx;
   width: 100%;
-  height: 300rpx;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.goods-row1 {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  white-space: nowrap;
+  background-color: white;
 }
 
-.goods-info1 {
+.tab {
+  width: 120rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  display: inline-block;
+  padding-bottom: 10rpx;
+  text-align: center;
+}
+
+.tab-selected {
+  border-bottom: 4rpx solid;
+  color: #EF3965;
+}
+
+.split-view {
+  height: 30rpx;
+}
+
+.goods-row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background-color: #fff;
   border-radius: 10rpx;
   margin-top: 20rpx;
   margin-left: 20rpx;
   margin-right: 20rpx;
   padding: 20rpx;
-  flex:1;
-  align-items: center;
 }
 
-.goods-img1 {
+.goods-img {
+  margin-left: 40rpx;
   width: 200rpx;
   height: 200rpx;
 }
 
-.goods-name1 {
+.goods-desc {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40rpx;
+}
+
+.goods-name {
   font-size: 35rpx;
-  width: 300rpx;
+  width: 400rpx;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -115,34 +103,6 @@ page {
 }
 
 .goods-price {
-  margin-top: 10rpx;
-  color: #EF3965;
-}
-
-.goods-info2 {
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  border-radius: 10rpx;
   margin-top: 20rpx;
-  margin-left: 20rpx;
-  margin-right: 20rpx;
-  padding: 20rpx;
-  flex:1;
-}
-
-.goods-img2 {
-  width: 100%;
-  height: 200rpx;
-}
-
-.goods-name2 {
-  font-size: 35rpx;
-  width: 100%;
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+  color: #EF3965;
 }

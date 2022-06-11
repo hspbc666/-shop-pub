@@ -43,7 +43,6 @@ App({
             code: res.code,
           },
           success(result) {
-            debugger
             _this.setGlobalUserInfo(result.data.data)
             console.log("登录成功");
           },

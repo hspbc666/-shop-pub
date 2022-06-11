@@ -6,25 +6,51 @@ var http = require('../../utils/httputils.js');
 
 Page({
   data: {
-    goodsList:[],
-    vertical: false,// banner滑动方向是否为纵向
+    categoryList: [],
+    goodsList: [],
+    current: 0,
   },
   onLoad: function () {
-    this.queryGoods()
+    this.queryCategory()
   },
   onShow: function () {
+    this.queryCategory()
+  },
+  tabSelect: function (e) {
+    var current = e.currentTarget.dataset.id
+    this.setData({
+      current: current
+    })
     this.queryGoods()
   },
-  queryGoods() {
-    let homeCategoryId = 0
+  queryCategory() {
     let _this = this
-    http.get('shop/goods/category/' + homeCategoryId, '',
+    http.get('shop/categories', '',
+      function (resp) {
+        _this.setData({
+          categoryList: resp.data
+        })
+        _this.queryGoods()
+      },
+      function (err) { })
+  },
+  queryGoods() {
+    let _this = this
+    http.get('shop/goods?categoryId=' + this.getCurrentCategoryId(), '',
       function (resp) {
         _this.setData({
           goodsList: resp.data
         })
       },
       function (err) { })
+  },
+  getCurrentCategoryId() {
+    return this.data.categoryList[this.data.current].id
+  },
+  gotoSearch() {
+    wx.navigateTo({
+      url: '/pages/addr/addr-add/addr-add'
+    })
   },
   gotoGoodsDetail(e) {
     let goodsId = e.currentTarget.dataset['id'];
