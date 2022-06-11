@@ -1,0 +1,37 @@
+<view class="page-wrapper ">
+  <scroll-view class="tab-row" scroll-x="true">
+    <view class="tab  {{index==current?'tab-selected':''}}" wx:key="k" wx:for="{{tabs}}" bindtap="tabSelect" data-id="{{index}}">
+      {{item}}
+    </view>
+  </scroll-view>
+  <view class="split-view"></view>
+
+  <view class="order-info" wx:key="id" wx:for="{{orderList}}" wx:for-item="orderItem">
+    <view class="saler-row">
+      <view class="saler-info">
+        <view class="saler-name">X商自营</view>
+        <image class="right-arrow" src="/images/right_arrow.png"></image>
+      </view>
+      <view class="status">状态</view>
+    </view>
+    <view class="goods-row" wx:key="k" wx:for="{{orderItem.list}}" bindtap="gotoOrderDetail" data-id="{{orderItem.orderId}}">
+      <image class="goods-img" src="{{item.squarePic}}"></image>
+      <view class="goods-desc">
+        <view class="goods-name"> {{item.name}}</view>
+        <view class="tags">
+          <view class="seven-days">7天无理由退货</view>
+          <view class="no-change">不支持换货</view>
+        </view>
+      </view>
+      <view>
+        <view class="goods-price"> ￥{{item.price/100}}</view>
+        <view class="quantity"> ×{{item.quantity}}</view>
+      </view>
+    </view>
+    <view class="goods-info-split"></view>
+    <view class="btn-row">
+      <view class="invoice">发票详情</view>
+      <view class="after-sales">申请售后</view>
+    </view>
+  </view>
+</view>

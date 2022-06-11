@@ -1,0 +1,48 @@
+<view class="page-wrapper ">
+  <form bindsubmit="onSubmit">
+    <scroll-view scroll-y="true">
+      <view class="info-container">
+        <view class="common-info-row">
+          <view class="common-info">收货人</view>
+          <input class="common-input" name="name" placeholder="请输入收货人真实姓名" />
+        </view>
+        <view class="split"></view>
+        <view class="common-info-row">
+          <view class="common-info">手机号</view>
+          <input class="common-input" name="phone" placeholder="请输入收货人手机号" type="number" />
+        </view>
+      </view>
+      <view class="info-container">
+        <view class="common-info-row">
+          <view class="common-info">所在地区</view>
+          <input class="common-input" name="region" placeholder="所在地区" />
+        </view>
+        <view class="split"></view>
+        <view class="common-info-row">
+          <view class="common-info">详细地址</view>
+          <input class="common-input" name="address" placeholder="请输入详细地址" />
+        </view>
+      </view>
+      <view class="info-container">
+        <view class="common-info-row">
+          <view class="common-info">地址类型</view>
+          <radio-group bindchange="radioChange">
+            <label>
+              <radio value="1" class="radio">家庭</radio>
+              <radio value="2" class="radio">公司</radio>
+              <radio value="3" class="radio">其他</radio>
+            </label>
+          </radio-group>
+        </view>
+        <view class="split"></view>
+        <view class="common-info-row">
+          <view class="default-addr">设置默认地址</view>
+          <switch bindchange="switchChange" />
+        </view>
+      </view>
+    </scroll-view>
+    <view class="bottom-wrapper">
+      <button class="bottom-btn" form-type="submit">确定</button>
+    </view>
+  </form>
+</view>

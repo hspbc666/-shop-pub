@@ -1,0 +1,43 @@
+<view class="page-wrapper ">
+  <view class="settings-row">
+    <image class="settings-img" src="/images/settings.png" bindtap="gotoSettings"></image>
+  </view>
+  <view class="user-row">
+    <image class="user-img" src="/images/user.png"></image>
+    <view class="user-info">
+      <view class="user-name">尊贵会员</view>
+      <view class="user-level">级别：白银</view>
+    </view>
+  </view>
+  <view class="order-container">
+    <view class="order-row">
+      <view class="my-orders">我的订单</view>
+      <view class="all-order-with-arrow" bindtap="gotoOrderList">
+        <view>全部订单</view>
+        <image class="right_arrow" src="/images/right_arrow.png"></image>
+      </view>
+    </view>
+    <view class="order-cells">
+    <view class="order-cell">
+      <image class="order-img" src="/images/to_pay.png"></image>
+      <view>待付款</view>
+    </view>
+    <view class="order-cell">
+      <image class="order-img" src="/images/to_deliver.png"></image>
+      <view>待发货</view>
+    </view>
+    <view class="order-cell">
+      <image class="order-img" src="/images/to_receive.png"></image>
+      <view>待收货</view>
+    </view>
+    <view class="order-cell">
+      <image class="order-img" src="/images/to_comment.png"></image>
+      <view>待评价</view>
+    </view>
+    <view class="order-cell">
+      <image class="order-img" src="/images/to_return.png"></image>
+      <view>退还/售后</view>
+    </view>
+    </view>
+  </view>
+</view>

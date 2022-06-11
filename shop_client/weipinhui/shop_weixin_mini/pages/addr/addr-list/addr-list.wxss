@@ -1,0 +1,85 @@
+page{
+  background-color: #F4F4F4;
+}
+
+.page-wrapper {
+  margin: 0;
+  font-size: 28rpx;
+  line-height: 1.5;
+  color: #333;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.info-container {
+  background-color: #fff;
+  border-radius: 10rpx;
+  margin-top: 40rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.split {
+  background-color: #e5e5e5;
+  height: 2rpx;
+  margin-left: 10rpx;
+  padding-right: 10rpx;
+  margin-top: 20rpx;
+}
+.user-info-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.name{
+  font-size: 40rpx;
+}
+.phone{
+  font-size: 30rpx;
+  color:#999999;
+  margin-left: 20rpx;
+}
+.is-default{
+  border-radius: 10rpx;
+  border: 1rpx solid #F688A3;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  margin-left: 20rpx;
+  color:#F688A3;
+}
+.btn-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 20rpx;
+}
+
+.btn {
+  border-radius: 10rpx;
+  border: 1rpx solid #565F66;
+  margin-left: 20rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  font-size: 35rpx;
+}
+
+.bottom-wrapper{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.bottom-btn{
+  font-size: 35rpx;
+  color: #fff;
+  margin: 50rpx 50rpx;
+  background-color: #EF3965;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  display: flex;
+  justify-content: center;
+}

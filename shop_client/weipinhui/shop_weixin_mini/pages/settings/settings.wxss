@@ -1,0 +1,89 @@
+.page-wrapper {
+  margin: 0;
+  font-size: 28rpx;
+  line-height: 1.5;
+  color: #333;
+  background-color: #F4F4F4;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 2000rpx;
+}
+
+.user-img {
+  height: 100rpx;
+  width: 100rpx;
+}
+
+.user-row {
+  padding-left: 20rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.user-info {
+  padding-left: 50rpx;
+  flex: 1;
+}
+
+.user-name {
+  font-size: 40rpx;
+}
+
+.user-level {
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  color: #9E9EA2;
+}
+
+.user-info-container {
+  background-color: #fff;
+  border-radius: 10rpx;
+  margin-top: 40rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.user-info-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.right_arrow {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.view_details {
+  display: flex;
+  flex-direction: row;
+}
+.split{
+  background-color: #EAEAEA;
+  height: 1rpx;
+  width: 100%;
+}
+.addr-row{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+}
+.addr{
+  flex:1
+}
+.common-info-row{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+.common-info{
+  flex:1
+}
