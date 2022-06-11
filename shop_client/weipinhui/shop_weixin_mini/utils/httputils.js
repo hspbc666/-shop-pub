@@ -7,7 +7,7 @@
  */
 var header = {
     'content-type': 'application/json',
-    // 'Authorization': wx.getStorageSync("userInfo").token,
+    'Authorization': wx.getStorageSync("userInfo").token,
   }
   
   /**

@@ -25,7 +25,7 @@ Page({
   },
   queryOrder() {
     let _this = this
-    http.get('shop/order/queryByStatus/'+this.data.current, '',
+    http.get('shop/orders?orderStatus='+this.data.current, '',
       function (resp) {
         _this.setData({
           orderList: resp.data

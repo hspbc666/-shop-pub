@@ -29,7 +29,10 @@ Page({
   },
   addToCart(e) {
     let goodsId = e.currentTarget.dataset['id'];
-    http.get('shop/cart/add/' + goodsId, '',
+    var params = {
+      goodsId: goodsId
+    }
+    http.post('shop/cart/', params,
       function (resp) {
         wx.showToast({
           title: '已加入购物车',

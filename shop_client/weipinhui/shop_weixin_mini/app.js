@@ -37,14 +37,13 @@ App({
           url: _this.serverUrl + 'user/loginByWx',
           method: "POST",
           header: {
-            'content-type': 'application/x-www-form-urlencoded'
+            'content-type': 'application/json'
           },
           data: {
             code: res.code,
           },
           success(result) {
             _this.setGlobalUserInfo(result.data.data)
-            // that.setGlobalUserInfo(result.data.data)
             console.log("登录成功");
           },
           fail() {
