@@ -9,10 +9,8 @@ Page({
     addressId: 0,
     name: "",
     phone: "",
-    region: "",
     address: "",
     defaultAddress: false,
-    addrType: 0
   },
   onLoad: function (option) {
     this.queryData(option.id)
@@ -21,15 +19,13 @@ Page({
   },
   queryData(addressId) {
     let _this = this
-    http.get('shop/addr/query/' + addressId, '',
+    http.get('shop/addrs/' + addressId, '',
       function (resp) {
         _this.setData({
           addressId: addressId,
           name: resp.data.name,
           phone: resp.data.phone,
-          region: resp.data.region,
           address: resp.data.address,
-          addrType: resp.data.addrType,
           defaultAddress: resp.data.defaultAddress,
         })
       },
@@ -40,9 +36,7 @@ Page({
       id: this.data.addressId,
       name: e.detail.value.name,
       phone: e.detail.value.phone,
-      region: e.detail.value.region,
       address: e.detail.value.address,
-      addrType: this.data.addrType,
       defaultAddress: this.data.defaultAddress,
     }
     http.post('shop/addr/modify', params,

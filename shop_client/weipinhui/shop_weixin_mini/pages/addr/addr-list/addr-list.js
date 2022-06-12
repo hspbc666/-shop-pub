@@ -18,7 +18,7 @@ Page({
   },
   queryData() {
     let _this = this
-    http.get('shop/addr/query/', '',
+    http.get('shop/addrs', '',
       function (resp) {
         _this.setData({
           dataList: resp.data

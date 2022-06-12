@@ -8,10 +8,8 @@ Page({
   data: {
     name: "",
     phone: "",
-    region: "",
     address: "",
     defaultAddress: false,
-    addrType: 0
   },
   onLoad: function (option) {
   },
@@ -21,12 +19,10 @@ Page({
     var params = {
       name: e.detail.value.name,
       phone: e.detail.value.phone,
-      region: e.detail.value.region,
       address: e.detail.value.address,
-      addrType: this.data.addrType,
       defaultAddress: this.data.defaultAddress,
     }
-    http.post('shop/addr/add', params,
+    http.post('shop/addrs', params,
       function (resp) {
         wx.navigateBack({
           delta: 0,
