@@ -10,21 +10,20 @@ var header = {
     'Authorization': wx.getStorageSync("userInfo").token,
   }
   
-  /**
-   * 供外部post请求调用  
-   */
-  function post(url, params, onSuccess, onFailed) {
-    console.log("请求方式：", "POST")
-    request(url, params, "POST", onSuccess, onFailed);
-  
-  }
-  
-  /**
-   * 供外部get请求调用
-   */
   function get(url, params, onSuccess, onFailed) {
-    console.log("请求方式：", "GET")
     request(url, params, "GET", onSuccess, onFailed);
+  }
+
+  function post(url, params, onSuccess, onFailed) {
+    request(url, params, "POST", onSuccess, onFailed);
+  }
+
+  function put(url, params, onSuccess, onFailed) {
+    request(url, params, "PUT", onSuccess, onFailed);
+  }
+
+  function del(url, params, onSuccess, onFailed) {
+    request(url, params, "DELETE", onSuccess, onFailed);
   }
   
   /**
@@ -82,5 +81,7 @@ var header = {
   module.exports = {
     post: post,
     get: get,
+    del: del,
+    put: put,
   }
   

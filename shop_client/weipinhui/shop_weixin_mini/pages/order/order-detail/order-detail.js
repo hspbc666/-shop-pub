@@ -23,7 +23,7 @@ Page({
   },
   delOrder(e) {
     let orderId = e.currentTarget.dataset['id'];
-    http.get('shop/order/del/' + orderId, '',
+    http.del('shop/orders/' + orderId, '',
       function (resp) {
        wx.showToast({
          title: '已删除',

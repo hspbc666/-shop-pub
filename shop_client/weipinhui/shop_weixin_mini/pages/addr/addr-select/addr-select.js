@@ -42,7 +42,7 @@ Page({
   deleteAddr(e) {
     let addressId = e.currentTarget.dataset['id'];
     let _this = this
-    http.get('shop/addr/del/' + addressId, '',
+    http.del('shop/addrs/' + addressId, '',
       function (resp) {
         _this.queryData()
       },
