@@ -39,7 +39,7 @@ Page({
       address: e.detail.value.address,
       defaultAddress: this.data.defaultAddress,
     }
-    http.post('shop/addr/modify', params,
+    http.put('shop/addrs', params,
       function (resp) {
         wx.navigateBack({
           delta: 0,
