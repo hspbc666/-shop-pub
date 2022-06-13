@@ -18,7 +18,7 @@ Page({
   },
   queryData(goodsId) {
     let _this = this
-    http.get('shop/goods/query/' + goodsId, '',
+    http.get('shop/goods/' + goodsId, '',
       function (resp) {
         _this.setData({
           goods: resp.data
@@ -32,7 +32,7 @@ Page({
   },
   queryDefaultAddr() {
     let _this = this
-    http.get('shop/addr/query_default', '',
+    http.get('shop/addr_default', '',
       function (resp) {
         _this.setData({
           addr: resp.data
@@ -42,12 +42,15 @@ Page({
   },
   createOrder(e) {
     let _this = this
-
+    var simpleCartItem = new Object();
+    simpleCartItem.goodsId = this.data.goods.id;
+    simpleCartItem.quantity = 1;
+    var arr = [simpleCartItem];
     var params = {
-      goodsId: this.data.goods.id,
+      simpleCartItemList: JSON.stringify(arr),
       addressId: this.data.addr.id
     }
-    http.post('shop/order/create', params,
+    http.post('shop/orders', params,
       function (resp) {
         wx.navigateBack()
         _this.gotoOrderDetail(resp.data.orderId)

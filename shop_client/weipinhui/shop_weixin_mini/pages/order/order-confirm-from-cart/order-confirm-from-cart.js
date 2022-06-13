@@ -37,7 +37,7 @@ Page({
   },
   queryDefaultAddr() {
     let _this = this
-    http.get('shop/addr/query_default', '',
+    http.get('shop/addr_default', '',
       function (resp) {
         _this.setData({
           addr: resp.data
