@@ -16,7 +16,7 @@ Page({
   },
   queryCart(cartIds) {
     let _this = this
-    http.get('shop/cart/queryByIds/' + cartIds, '',
+    http.get('shop/cart/' + cartIds, '',
       function (resp) {
         _this.setData({
           cartList: resp.data
@@ -59,7 +59,7 @@ Page({
         cartIdList: cartIds,
         addressId: this.data.addr.id
       }
-      http.post('shop/order/createFromCart', params,
+      http.post('shop/ordersFromCart', params,
         function (resp) {
           wx.navigateBack()
           _this.gotoOrderDetail(resp.data.orderId)
