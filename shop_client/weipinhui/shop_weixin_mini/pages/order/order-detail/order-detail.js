@@ -13,7 +13,7 @@ Page({
   },
   queryData(orderId) {
     let _this = this
-    http.get('shop/order/query/' + orderId, '',
+    http.get('shop/orders/' + orderId, '',
       function (resp) {
         _this.setData({
           orderItem: resp.data,

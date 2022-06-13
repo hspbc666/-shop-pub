@@ -47,7 +47,7 @@ Page({
     simpleCartItem.quantity = 1;
     var arr = [simpleCartItem];
     var params = {
-      simpleCartItemList: JSON.stringify(arr),
+      simpleCartItemList: arr,
       addressId: this.data.addr.id
     }
     http.post('shop/orders', params,
