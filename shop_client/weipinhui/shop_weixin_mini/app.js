@@ -4,7 +4,7 @@
 //公众号：蓝不蓝编程
 App({
 
-  serverUrl: "http://lblbc.cn/",
+  serverUrl: "http://localhost/",
   userInfo: "",
 
   setGlobalUserInfo: function (user) {

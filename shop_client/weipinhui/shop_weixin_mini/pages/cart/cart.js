@@ -20,7 +20,7 @@ Page({
   },
   queryData() {
     let _this = this
-    http.get('shop/cart/list/', '',
+    http.get('shop/cart', '',
       function (resp) {
         _this.setData({
           dataList: resp.data,
@@ -50,7 +50,10 @@ Page({
     cartItem.quantity = quantity
     this.updateDataList()
     let _this = this
-    http.get('shop/cart/modify/' + cartId + '/' + quantity, '',
+    var params = {
+      quantity: quantity
+    }
+    http.put('shop/cart/' + cartId, params,
       function (resp) {
         if (quantity <= 0) {
           _this.queryData()
