@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/category/category",
     "pages/cart/cart",
     "pages/mine/mine",
     "pages/order/order-confirm-from-cart/order-confirm-from-cart",

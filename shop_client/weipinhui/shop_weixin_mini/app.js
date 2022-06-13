@@ -4,7 +4,7 @@
 //公众号：蓝不蓝编程
 App({
 
-  serverUrl: "http://lblbc.cn/",
+  serverUrl: "https://lblbc.cn/",
   userInfo: "",
 
   setGlobalUserInfo: function (user) {
