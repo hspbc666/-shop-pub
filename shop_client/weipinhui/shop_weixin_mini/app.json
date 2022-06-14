@@ -3,6 +3,8 @@
     "pages/home/home",
     "pages/cart/cart",
     "pages/mine/mine",
+    "pages/goods/goods",
+    "pages/order/order-confirm/order-confirm",
     "pages/order/order-confirm-from-cart/order-confirm-from-cart",
     "pages/order/order-list/order-list",
     "pages/order/order-detail/order-detail",
