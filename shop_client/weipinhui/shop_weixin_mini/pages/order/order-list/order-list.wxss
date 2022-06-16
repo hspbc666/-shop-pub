@@ -145,14 +145,8 @@ page {
   justify-content: flex-end;
 }
 
-.invoice {
-  border-radius: 10rem;
-  padding: 5rpx 20rpx;
-  color: #575e64;
-  border: 1rpx solid #ebebeb;
-}
-
-.after-sales {
+.del-order {
+  margin-right: 30rpx;
   border-radius: 10rem;
   padding: 5rpx 20rpx;
   color: #575e64;

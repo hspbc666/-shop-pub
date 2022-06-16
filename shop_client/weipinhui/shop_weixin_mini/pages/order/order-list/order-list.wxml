@@ -12,7 +12,6 @@
         <view class="saler-name">X商自营</view>
         <image class="right-arrow" src="/images/right_arrow.png"></image>
       </view>
-      <view class="status">状态</view>
     </view>
     <view class="goods-row" wx:key="k" wx:for="{{orderItem.list}}" bindtap="gotoOrderDetail" data-id="{{orderItem.orderId}}">
       <image class="goods-img" src="{{item.squarePic}}"></image>
@@ -30,8 +29,7 @@
     </view>
     <view class="goods-info-split"></view>
     <view class="btn-row">
-      <view class="invoice">发票详情</view>
-      <view class="after-sales">申请售后</view>
+      <view class="del-order" bindtap="delOrder" data-id="{{orderItem.orderId}}">删除订单</view>
     </view>
   </view>
 </view>

@@ -139,15 +139,7 @@
 }
 
 .del-order {
-  border-radius: 10rem;
-  padding: 5rpx 20rpx;
-  color: #575e64;
-  border: 1rpx solid #ebebeb;
-}
-
-.after-sales {
-margin-left: 30rpx;
-margin-right: 50rpx;
+  margin-right: 50rpx;
   border-radius: 10rem;
   padding: 5rpx 20rpx;
   color: #575e64;
