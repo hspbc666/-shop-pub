@@ -39,5 +39,14 @@ Page({
       url: '/pages/order/order-detail/order-detail?id=' + orderId
     })
   },
+  delOrder(e) {
+    let _this = this
+    let orderId = e.currentTarget.dataset['id'];
+    http.del('shop/orders/' + orderId, '',
+      function (resp) {
+        _this.queryOrder()
+      },
+      function (err) { })
+  }
 
 })
