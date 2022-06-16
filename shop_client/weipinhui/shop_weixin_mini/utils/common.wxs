@@ -1,0 +1,16 @@
+// sub.wxs
+var getStatusName = function (status) {
+  var name = ""
+  switch (status) {
+    case 1:
+      name = "待付款";
+      break;
+    case 1:
+      day = "星期一";
+      break;
+    default:
+      name = "已完成"
+  }
+  return name
+}
+module.exports.getStatusName = getStatusName;
