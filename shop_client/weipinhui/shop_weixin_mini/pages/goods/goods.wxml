@@ -10,7 +10,7 @@
       </view>
       <view class="coupon-btn">领券 ></view>
     </view>
-    <view class="goods-seller">X商自营</view>
+    <view class="goods-seller">蓝不蓝自营</view>
     <view class="goods-name">{{name}}</view>
     <view class="tags-row">
       <image class="tag-img" src="/images/secure.png"></image>
