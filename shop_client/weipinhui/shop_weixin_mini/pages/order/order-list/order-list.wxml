@@ -17,17 +17,16 @@
       <view class="status">{{common.getStatusName(orderItem.status)}}</view>
     </view>
     <view class="goods-row" wx:key="k" wx:for="{{orderItem.list}}" bindtap="gotoOrderDetail" data-id="{{orderItem.orderId}}">
-      <image class="goods-img" src="{{item.squarePic}}"></image>
+      <image class="goods-img" src="{{item.squarePic}}" mode="aspectFit"></image>
       <view class="goods-desc">
         <view class="goods-name"> {{item.name}}</view>
+        <view class="price-row">
+          <view class="goods-price"> ￥{{item.price/100}}</view>
+          <view> ×{{item.quantity}}</view>
+        </view>
         <view class="tags">
           <view class="seven-days">7天无理由退货</view>
-          <view class="no-change">不支持换货</view>
         </view>
-      </view>
-      <view>
-        <view class="goods-price"> ￥{{item.price/100}}</view>
-        <view class="quantity"> ×{{item.quantity}}</view>
       </view>
     </view>
     <view class="goods-info-split"></view>
