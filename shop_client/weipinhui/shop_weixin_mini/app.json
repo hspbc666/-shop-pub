@@ -3,6 +3,7 @@
     "pages/home/home",
     "pages/cart/cart",
     "pages/mine/mine",
+    "pages/search/search",
     "pages/goods/goods",
     "pages/order/order-confirm/order-confirm",
     "pages/order/order-confirm-from-cart/order-confirm-from-cart",
@@ -13,7 +14,6 @@
     "pages/addr/addr-add/addr-add",
     "pages/addr/addr-select/addr-select",
     "pages/settings/settings"
-
   ],
   "window": {
     "backgroundTextStyle": "light",

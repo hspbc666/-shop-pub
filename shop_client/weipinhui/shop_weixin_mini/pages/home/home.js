@@ -49,7 +49,7 @@ Page({
   },
   gotoSearch() {
     wx.navigateTo({
-      url: '/pages/addr/addr-add/addr-add'
+      url: '/pages/search/search'
     })
   },
   gotoGoodsDetail(e) {
