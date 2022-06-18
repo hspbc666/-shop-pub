@@ -25,6 +25,11 @@
   height: 400rpx;
 }
 
+.goods-desc-img {
+  display: flex;
+  width: 100%;
+}
+
 .goods-info {
   border-radius: 10rpx;
   background-color: white;

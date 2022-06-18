@@ -23,6 +23,7 @@
       <view class="tag-text2">上门退货</view>
     </view>
   </view>
+  <image class="goods-desc-img" src="{{descPicUrl}}" mode="widthFix"></image>
   <view class="bottom-wrapper">
     <view class="bottom-split"></view>
     <view class="bottom-btns">

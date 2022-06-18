@@ -9,6 +9,7 @@ Page({
     id: "",
     name: "",
     picUrl: "",
+    descPicUrl: "",
     price: 0,
   },
   onLoad: function (option) {
@@ -22,6 +23,7 @@ Page({
           id: resp.data.id,
           name: resp.data.name,
           picUrl: resp.data.squarePic,
+          descPicUrl: resp.data.descPic.split(',')[0],
           price: '￥' + resp.data.price / 100
         })
       },
