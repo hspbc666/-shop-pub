@@ -104,6 +104,35 @@
   background-color: #DFDFDF;
 }
 
+.cost-info-rows {
+  background-color: #fff;
+  border-radius: 10rpx;
+  margin-top: 40rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.cost-info-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+}
+
+.cost-info-left {
+  color: #595D65;
+  flex: 1;
+}
+
+.cost-info-right {
+  color: #222222;
+}
+
 .bottom-wrapper {
   position: fixed;
   bottom: 0;

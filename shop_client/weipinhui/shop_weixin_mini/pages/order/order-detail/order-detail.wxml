@@ -22,6 +22,21 @@
     </view>
   </view>
 
+  <view class="cost-info-rows">
+    <view class="cost-info-row">
+      <view class="cost-info-left">商品金额</view>
+      <view class="cost-info-right">{{costSum}}</view>
+    </view>
+    <view class="cost-info-row">
+      <view class="cost-info-left">总运费</view>
+      <view class="cost-info-right">满XX元 免邮</view>
+    </view>
+    <view class="cost-info-row">
+      <view class="cost-info-left">优惠券</view>
+      <view class="cost-info-right">无可用券</view>
+    </view>
+  </view>
+
   <view class="bottom-wrapper">
     <view class="bottom-split"></view>
     <view class="btn-row">
