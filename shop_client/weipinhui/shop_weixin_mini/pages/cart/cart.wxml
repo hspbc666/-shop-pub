@@ -1,9 +1,9 @@
 <view class="page-wrapper ">
   <view class="info-container" wx:for="{{dataList}}" wx:key="k" wx:for-index="bindex">
-    <switch type="checkbox" bindchange="changeSelection" data-index="{{bindex}}"></switch>
+    <switch type="checkbox" bindchange="changeSelection" data-index="{{bindex}}" checked="{{item.checked}}"></switch>
     <image src="{{item.squarePic}}" class="pic" bindtap="gotoGoodsDetail" data-id="{{item.goodsId}}"></image>
     <view class="info-cols">
-      <view class="goods-name" bindtap="gotoGoodsDetail" data-id="{{item.goodsId}}">{{item.name}}</view>
+      <view class="goods-name" data-id="{{item.goodsId}}">{{item.name}}</view>
       <view class="price-quantity-row">
         <view class="price">￥{{item.price/100}}</view>
         <view class="quantity-row">

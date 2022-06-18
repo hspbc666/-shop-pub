@@ -7,7 +7,7 @@ var http = require('../../utils/httputils.js');
 Page({
   data: {
     dataList: [],
-    selectedCartIndexes: [],
+    // selectedCartIndexes: [],
     selectedSum: '￥0'
   },
   onShow: function () {
@@ -21,7 +21,7 @@ Page({
       function (resp) {
         _this.setData({
           dataList: resp.data,
-          selectedCartIndexes:[],
+          // selectedCartIndexes:[],
           selectedSum: '￥0'
         })
       },
@@ -90,12 +90,6 @@ Page({
 
     this.setData({
       selectedSum: "￥" + sum
-    })
-  },
-  gotoGoodsDetail(e) {
-    let goodsId = e.currentTarget.dataset['id'];
-    wx.navigateTo({
-      url: '/pages/goods/goods?id=' + goodsId
     })
   },
   gotoConfirmOrder(e) {
