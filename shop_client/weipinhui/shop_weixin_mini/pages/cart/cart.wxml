@@ -21,7 +21,7 @@
     <view class="bottom-split"></view>
     <view class="bottom-btns">
       <view class="selected-row" data-id="{{id}}">
-        <view class="selected-text">已选 ({{selectedCartIndexes.length}})</view>
+        <view>已选 ({{selectedCartIndexes.length}})</view>
         <view class="sum-text">总计</view>
         <view class="price">{{selectedSum}}</view>
       </view>
