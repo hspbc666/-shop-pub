@@ -10,9 +10,6 @@ Page({
     selectedCartIndexes: [],
     selectedSum: '￥0'
   },
-  onLoad: function () {
-    this.queryData()
-  },
   onShow: function () {
     this.queryData()
   },
@@ -69,7 +66,7 @@ Page({
   changeSelection(e) {
     let index = e.currentTarget.dataset['index'];
     let isChecked = e.detail.value
-    if (isChecked === true) {
+    if (isChecked === true && !this.data.selectedCartIndexes.includes(index)) {
       this.data.selectedCartIndexes.push(index)
     } else {
       let pos = this.data.selectedCartIndexes.indexOf(index)
