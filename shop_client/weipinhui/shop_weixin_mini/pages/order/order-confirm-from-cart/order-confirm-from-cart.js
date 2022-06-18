@@ -22,18 +22,21 @@ Page({
           cartList: resp.data
         })
 
-        var sum = 0
-        if (resp.data != null && typeof (resp.data) != 'undefined') {
-          resp.data.forEach((elem, index) => {
-            sum += elem.quantity * elem.price
-          });
-        }
-
-        _this.setData({
-          costSum: "￥" + sum / 100
-        })
+        _this.calcSum(resp.data)
       },
       function (err) { })
+  },
+  calcSum(orderList) {
+    var sum = 0
+    if (orderList != null && typeof (orderList) != 'undefined') {
+      orderList.forEach((elem, index) => {
+        sum += elem.quantity * elem.price
+      });
+    }
+
+    this.setData({
+      costSum: "￥" + sum / 100
+    })
   },
   queryDefaultAddr() {
     let _this = this

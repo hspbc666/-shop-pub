@@ -168,10 +168,11 @@
   flex: 1;
   margin-left: 50rpx;
   font-size: 40rpx;
+  align-items: center;
 }
 
 .cost-text {
-  
+  font-size: 30rpx;
 }
 
 .sum-text {
