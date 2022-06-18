@@ -7,7 +7,7 @@ var http = require('../../utils/httputils.js');
 Page({
   data: {
     dataList: [],
-    // selectedCartIndexes: [],
+    selectedCartIndexes: [],
     selectedSum: '￥0'
   },
   onShow: function () {
@@ -21,7 +21,7 @@ Page({
       function (resp) {
         _this.setData({
           dataList: resp.data,
-          // selectedCartIndexes:[],
+          selectedCartIndexes:[],
           selectedSum: '￥0'
         })
       },
