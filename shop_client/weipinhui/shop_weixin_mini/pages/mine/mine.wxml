@@ -1,11 +1,11 @@
-<view class="page-wrapper ">
+<view class="page-wrapper">
   <view class="settings-row">
     <image class="settings-img" src="/images/settings.png" bindtap="gotoSettings"></image>
   </view>
   <view class="user-row">
     <image class="user-img" src="/images/user.png"></image>
     <view class="user-info">
-      <view class="user-name">尊贵会员</view>
+      <view>尊贵会员</view>
       <view class="user-level">级别：白银</view>
     </view>
   </view>

@@ -1,6 +1,5 @@
 .page-wrapper {
   margin: 0;
-  font-size: 28rpx;
   line-height: 1.5;
   color: #333;
   background-color: #F4F4F4;
@@ -8,6 +7,7 @@
   -webkit-overflow-scrolling: touch;
   -webkit-tap-highlight-color: transparent;
   min-height: 2000rpx;
+  font-size: 30rpx;
 }
 
 .settings-row {
@@ -42,23 +42,12 @@
   padding-left: 50rpx;
 }
 
-.user-name {
-  font-size: 40rpx;
-}
-
 .user-level {
   margin-top: 10rpx;
-  font-size: 30rpx;
   padding-left: 20rpx;
   padding-right: 20rpx;
   background-color: #D3D3F7;
   border-radius: 10rem;
-}
-
-.my-orders {
-  font-size: 35rpx;
-  width: 200rpx;
-  flex: 1;
 }
 
 .order-container {
@@ -80,6 +69,10 @@
   align-items: center;
 }
 
+.my-orders {
+  flex: 1;
+}
+
 .right_arrow {
   height: 40rpx;
   width: 40rpx;
@@ -94,13 +87,15 @@
   height: 80rpx;
   width: 80rpx;
 }
-.order-cells{
+
+.order-cells {
   margin-top: 40rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-.order-cell{
+
+.order-cell {
   display: flex;
   flex-direction: column;
   align-items: center;
