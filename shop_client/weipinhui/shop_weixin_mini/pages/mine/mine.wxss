@@ -46,7 +46,7 @@
   margin-top: 10rpx;
   padding-left: 20rpx;
   padding-right: 20rpx;
-  background-color: #D3D3F7;
+  background-color: #EAF3FF;
   border-radius: 10rem;
 }
 

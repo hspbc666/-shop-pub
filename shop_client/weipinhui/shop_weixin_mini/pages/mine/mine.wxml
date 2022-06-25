@@ -18,26 +18,26 @@
       </view>
     </view>
     <view class="order-cells">
-    <view class="order-cell">
-      <image class="order-img" src="/images/to_pay.png"></image>
-      <view>待付款</view>
-    </view>
-    <view class="order-cell">
-      <image class="order-img" src="/images/to_deliver.png"></image>
-      <view>待发货</view>
-    </view>
-    <view class="order-cell">
-      <image class="order-img" src="/images/to_receive.png"></image>
-      <view>待收货</view>
-    </view>
-    <view class="order-cell">
-      <image class="order-img" src="/images/to_comment.png"></image>
-      <view>待评价</view>
-    </view>
-    <view class="order-cell">
-      <image class="order-img" src="/images/to_return.png"></image>
-      <view>退还/售后</view>
-    </view>
+      <view class="order-cell">
+        <image class="order-img" src="/images/to_pay.png"></image>
+        <view>待付款</view>
+      </view>
+      <view class="order-cell">
+        <image class="order-img" src="/images/to_deliver.png"></image>
+        <view>待发货</view>
+      </view>
+      <view class="order-cell">
+        <image class="order-img" src="/images/to_receive.png"></image>
+        <view>待收货</view>
+      </view>
+      <view class="order-cell">
+        <image class="order-img" src="/images/to_comment.png"></image>
+        <view>待评价</view>
+      </view>
+      <view class="order-cell">
+        <image class="order-img" src="/images/to_return.png"></image>
+        <view>退还/售后</view>
+      </view>
     </view>
   </view>
 </view>
