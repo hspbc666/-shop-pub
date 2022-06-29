@@ -12,29 +12,29 @@
   <view class="order-container">
     <view class="order-row">
       <view class="my-orders">我的订单</view>
-      <view class="all-order-with-arrow" bindtap="gotoOrderList">
+      <view class="all-order-with-arrow" bindtap="gotoOrderPage" data-status="0">
         <view>全部订单</view>
         <image class="right_arrow" src="/images/right_arrow.png"></image>
       </view>
     </view>
     <view class="order-cells">
-      <view class="order-cell">
+      <view class="order-cell"  bindtap="gotoOrderPage" data-status="1">
         <image class="order-img" src="/images/to_pay.png"></image>
         <view>待付款</view>
       </view>
-      <view class="order-cell">
+      <view class="order-cell"  bindtap="gotoOrderPage" data-status="2">
         <image class="order-img" src="/images/to_deliver.png"></image>
         <view>待发货</view>
       </view>
-      <view class="order-cell">
+      <view class="order-cell"  bindtap="gotoOrderPage" data-status="3">
         <image class="order-img" src="/images/to_receive.png"></image>
         <view>待收货</view>
       </view>
-      <view class="order-cell">
+      <view class="order-cell"  bindtap="gotoOrderPage" data-status="4">
         <image class="order-img" src="/images/to_comment.png"></image>
         <view>待评价</view>
       </view>
-      <view class="order-cell">
+      <view class="order-cell"  bindtap="gotoOrderPage" data-status="5">
         <image class="order-img" src="/images/to_return.png"></image>
         <view>退还/售后</view>
       </view>

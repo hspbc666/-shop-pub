@@ -10,7 +10,11 @@ Page({
     tabs: ['全部', '待付款', '待发货', '待收货', '待评价', '退还/售后'],
     current: 0,
   },
-  onLoad: function () {
+  onLoad: function (option) {
+    var current = option.status
+    this.setData({
+      current: current
+    })
     this.queryOrder()
   },
   onShow: function () {

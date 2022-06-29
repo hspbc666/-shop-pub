@@ -14,9 +14,10 @@ Page({
       url: '/pages/settings/settings'
     })
   },
-  gotoOrderList(e) {
+  gotoOrderPage(e) {
+    var status = e.currentTarget.dataset.status
     wx.navigateTo({
-      url: '/pages/order/order-list/order-list'
+      url: '/pages/order/order-list/order-list?status='+status
     })
   }
 
