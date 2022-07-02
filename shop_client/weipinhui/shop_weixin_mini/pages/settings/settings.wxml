@@ -12,7 +12,7 @@
       </view>
     </view>
     <view class="split"></view>
-    <view class="addr-row" bindtap="gotoAddr">
+    <view class="addr-row" bindtap="gotoAddrList">
       <view class="addr">收货地址</view>
       <image class="right_arrow" src="/images/right_arrow.png"></image>
     </view>

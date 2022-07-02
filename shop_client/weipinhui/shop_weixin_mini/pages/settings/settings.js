@@ -9,7 +9,7 @@ Page({
   },
   methods: {
   },
-  gotoAddr(e) {
+  gotoAddrList(e) {
     wx.navigateTo({
       url: '/pages/addr/addr-list/addr-list'
     })
