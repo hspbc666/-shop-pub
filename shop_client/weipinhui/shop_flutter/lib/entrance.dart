@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'X商城-蓝不蓝编程',
+      title: '蓝不蓝商城-蓝不蓝编程',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: LblColors.themeColor,

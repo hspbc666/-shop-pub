@@ -100,7 +100,7 @@ class _GoodsState extends State<GoodsPage> {
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: ElevatedButton(
-                    child: const Text('X商自营'),
+                    child: const Text('蓝不蓝自营'),
                     onPressed: () {},
                   ),
                 ),

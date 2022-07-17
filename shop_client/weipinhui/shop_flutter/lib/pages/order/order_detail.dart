@@ -44,7 +44,7 @@ class _OrderDetailState extends State<OrderDetailPage> {
                     children: [
                       Row(
                         children: [
-                          Text("X商自营", style: TextStyle(fontSize: 18.0, color: Colors.black)),
+                          Text("蓝不蓝自营", style: TextStyle(fontSize: 18.0, color: Colors.black)),
                           Spacer(),
                           Text(OrderStatus.getStatusName(_queryOrderDetailData?.status))
                         ],

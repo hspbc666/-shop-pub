@@ -34,7 +34,7 @@ class _HomeState extends State<HomePage> {
       length: _categoryList.length,
       child: Scaffold(
         appBar: AppBar(
-            title: const Text('X商城'),
+            title: const Text('蓝不蓝商城'),
             bottom: TabBar(
               isScrollable: true,
               tabs: _categoryList.map((QueryCategoryRespData queryCategoryRespData) {

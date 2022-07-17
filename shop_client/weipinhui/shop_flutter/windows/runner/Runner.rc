@@ -90,7 +90,7 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "cn.lblbc.shop" "\0"
-            VALUE "FileDescription", "X商城-蓝不蓝编程" "\0"
+            VALUE "FileDescription", "蓝不蓝商城-蓝不蓝编程" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "shop_flutter" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 cn.lblbc.shop. All rights reserved." "\0"

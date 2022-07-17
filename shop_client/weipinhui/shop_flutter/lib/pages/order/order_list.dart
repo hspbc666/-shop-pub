@@ -104,7 +104,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
       children: [
         Row(
           children: [
-            const Text("X商自营", style: TextStyle(fontSize: 18.0, color: Colors.black)),
+            const Text("蓝不蓝自营", style: TextStyle(fontSize: 18.0, color: Colors.black)),
             const Spacer(),
             Text(OrderStatus.getStatusName(queryOrderListRespData.status))
           ],
