@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        app:navigationIcon="@drawable/ic_back_gray"
+        app:title="订单详情" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/orderDetailBottomLayout"
+        android:layout_below="@id/toolbar"
+        android:layout_marginBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/shape_round_rect_white"
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_arrow_right"
+                        android:text="蓝不蓝自营"
+                        android:textColor="@color/color_text" />
+
+                    <TextView
+                        android:id="@+id/orderStatusTv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        tools:text="已完成" />
+                </LinearLayout>
+
+                <cn.lblbc.shop.ui.view.OrderListView
+                    android:id="@+id/orderListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:id="@+id/bottomSplitView"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#DFDFDF" />
+
+                <include layout="@layout/order_detail_fee_layout" />
+            </LinearLayout>
+
+            <include layout="@layout/order_detail_order_info_layout" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include layout="@layout/order_detail_bottom_layout" />
+
+    <include layout="@layout/order_detail_service_icon" />
+
+</RelativeLayout>
