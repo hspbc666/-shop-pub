@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="订单信息"
-            android:textColor="@color/color_text"
+            android:textColor="#222222"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -36,7 +36,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="收货信息"/>
+            android:text="收货信息" />
 
         <TextView
             android:id="@+id/receiverInfoTv"
@@ -54,7 +54,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="订单编号"/>
+            android:text="订单编号" />
 
         <TextView
             android:id="@+id/orderIdTv"
@@ -73,7 +73,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="下单时间"/>
+            android:text="下单时间" />
 
         <TextView
             android:id="@+id/orderCreateTimeTv"

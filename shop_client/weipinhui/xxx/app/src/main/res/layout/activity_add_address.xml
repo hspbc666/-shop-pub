@@ -3,37 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/common_bg"
+    android:background="#F4F4F4"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         app:navigationIcon="@drawable/ic_back_gray"
-        app:title="新增地址" />
+        app:title="添加收货地址" />
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar">
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <include layout="@layout/part_addr_receiver_name" />
 
-            <include layout="@layout/part_addr_name_phone" />
+        <include layout="@layout/part_addr_receiver_phone" />
 
-            <include layout="@layout/part_addr_detail" />
+        <include layout="@layout/part_addr_detail" />
 
-            <include layout="@layout/part_addr_type_info" />
-        </LinearLayout>
-    </ScrollView>
+        <include layout="@layout/part_addr_default" />
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/addAddrTv"
+        android:id="@+id/saveAddressTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -45,5 +45,5 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:text="确定"
-        android:textColor="@color/white" />
+        android:textColor="#FFFFFF" />
 </RelativeLayout>
