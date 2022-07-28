@@ -1,4 +1,4 @@
-package cn.lblbc.shop.network.response
+package cn.lblbc.shop.network
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -40,7 +40,6 @@ class OrderDetail(
     var goodsId: String = "",
     var name: String = "",
     var price: Long = 0,
-    var longPic: String = "",
     var squarePic: String = "",
     var quantity: Int = 0
 )

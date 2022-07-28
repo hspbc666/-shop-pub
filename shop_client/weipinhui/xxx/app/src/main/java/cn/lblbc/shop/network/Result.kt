@@ -1,4 +1,4 @@
-package cn.lblbc.shop.network.response
+package cn.lblbc.shop.network
 
 /**
  * 厦门大学计算机专业 | 前华为工程师

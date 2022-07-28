@@ -2,13 +2,14 @@ package cn.lblbc.shop.module.goods_detail
 
 import android.content.Intent
 import android.widget.ImageView
+import cn.lblbc.lib.utils.JsonUtil
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.login.LoginActivity
 import cn.lblbc.shop.module.login.LoginManager
 import cn.lblbc.shop.module.order.confirm.ConfirmOrderActivity
-import cn.lblbc.shop.network.request.SimpleOrderInfo
-import cn.lblbc.shop.network.response.Goods
+import cn.lblbc.shop.network.Goods
+import cn.lblbc.shop.network.OrderDetail
 import cn.lblbc.shop.utils.*
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_goods.*
@@ -24,14 +25,14 @@ import kotlinx.android.synthetic.main.part_goods_detail_info.*
 class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
     private var goodsId = ""
     private var price = ""
-    private var goods: Goods? = null
+    private var mGoods: Goods? = null
     override fun viewModelClass() = GoodsViewModel::class.java
     override fun layoutResId(): Int = R.layout.activity_goods
 
     override fun initView() {
         initToolbar()
         mViewModel.goods.observe(this) {
-            goods = it
+            mGoods = it
             price = getString(R.string.price, getMoneyByYuan(it.price))
             goodsNameTv.text = it.name
             goodsPriceTv.text = price
@@ -55,18 +56,26 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
         }
         buyTv.setOnClickListener {
             if (LoginManager.isLoggedIn()) {
-                goods?.let {
-                    val intent = Intent(this, ConfirmOrderActivity::class.java)
-                    val simpleOrderInfo = SimpleOrderInfo(goodsId, it.name, 1, it.price, it.squarePic)
-                    val orderInJson = JsonUtil.toJson(simpleOrderInfo)
-                    intent.putExtra(EXTRA_KEY_SIMPLE_ORDER, orderInJson)
-                    intent.putExtra(EXTRA_KEY_COST_SUM, price)
-                    startActivity(intent)
-                }
+                mGoods?.let { gotoConfirmOrder(it) }
             } else {
-                startActivity(Intent(this@GoodsActivity, LoginActivity::class.java))
+                gotoLogin()
             }
         }
+    }
+
+
+    private fun gotoLogin() {
+        startActivity(Intent(this, LoginActivity::class.java))
+    }
+
+    private fun gotoConfirmOrder(it: Goods) {
+        val price = cn.lblbc.lib.utils.getMoneyByYuan(it.price)
+        val intent = Intent(this, ConfirmOrderActivity::class.java)
+        val orderDetail = OrderDetail(goodsId, it.name, it.price, it.squarePic, 1)
+        val orderInJson = JsonUtil.toJson(listOf(orderDetail))
+        intent.putExtra(EXTRA_KEY_SIMPLE_ORDER, orderInJson)
+        intent.putExtra(EXTRA_KEY_MONEY, price)
+        startActivity(intent)
     }
 
     private fun loadImage(imageView: ImageView, url: String) {

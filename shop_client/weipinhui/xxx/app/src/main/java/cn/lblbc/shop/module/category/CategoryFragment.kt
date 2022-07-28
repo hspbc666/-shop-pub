@@ -9,7 +9,7 @@ import androidx.viewpager.widget.ViewPager
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmFragment
 import cn.lblbc.shop.module.search.SearchActivity
-import cn.lblbc.shop.network.response.CategoryInfo
+import cn.lblbc.shop.network.CategoryInfo
 
 /**
  * 厦门大学计算机专业 | 前华为工程师

@@ -2,7 +2,7 @@ package cn.lblbc.shop.module.addr
 
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
-import cn.lblbc.shop.network.response.Address
+import cn.lblbc.shop.network.Address
 import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_COMPANY
 import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_HOME
 import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_OTHER
@@ -34,15 +34,6 @@ class EditAddressActivity : BaseVmActivity<AddressViewModel>() {
             regionEt.setText(it.region)
             detailedAddrEt.setText(it.address)
             defaultAddrSwitch.isChecked = it.defaultAddress
-            selectAddrRadioButton(it.addrType)
-        }
-    }
-
-    private fun selectAddrRadioButton(addrType: Int) {
-        when (addrType) {
-            ADDR_TYPE_HOME -> addrTypeHomeRb.isChecked = true
-            ADDR_TYPE_COMPANY -> addrTypeCompanyRb.isChecked = true
-            ADDR_TYPE_OTHER -> addrTypeOtherRb.isChecked = true
         }
     }
 
@@ -61,7 +52,6 @@ class EditAddressActivity : BaseVmActivity<AddressViewModel>() {
                 it.region = regionEt.text.toString()
                 it.address = detailedAddrEt.text.toString()
                 it.defaultAddress = defaultAddrSwitch.isChecked
-                it.addrType = addType
                 mViewModel.modifyAddress(it) { finish() }
             }
         }

@@ -5,7 +5,7 @@ import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.addr.AddAddressActivity
 import cn.lblbc.shop.module.order.confirm.ConfirmOrderActivity.Companion.requestCodeForSelectAddr
-import cn.lblbc.shop.network.response.Address
+import cn.lblbc.shop.network.Address
 import cn.lblbc.shop.utils.EXTRA_KEY_ADDRESS
 import cn.lblbc.shop.utils.EXTRA_KEY_ADDRESS_ID
 import cn.lblbc.shop.utils.JsonUtil

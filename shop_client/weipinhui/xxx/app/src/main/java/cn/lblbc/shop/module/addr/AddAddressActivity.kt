@@ -4,7 +4,7 @@ import android.content.Intent
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.order.confirm.ConfirmOrderActivity
-import cn.lblbc.shop.network.response.Address
+import cn.lblbc.shop.network.Address
 import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_COMPANY
 import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_HOME
 import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_OTHER
@@ -45,7 +45,6 @@ class AddAddressActivity : BaseVmActivity<AddressViewModel>() {
             address.region = regionEt.text.toString()
             address.address = detailedAddrEt.text.toString()
             address.defaultAddress = defaultAddrSwitch.isChecked
-            address.addrType = addType
             mViewModel.addAddress(address) {
                 sendResultForConfirmOrder(it)
                 finish()

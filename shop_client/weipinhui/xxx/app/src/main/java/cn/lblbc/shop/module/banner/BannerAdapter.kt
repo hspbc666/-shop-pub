@@ -1,7 +1,7 @@
 package cn.lblbc.shop.module.banner
 
 import cn.lblbc.shop.R
-import cn.lblbc.shop.network.response.Goods
+import cn.lblbc.shop.network.Goods
 import com.bumptech.glide.Glide
 import com.zhpan.bannerview.BaseBannerAdapter
 import com.zhpan.bannerview.BaseViewHolder

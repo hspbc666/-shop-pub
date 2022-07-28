@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmFragment
 import cn.lblbc.shop.module.order.detail.OrderDetailActivity
-import cn.lblbc.shop.network.response.OrderInfo
+import cn.lblbc.shop.network.OrderInfo
 import cn.lblbc.shop.utils.EXTRA_KEY_ORDER_ID
 
 /**

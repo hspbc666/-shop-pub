@@ -26,7 +26,7 @@
 
             <include layout="@layout/order_addr_layout" />
 
-            <cn.lblbc.shop.ui.view.OrderListView
+            <cn.lblbc.shop.module.order.list.OrderListView
                 android:id="@+id/orderListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

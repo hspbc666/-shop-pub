@@ -2,8 +2,8 @@ package cn.lblbc.shop.module.order.list
 
 import androidx.recyclerview.widget.RecyclerView
 import cn.lblbc.shop.R
-import cn.lblbc.shop.network.response.OrderDetail
-import cn.lblbc.shop.network.response.OrderInfo
+import cn.lblbc.shop.network.OrderDetail
+import cn.lblbc.shop.network.OrderInfo
 import cn.lblbc.shop.ui.view.BaseAdapter
 import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_COMMENT
 import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_DELIVER

@@ -6,7 +6,7 @@ import android.view.View.VISIBLE
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import cn.lblbc.shop.R
-import cn.lblbc.shop.network.response.Address
+import cn.lblbc.shop.network.Address
 import cn.lblbc.shop.ui.view.BaseAdapter
 import cn.lblbc.shop.utils.EXTRA_KEY_ADDR_INFO
 import cn.lblbc.shop.utils.JsonUtil

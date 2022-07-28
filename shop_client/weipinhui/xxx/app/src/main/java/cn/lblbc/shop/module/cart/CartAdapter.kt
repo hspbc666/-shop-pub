@@ -3,7 +3,7 @@ package cn.lblbc.shop.module.cart
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import cn.lblbc.shop.R
-import cn.lblbc.shop.network.response.CartItem
+import cn.lblbc.shop.network.CartItem
 import cn.lblbc.shop.ui.view.BaseAdapter
 import cn.lblbc.shop.utils.getMoneyByYuan
 import com.bumptech.glide.Glide

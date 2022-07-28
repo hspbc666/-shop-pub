@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import cn.lblbc.shop.R
-import cn.lblbc.shop.network.response.Goods
+import cn.lblbc.shop.network.Goods
 import com.zhpan.bannerview.BannerViewPager
 
 /**

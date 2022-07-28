@@ -7,7 +7,7 @@ import cn.lblbc.shop.base.BaseVmFragment
 import cn.lblbc.shop.module.banner.BannerView
 import cn.lblbc.shop.module.goods_detail.GoodsActivity
 import cn.lblbc.shop.module.search.SearchActivity
-import cn.lblbc.shop.network.response.Goods
+import cn.lblbc.shop.network.Goods
 import cn.lblbc.shop.utils.EXTRA_KEY_GOODS_ID
 
 /**
