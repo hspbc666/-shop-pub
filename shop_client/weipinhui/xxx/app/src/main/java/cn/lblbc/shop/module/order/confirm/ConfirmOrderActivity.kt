@@ -3,6 +3,7 @@ package cn.lblbc.shop.module.order.confirm
 import android.content.Intent
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import cn.lblbc.lib.utils.JsonUtil
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.addr.AddAddressActivity

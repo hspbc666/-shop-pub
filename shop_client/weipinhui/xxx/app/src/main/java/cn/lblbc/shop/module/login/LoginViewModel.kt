@@ -1,10 +1,10 @@
 package cn.lblbc.shop.module.login
 
+import cn.lblbc.lib.utils.SpUtil
 import cn.lblbc.shop.base.BaseViewModel
 import cn.lblbc.shop.network.ShopRepo
 import cn.lblbc.shop.utils.SP_KEY_TOKEN
 import cn.lblbc.shop.utils.SP_KEY_USER_ID
-import cn.lblbc.shop.utils.SpUtil
 
 /**
  * 厦门大学计算机专业 | 前华为工程师

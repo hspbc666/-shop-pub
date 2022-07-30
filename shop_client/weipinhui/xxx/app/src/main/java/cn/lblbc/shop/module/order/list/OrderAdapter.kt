@@ -1,6 +1,7 @@
 package cn.lblbc.shop.module.order.list
 
 import androidx.recyclerview.widget.RecyclerView
+import cn.lblbc.lib.utils.getMoneyByYuan
 import cn.lblbc.shop.R
 import cn.lblbc.shop.network.OrderDetail
 import cn.lblbc.shop.network.OrderInfo
@@ -10,7 +11,6 @@ import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_DELIVER
 import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_PAY
 import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_RECEIVE
 import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_RETURN
-import cn.lblbc.shop.utils.getMoneyByYuan
 import kotlinx.android.synthetic.main.item_order.view.*
 
 /**

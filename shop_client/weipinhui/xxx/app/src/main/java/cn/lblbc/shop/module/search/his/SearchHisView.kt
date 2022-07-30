@@ -7,10 +7,9 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import cn.lblbc.lib.utils.JsonUtil
+import cn.lblbc.lib.utils.SpUtil
 import cn.lblbc.shop.R
-import cn.lblbc.shop.utils.JsonUtil
-import cn.lblbc.shop.utils.SpUtil
-import kotlinx.android.synthetic.main.view_search_his.view.*
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》  http://lblbc.cn/blog

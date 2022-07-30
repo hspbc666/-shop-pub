@@ -5,8 +5,9 @@ import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseActivity
 import cn.lblbc.shop.module.addr.AddressListActivity
 import cn.lblbc.shop.module.login.LoginManager
-import cn.lblbc.shop.utils.getVersionName
-import kotlinx.android.synthetic.main.activity_settins.*
+import kotlinx.android.synthetic.main.part_settings_addr.*
+import kotlinx.android.synthetic.main.part_settings_quit_login.*
+import kotlinx.android.synthetic.main.part_settings_title.*
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -15,11 +16,10 @@ import kotlinx.android.synthetic.main.activity_settins.*
  * 公众号：蓝不蓝编程
  */
 class SettingsActivity : BaseActivity() {
-    override fun layoutResId(): Int = R.layout.activity_settins
+    override fun layoutResId(): Int = R.layout.activity_settings
 
     override fun initView() {
         initToolbar()
-        appVersionTv.text = getVersionName(this)
     }
 
     override fun initListeners() {

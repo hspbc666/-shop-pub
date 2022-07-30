@@ -3,6 +3,8 @@ package cn.lblbc.shop.module.goods_detail
 import android.content.Intent
 import android.widget.ImageView
 import cn.lblbc.lib.utils.JsonUtil
+import cn.lblbc.lib.utils.ToastUtil.toast
+import cn.lblbc.lib.utils.getMoneyByYuan
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.login.LoginActivity
@@ -37,7 +39,7 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
             goodsNameTv.text = it.name
             goodsPriceTv.text = price
             loadImage(goodsIv, it.squarePic)
-            loadImage(descIv, it.descPic)
+            descIv.setData(it.descPic)
         }
     }
 

@@ -2,7 +2,7 @@ package cn.lblbc.shop.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cn.lblbc.shop.utils.toast
+import cn.lblbc.lib.utils.ToastUtil.toast
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch

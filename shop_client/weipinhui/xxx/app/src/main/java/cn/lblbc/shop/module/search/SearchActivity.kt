@@ -4,14 +4,14 @@ import android.content.Intent
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.inputmethod.EditorInfo
+import cn.lblbc.lib.utils.hideSoftKeyboard
+import cn.lblbc.lib.utils.showSoftKeyboard
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.goods_detail.GoodsActivity
 import cn.lblbc.shop.module.goods_detail.GoodsAdapter
 import cn.lblbc.shop.network.Goods
 import cn.lblbc.shop.utils.EXTRA_KEY_GOODS_ID
-import cn.lblbc.shop.utils.hideSoftKeyboard
-import cn.lblbc.shop.utils.showSoftKeyboard
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.part_search_top.*
 
