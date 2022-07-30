@@ -118,7 +118,7 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
     }
 
     override fun observe() {
-//        mViewModel.dataList.observe(this) { adapter.setData(it) }
+        mViewModel.dataList.observe(this) { adapter.setData(it) }
         mViewModel.selectionChangeCount.observe(this) {
             var sum = 0L
             mViewModel.selectionItemList.forEach { sum += it.price * it.quantity }
