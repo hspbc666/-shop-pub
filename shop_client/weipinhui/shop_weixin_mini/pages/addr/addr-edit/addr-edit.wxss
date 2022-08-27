@@ -17,17 +17,6 @@ page{
   margin: 10rpx 10rpx 0rpx 10rpx;
   font-size: 40rpx;
 }
-.bottom-wrapper{
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-.bottom-btn{
-  font-size: 40rpx;
-  color: #fff;
-  margin: 50rpx 50rpx;
-  background-color: #EF3965;
-}
 .split{
   background-color: #E0E3EA;
   height: 2rpx;
@@ -62,4 +51,16 @@ page{
 }
 .radio{
   margin-left: 20rpx;
+}
+.bottom-wrapper{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.bottom-btn{
+  font-size: 40rpx;
+  color: #fff;
+  margin: 50rpx 50rpx;
+  background-color: #EF3965;
+  border-radius: 2rem;
 }

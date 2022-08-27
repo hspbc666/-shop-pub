@@ -188,7 +188,7 @@
   flex: 1;
   font-size: 35rpx;
   color: #fff;
-  border-radius: 10rpx;
+  border-radius: 2rem;
   padding: 10rpx;
   display: flex;
   justify-content: center;

@@ -78,7 +78,7 @@ page{
   color: #fff;
   margin: 50rpx 50rpx;
   background-color: #EF3965;
-  border-radius: 10rpx;
+  border-radius: 2rem;
   padding: 10rpx;
   display: flex;
   justify-content: center;
