@@ -3,7 +3,7 @@ package cn.lblbc.shop.module.home
 import androidx.lifecycle.MutableLiveData
 import cn.lblbc.shop.base.BaseViewModel
 import cn.lblbc.shop.network.ShopRepo
-import cn.lblbc.shop.network.Goods
+import cn.lblbc.shop.network.CategoryInfo
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -12,11 +12,11 @@ import cn.lblbc.shop.network.Goods
  * 公众号：蓝不蓝编程
  */
 class HomeViewModel : BaseViewModel() {
-    val dataList: MutableLiveData<List<Goods>> = MutableLiveData()
+    val categoryInfoList: MutableLiveData<List<CategoryInfo>> = MutableLiveData()
 
-    fun queryGoodsByCategory(categoryId: String) {
+    fun queryCategory() {
         launch({
-            dataList.value = ShopRepo.queryGoodsByCategory(categoryId)?.data
+            categoryInfoList.value = ShopRepo.queryCategory()?.data
         })
     }
 }

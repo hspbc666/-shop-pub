@@ -27,7 +27,7 @@ class OrderAdapter : BaseAdapter<OrderInfo>() {
         holder.itemView.orderStatusTv.text = getOrderStatus(data.status)
         holder.itemView.goodsCountTv.text =
             mContext.getString(R.string.goods_count, data.list.size)
-        holder.itemView.sumTv.text = calcSum(data.list)
+        holder.itemView.moneyTv.text = calcSum(data.list)
         holder.itemView.orderListView.setData(data.list)
         holder.itemView.deleteOrderTv.setOnClickListener { onDeleteBtnClick(data.orderId) }
         holder.itemView.setOnClickListener { onItemClick(data) }

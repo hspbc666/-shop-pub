@@ -40,7 +40,7 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
                 orderIdTv.text = it.orderId
                 receiverInfoTv.text = it.address?.toSimpleInfo()
                 val sum = calcSum(it.list)
-                orderDetailSumTv.text = getString(R.string.price, sum)
+                orderDetailMoneyTv.text = getString(R.string.price, sum)
                 realPaidTv.text = getString(R.string.real_paid, sum)
                 orderCreateTimeTv.text = formatTime(it.createTime)
                 orderListView.setData(it.list)

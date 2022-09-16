@@ -42,8 +42,8 @@ open class ConfirmOrderActivity : BaseVmActivity<ConfirmOrderViewModel>() {
         orderListView.setData(mOrderInfoList)
 
         val sum = intent.getStringExtra(EXTRA_KEY_COST_SUM)
-        goodsSumTv.text = sum
-        sumTv.text = sum
+        goodsMoneyTv.text = sum
+        moneyTv.text = sum
         mViewModel.queryDefaultAddress()
     }
 

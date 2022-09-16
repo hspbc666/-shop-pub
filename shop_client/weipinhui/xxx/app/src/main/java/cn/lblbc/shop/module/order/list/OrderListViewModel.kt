@@ -14,7 +14,7 @@ import cn.lblbc.shop.network.OrderInfo
 class OrderListViewModel : BaseViewModel() {
     val orders: MutableLiveData<List<OrderInfo>> = MutableLiveData()
 
-    fun queryOrder(orderStatus: Int) {
+    fun queryOrder(orderStatus: String) {
         launch({
             orders.value = ShopRepo.queryOrderByStatus(orderStatus)?.data
         })

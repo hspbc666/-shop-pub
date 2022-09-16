@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import cn.lblbc.lib.utils.getMoneyByYuan
 import cn.lblbc.shop.R
 import cn.lblbc.shop.network.Goods
-import cn.lblbc.shop.utils.getMoneyByYuan
 import com.bumptech.glide.Glide
 
 /**

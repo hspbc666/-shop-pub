@@ -5,10 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import cn.lblbc.shop.R
 import cn.lblbc.shop.module.cart.CartFragment
-import cn.lblbc.shop.module.category.CategoryFragment
 import cn.lblbc.shop.module.home.HomeFragment
 import cn.lblbc.shop.module.mine.MineFragment
-import kotlinx.android.synthetic.main.activity_lbl.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private var mFragments = mutableListOf<Fragment>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lbl)
+        setContentView(R.layout.activity_main)
         initBottomNavigation()
         initData()
     }
@@ -29,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     private fun initData() {
         mFragments = ArrayList()
         mFragments.add(HomeFragment())
-        mFragments.add(CategoryFragment())
+        mFragments.add(HomeFragment())
         mFragments.add(CartFragment())
         mFragments.add(MineFragment())
         setFragmentPosition(0)
@@ -39,9 +38,8 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_home -> setFragmentPosition(0)
-                R.id.menu_category -> setFragmentPosition(1)
-                R.id.menu_cart -> setFragmentPosition(2)
-                R.id.menu_mine -> setFragmentPosition(3)
+                R.id.menu_cart -> setFragmentPosition(1)
+                R.id.menu_mine -> setFragmentPosition(2)
             }
             true
         }
