@@ -26,10 +26,10 @@
             android:text="商品金额" />
 
         <TextView
-            android:id="@+id/goodsSumTv"
+            android:id="@+id/goodsMoneyTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_text"
+            android:textColor="#222222"
             tools:text="￥999" />
     </LinearLayout>
 
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="满XX元 免邮"
-            android:textColor="@color/color_text" />
+            android:textColor="#222222" />
     </LinearLayout>
 
     <LinearLayout
@@ -66,6 +66,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="无可用券"
-            android:textColor="@color/color_text" />
+            android:textColor="#222222" />
     </LinearLayout>
 </LinearLayout>

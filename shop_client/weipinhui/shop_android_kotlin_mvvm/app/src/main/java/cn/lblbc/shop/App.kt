@@ -3,6 +3,7 @@ package cn.lblbc.shop
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import cn.lblbc.lib.utils.ToastUtil
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -15,6 +16,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         context = this
+        ToastUtil.init(this)
     }
 
     companion object {

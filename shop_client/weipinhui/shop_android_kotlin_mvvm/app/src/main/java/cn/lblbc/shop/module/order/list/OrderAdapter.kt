@@ -1,16 +1,16 @@
 package cn.lblbc.shop.module.order.list
 
 import androidx.recyclerview.widget.RecyclerView
+import cn.lblbc.lib.utils.getMoneyByYuan
 import cn.lblbc.shop.R
-import cn.lblbc.shop.network.response.OrderDetail
-import cn.lblbc.shop.network.response.OrderInfo
+import cn.lblbc.shop.network.OrderDetail
+import cn.lblbc.shop.network.OrderInfo
 import cn.lblbc.shop.ui.view.BaseAdapter
 import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_COMMENT
 import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_DELIVER
 import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_PAY
 import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_RECEIVE
 import cn.lblbc.shop.utils.OrderStatus.Companion.ORDER_STATUS_TO_RETURN
-import cn.lblbc.shop.utils.getMoneyByYuan
 import kotlinx.android.synthetic.main.item_order.view.*
 
 /**
@@ -27,7 +27,7 @@ class OrderAdapter : BaseAdapter<OrderInfo>() {
         holder.itemView.orderStatusTv.text = getOrderStatus(data.status)
         holder.itemView.goodsCountTv.text =
             mContext.getString(R.string.goods_count, data.list.size)
-        holder.itemView.sumTv.text = calcSum(data.list)
+        holder.itemView.moneyTv.text = calcSum(data.list)
         holder.itemView.orderListView.setData(data.list)
         holder.itemView.deleteOrderTv.setOnClickListener { onDeleteBtnClick(data.orderId) }
         holder.itemView.setOnClickListener { onItemClick(data) }

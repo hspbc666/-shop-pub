@@ -19,7 +19,7 @@ class AddressListActivity : BaseVmActivity<AddressViewModel>() {
     override fun initView() {
         initToolbar()
         adapter = AddressAdapter(mViewModel)
-        addrListRv.adapter = adapter
+//        lblRecyclerView.adapter = adapter
     }
 
     override fun initData() {
@@ -31,7 +31,7 @@ class AddressListActivity : BaseVmActivity<AddressViewModel>() {
     }
 
     override fun initListeners() {
-        modifyAddrTv.setOnClickListener { startActivity(Intent(this, AddAddressActivity::class.java)) }
+        gotoAddAddrTv.setOnClickListener { startActivity(Intent(this, AddAddressActivity::class.java)) }
     }
 
     override fun observe() {

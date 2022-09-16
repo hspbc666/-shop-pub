@@ -1,20 +1,21 @@
 package cn.lblbc.shop.module.addr
 
 import android.content.Intent
+import cn.lblbc.lib.utils.JsonUtil
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.order.confirm.ConfirmOrderActivity
-import cn.lblbc.shop.network.response.Address
+import cn.lblbc.shop.network.Address
 import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_COMPANY
 import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_HOME
 import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_OTHER
 import cn.lblbc.shop.utils.EXTRA_KEY_ADDRESS
-import cn.lblbc.shop.utils.JsonUtil
 import kotlinx.android.synthetic.main.activity_add_address.*
 import kotlinx.android.synthetic.main.activity_goods.toolbar
+import kotlinx.android.synthetic.main.part_addr_default.*
 import kotlinx.android.synthetic.main.part_addr_detail.*
-import kotlinx.android.synthetic.main.part_addr_name_phone.*
-import kotlinx.android.synthetic.main.part_addr_type_info.*
+import kotlinx.android.synthetic.main.part_addr_receiver_name.*
+import kotlinx.android.synthetic.main.part_addr_receiver_phone.*
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -31,21 +32,12 @@ class AddAddressActivity : BaseVmActivity<AddressViewModel>() {
     }
 
     override fun initListeners() {
-        addrTypeRadioGroup.setOnCheckedChangeListener { _, checkedButton ->
-            when (checkedButton) {
-                R.id.addrTypeHomeRb -> addType = ADDR_TYPE_HOME
-                R.id.addrTypeCompanyRb -> addType = ADDR_TYPE_COMPANY
-                R.id.addrTypeOtherRb -> addType = ADDR_TYPE_OTHER
-            }
-        }
-        addAddrTv.setOnClickListener {
+        saveAddressTv.setOnClickListener {
             val address = Address()
             address.name = receiverNameEt.text.toString()
             address.phone = receiverPhoneEt.text.toString()
-            address.region = regionEt.text.toString()
             address.address = detailedAddrEt.text.toString()
             address.defaultAddress = defaultAddrSwitch.isChecked
-            address.addrType = addType
             mViewModel.addAddress(address) {
                 sendResultForConfirmOrder(it)
                 finish()

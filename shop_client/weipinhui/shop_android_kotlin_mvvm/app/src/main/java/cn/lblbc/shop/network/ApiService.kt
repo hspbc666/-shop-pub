@@ -1,6 +1,5 @@
 package cn.lblbc.shop.network
 
-import cn.lblbc.shop.network.response.*
 import retrofit2.http.*
 
 /**
@@ -43,11 +42,8 @@ interface ApiService {
     @POST("shop/order/create")
     suspend fun createOrder(@Body req: CreateOrderRequest): Result<CreateOrderResp?>?
 
-    @POST("shop/order/createFromCart")
-    suspend fun createOrderFromCart(@Body req: CreateOrderFromCartReq): Result<CreateOrderResp?>?
-
     @GET("shop/order/queryByStatus/{orderStatus}")
-    suspend fun queryOrderByStatus(@Path("orderStatus") orderStatus: Int): Result<List<OrderInfo>?>?
+    suspend fun queryOrderByStatus(@Path("orderStatus") orderStatus: String): Result<List<OrderInfo>?>?
 
     @GET("shop/order/query/{orderId}")
     suspend fun queryOrder(@Path("orderId") orderId: String): Result<OrderInfo?>?

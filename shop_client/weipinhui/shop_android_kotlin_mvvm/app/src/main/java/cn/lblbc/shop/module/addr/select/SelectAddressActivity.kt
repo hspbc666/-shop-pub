@@ -1,14 +1,14 @@
 package cn.lblbc.shop.module.addr.select
 
 import android.content.Intent
+import cn.lblbc.lib.utils.JsonUtil
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.addr.AddAddressActivity
 import cn.lblbc.shop.module.order.confirm.ConfirmOrderActivity.Companion.requestCodeForSelectAddr
-import cn.lblbc.shop.network.response.Address
+import cn.lblbc.shop.network.Address
 import cn.lblbc.shop.utils.EXTRA_KEY_ADDRESS
 import cn.lblbc.shop.utils.EXTRA_KEY_ADDRESS_ID
-import cn.lblbc.shop.utils.JsonUtil
 import kotlinx.android.synthetic.main.activity_address_list.*
 import kotlinx.android.synthetic.main.activity_goods.toolbar
 
@@ -32,7 +32,7 @@ class SelectAddressActivity : BaseVmActivity<SelectAddressViewModel>() {
         initToolbar()
         selectedAddressId = intent.getStringExtra(EXTRA_KEY_ADDRESS_ID)
         adapter = SelectAddressAdapter(selectedAddressId)
-        addrListRv.adapter = adapter
+//        lblRecyclerView.adapter = adapter
     }
 
     private fun initToolbar() {
@@ -41,7 +41,7 @@ class SelectAddressActivity : BaseVmActivity<SelectAddressViewModel>() {
 
     override fun initListeners() {
         adapter.onItemClick = this::onItemClick
-        modifyAddrTv.setOnClickListener {
+        gotoAddAddrTv.setOnClickListener {
             startActivity(Intent(this, AddAddressActivity::class.java))
         }
     }

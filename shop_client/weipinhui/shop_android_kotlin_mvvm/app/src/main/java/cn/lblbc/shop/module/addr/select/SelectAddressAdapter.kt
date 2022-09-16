@@ -4,7 +4,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.recyclerview.widget.RecyclerView
 import cn.lblbc.shop.R
-import cn.lblbc.shop.network.response.Address
+import cn.lblbc.shop.network.Address
 import cn.lblbc.shop.ui.view.BaseAdapter
 import kotlinx.android.synthetic.main.item_addr.view.addressTv
 import kotlinx.android.synthetic.main.item_addr.view.defaultAddrTv

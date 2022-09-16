@@ -1,11 +1,11 @@
 package cn.lblbc.shop.module.order.detail
 
 import androidx.appcompat.app.AlertDialog
+import cn.lblbc.lib.utils.getMoneyByYuan
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
-import cn.lblbc.shop.network.response.OrderDetail
+import cn.lblbc.shop.network.OrderDetail
 import cn.lblbc.shop.utils.EXTRA_KEY_ORDER_ID
-import cn.lblbc.shop.utils.getMoneyByYuan
 import kotlinx.android.synthetic.main.activity_goods.toolbar
 import kotlinx.android.synthetic.main.activity_order_detail.*
 import kotlinx.android.synthetic.main.order_detail_bottom_layout.*
@@ -40,7 +40,7 @@ open class OrderDetailActivity : BaseVmActivity<OrderDetailViewModel>() {
                 orderIdTv.text = it.orderId
                 receiverInfoTv.text = it.address?.toSimpleInfo()
                 val sum = calcSum(it.list)
-                orderDetailSumTv.text = getString(R.string.price, sum)
+                orderDetailMoneyTv.text = getString(R.string.price, sum)
                 realPaidTv.text = getString(R.string.real_paid, sum)
                 orderCreateTimeTv.text = formatTime(it.createTime)
                 orderListView.setData(it.list)

@@ -3,7 +3,7 @@ package cn.lblbc.shop.module.addr.select
 import androidx.lifecycle.MutableLiveData
 import cn.lblbc.shop.base.BaseViewModel
 import cn.lblbc.shop.network.ShopRepo
-import cn.lblbc.shop.network.response.Address
+import cn.lblbc.shop.network.Address
 
 /**
  * 厦门大学计算机专业 | 前华为工程师

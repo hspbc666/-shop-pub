@@ -1,11 +1,13 @@
 package cn.lblbc.shop.module.login
 
 import android.content.Intent
+import cn.lblbc.lib.utils.ToastUtil.toast
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.ui.activity.MainActivity
-import cn.lblbc.shop.utils.toast
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.part_login_btns.*
+import kotlinx.android.synthetic.main.part_login_name_pwd.*
 
 /**
  * 厦门大学计算机专业 | 前华为工程师
@@ -22,7 +24,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
     }
 
     override fun initListeners() {
-        loginBtn.setOnClickListener {
+        loginTv.setOnClickListener {
             mViewModel.login(
                 userNameEt.text.toString(),
                 passwordEt.text.toString(),
@@ -32,7 +34,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
                 },
                 onFailure = { toast(it) })
         }
-        registerBtn.setOnClickListener {
+        registerTv.setOnClickListener {
             mViewModel.register(
                 userNameEt.text.toString(),
                 passwordEt.text.toString(),

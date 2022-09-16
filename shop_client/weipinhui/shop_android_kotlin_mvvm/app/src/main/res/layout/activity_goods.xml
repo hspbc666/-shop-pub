@@ -1,25 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/common_bg">
+    android:background="#F4F4F4"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:layout_height="wrap_content"
+        android:background="#EF3965"
         app:navigationIcon="@drawable/ic_back_white"
         app:title="商品详情"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="#FFFFFF" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/goodsBottomLayout"
-        android:layout_below="@id/toolbar">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,22 +35,19 @@
                 android:adjustViewBounds="true"
                 android:background="@drawable/shape_round_rect_white"
                 android:scaleType="fitXY"
-                tools:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_launcher" />
 
             <include layout="@layout/part_goods_detail_info" />
 
-            <ImageView
+            <cn.lblbc.lib.view.ImageViews
                 android:id="@+id/descIv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                tools:src="@mipmap/ic_launcher" />
+                android:layout_marginEnd="10dp" />
         </LinearLayout>
     </ScrollView>
 
     <include layout="@layout/part_goods_bottom" />
-</RelativeLayout>
+</LinearLayout>

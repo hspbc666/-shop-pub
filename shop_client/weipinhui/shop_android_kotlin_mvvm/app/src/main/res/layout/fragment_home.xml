@@ -6,74 +6,8 @@
 
     <include layout="@layout/part_home_search" />
 
-    <ScrollView
+    <cn.lblbc.lib.view.LblViewPager
+        android:id="@+id/lblViewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <cn.lblbc.shop.module.banner.BannerView
-                android:id="@+id/bannerView"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:layout_margin="10dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
-
-                <cn.lblbc.shop.module.home.GoodsSquareView
-                    android:id="@+id/goodsSquareView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <cn.lblbc.shop.module.home.GoodsSquareView
-                    android:id="@+id/goodsSquareView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp">
-
-                <cn.lblbc.shop.module.home.GoodsSquareView
-                    android:id="@+id/goodsSquareView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <cn.lblbc.shop.module.home.GoodsSquareView
-                    android:id="@+id/goodsSquareView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <cn.lblbc.shop.module.home.GoodsLongView
-                android:id="@+id/goodsSquareView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
-
-            <cn.lblbc.shop.module.home.GoodsLongView
-                android:id="@+id/goodsSquareView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
-        </LinearLayout>
-
-    </ScrollView>
+        android:layout_height="match_parent" />
 </LinearLayout>
