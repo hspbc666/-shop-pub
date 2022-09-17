@@ -30,7 +30,7 @@ interface ApiService {
     @GET("shop/goodsBySearch")
     suspend fun searchGoods(@Query("keyword") keyword: String): Result<List<Goods>?>?
 
-    @GET("shop/cart")
+    @POST("shop/cart")
     suspend fun addToCart(@Body request: AddToCartRequest): Result<String?>?
 
     @PUT("shop/cart/{cartId}")
