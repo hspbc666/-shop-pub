@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
     private fun initData() {
         mFragments = ArrayList()
         mFragments.add(HomeFragment())
-        mFragments.add(HomeFragment())
         mFragments.add(CartFragment())
         mFragments.add(MineFragment())
         setFragmentPosition(0)
