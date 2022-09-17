@@ -6,9 +6,7 @@ package cn.lblbc.shop.utils
  * 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
  * 公众号：蓝不蓝编程
  */
-//const val BASE_URL = "http://10.206.50.51:8080/"
-//const val BASE_URL = "http://192.168.31.10:8080/"
-const val BASE_URL = "https://springboot-cnyo-1514875-1309002655.ap-shanghai.run.tcloudbase.com/"
+const val BASE_URL = "http://lblbc.cn/"
 
 const val LOGIN_URL = "user/login"
 const val SP_KEY_TOKEN = "token"
