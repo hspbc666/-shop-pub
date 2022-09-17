@@ -38,6 +38,7 @@ class SearchActivity : BaseVmActivity<SearchViewModel>() {
 
     override fun initListeners() {
         backIv.setOnClickListener { finish() }
+        searchTv.setOnClickListener { search() }
         searchEt.onSearchKeyDown { search() }
     }
 
