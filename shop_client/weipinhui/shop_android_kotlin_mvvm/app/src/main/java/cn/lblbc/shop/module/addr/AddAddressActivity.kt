@@ -6,9 +6,6 @@ import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.module.order.confirm.ConfirmOrderActivity
 import cn.lblbc.shop.network.Address
-import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_COMPANY
-import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_HOME
-import cn.lblbc.shop.utils.AddrType.Companion.ADDR_TYPE_OTHER
 import cn.lblbc.shop.utils.EXTRA_KEY_ADDRESS
 import kotlinx.android.synthetic.main.activity_add_address.*
 import kotlinx.android.synthetic.main.activity_goods.toolbar
