@@ -1,6 +1,7 @@
 package cn.lblbc.shop.module.goods_detail
 
 import android.content.Intent
+import android.util.Log
 import android.widget.ImageView
 import cn.lblbc.lib.utils.JsonUtil
 import cn.lblbc.lib.utils.ToastUtil.toast
@@ -32,6 +33,7 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
     override fun layoutResId(): Int = R.layout.activity_goods
 
     override fun initView() {
+        Log.i("ddfd","GoodsActivity")
         initToolbar()
         mViewModel.goods.observe(this) {
             mGoods = it

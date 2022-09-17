@@ -1,7 +1,6 @@
 package cn.lblbc.shop.module.home
 
 import android.content.Intent
-import android.widget.GridView
 import androidx.fragment.app.Fragment
 import cn.lblbc.lib.utils.getMoneyByYuan
 import cn.lblbc.lib.utils.loadImage
@@ -9,7 +8,6 @@ import cn.lblbc.lib.view.LblRecyclerView
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmFragment
 import cn.lblbc.shop.module.goods_detail.GoodsActivity
-import cn.lblbc.shop.module.goods_detail.GoodsAdapter
 import cn.lblbc.shop.network.Goods
 import cn.lblbc.shop.utils.EXTRA_KEY_GOODS_ID
 import kotlinx.android.synthetic.main.item_goods.view.*
@@ -30,7 +28,9 @@ class GoodsListFragment(private var categoryId: String) : BaseVmFragment<HomeGoo
         lblRecyclerView.setLayoutResId { R.layout.item_goods }
         lblRecyclerView.setColumns(2)
         lblRecyclerView.setOnBind { itemView, data ->
-            onItemClick(data)
+            itemView.goodsNameTv.text = data.name
+            itemView.goodsPriceTv.text = getMoneyByYuan(data.price)
+            loadImage(itemView.goodsIv, data.squarePic)
         }
         lblRecyclerView.setOnItemClick { onItemClick(it) }
     }
