@@ -7,7 +7,7 @@ package cn.lblbc.shop.utils
  * 公众号：蓝不蓝编程
  */
 const val BASE_URL = "http://lblbc.cn/"
-
+const val EXTRA_KEY_ADDRESS_INFO = "address_info"
 const val LOGIN_URL = "user/login"
 const val SP_KEY_TOKEN = "token"
 const val SP_KEY_USER_ID = "user_id"
