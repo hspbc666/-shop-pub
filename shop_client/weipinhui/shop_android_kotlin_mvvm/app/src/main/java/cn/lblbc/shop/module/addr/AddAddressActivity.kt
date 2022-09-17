@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.part_addr_receiver_phone.*
  * 公众号：蓝不蓝编程
  */
 class AddAddressActivity : BaseVmActivity<AddressViewModel>() {
-    private var addType = 0
     override fun layoutResId(): Int = R.layout.activity_add_address
     override fun viewModelClass() = AddressViewModel::class.java
     override fun initView() {
