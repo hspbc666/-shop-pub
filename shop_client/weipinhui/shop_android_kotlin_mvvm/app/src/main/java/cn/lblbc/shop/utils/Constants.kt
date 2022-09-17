@@ -13,12 +13,10 @@ const val SP_KEY_TOKEN = "token"
 const val SP_KEY_USER_ID = "user_id"
 const val EXTRA_KEY_GOODS_ID = "goods_id"
 const val EXTRA_KEY_ORDER_ID = "order_id"
-const val EXTRA_KEY_ADDR_INFO = "addr_info"
 const val EXTRA_KEY_MONEY = "cost_sum"
 const val EXTRA_KEY_COST_SUM = "cost_sum"
 const val EXTRA_KEY_ADDRESS_ID = "user_address_id"
 const val EXTRA_KEY_ADDRESS = "address"
-const val EXTRA_KEY_CART_ITEMS = "cart_items"
 const val EXTRA_KEY_TAB_INDEX = "tab_index"
 const val EXTRA_KEY_SIMPLE_ORDER = "simple_order"
 
@@ -30,13 +28,5 @@ interface OrderStatus {
         const val ORDER_STATUS_TO_RECEIVE = 3 //待收货
         const val ORDER_STATUS_TO_COMMENT = 4 //待评价
         const val ORDER_STATUS_TO_RETURN = 5 //退货中
-    }
-}
-
-interface AddrType {
-    companion object {
-        const val ADDR_TYPE_HOME = 1 //家庭
-        const val ADDR_TYPE_COMPANY = 2 //公司
-        const val ADDR_TYPE_OTHER = 3 //其他
     }
 }

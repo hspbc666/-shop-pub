@@ -9,7 +9,7 @@ import cn.lblbc.lib.utils.JsonUtil
 import cn.lblbc.shop.R
 import cn.lblbc.shop.network.Address
 import cn.lblbc.shop.ui.view.BaseAdapter
-import cn.lblbc.shop.utils.EXTRA_KEY_ADDR_INFO
+import cn.lblbc.shop.utils.EXTRA_KEY_ADDRESS_INFO
 import kotlinx.android.synthetic.main.item_addr.view.*
 
 /**
@@ -45,7 +45,7 @@ class AddressAdapter(var mViewModel: AddressViewModel) : BaseAdapter<Address>() 
 
     private fun gotoEditAddressPage(data: Address) {
         val intent = Intent(mContext, EditAddressActivity::class.java)
-        intent.putExtra(EXTRA_KEY_ADDR_INFO, JsonUtil.toJson(data))
+        intent.putExtra(EXTRA_KEY_ADDRESS_INFO, JsonUtil.toJson(data))
         mContext.startActivity(intent)
     }
 

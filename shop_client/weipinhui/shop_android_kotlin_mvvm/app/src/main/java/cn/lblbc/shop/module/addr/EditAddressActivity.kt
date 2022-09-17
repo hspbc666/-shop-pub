@@ -4,7 +4,7 @@ import cn.lblbc.lib.utils.JsonUtil
 import cn.lblbc.shop.R
 import cn.lblbc.shop.base.BaseVmActivity
 import cn.lblbc.shop.network.Address
-import cn.lblbc.shop.utils.EXTRA_KEY_ADDR_INFO
+import cn.lblbc.shop.utils.EXTRA_KEY_ADDRESS_INFO
 import kotlinx.android.synthetic.main.activity_edit_address.*
 import kotlinx.android.synthetic.main.part_addr_default.*
 import kotlinx.android.synthetic.main.part_addr_detail.*
@@ -23,7 +23,7 @@ class EditAddressActivity : BaseVmActivity<AddressViewModel>() {
     override fun viewModelClass() = AddressViewModel::class.java
     override fun initView() {
         initToolbar()
-        val addrInfoInJson = intent.getStringExtra(EXTRA_KEY_ADDR_INFO) ?: ""
+        val addrInfoInJson = intent.getStringExtra(EXTRA_KEY_ADDRESS_INFO) ?: ""
         address = JsonUtil.fromJson(addrInfoInJson)
         address?.let {
             receiverNameEt.setText(it.name)
