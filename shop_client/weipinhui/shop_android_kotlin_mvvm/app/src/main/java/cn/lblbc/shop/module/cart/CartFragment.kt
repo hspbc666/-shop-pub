@@ -15,7 +15,9 @@ import cn.lblbc.shop.module.login.LoginManager
 import cn.lblbc.shop.module.order.confirm.ConfirmOrderActivity
 import cn.lblbc.shop.network.CartItem
 import cn.lblbc.shop.network.OrderDetail
-import cn.lblbc.shop.utils.*
+import cn.lblbc.shop.utils.EXTRA_KEY_MONEY
+import cn.lblbc.shop.utils.EXTRA_KEY_SIMPLE_ORDER
+import cn.lblbc.shop.utils.calcSum2
 import kotlinx.android.synthetic.main.item_cart_goods.view.*
 
 /**
@@ -45,6 +47,7 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
         moneyTv = findViewById(R.id.moneyTv)
         gotoCreateOrderTv = findViewById(R.id.gotoCreateOrderTv)
     }
+
     private fun initRecyclerView() {
         lblRecyclerView = findViewById(R.id.lblRecyclerView)
         lblRecyclerView.setLayoutResId { R.layout.item_cart_goods }
@@ -58,7 +61,8 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
             loadImage(itemView.goodsIv, data.squarePic)
 
             itemView.quantityView.setCallback {
-                onQuantityChanged(data.id, it)
+                data.quantity = it
+                onQuantityChanged(data, itemView.cartItemCheckBox.isChecked)
             }
         }
     }
@@ -76,7 +80,8 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
         }
     }
 
-    private fun onQuantityChanged(cartId: String, quantity: Int) {
+    private fun onQuantityChanged(cartItem: CartItem, isChecked: Boolean) {
+        mViewModel.modifyCart(cartItem, isChecked)
 //        launch(
 //            action = { NetworkRepository.apiService.modifyCart(cartId, ModifyCartRequest(quantity)) },
 //            onSuccess = { queryData() }
