@@ -41,7 +41,7 @@ class CartViewModel : BaseViewModel() {
     }
 
     fun selectItem(cartItem: CartItem) {
-        val selectionItem = selectionItemList.firstOrNull { it.goodsId == cartItem.id }
+        val selectionItem = selectionItemList.firstOrNull { it.id == cartItem.id }
         if (selectionItem != null) {
             if (cartItem.quantity <= 0) {
                 selectionItemList.remove(selectionItem)
