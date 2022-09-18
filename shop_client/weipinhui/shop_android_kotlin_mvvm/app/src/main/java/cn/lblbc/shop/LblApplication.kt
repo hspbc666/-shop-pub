@@ -24,5 +24,4 @@ class LblApplication : Application() {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
     }
-
 }
