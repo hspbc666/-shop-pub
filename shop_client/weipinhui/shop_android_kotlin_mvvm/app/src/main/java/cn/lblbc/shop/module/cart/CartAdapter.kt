@@ -23,8 +23,7 @@ class CartAdapter(var mViewModel: CartViewModel) : BaseAdapter<CartItem>() {
         holder.itemView.cartItemCheckBox.isChecked = false
         holder.itemView.goodsNameTv.text = data.name
         holder.itemView.quantityView.setData(data.quantity)
-        holder.itemView.goodsPriceTv.text =
-            mContext.getString(R.string.price, getMoneyByYuan(data.price))
+        holder.itemView.goodsPriceTv.text = getMoneyByYuan(data.price)
         loadImage(holder.itemView.goodsIv, data.squarePic)
 
         holder.itemView.quantityView.setCallback {

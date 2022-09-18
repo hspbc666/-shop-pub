@@ -37,7 +37,7 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
         initToolbar()
         mViewModel.goods.observe(this) {
             mGoods = it
-            price = getString(R.string.price, getMoneyByYuan(it.price))
+            price = getMoneyByYuan(it.price)
             goodsNameTv.text = it.name
             goodsPriceTv.text = price
             loadImage(goodsIv, it.squarePic)
@@ -73,7 +73,7 @@ class GoodsActivity : BaseVmActivity<GoodsViewModel>() {
     }
 
     private fun gotoConfirmOrder(it: Goods) {
-        val price = cn.lblbc.lib.utils.getMoneyByYuan(it.price)
+        val price = getMoneyByYuan(it.price)
         val intent = Intent(this, ConfirmOrderActivity::class.java)
         val orderDetail = OrderDetail(goodsId, it.name, it.price, it.squarePic, 1)
         val orderInJson = JsonUtil.toJson(listOf(orderDetail))

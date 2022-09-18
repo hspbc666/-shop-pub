@@ -35,7 +35,7 @@ class OrderAdapter : BaseAdapter<OrderInfo>() {
 
     private fun calcSum(data: List<OrderDetail>): CharSequence {
         val sum = data.sumOf { it.price * it.quantity }
-        return mContext.getString(R.string.price, getMoneyByYuan(sum))
+        return getMoneyByYuan(sum)
     }
 
     private fun getOrderStatus(orderStatus: Int): String {

@@ -61,7 +61,7 @@ class GoodsAdapter(private val mContext: Context) : BaseAdapter() {
 
         val data = mDataList[position]
         holder.goodsNameTv.text = data.name
-        holder.goodsPriceTv.text = mContext.getString(R.string.price, getMoneyByYuan(data.price))
+        holder.goodsPriceTv.text = getMoneyByYuan(data.price)
         loadImage(holder.goodsIv, data.squarePic)
         return convertView
     }

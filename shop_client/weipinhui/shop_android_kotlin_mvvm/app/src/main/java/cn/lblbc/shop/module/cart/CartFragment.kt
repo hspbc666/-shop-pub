@@ -57,7 +57,7 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
             itemView.cartItemCheckBox.isChecked = false
             itemView.goodsNameTv.text = data.name
             itemView.quantityView.setData(data.quantity)
-            itemView.goodsPriceTv.text = cn.lblbc.lib.utils.getMoneyByYuan(data.price)
+            itemView.goodsPriceTv.text = getMoneyByYuan(data.price)
             loadImage(itemView.goodsIv, data.squarePic)
 
             itemView.quantityView.setCallback {
@@ -129,7 +129,7 @@ class CartFragment : BaseVmFragment<CartViewModel>() {
             mViewModel.selectionItemList.forEach { sum += it.price * it.quantity }
             selectedCountTv.text =
                 context?.getString(R.string.selected_count, mViewModel.selectionItemList.size)
-            moneyTv.text = context?.getString(R.string.price, getMoneyByYuan(sum))
+            moneyTv.text = getMoneyByYuan(sum)
             if (mViewModel.selectionItemList.isEmpty()) {
                 gotoCreateOrderTv.isEnabled = false
                 gotoCreateOrderTv.setBackgroundResource(R.drawable.capsule_bg_gray)
