@@ -6,7 +6,7 @@
 5. 支持购物车
 6. 支持地址管理、订单管理
 # 项目技术特色
-Kotlin+Retrofit+MVVM
+Kotlin+Retrofit+协程+MVVM
 # 主要界面：
 ![](https://upload-images.jianshu.io/upload_images/6169789-a7c8b0fe3712af8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![](https://upload-images.jianshu.io/upload_images/6169789-14cbe6095616c6d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
